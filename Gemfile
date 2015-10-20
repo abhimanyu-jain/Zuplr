@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'devise'
+gem 'mysql'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 gem 'jquery-smooth-scroll-rails', '~> 0.0.5'
