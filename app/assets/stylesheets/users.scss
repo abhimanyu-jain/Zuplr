@@ -97,4 +97,27 @@
 		vertical-align: baseline;
 		width: 10%;
 	}
+
+	.looks{
+		text-align: left;
+		img{
+			padding: 20px;
+			text-align: center
+		}
+	}
+
+	.prints{
+		.checkbox-inline{
+			width: 30%;
+			padding: 10px 20px;
+			text-align: left;
+			
+			input[type="checkbox"]{
+				margin-top: 40px;
+			}
+		}
+		img{
+			width:100%;
+		}
+	}
 }
