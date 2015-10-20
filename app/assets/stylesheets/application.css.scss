@@ -36,6 +36,21 @@ body{
 	}
 
 	ul li{
+		a{
+			color: white !important;
+
+			&:hover{
+				background: white;
+				color: black;
+			}
+		}
+
+		&.active{
+			color: white
+		}
+	}
+
+	.navbar-zp{
 
 	}
 }

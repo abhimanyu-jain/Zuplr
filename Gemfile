@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+gem 'devise-bootstrap-views'
 gem 'mysql'
 gem 'omniauth'
 gem 'omniauth-twitter'

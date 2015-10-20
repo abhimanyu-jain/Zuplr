@@ -36,8 +36,8 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.app_domain = 'somedomain.com'
-  
+  config.app_domain = 'zuplr.com'
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
@@ -47,9 +47,9 @@ Rails.application.configure do
     address: 'smtp.gmail.com', 
     port: '587',
     enable_starttls_auto: true,
-    user_name: 'someuser',
-    password: 'somepass',
+    user_name: 'kjvenky@gmail.com',
+    password: 'mylove5672',
     authentication: :plain,
-    domain: 'somedomain.com'
+    domain: 'zuplr.com'
   }
 end

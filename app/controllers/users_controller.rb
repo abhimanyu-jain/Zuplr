@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  skip_before_filter :verify_signed_out_user
 
-	def styledata
-		render 'stylelog-form'
-	end
+  def styledata
+	render 'stylelog-form'
+  end
 
 	# GET /users/:id.:format
   def show
@@ -13,6 +14,14 @@ class UsersController < ApplicationController
   # GET /users/:id/edit
   def edit
     # authorize! :update, @user
+  end
+
+  def start
+ 	if user_signed_in?
+ 		redirect_to '/style-log'
+ 	else
+		redirect_to '/users/sign_in'
+ 	end
   end
 
   # PATCH/PUT /users/:id.:format
@@ -37,7 +46,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         @user.skip_reconfirmation!
         sign_in(@user, :bypass => true)
-        redirect_to @user, notice: 'Your profile was successfully updated.'
+        redirect_to root_url
       else
         @show_errors = true
       end
