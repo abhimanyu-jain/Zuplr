@@ -4,7 +4,7 @@
 .style-log{
 	line-height: 32px;
 	font-size:16px;
-	padding:0px 60px;
+	padding:0px 5%;
 	text-align: justify;
 
 	h4{
@@ -16,23 +16,41 @@
 		line-height: 32px;
 	}
 	ul{
+		list-style: none;
 		padding: 0px;
 		li{
-			padding: 10px 0px;
+			padding: 15px 20px;
+			background: rgba(252,252,252,1);
+			margin-top:5px;
+			border-radius: 4px;
+		}
+
+		ul{
+			padding-left: 20px;
+			li{
+				min-height: 35px;
+				padding: 0px;
+				width: 80%;
+				select{
+					float: right;
+				}
+			}
 		}
 	}
 
 	select{
 		border:0px;
-		border-bottom:1px dashed #656565;
+		// border-bottom:1px dashed #656565;
 		padding: 0px 20px;
 		text-align: center;
 		font-size: 18px;
 		font-weight: bold;
-		background: none;
+		background: #fff;
 		-moz-appearance: none;
 	    -webkit-appearance: none;
 	    appearance: none;
+	    margin:0px 5px;
+	    border-radius: 2px 2px 0px 0px;
 
 		option{
 			padding: 10px 20px;
@@ -45,10 +63,11 @@
 
 	input{
 		border: 0px;
-		border-bottom:1px dashed #656565;
+		// border-bottom:1px dashed #656565;
 		font-size: 18px;
 		font-weight: bold;
-
+		margin:0px 5px;
+	    
 		&:focus{
 			outline: none;
 		}
@@ -65,5 +84,17 @@
 		font-weight: normal;
 		font-size: 14px;
 		width: 80%;
+	}
+
+	.color-box{
+		width: 80%;
+		height: 40px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+	.checkbox-inline{
+		vertical-align: baseline;
+		width: 10%;
 	}
 }
