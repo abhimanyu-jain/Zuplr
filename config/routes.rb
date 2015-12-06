@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
   root "home#index"
   get "/style-log" => "users#styledata"
+  get "users/start" => "users#start"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
