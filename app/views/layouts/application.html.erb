@@ -26,7 +26,7 @@
             <!-- <li class="active"><a href="#">Home</a></li> -->
             <% if user_signed_in? %>
               <li><a href="/style-log">My Log</a></li>
-              <li><a href="/logout">Logout</a></li>
+              <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
             <% end %>
            
           </ul>

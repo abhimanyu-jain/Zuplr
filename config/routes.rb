@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
   root "home#index"
   get "/style-log" => "users#styledata"
   get "users/start" => "users#start"
+<<<<<<< HEAD
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
     get '/confirmation' => 'devise/confirmations#new'     
   end
 
+=======
+>>>>>>> email_fb_login
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
