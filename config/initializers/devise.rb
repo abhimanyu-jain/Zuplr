@@ -4,23 +4,15 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-<<<<<<< HEAD
-  # config.secret_key = '33c83bcb39eb4cb02774fe0a0460fd5fe9d655170bec094605e6d772ecd21a004f2e042f9a43bac58914ca98cfe00b50e95820c183cdc72cbf4c092d3c29d580'
-=======
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f4c7ff793077df555d9fa8cffdf4753609a563be6e78a27cff8e065bd60f154a9b2f53158c61ec10ac95ab533105db9ec05e4eff7268531278977214c35323d9'
->>>>>>> email_fb_login
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-<<<<<<< HEAD
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-=======
   config.mailer_sender = 'music22kartik@gmail.com'
->>>>>>> email_fb_login
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -39,11 +31,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-<<<<<<< HEAD
-  # config.authentication_keys = [ :email ]
-=======
   # config.authentication_keys = [:email]
->>>>>>> email_fb_login
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -55,20 +43,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-<<<<<<< HEAD
-  config.case_insensitive_keys = [ :email ]
-=======
   config.case_insensitive_keys = [:email]
->>>>>>> email_fb_login
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-<<<<<<< HEAD
-  config.strip_whitespace_keys = [ :email ]
-=======
   config.strip_whitespace_keys = [:email]
->>>>>>> email_fb_login
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -119,11 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-<<<<<<< HEAD
-  # config.pepper = '62c5fff72f81572e2bab9985dabb1efef431352fa77165dc7c135f3837a07960efdae5035a4a22ebc65b16a589bb59c7ba2af0817d7acea6a56072791fd52fc0'
-=======
-  # config.pepper = 'd6978ddb376e3746fe5bceabc54ec31983011108758c8dfa0b78946fb30f40102691925a54b392274b6c3f869123f7f2e4d09e12350c1e618ed6cb20c0482dff'
->>>>>>> email_fb_login
+ # config.pepper = 'd6978ddb376e3746fe5bceabc54ec31983011108758c8dfa0b78946fb30f40102691925a54b392274b6c3f869123f7f2e4d09e12350c1e618ed6cb20c0482dff'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -148,11 +124,7 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-<<<<<<< HEAD
-  # config.confirmation_keys = [ :email ]
-=======
   # config.confirmation_keys = [:email]
->>>>>>> email_fb_login
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
@@ -170,11 +142,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-<<<<<<< HEAD
-  config.password_length = 8..128
-=======
   config.password_length = 8..72
->>>>>>> email_fb_login
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -186,12 +154,6 @@ Devise.setup do |config|
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
 
-<<<<<<< HEAD
-  # If true, expires auth token on session timeout.
-  # config.expire_auth_token_on_timeout = false
-
-=======
->>>>>>> email_fb_login
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
@@ -199,11 +161,7 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-<<<<<<< HEAD
-  # config.unlock_keys = [ :email ]
-=======
   # config.unlock_keys = [:email]
->>>>>>> email_fb_login
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
