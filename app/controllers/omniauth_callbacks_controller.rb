@@ -4,10 +4,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     generic_callback( 'facebook' )
   end
 
+  def google_oauth2
+    generic_callback( 'google_oauth2' )
+  end
 
   def generic_callback( provider )
+    puts env["omniauth.auth"]
     @identity = Identity.find_for_oauth env["omniauth.auth"]
-
     @user = @identity.user || current_user
     if @user.nil?
       @user = User.create( email: @identity.email || "" )
