@@ -2,18 +2,19 @@ Rails.application.routes.draw do
   devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
   root "home#index"
   get "/style-log" => "users#styledata"
+  get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"
-
+  post "users/save-data" => "users#save"
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-  # devise_scope :user do  
-  #   get '/logout' => 'devise/sessions#destroy'     
-  #   get '/users/sign_out' => 'devise/sessions#destroy'     
-  #   get '/login' => 'devise/sessions#new'     
-  #   get '/register' => 'devise/registrations#new'     
-  #   get '/forgotpassword' => 'devise/passwords#new'     
-  #   get '/confirmation' => 'devise/confirmations#new'     
-  # end
+  devise_scope :user do  
+    get '/logout' => 'devise/sessions#destroy'     
+    get '/users/sign_out' => 'devise/sessions#destroy'     
+    get '/login' => 'devise/sessions#new'     
+    get '/register' => 'devise/registrations#new'     
+    get '/forgotpassword' => 'devise/passwords#new'     
+    get '/confirmation' => 'devise/confirmations#new'     
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
