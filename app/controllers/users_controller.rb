@@ -21,11 +21,15 @@ class UsersController < ApplicationController
 	   	end
   	end
 
+  	def savedata
+  		puts params
+  	end
+
   	def save
   		# Check if the user data exists and modify
   		# Else save the data
   		@userdata = Userdatum.find_by_userid(current_user.id)
-		if @userdata
+  		if @userdata
   			# modify the data
   			puts "Modifying the data"
   			@userdata.update_attributes(
@@ -33,6 +37,7 @@ class UsersController < ApplicationController
   				:userid => current_user.id
   			)
   		else
+  			puts "Saving the data"
   			@userdata = Userdatum.new(userdatum_params)
   			@userdata.save
   		end	
@@ -40,11 +45,14 @@ class UsersController < ApplicationController
   	end
 
   	private 
+  		def user_params
+  			params.permit!
+  		end
+  		
 		# Never trust parameters from the scary internet, only allow the white list through.
 	    def userdatum_params
 	    	# Dig deep into how this works
-	    	puts "Hello world"
-	    	puts params['user']
+	    	puts "Printing user params"
 	    	parameters = {
 	    		:userid => current_user.id,
 	    		:data => (params['user']).to_json
