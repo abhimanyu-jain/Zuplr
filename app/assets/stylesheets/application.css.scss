@@ -88,6 +88,10 @@ body{
 	}
 }
 
+.static-page{
+	padding-top: 80px;
+}
+
 footer{
 	margin-top: 60px;
 	border-top:2px solid rgba(220,0,96,1);
@@ -108,7 +112,16 @@ footer{
 			border-radius: 2px;
 			background: #f7f7f7;
 		}
+
+		a{
+			color: #666;
+		}
+
+		a:hover{
+			background: none;
+		}
 	}
+
 	.copyright{
 		margin-top:20px;
 		border-top:1px solid #ddd;
