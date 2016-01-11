@@ -75,5 +75,17 @@
 .faqs{
 	.col-sm-6{
 		padding-bottom: 40px;
+		height: 220px;
+		line-height: 24px;
+		.question{
+			font-weight: bold;
+			padding-bottom: 15px;
+			font-size: 16px;
+		}
+	}
+	ul{
+		li{
+			padding: 8px;
+		}
 	}
 }
