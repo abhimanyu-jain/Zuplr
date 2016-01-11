@@ -3,13 +3,14 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 	
 	def styledata
-		@user = Identity.find_by_email(current_user.email)
 		@userdata = Userdatum.find_by_userid(current_user.id)
-		puts @userdata
 		if @userdata
   			@userdata = JSON.parse @userdata.data
 		end	
-		render 'stylelog-form'
+		
+    @user = Identity.find_by_email(current_user.email)
+      
+    render 'stylelog-form'
 	end
 	
 	def start
@@ -31,20 +32,22 @@ class UsersController < ApplicationController
   		@userdata = Userdatum.find_by_userid(current_user.id)
   		if @userdata
   			# modify the data
-  			puts "Modifying the data"
   			@userdata.update_attributes(
   				:data => (params['user']).to_json,
   				:userid => current_user.id
   			)
   		else
-  			puts "Saving the data"
   			@userdata = Userdatum.new(userdatum_params)
   			@userdata.save
   		end	
+
+      # Send Email
+      
   		render 'thank-you'
   	end
 
-  	private 
+  	private
+
   		def user_params
   			params.permit!
   		end
@@ -52,7 +55,6 @@ class UsersController < ApplicationController
 		# Never trust parameters from the scary internet, only allow the white list through.
 	    def userdatum_params
 	    	# Dig deep into how this works
-	    	puts "Printing user params"
 	    	parameters = {
 	    		:userid => current_user.id,
 	    		:data => (params['user']).to_json

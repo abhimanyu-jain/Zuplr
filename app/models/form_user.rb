@@ -1,5 +1,6 @@
 class FormUser < User
   attr_accessor :current_password
+  attr_accessor :name
 
   validates_presence_of   :email, if: :email_required?
   validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
@@ -16,5 +17,5 @@ class FormUser < User
 
   def email_required?
     true
-  end
+  end 
 end
