@@ -2,8 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     super
-    puts params
-    puts "Creating Default Identity"
+
+    #Hack to create a identity on normal login
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
     identity.name = params['user']['name']
     identity.email = params['user']['email']
