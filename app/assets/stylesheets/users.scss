@@ -1,6 +1,31 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#delivery-form{
+	
+	form{
+		font-size: 20px;
+		background: #f7f7f7;
+		padding: 20px;
+		line-height: 40px;
+		text-align: center;
+	}
+
+	input{
+		border-radius: 2px;
+		border: 0px;
+		// border-bottom:1px dashed #656565;
+		font-size: 18px;
+		font-weight: bold;
+		margin:5px 5px;
+		padding-left: 20px;
+	    
+		&:focus{
+			outline: none;
+		}
+	}
+}
+
 .style-log{
 	line-height: 32px;
 	font-size:16px;

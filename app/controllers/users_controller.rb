@@ -46,7 +46,17 @@ class UsersController < ApplicationController
   		render 'thank-you'
   	end
 
+    def deliver
+      @delivery = Delivery.new(delivery_params)
+      @delivery.save
+    end
+
   	private
+
+      def delivery_params
+
+        params.require(:delivery).permit!
+      end
 
   		def user_params
   			params.permit!

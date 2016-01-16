@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
     if request.referer == sign_in_url
       super
     else
-      root_path || stored_location_for(resource) || request.referer
+      # Temporary hack always redirect to the stylelog after signup 
+      # root_path || stored_location_for(resource) || request.referer
+      '/style-log'
     end
   end
 

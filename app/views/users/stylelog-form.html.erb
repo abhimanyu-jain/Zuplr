@@ -1,8 +1,8 @@
 <div style="padding-top:120px" class="container">
 	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Welcome to Zuplr's style log!</h2><br>
 	<form class="style-log" action="/users/save-data" method="POST">
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-        <h3> Hi <input class="input" placeholder="Guest" value="<%= @user.name %>" style="text-transform: uppercase; font-size: 24px" type="text"/>!</h3> <br>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	        <h3> Hi <input class="input" placeholder="Guest" value="<%= @user.name %>" style="text-transform: uppercase; font-size: 24px" type="text"/>!</h3> <br>
 		<p>
 		We're excited to start styling for you. Our Style Profile helps us to understand you and your style better. We're ready to start asking questions, if you're ready to start answering them.</p>
 		<p>Don't forget—the more we know about you, the better we can style for you!<br>
@@ -18,14 +18,8 @@
 				<input class="input-sm" name="user[personal][weight]" value="<%= @userdata['personal']['weight'] if defined?(@userdata['personal']['weight']) %>"  placeholder="58" type="text"/> kg. </li>
 			<li>Bras that fit me best are of size 
 				<input class="input-sm" name="user[personal][bra][size]" value="<%= @userdata['personal']['bra']['size'] if defined?(@userdata['personal']['bra']['size']) %>" type="text"/>, cup 
-				<input class="input-sm" type="text" name="user[personal][bra][cup]" value="<%= @userdata['personal']['bra']['cup'] if defined?(@userdata['personal']['bra']['cup']) %>"  />, and generally of
-				<select class="" name="user[personal][bra][gensize]" type="text">
-					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['gensize']) && @userdata['personal']['bra']['gensize'] == 'XS') %>>XS</option>
-					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['gensize']) && @userdata['personal']['bra']['gensize'] == 'S') %>>S</option>
-					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['gensize']) && @userdata['personal']['bra']['gensize'] == 'M') %>>M</option>
-					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['gensize']) && @userdata['personal']['bra']['gensize'] == 'L') %>>L</option>
-					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['gensize']) && @userdata['personal']['bra']['gensize'] == 'XL') %>>XL</option>
-			</select>size fits me best.</li>
+				<input class="input-sm" type="text" name="user[personal][bra][cup]" value="<%= @userdata['personal']['bra']['cup'] if defined?(@userdata['personal']['bra']['cup']) %>"  />. 
+			</li>
 			<li>The size I normally wear for blouses/tops and shirts is
 				<select class="" name="user[personal][size][top]" type="text">
 				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'XS') %>>XS</option>
@@ -38,14 +32,14 @@
 			<li>I feel comfortable on top half of my body fit as 
 				<select class="" name="user[personal][size][topfit]" type="text">
 				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Loose') %>>Loose</option>
-				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Tight') %>>Tight</option>
 				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Slightly loose') %>>Slightly loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Skin Tight') %>>Skin Tight</option>
 			</select> and I prefer 
 				<select class="" name="user[personal][size][pants]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Loose') %>>Loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Slightly loose') %>>Slightly loose</option>
 				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Skin Tight') %>>Skin Tight</option>
-				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Slightly Loose') %>>Slightly loose</option>
-				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Perfect fit') %>>Perfect fit</option>
-			</select> pants,
+			</select> bottom half clothing,
 			<input class="input-sm" type="text" name="user[personal][size][jeans]"/> jeans and skirts of
 			<select class="" name="user[personal][size][skirts]" type="text">
 				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'XS') %>>XS</option>
@@ -82,11 +76,7 @@
 				<option <% concat "selected" if (defined?(@userdata['personal']['jeans']['style']) && @userdata['personal']['jeans']['style'] == 'Wide') %>>Wide</option>
 			</select>  
 			Style </li>
-			<li>I feel the best fitting clothes for bottom half of my body are <select class="" name="user[personal][bottom][style]" type="text">
-				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['style']) && @userdata['personal']['bottom']['style'] == 'Tight fitted') %>>Tight fitted</option>
-				<option <% concat "selected" if (defined?(@userdata['personal']['bottom']['style']) && @userdata['personal']['bottom']['style'] == 'Loose') %>>Loose</option>
-				<option <% concat "selected" if (defined?(@userdata['personal']['bottom']['style']) && @userdata['personal']['bottom']['style'] == 'Perfect fit') %>>Perfect fit</option>
-			</select> type, and yeah I<select class="" name="user[personal][bottom][curvy]" type="text">
+			<li>And yeah I<select class="" name="user[personal][bottom][curvy]" type="text">
 				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do') %>>do</option>
 				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do not') %>>do not</option>
 			</select> consider my bottom half curvy.</li>
@@ -286,13 +276,13 @@
 				</ul>
 			</li>
 			<li>I am comfortable to show off my 
-					<select class="" name="user[lifestyle][show][top]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['top']) && @userdata['lifestyle']['show']['top'] == 'Shoulder') %> >Shoulder</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['top']) && @userdata['lifestyle']['show']['top'] == 'Arms') %> >Arms</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['top']) && @userdata['lifestyle']['show']['top'] == 'Back') %> >Back</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['top']) && @userdata['lifestyle']['show']['top'] == 'Belly') %> >Belly</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['top']) && @userdata['lifestyle']['show']['top'] == 'Clevage') %> >Clevage</option>
-					</select>on daily basis or specific occasions and on lower body I am 
+
+					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Shoulder" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Shoulder')) %>/>Shoulder</label>
+					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Arms" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Arms')) %>/>Arms</label>
+					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Back" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Back')) %>/>Back</label>
+					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Belly" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Belly')) %>/>Belly</label>
+					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Clevage" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Clevage')) %>/>Clevage</label>
+					on daily basis or specific occasions and on lower body I am 
 					<select class="" name="user[lifestyle][show][legs]" type="text">
 						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['legs']) && @userdata['lifestyle']['show']['legs'] == 'Okay') %> >Okay</option>
 						<option <% concat "selected" if (defined?(@userdata['lifestyle']['show']['legs']) && @userdata['lifestyle']['show']['legs'] == 'Not Okay') %> >Not Okay</option>
@@ -302,11 +292,11 @@
 
 			<li>How much would you ideally spend on items in each of the following categories? We'll do our very best!
 				<ul>
-					<li>Accessories : Inexpensive or regular ones  or I would rather take it as investment, so I don’t mind as long as it is awesome! Min<input class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Max<input class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/></li>
-					<li>Bottom: Inexpensive Min <input class="input-sm" placeholder="" name="user[lifestyle][botmax]" value="<%= @userdata['lifestyle']['botmax'] if defined?(@userdata['lifestyle']['botmax']) %>" type="text"/> Max<input class="input-sm" placeholder="" name="user[lifestyle][botmin]" value="<%= @userdata['lifestyle']['botmin'] if defined?(@userdata['lifestyle']['botmin']) %>" type="text"/></li>
-					<li>Dresses: Inexpensive Min<input class="input-sm" name="user[lifestyle][dressmax]" value="<%= @userdata['lifestyle']['dressmax'] if defined?(@userdata['lifestyle']['dressmax']) %>" placeholder="" type="text"/> Max<input class="input-sm" placeholder="" type="text" name="user[lifestyle][dressmin]" value="<%= @userdata['lifestyle']['dressmin'] if defined?(@userdata['lifestyle']['dressmin']) %>" /></li>
-					<li>Outer Layers: Inexpensive the better  Min<input class="input-sm" name="user[lifestyle][outmax]" value="<%= @userdata['lifestyle']['outmax'] if defined?(@userdata['lifestyle']['outmax']) %>" placeholder="" type="text"/> Max<input class="input-sm" placeholder="" type="text" name="user[lifestyle][outmin]" value="<%= @userdata['lifestyle']['outmin'] if defined?(@userdata['lifestyle']['outmin']) %>" /></li>
-					<li>Tops: inexpensive the better   Min<input class="input-sm" placeholder="" name="user[lifestyle][topsmax]" value="<%= @userdata['lifestyle']['topsmax'] if defined?(@userdata['lifestyle']['topsmax']) %>" type="text"/> Max<input class="input-sm" placeholder="" type="text"name="user[lifestyle][topsmin]" value="<%= @userdata['lifestyle']['topsmin'] if defined?(@userdata['lifestyle']['topsmin']) %>" /></li>
+					<li>Accessories : Inexpensive or regular ones  or I would rather take it as investment, so I don’t mind as long as it is awesome! Min<input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Max<input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/></li>
+					<li>Bottom: Inexpensive Min <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmax]" value="<%= @userdata['lifestyle']['botmax'] if defined?(@userdata['lifestyle']['botmax']) %>" type="text"/> Max<input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmin]" value="<%= @userdata['lifestyle']['botmin'] if defined?(@userdata['lifestyle']['botmin']) %>" type="text"/></li>
+					<li>Dresses: Inexpensive Min<input  style="width:90px" class="input-sm" name="user[lifestyle][dressmax]" value="<%= @userdata['lifestyle']['dressmax'] if defined?(@userdata['lifestyle']['dressmax']) %>" placeholder="" type="text"/> Max<input   style="width:90px" style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][dressmin]" value="<%= @userdata['lifestyle']['dressmin'] if defined?(@userdata['lifestyle']['dressmin']) %>" /></li>
+					<li>Outer Layers: Inexpensive the better  Min<input  style="width:90px" class="input-sm" name="user[lifestyle][outmax]" value="<%= @userdata['lifestyle']['outmax'] if defined?(@userdata['lifestyle']['outmax']) %>" placeholder="" type="text"/> Max<input  style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][outmin]" value="<%= @userdata['lifestyle']['outmin'] if defined?(@userdata['lifestyle']['outmin']) %>" /></li>
+					<li>Tops: inexpensive the better   Min<input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][topsmax]" value="<%= @userdata['lifestyle']['topsmax'] if defined?(@userdata['lifestyle']['topsmax']) %>" type="text"/> Max<input  style="width:90px" class="input-sm" placeholder="" type="text"name="user[lifestyle][topsmin]" value="<%= @userdata['lifestyle']['topsmin'] if defined?(@userdata['lifestyle']['topsmin']) %>" /></li>
 				</ul>
 			</li>
 

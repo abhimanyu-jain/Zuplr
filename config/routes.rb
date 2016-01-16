@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"
   post "users/save-data" => "users#save"
+  post "users/delivery" => "users#deliver"
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   devise_scope :user do  
