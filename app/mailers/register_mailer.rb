@@ -8,6 +8,6 @@ class RegisterMailer < ApplicationMailer
 
 	def style_log_thanks(user)
 		@user = user
-		mail(to: @user.email, subject: 'Welcome to Zuplr')		
+		mail(to: @user.email, subject: 'Thank you from Zuplr')		
 	end
 end

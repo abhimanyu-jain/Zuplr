@@ -42,7 +42,8 @@ class UsersController < ApplicationController
   		end	
 
       # Send Email
-      RegisterMailer.style_log_thanks(current_user).deliver_later
+      @user = Identity.find_by_email(current_user.email)
+      RegisterMailer.style_log_thanks(@user).deliver_later
   		render 'thank-you'
   	end
 
