@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     # Send email for signup
     @user = Identity.find_by_email(current_user.email)
+    puts "I am here. Hello world!"
+    puts @user
     RegisterMailer.welcome(@user).deliver_later
 
     sign_in_url = new_user_session_url
