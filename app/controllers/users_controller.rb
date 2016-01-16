@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   		end	
 
       # Send Email
-      
+      RegisterMailer.style_log_thanks(current_user).deliver_later
   		render 'thank-you'
   	end
 
