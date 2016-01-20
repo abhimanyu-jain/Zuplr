@@ -245,76 +245,7 @@
 				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Mom') %>>Mom</option>
 				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Expecting') %>>Expecting</option>
 			</select>.</li>
-			<li>How often do you dress for the following occasions?
-				<br>
-				<br>
-				<ul>
-					<li>Dressing for Business Casual / Work  is something that <select name="user[lifestyle][occasions][work]" class="" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['work']) && @userdata['lifestyle']['occasions']['work'] == '') %> value=""></option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['work']) && @userdata['lifestyle']['occasions']['work'] == 'Most Time') %> value="Most Time">Takes up most of my time</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['work']) && @userdata['lifestyle']['occasions']['work'] == 'Weekly') %> value="Weekly">I do once or twice a week</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['work']) && @userdata['lifestyle']['occasions']['work'] == 'Monthly') %>value="Monthly">I do once or twice a month</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['work']) && @userdata['lifestyle']['occasions']['work'] == 'Rarely') %> value="Rarely">Rarely</option>
-					</select>
-					</li>
-					<li>Cocktail / Wedding / Special <select class="" name="user[lifestyle][occasions][special]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['special']) && @userdata['lifestyle']['occasions']['special'] == '') %> value=""></option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['special']) && @userdata['lifestyle']['occasions']['special'] == 'Most Time') %> value="Most Time">Takes up most of my time</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['special']) && @userdata['lifestyle']['occasions']['special'] == 'Weekly') %> value="Weekly">I do once or twice a week</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['special']) && @userdata['lifestyle']['occasions']['special'] == 'Monthly') %>value="Monthly">I do once or twice a month</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['special']) && @userdata['lifestyle']['occasions']['special'] == 'Rarely') %> value="Rarely">Rarely</option>
-					</select>
-					</li>
-					<li>Laid Back Casual <select class="" name="user[lifestyle][occasions][casual]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['casual']) && @userdata['lifestyle']['occasions']['casual'] == '') %> value=""></option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['casual']) && @userdata['lifestyle']['occasions']['casual'] == 'Most Time') %> value="Most Time">Takes up most of my time</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['casual']) && @userdata['lifestyle']['occasions']['casual'] == 'Weekly') %> value="Weekly">I do once or twice a week</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['casual']) && @userdata['lifestyle']['occasions']['casual'] == 'Monthly') %>value="Monthly">I do once or twice a month</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['casual']) && @userdata['lifestyle']['occasions']['casual'] == 'Rarely') %> value="Rarely">Rarely</option>
-					</select></li>
-					<li>Date Night / Night Out  <select class="" name="user[lifestyle][occasions][date]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['date']) && @userdata['lifestyle']['occasions']['date'] == '') %> value=""></option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['date']) && @userdata['lifestyle']['occasions']['date'] == 'Most Time') %> value="Most Time">Takes up most of my time</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['date']) && @userdata['lifestyle']['occasions']['date'] == 'Weekly') %> value="Weekly">I do once or twice a week</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['date']) && @userdata['lifestyle']['occasions']['date'] == 'Monthly') %> value="Monthly">I do once or twice a month</option>
-						<option  <% concat "selected" if (defined?(@userdata['lifestyle']['occasions']['date']) && @userdata['lifestyle']['occasions']['date'] == 'Rarely') %> value="Rarely">Rarely</option>
-					</select></li>
-				</ul>
-			</li>
-			<li>How much do you want your Zuplr fix selections to focus on the following occasions?
-				<br>
-				<br>
-				<ul>
-					<li style="width:100%">Dressing for Business Casual / Work  is something that <select class="" name="user[lifestyle][fix][work]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['work']) && @userdata['lifestyle']['fix']['work'] == 'Frequently') %> value="Frequently">Frequently: As much as I can get! </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['work']) && @userdata['lifestyle']['fix']['work'] == 'Consistently') %> value="Consistently">Consistently: Would love to see at least one piece per shipment </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['work']) && @userdata['lifestyle']['fix']['work'] == 'IfRequired') %> value="IfRequired">If my stylist really loves it for me but don't need it in every shipment</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['work']) && @userdata['lifestyle']['fix']['work'] == 'Little') %> value="Little">Very Little: Rarely, or only when I specifically ask for it</option>
-					</select>
-					</li>
-					<li style="width:100%" style="width:100%">Cocktail / Wedding / Special <select class="" name="user[lifestyle][fix][special]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['special']) && @userdata['lifestyle']['fix']['special'] == 'Frequently') %> value="Frequently">Frequently: As much as I can get! </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['special']) && @userdata['lifestyle']['fix']['special'] == 'Consistently') %> value="Consistently">Consistently: Would love to see at least one piece per shipment </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['special']) && @userdata['lifestyle']['fix']['special'] == 'IfRequired') %> value="IfRequired">If my stylist really loves it for me but don't need it in every shipment</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['special']) && @userdata['lifestyle']['fix']['special'] == 'Little') %> value="Little">Very Little: Rarely, or only when I specifically ask for it</option>
-					</select>
-					</li>
-					<li style="width:100%">Laid Back Casual<select class="" name="user[lifestyle][fix][casual]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['casual']) && @userdata['lifestyle']['fix']['casual'] == 'Frequently') %> value="Frequently">Frequently: As much as I can get! </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['casual']) && @userdata['lifestyle']['fix']['casual'] == 'Consistently') %> value="Consistently">Consistently: Would love to see at least one piece per shipment </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['casual']) && @userdata['lifestyle']['fix']['casual'] == 'IfRequired') %> value="IfRequired">If my stylist really loves it for me but don't need it in every shipment</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['casual']) && @userdata['lifestyle']['fix']['casual'] == 'Little') %> value="Little">Very Little: Rarely, or only when I specifically ask for it</option>
-					</select>
-					</li>
-					<li style="width:100%">Date Night / Night Out <select class="" name="user[lifestyle][fix][date]" type="text">
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['date']) && @userdata['lifestyle']['fix']['date'] == 'Frequently') %> value="Frequently">Frequently: As much as I can get! </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['date']) && @userdata['lifestyle']['fix']['date'] == 'Consistently') %> value="Consistently">Consistently: Would love to see at least one piece per shipment </option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['date']) && @userdata['lifestyle']['fix']['date'] == 'IfRequired') %> value="IfRequired">If my stylist really loves it for me but don't need it in every shipment</option>
-						<option <% concat "selected" if (defined?(@userdata['lifestyle']['fix']['date']) && @userdata['lifestyle']['fix']['date'] == 'Little') %> value="Little">Very Little: Rarely, or only when I specifically ask for it</option>
-					</select>
-					</li>
-				</ul>
-			</li>
+			
 			<li>I am comfortable to show off my 
 
 					<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][show][top][]" value="Shoulder" <% concat "checked" if (defined?(@userdata['lifestyle']['show']['top'][]) && (@userdata['lifestyle']['show']['top']).include?('Shoulder')) %>/>Shoulder</label>
@@ -332,11 +263,11 @@
 
 			<li>How much would you ideally spend on items in each of the following categories? We'll do our very best!
 				<ul>
-					<li>Accessories : Inexpensive or regular ones  or I would rather take it as investment, so I don’t mind as long as it is awesome! Min (In &#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Max (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/></li>
-					<li>Bottom wears: Min (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmax]" value="<%= @userdata['lifestyle']['botmax'] if defined?(@userdata['lifestyle']['botmax']) %>" type="text"/> Max (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmin]" value="<%= @userdata['lifestyle']['botmin'] if defined?(@userdata['lifestyle']['botmin']) %>" type="text"/></li>
-					<li>Dresses: Min (In &#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][dressmax]" value="<%= @userdata['lifestyle']['dressmax'] if defined?(@userdata['lifestyle']['dressmax']) %>" placeholder="" type="text"/> Max (In &#8377;) <input   style="width:90px" style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][dressmin]" value="<%= @userdata['lifestyle']['dressmin'] if defined?(@userdata['lifestyle']['dressmin']) %>" /></li>
-					<li>Outfitters: Min (In &#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][outmax]" value="<%= @userdata['lifestyle']['outmax'] if defined?(@userdata['lifestyle']['outmax']) %>" placeholder="" type="text"/> Max (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][outmin]" value="<%= @userdata['lifestyle']['outmin'] if defined?(@userdata['lifestyle']['outmin']) %>" /></li>
-					<li>Tops: Min (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][topsmax]" value="<%= @userdata['lifestyle']['topsmax'] if defined?(@userdata['lifestyle']['topsmax']) %>" type="text"/> Max (In &#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text"name="user[lifestyle][topsmin]" value="<%= @userdata['lifestyle']['topsmin'] if defined?(@userdata['lifestyle']['topsmin']) %>" /></li>
+					<li>Accessories : Inexpensive or regular ones  or I would rather take it as investment, so I don’t mind as long as it is awesome! Min (&#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/></li>
+					<li>Bottom wears: Min (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmax]" value="<%= @userdata['lifestyle']['botmax'] if defined?(@userdata['lifestyle']['botmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmin]" value="<%= @userdata['lifestyle']['botmin'] if defined?(@userdata['lifestyle']['botmin']) %>" type="text"/></li>
+					<li>Dresses: Min (&#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][dressmax]" value="<%= @userdata['lifestyle']['dressmax'] if defined?(@userdata['lifestyle']['dressmax']) %>" placeholder="" type="text"/> Max (&#8377;) <input   style="width:90px" style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][dressmin]" value="<%= @userdata['lifestyle']['dressmin'] if defined?(@userdata['lifestyle']['dressmin']) %>" /></li>
+					<li>Outfitters: Min (&#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][outmax]" value="<%= @userdata['lifestyle']['outmax'] if defined?(@userdata['lifestyle']['outmax']) %>" placeholder="" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][outmin]" value="<%= @userdata['lifestyle']['outmin'] if defined?(@userdata['lifestyle']['outmin']) %>" /></li>
+					<li>Tops: Min (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][topsmax]" value="<%= @userdata['lifestyle']['topsmax'] if defined?(@userdata['lifestyle']['topsmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text"name="user[lifestyle][topsmin]" value="<%= @userdata['lifestyle']['topsmin'] if defined?(@userdata['lifestyle']['topsmin']) %>" /></li>
 				</ul>
 			</li>
 
