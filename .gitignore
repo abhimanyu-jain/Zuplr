@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+#Ignore production .env
+.env.production
+.env
+
