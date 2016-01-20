@@ -43,7 +43,10 @@ class UsersController < ApplicationController
 
       # Send Email
       @user = Identity.find_by_email(current_user.email)
+
       RegisterMailer.style_log_thanks(@user).deliver_later
+      RegisterMailer.admin_form_filled(@user).deliver_later
+      
   		render 'thank-you'
   	end
 

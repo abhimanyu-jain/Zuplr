@@ -68,15 +68,17 @@
 		// border-bottom:1px dashed #656565;
 		padding: 0px 20px;
 		text-align: center;
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: bold;
 		background: #fff;
 		-moz-appearance: none;
 	    -webkit-appearance: none;
 	    appearance: none;
-	    margin:0px 5px;
+	    margin:5px 5px;
 	    border-radius: 2px 2px 0px 0px;
-
+	    border: 1px solid rgba(220,0,96,0.2);
+		line-height: 25px;
+	    
 		option{
 			padding: 10px 20px;
 		}
@@ -87,11 +89,11 @@
 	}
 
 	input{
-		border: 0px;
-		// border-bottom:1px dashed #656565;
-		font-size: 18px;
+		border: 1px solid rgba(220,0,96,0.2);
+		font-size: 14px;
 		font-weight: bold;
-		margin:0px 5px;
+		margin:5px 5px;
+		line-height: 25px;
 	    
 		&:focus{
 			outline: none;
