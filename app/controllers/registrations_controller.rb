@@ -2,12 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     #Hack to create a identity on normal login
-    puts "Creating registration"
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
     identity.name = params['user']['name']
     identity.email = params['user']['email']
     identity.save
-    puts "I am here tyring to create a identitty"  
     super
   end
   

@@ -270,15 +270,10 @@
 			</li>
 
 
-			<li>How much would you ideally spend on items in each of the following categories? We'll do our very best!
-				<ul>
-					<li>Accessories : Inexpensive or regular ones  or I would rather take it as investment, so I don’t mind as long as it is awesome! Min (&#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/></li>
-					<li>Bottom wears: Min (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmax]" value="<%= @userdata['lifestyle']['botmax'] if defined?(@userdata['lifestyle']['botmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][botmin]" value="<%= @userdata['lifestyle']['botmin'] if defined?(@userdata['lifestyle']['botmin']) %>" type="text"/></li>
-					<li>Dresses: Min (&#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][dressmax]" value="<%= @userdata['lifestyle']['dressmax'] if defined?(@userdata['lifestyle']['dressmax']) %>" placeholder="" type="text"/> Max (&#8377;) <input   style="width:90px" style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][dressmin]" value="<%= @userdata['lifestyle']['dressmin'] if defined?(@userdata['lifestyle']['dressmin']) %>" /></li>
-					<li>Outfitters: Min (&#8377;) <input  style="width:90px" class="input-sm" name="user[lifestyle][outmax]" value="<%= @userdata['lifestyle']['outmax'] if defined?(@userdata['lifestyle']['outmax']) %>" placeholder="" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text" name="user[lifestyle][outmin]" value="<%= @userdata['lifestyle']['outmin'] if defined?(@userdata['lifestyle']['outmin']) %>" /></li>
-					<li>Tops: Min (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][topsmax]" value="<%= @userdata['lifestyle']['topsmax'] if defined?(@userdata['lifestyle']['topsmax']) %>" type="text"/> Max (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" type="text"name="user[lifestyle][topsmin]" value="<%= @userdata['lifestyle']['topsmin'] if defined?(@userdata['lifestyle']['topsmin']) %>" /></li>
-				</ul>
-			</li>
+			<li>How much would you ideally spend for Zuplr boz? We'll do our very best!<br><br>
+				It will consists of Accessories, Dresses, Outfitters, Top and Bottom wears<br>
+				Minimum (&#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Maximum (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/>
+			</li>	
 			<li>Should we avoid any of these fabrics or materials in your shipments?<br><br>
 				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Leather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Leather')) %>/>Leather</label>
 				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Pleather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Pleather')) %>/>Pleather</label>
@@ -380,7 +375,13 @@
 			<br><br>
 			<span style="font-size: 14px; color: #aaa">This step is completely optional, confidential, and will be used only for styling your shipments.</span><p>You can provide any of the social media links, so that our stylist knows you better and makes you more gorgeous! :) We respect your privacy</p> 
 			Pinterest Board: <input name="user[sociallinks][pinterest]" type="text" value="<%= @userdata['sociallinks']['pinterest']  if defined?(@userdata['sociallinks']['pinterest']) %>" class="form-control bs" placeholder="Example: www.pinterest.com/zuplr/classic-style-inspiration/"/>
-			Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+			<% if defined?@userdata['sociallinks']['facebook'] %>
+				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+			<% elsif defined?@fb_id %>
+				Facebook : <input name="user[sociallinks][facebook]" value="http://www.facebook.com/<%= @fb_id.uid%>" class="form-control bs" type="text"/>
+			<% else %>
+				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+			<% end %>
 			Instagram : <input  name="user[sociallinks][instagram]" value="<%= @userdata['sociallinks']['instagram'] if defined?(@userdata['sociallinks']['instagram'])%>" class="form-control bs" type="text"/>
 			Twitter: <input  name="user[sociallinks][twitter]" value="<%= @userdata['sociallinks']['twitter'] if defined?(@userdata['sociallinks']['twitter'])%>" class="form-control bs" type="text"/><br>
 			Linkedin: <input name="user[sociallinks][linkedin]" value="<%= @userdata['sociallinks']['linkedin'] if defined?(@userdata['sociallinks']['linkedin'])%>" class="form-control bs" type="text"/>			</p>
@@ -388,8 +389,23 @@
 			<p>
 			<h4 style="color:#dc0060">Final Thoughts?</h4>
 			Feel free to share here. We're all ears!<br>
-			<textarea class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="Any personalization message you would want to your stylist to know...For eg. i will be travelling in a month time and i would want more a cotton fabric cloth with a denim jeans in light blue color"> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
+			<textarea id="zr-textarea" class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="I would like to avoid accessories in my first shipment. focus more on bottoms, tops etc. Or I would like stylist to focus on casual style for summers."> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
 			</p>
 			<button class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >Save my log</button>
+			<br>
+			<br>
+			<br>
 	</form>
 </div>
+
+<script type="text/javascript">
+// Yet another hack for bootstrap text area
+$(document).ready(function(){
+	console.log($('#zr-textarea').val())
+	if($('#zr-textarea').val().trim() == ''){
+		$('#zr-textarea').focus().val('t');
+		$('#zr-textarea').val('');
+		$('#zr-textarea').blur();
+	}
+})
+</script>

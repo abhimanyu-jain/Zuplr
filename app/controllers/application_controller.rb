@@ -18,11 +18,17 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # Send email for signup
-    @user = Identity.find_by_email(current_user.email)
+    @identity = Identity.find_by_email(current_user.email)
     
-    # Send mail to user and admins
-    RegisterMailer.welcome(@user).deliver_later
-    RegisterMailer.admin_mailer(@user).deliver_later
+    # Yet another crude hack before we understand devise
+    if !@identity.mail_sent
+      # Send mail to user and admins
+      RegisterMailer.welcome(@identity).deliver_later
+      RegisterMailer.admin_mailer(@identity).deliver_later
+
+      @identity.mail_sent = 1
+      @identity.save
+    end
 
     sign_in_url = new_user_session_url
     if request.referer == sign_in_url

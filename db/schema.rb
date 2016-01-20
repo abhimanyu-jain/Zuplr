@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116030215) do
+ActiveRecord::Schema.define(version: 20160120104943) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string   "address1",      limit: 255
@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20160116030215) do
     t.string   "image",       limit: 255
     t.string   "phone",       limit: 255
     t.string   "urls",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "mail_sent",               default: false
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
