@@ -121,7 +121,7 @@
 				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Mom') %>>Mom</option>
 				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Expecting') %>>Expecting</option>
 			</select>.</li>
-			<li>How much would you ideally spend for Zuplr boz? We'll do our very best!<br><br>
+			<li>How much would you ideally spend for Zuplr box? We'll do our very best!<br><br>
 				It will consists of Accessories, Dresses, Outfitters, Top and Bottom wears<br>
 				Minimum (&#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Maximum (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/>
 			</li>	
@@ -292,8 +292,7 @@
 				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
 			<% end %>
 			Instagram : <input  name="user[sociallinks][instagram]" value="<%= @userdata['sociallinks']['instagram'] if defined?(@userdata['sociallinks']['instagram'])%>" class="form-control bs" type="text"/>
-			Twitter: <input  name="user[sociallinks][twitter]" value="<%= @userdata['sociallinks']['twitter'] if defined?(@userdata['sociallinks']['twitter'])%>" class="form-control bs" type="text"/><br>
-			Linkedin: <input name="user[sociallinks][linkedin]" value="<%= @userdata['sociallinks']['linkedin'] if defined?(@userdata['sociallinks']['linkedin'])%>" class="form-control bs" type="text"/>			</p>
+			Twitter: <input  name="user[sociallinks][twitter]" value="<%= @userdata['sociallinks']['twitter'] if defined?(@userdata['sociallinks']['twitter'])%>" class="form-control bs" type="text"/>	</p>
 		</ul><br>
 			<p>
 			<h4 style="color:#dc0060">Final Thoughts?</h4>

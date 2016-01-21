@@ -36,7 +36,13 @@ class ApplicationController < ActionController::Base
     else
       # Temporary hack always redirect to the stylelog after signup 
       # root_path || stored_location_for(resource) || request.referer
-      '/style-log'
+      @userdatum = Userdatum.find_by_userid(current_user.id)
+
+      if defined?@userdatum.phonenumber
+          '/style-log'
+      else
+          '/users/new-signup'
+      end
     end
   end
 
