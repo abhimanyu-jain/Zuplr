@@ -286,7 +286,7 @@
 			Pinterest Board: <input name="user[sociallinks][pinterest]" type="text" value="<%= @userdata['sociallinks']['pinterest']  if defined?(@userdata['sociallinks']['pinterest']) %>" class="form-control bs" placeholder="Example: www.pinterest.com/zuplr/classic-style-inspiration/"/>
 			<% if defined?@userdata['sociallinks']['facebook'] %>
 				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
-			<% elsif defined?@fb_id %>
+			<% elsif !@fb_id.nil? %>
 				Facebook : <input name="user[sociallinks][facebook]" value="http://www.facebook.com/<%= @fb_id.uid%>" class="form-control bs" type="text"/>
 			<% else %>
 				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>

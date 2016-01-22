@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
     @user = Identity.find_by_email(current_user.email)
     @fb_id = Identity.find_by(email: current_user.email, provider: 'facebook') 
-
     render 'stylelog-form'
   end
 
