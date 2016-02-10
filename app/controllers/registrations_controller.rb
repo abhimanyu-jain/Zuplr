@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   def identity_create
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
     identity.name = params['user']['name']
-    identity.user_id = current_user.id
+    # identity.user_id = current_user.id
     identity.email = params['user']['email']
     identity.save
   end
