@@ -51,8 +51,6 @@ a{
 	font-size:36px;
 	padding: 30px 0px;
 	margin: 0 auto;
-	margin-top:300px;
-	color: rgba(255,255,2555,1);
 	font-weight: bold;
 }
 
@@ -63,7 +61,8 @@ a{
 	border-bottom:3px solid rgba(220,0,96,1);
 	margin: 0 auto;
 	margin-top:0px;
-	color: white
+	color: white;
+	width: 40%;
 }
 
 .navbar-zuplr{
@@ -189,6 +188,11 @@ a{
 	border-radius: 0px;
 }
 
+.transform-top{
+	margin-top: 300px;
+	color: white;
+}
+
 footer{
 	// margin-top: 60px;
 	border-top:2px solid rgba(220,0,96,1);
@@ -246,13 +250,17 @@ footer{
 
 	}
 
+	.transform-top{
+		margin-top: 150px;
+	}
+
 	.transform-up{
 		font-size: 32px;
-		margin-top: 150px;
 	}
 
 	.tag-line{
 		font-size: 18px;
+		width: 80%;
 	}
 
 	#navbar{
