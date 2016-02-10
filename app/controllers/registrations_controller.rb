@@ -1,12 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
   
-  def create
-    #Hack to create a identity on normal login
+  after_filter :identity_create, :only => [:create]
+
+  def identity_create
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
     identity.name = params['user']['name']
+    identity.user_id = current_user.id
     identity.email = params['user']['email']
     identity.save
-    super
   end
   
   def update_resource(resource, params)

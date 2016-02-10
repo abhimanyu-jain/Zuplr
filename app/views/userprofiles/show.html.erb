@@ -1,0 +1,28 @@
+<div class="container top-space">
+
+	<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>Email Id:</strong>
+	  <%= @userprofile.user.email %>
+	</p>
+
+	<p>
+	  <strong>City:</strong>
+	  <%= @userprofile.city %>
+	</p>
+
+	<p>
+	  <strong>Phonenumber:</strong>
+	  <%= @userprofile.phonenumber %>
+	</p>
+
+	<p>
+	  <strong>Data:</strong>
+	  <%= @userprofile.data %>
+	</p>
+
+	<%= link_to 'Edit', edit_userprofile_path(@userprofile), :class => 'btn btn-success' %>
+	<%= link_to 'Back', userprofiles_path, :class => 'btn btn-danger' %>
+
+</div>

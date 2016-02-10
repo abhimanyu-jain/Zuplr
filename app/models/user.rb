@@ -4,7 +4,18 @@ class User < ActiveRecord::Base
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
+  # Relationships
   has_many :identities
+  belongs_to :role, :dependent => :destroy
+  belongs_to :userdatum, :dependent => :destroy
+  belongs_to :userprofile, :dependent => :destroy
+
+  # Filters
+  before_save :assign_role
+
+  def assign_role
+    self.role = Role.find_by name: "User" if self.role.nil?
+  end
 
   def facebook
     identities.where( :provider => "facebook" ).first
@@ -25,4 +36,13 @@ class User < ActiveRecord::Base
     end
     @google_oauth2_client
   end
+
+  def admin?
+    self.role.name == "Admin"
+  end
+
+  def user?
+    self.role.name == "User"
+  end
+
 end

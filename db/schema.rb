@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121065557) do
+ActiveRecord::Schema.define(version: 20160207170839) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string   "address1",      limit: 255
@@ -43,14 +43,35 @@ ActiveRecord::Schema.define(version: 20160121065557) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "userdata", force: :cascade do |t|
-    t.integer  "userid",      limit: 4
     t.text     "data",        limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "city",        limit: 255
     t.integer  "phonenumber", limit: 8
+    t.integer  "user_id",     limit: 4
   end
+
+  add_index "userdata", ["user_id"], name: "index_userdata_on_user_id", using: :btree
+
+  create_table "userprofiles", force: :cascade do |t|
+    t.text     "data",        limit: 65535
+    t.string   "city",        limit: 255
+    t.integer  "phonenumber", limit: 8
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.integer  "user_id",     limit: 4
+  end
+
+  add_index "userprofiles", ["user_id"], name: "index_userprofiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -65,10 +86,21 @@ ActiveRecord::Schema.define(version: 20160121065557) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role_id",                limit: 4
+    t.integer  "userdatum_id",           limit: 4
+    t.integer  "userprofile_id",         limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+  add_index "users", ["userdatum_id"], name: "index_users_on_userdatum_id", using: :btree
+  add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
   add_foreign_key "identities", "users"
+  add_foreign_key "userdata", "users"
+  add_foreign_key "userprofiles", "users"
+  add_foreign_key "users", "roles"
+  add_foreign_key "users", "userdata"
+  add_foreign_key "users", "userprofiles"
 end

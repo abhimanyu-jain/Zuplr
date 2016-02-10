@@ -21,13 +21,15 @@ class ApplicationController < ActionController::Base
     @identity = Identity.find_by_email(current_user.email)
     
     # Yet another crude hack before we understand devise
-    if !@identity.mail_sent
-      # Send mail to user and admins
-      RegisterMailer.welcome(@identity).deliver_later
-      RegisterMailer.admin_mailer(@identity).deliver_later
+    if @identity
+      if !@identity.mail_sent
+        # Send mail to user and admins
+        RegisterMailer.welcome(@identity).deliver_later
+        RegisterMailer.admin_mailer(@identity).deliver_later
 
-      @identity.mail_sent = 1
-      @identity.save
+        @identity.mail_sent = 1
+        @identity.save
+      end
     end
 
     sign_in_url = new_user_session_url
@@ -36,7 +38,7 @@ class ApplicationController < ActionController::Base
     else
       # Temporary hack always redirect to the stylelog after signup 
       # root_path || stored_location_for(resource) || request.referer
-      @userdatum = Userdatum.find_by_userid(current_user.id)
+      @userdatum = Userdatum.find_by_user_id(current_user.id)
 
       if defined?@userdatum.phonenumber
           '/style-log'
@@ -46,5 +48,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 end
 

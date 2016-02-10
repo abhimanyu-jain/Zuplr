@@ -2,14 +2,14 @@
   <div class="col-sm-8 col-sm-offset-2">
 <div class="panel panel-default" style="border-radius: 0px;">
       <div class="panel-body" style="padding:0px">
-        <div class="row" style="padding:40px 50px 20px;">
+        <div class="row registration-form" style="">
           <div class="col-sm-12">
             <%= bootstrap_devise_error_messages! %>
           </div>
           <div class="col-sm-6">
             <h4>Create your Zuplr account</h4>
-            <h5>Enter your details to create a zuplr account</h5><br>
-              <form role="form" class="new_user login-form" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+            <h5 class="hidden-xs">Enter your details to create a zuplr account</h5><br>
+              <form role="form" class="new_user lr-form" id="new_user" action="/users" accept-charset="UTF-8" method="post">
                 <input name="utf8" type="hidden" value="✓">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
                 <div class="form-group">
@@ -27,7 +27,7 @@
                 <button type="submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Create an account</button>
               </form>
           </div>
-          <div class="col-sm-6" style="text-align: center">
+          <div class="col-sm-6 registration-links" style="text-align: center">
             <p style="padding:15px 0px">If you an account click the button below to login.</p>
             <a href="/login"><img src="login.png"></a>
             <hr>
@@ -47,6 +47,3 @@
     </div>
   </div>
 </div>
-<br>
-<br>
-<br>

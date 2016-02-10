@@ -14,6 +14,8 @@ gem 'autoprefixer-rails'
 gem 'jquery-smooth-scroll-rails', '~> 0.0.5'
 gem 'high_voltage', '~> 2.4.0'
 gem 'therubyracer'
+gem 'dotenv-rails'
+gem 'cancancan', '~> 1.10'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

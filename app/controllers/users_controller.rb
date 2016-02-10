@@ -1,10 +1,37 @@
 class UsersController < ApplicationController
 
 	before_action :authenticate_user!
-	
+	load_and_authorize_resource
+
+  def index
+   @users = User.includes(:role, :userprofile)
+  end
+
+  def show
+  end 
+
+  def new
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def start
+    if user_signed_in?
+      redirect_to '/style-log'
+    else
+      redirect_to '/users/sign_in'
+    end
+  end
+
 	def styledata
-		@userdata = Userdatum.find_by_userid(current_user.id)
-    if @userdata.data
+		@userdata = Userdatum.find_by_user_id(current_user.id)
+    if !@userdata.nil? and !@userdata.data.nil?
       @userdata = JSON.parse @userdata.data
     end	
 
@@ -18,40 +45,41 @@ class UsersController < ApplicationController
   end
   
   def savenumber
-    @userdata = Userdatum.find_by_userid(current_user.id)
+    @userdata = Userdatum.find_by_user_id(current_user.id)
+    @user = User.find_by_email(current_user.email)
+    
     if @userdata
       @userdata.update_attributes(
         :city=> params['user']['city'],
         :phonenumber => params['user']['phonenumber'])
+
+      # Update user info also
+      @user.update_attributes({
+          :userdatum_id => @userdata.id
+        })
     else
       parameters = {
-        :userid => current_user.id,
+        :user_id => current_user.id,
         :city=> params['user']['city'],
         :phonenumber => params['user']['phonenumber']
       }
       @userdata = Userdatum.new(parameters)
       @userdata.save
+    
+      # Update user info also
+      @user.update_attributes({
+          :userdatum_id => @userdata.id
+        })
     end
   end
 
-  def start
-    if user_signed_in?
-      redirect_to '/style-log'
-    else
-      redirect_to '/users/sign_in'
-    end
-  end
-
-  def savedata
-    puts params
-  end
-
+  
   def save
-    @userdata = Userdatum.find_by_userid(current_user.id)
+    @userdata = Userdatum.find_by_user_id(current_user.id)
     if @userdata
      @userdata.update_attributes(
       :data => (params['user']).to_json,
-      :userid => current_user.id
+      :user_id => current_user.id
       )
    else
      @userdata = Userdatum.new(userdatum_params)
@@ -83,7 +111,7 @@ class UsersController < ApplicationController
 
   def userdatum_params
     parameters = {
-     :userid => current_user.id,
+     :user_id => current_user.id,
      :data => (params['user']).to_json
    }
   end

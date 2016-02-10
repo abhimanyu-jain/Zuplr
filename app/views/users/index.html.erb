@@ -1,0 +1,41 @@
+<div class="container top-space">
+
+  <p id="notice"><%= notice %></p>
+
+  <h1>List of Users</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>City</th>
+        <th>Phonenumber</th>
+        <th>Data</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.role.name %></td>
+          <td><%= user.userprofile.city if (defined?user.userprofile.city) %></td>
+          <td><%= user.userprofile.phonenumber if (defined?user.userprofile.phonenumber) %></td>
+          <td>
+            <% if (defined?user.userprofile.id) %>
+              <a href="/admin/userprofiles/<%= user.userprofile.id if (defined?user.userprofile.id) %>">Show Data</a>
+            <% end %>
+          </td>
+          <td><%= link_to 'Show', user, :class => 'btn btn-success btn-label' %> &nbsp; <%= link_to 'Edit', edit_user_path(user) , :class => 'btn btn-danger btn-label'%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= link_to '+ New User', new_user_path, :class => 'btn btn-success pull-right', :style => 'color:white;margin:0px 0px 0px 20px;' %>
+  <%= link_to 'Back', '/admin/dashboard', :class => 'btn btn-success pull-right', :style => 'color:white' %>
+
+</div>

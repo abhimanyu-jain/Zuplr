@@ -28,6 +28,44 @@ a{
 	}
 }
 
+.hero{
+	height: 600px;
+	padding-top:1px;
+	background-color: rgba(0,0,0,0.6);
+	background-image:url('http://sazan.me/wp-content/uploads/2014/03/IMG_7334.jpg');
+	background-size: cover;
+	text-align: center;
+	position: relative;
+	z-index: -2;
+}
+
+.hero-title{
+	width: 100%;
+	height: inherit;
+	background: rgba(0,0,0,0.3);
+	position: absolute;
+	z-index: -1;
+}
+
+.transform-up{
+	font-size:36px;
+	padding: 30px 0px;
+	margin: 0 auto;
+	margin-top:300px;
+	color: rgba(255,255,2555,1);
+	font-weight: bold;
+}
+
+.tag-line{
+	font-size: 24px;
+	padding: 20px 0px;
+	border-top:3px solid rgba(220,0,96,1);
+	border-bottom:3px solid rgba(220,0,96,1);
+	margin: 0 auto;
+	margin-top:0px;
+	color: white
+}
+
 .navbar-zuplr{
 	background: rgba(220,0,96,0.9);
 	border: 0px;
@@ -133,13 +171,24 @@ a{
 	}
 }
 
-.login-form{
+.lr-form{
 	input{
 		padding: 20px 20px;
 		border-radius: 0px;
 		background: #f7f7f7;
 	}
 }
+
+.top-space{
+	padding: 100px 15px 50px;
+}
+
+.btn-label{
+	padding: 2px 8px;
+	font-size: 11px;
+	border-radius: 0px;
+}
+
 footer{
 	// margin-top: 60px;
 	border-top:2px solid rgba(220,0,96,1);
@@ -176,5 +225,117 @@ footer{
 		padding-top: 20px;
 		color: #999;
 		line-height: 24px;
+	}
+}
+
+.registration-form, .login-form{
+	padding: 40px 50px 20px;
+}
+
+.looks .label{
+	width: 30%;
+	font-size: 14px;		
+	color: black;
+	padding: 6px 0px;
+	
+}
+
+// Media queiries
+@media only screen and (min-width : 320px) and (max-width: 480px) {
+	.hero{
+
+	}
+
+	.transform-up{
+		font-size: 32px;
+		margin-top: 150px;
+	}
+
+	.tag-line{
+		font-size: 18px;
+	}
+
+	#navbar{
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#navbar ul li:first-child{
+		border: 0px;
+	}
+
+	#navbar ul li{
+		border-top: 1px dotted #ddd;
+	}
+
+	.devise-form{
+		padding: 60px 0px 30px;
+
+		.panel{
+			border: 0px;
+			box-shadow: none;
+		}
+
+	}
+
+	select{
+		max-width: 100%;
+	}
+
+	.style-log .color-box{
+		width: 150px;
+	}
+
+	.style-log .prints .checkbox-inline{
+		width: 100%;
+	}
+
+	.style-log{
+		
+		.looks{
+			
+			.label{
+				width: 50%;
+				color: black;
+				font-size: 14px;
+				display: inline-table;
+				font-weight: normal;
+				padding: 6px 0px;
+			}
+
+			li{
+				padding: 0px;
+			}
+
+			img{
+				padding: 0px;
+				width: 100%;
+			}
+		}
+
+		.bs{
+			width: 100%;
+		}
+	}
+	
+	.prints img{
+		width: 100%;
+	}
+
+	.checkbox-inline{
+		display: block;
+	}
+
+	.login-links img, .registration-links img{
+		width: 100%;
+	}
+
+	.registration-form, .login-form{
+		padding:10px 10px 10px;
+	}
+
+	footer ul{
+		padding: 0px;
 	}
 }

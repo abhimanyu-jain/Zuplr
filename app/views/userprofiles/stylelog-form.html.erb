@@ -1,0 +1,319 @@
+<div style="padding-top:120px" class="container">
+	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Welcome to Zuplr's style log!</h2><br>
+	<form class="style-log" action="/users/save-data" method="POST">
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	        <h3> Hi <input class="input" placeholder="Guest" value="<%= @identity.name %>" style="text-transform: uppercase; font-size: 24px; border: 0px;" type="text"/>!</h3> <br>
+		<p>
+		We're excited to start styling for you. Our Style Profile helps us to understand you and your style better. We're ready to start asking questions, if you're ready to start answering them.</p>
+		<br>
+		<h4>Lets get started</h4>
+		<h4 style="color:#dc0060">Section A - Your body statistics and Fittings </h4>
+		<ul>
+			<li>I am 
+				<input class="input-sm" name="user[personal][age]" value="<%= @userdata['personal']['age'] if defined?(@userdata['personal']['age']) %>" placeholder="" type="text"/> years old, and 
+				<input class="input-sm" name="user[personal][height][feet]" value="<%= @userdata['personal']['height']['feet'] if defined?(@userdata['personal']['height']['feet']) %>" placeholder="" type="text"/>feet & 
+				<input class="input-sm" name="user[personal][height][inches]" value="<%= @userdata['personal']['height']['inches'] if defined?(@userdata['personal']['height']['inches']) %>"  placeholder="" type="text"/> inches tall. Last time I hopped on a weighing machine, it displayed 
+				<input class="input-sm" name="user[personal][weight]" value="<%= @userdata['personal']['weight'] if defined?(@userdata['personal']['weight']) %>"  placeholder="" type="text"/> kg. </li>
+			<li>Bras that fit me best are of size 
+				<select class="" name="user[personal][bra][size]" type="text">
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == ' ') %>> </option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '30') %>>30</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '32') %>>32</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '34') %>>34</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '36') %>>36</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '38') %>>38</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '40') %>>40</option>
+				</select>, cup 
+				<select class="" name="user[personal][bra][cup]" type="text">
+					<option <% concat "selected" if (defined?(@userserdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == '') %>></option>
+					<option <% concat "selected" if (defined?(@userserdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'A') %>>A</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'B') %>>B</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'C') %>>C</option>
+					<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'D') %>>D</option>
+				</select>. 
+			</li>
+			<li>The size I normally wear for blouses/tops and shirts is
+				<select class="" name="user[personal][size][top]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'XS') %>>XS</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'S') %>>S</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'M') %>>M</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'L') %>>L</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'XL') %>>XL</option>
+			</select>.</li>
+
+			<li>I feel comfortable on top half of my body fit as 
+				<select class="" name="user[personal][size][topfit]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Loose') %>>Loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Slightly loose') %>>Slightly loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Skin Tight') %>>Skin Tight</option>
+			</select> and I prefer 
+				<select class="" name="user[personal][size][pants]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Loose') %>>Loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Slightly loose') %>>Slightly loose</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Skin Tight') %>>Skin Tight</option>
+			</select> bottom half clothing.I wear jeans and skirts of
+			<select class="" name="user[personal][size][skirts]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'XS') %>>XS</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'S') %>>S</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'M') %>>M</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'L') %>>L</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'Xl') %>>XL</option>
+			</select>size  and I love it on 
+			<select class="" name="user[personal][choice][waist]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'High waist') %>>High waist</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'Mid waist') %> <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'High waist') %>>Mid waist</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'Low waist') %>>Low waist</option>
+			</select> with a  
+			<select class="" name="user[personal][choice][style]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Pencil cut') %>>Pencil cut</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Plain straight') %>>Plain straight</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Bootcut') %>>Bootcut</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Comfort') %>>Comfort</option>
+			</select>style . </li>
+			<li>I am more of a jeans / pants and top gal or a dresses gal?
+			<select class="" name="user[personal][dress]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == '') %> values=""></option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'jeans') %> values="jeans">Mostly Jeans</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'dresses') %> value="dresses" >Mostly Dresses</option>
+				<option  <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'mix') %> value="mix">Healthy Mix of Both</option>
+			</select>
+			</li>
+			
+			<li>I prefer jeans of <select class="" name="user[personal][jeans][size]" type="text">
+				<option  <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == '') %> value=""></option>
+				<option  <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'ankle') %> value="ankle">Ankle (28" - 29")</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'regular') %> value="regular">Regular (30" - 32")</option>
+				<option <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'long') %> value="long">Long (33" - 35")</option>
+			</select>.</li>
+			<li>And yeah I<select class="" name="user[personal][bottom][curvy]" type="text">
+				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == '') %>></option>
+				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do') %>>do</option>
+				<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do not') %>>do not</option>
+			</select> consider my bottom half curvy.</li>
+
+		</ul><br>
+
+		<h4 style="color:#dc0060">Section B - A peek in your lifestyle </h4>
+		<ul>
+			<li>I am currently working as
+				<select class="" name="user[lifestyle][profession]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'IT Professional') %>>IT Professional</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Manager') %>>Manager</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Startup Freak') %>>Startup Freak</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Entrepreneur') %>>Entrepreneur</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Home maker') %>>Home maker</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Designer') %>>Designer</option>
+				<option> <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Coder') %>Coder</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Event manager') %>>Event manager</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Finance profession') %>>Finance professional</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Others') %>>Others</option>
+			</select>and I am a <select class="" name="user[lifestyle][martial]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == '') %>></option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Single') %>>Single</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Married') %>>Married</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Mom') %>>Mom</option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Expecting') %>>Expecting</option>
+			</select>.</li>
+			<li>How much would you ideally spend for Zuplr box? We'll do our very best!<br><br>
+				It will consists of Accessories, Dresses, Outfitters, Top and Bottom wears<br>
+				Minimum (&#8377;) <input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="text"/> Maximum (&#8377;) <input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="text"/>
+			</li>	
+			<li>Should we avoid any of these fabrics or materials in your shipments?<br><br>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Leather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Leather')) %>/>Leather</label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Pleather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Pleather')) %>/>Pleather</label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Polyester" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Polyester')) %>/>Polyester</label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Wool" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Wool')) %>/>Wool</label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Cotton" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Cotton')) %>/>Cotton</label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][materials][]" value="Knit" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Knit')) %>/>Knit</label>
+			</li>
+			<li>I like to <select class="" name="user[lifestyle][accessory]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'classic') %> value="classic">Keep it classic</option>
+				<option  <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'modern') %>value="modern">Make a statement</option>
+				<option  <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'mix') %>value="mix">Mantain classic and Make a statement</option>
+			</select> with my accessory and jewelry style.</li>
+
+
+
+			<li>My preferred tone of jewelry is <select class="" name="user[lifestyle][jewellery]" type="text">
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Gold') %> value="Gold">Mostly Gold tones </option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Silver') %> value="Silver">Mostly Silver tones </option>
+				<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Mix') %> value="Mix">Mix of both</option>
+			</select> </li>
+
+			<li>Please tick the colors which are a turn off:<br>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="black" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('black')) %>/><div class="color-box" style="background: black"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="grey" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('grey')) %>/><div class="color-box" style="background: gray"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="blue" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('blue')) %>/><div class="color-box" style="background: blue"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="brown" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('brown')) %>/><div class="color-box" style="background: brown"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="teal" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('teal')) %>/><div class="color-box" style="background: teal"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="yellow" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('yellow')) %>/><div class="color-box" style="background: yellow"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="white" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('white')) %>/><div class="color-box" style="background: white"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="silver" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('silver')) %>/><div class="color-box" style="background: silver"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="red" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('red')) %>/><div class="color-box" style="background: red"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="purple" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('purple')) %>/><div class="color-box" style="background: purple"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="pink" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('pink')) %>/><div class="color-box" style="background: pink"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="orange" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('orange')) %>/><div class="color-box" style="background: orange"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="navy" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('navy')) %>/><div class="color-box" style="background: navy"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="green" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('green')) %>/><div class="color-box" style="background: green"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="gold" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('gold')) %>/><div class="color-box" style="background: gold"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" name="user[lifestyle][colors][]" value="biege" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('biege')) %>/><div class="color-box" style="background: biege"></div></label>
+				<label class="checkbox-inline"><input type="checkbox" vname="user[lifestyle][colors][]" alue="burgundy" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('burgundy')) %>/><div class="color-box" style="background: Burgundy"></div></label>
+			</li>
+
+			<li class="prints">Check the prints that are ‘not your type’<br>
+				<label class="checkbox-inline"><input type="checkbox" value="animal" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('animal')) %>/>
+					Animal prints
+					<img style="" src="animal-prints.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="critter" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('critter')) %>/>
+					Critter prints
+					<img style="" src="critter-prints.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="floral" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('floral')) %>/>
+					Floral prints
+					<img style="" src="floral-prints.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="paisley" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('paisley')) %>/>
+					Paisley
+					<img style="" src="paisley-prints.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="polka" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('polka')) %>/>
+					Polka dots
+					<img style="" src="polka-dots.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="stripes" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('stripes')) %>/>
+					Stripes<br>
+					<img style="" src="stripes.png">
+				</label>
+				<label class="checkbox-inline"><input type="checkbox" value="checks" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('checks')) %>/>
+					Checks<br>
+					<img style="" src="checks.png">
+				</label><label class="checkbox-inline"><input type="checkbox"  value="psychedelia" name="user[lifestyle][prints][]"  <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('psychedelia')) %>/>
+					PSYCHEDELIA prints<br>
+					<img style="" src="syche.png">
+				</label>
+			</li>
+			
+		</ul>
+		<br>
+		<h4 style="color:#dc0060">Section C - Tell us what you like</h4>
+		<ul class="looks">
+			<li>
+				<div>
+					<div class="label pull-left">What do you think of below styles?</div>
+					<div class="pull-left">
+						<select class="" name="user[styles][1]" type="text">
+							<option <% concat "selected" if (defined?(@userdata['styles']['1']) && @userdata['styles']['1'] == '') %>></option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['1']) && @userdata['styles']['1'] == 'Loved them') %>>Loved them</option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['1']) && @userdata['styles']['1'] == 'Like them') %>>Like them </option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['1']) && @userdata['styles']['1'] == 'Not my style') %>>Not my style</option>
+						</select>
+					</div>
+					<img style="" src="look1.png">
+					<div style="clear"></div>	
+				</div>
+			</li>
+			<li>
+				<div>
+					<div class="label pull-left">What do you think of below styles?</div>
+					<div class="pull-left">
+						<select class="" name="user[styles][2]" type="text">
+							<option <% concat "selected" if (defined?(@userdata['styles']['2']) && @userdata['styles']['2'] == '') %>></option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['2']) && @userdata['styles']['2'] == 'Loved them') %>>Loved them</option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['2']) && @userdata['styles']['2'] == 'Like them') %>>Like them </option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['2']) && @userdata['styles']['2'] == 'Not my style') %>>Not my style</option>
+						</select>
+					</div>
+					<img style="" src="look2.png">
+					<div style="clear"></div>	
+				</div>
+			</li><li>
+				<div>
+					<div class="label pull-left">What do you think of below styles?</div>
+					<div class="pull-left">
+						<select class="" name="user[styles][3]" type="text">
+							<option <% concat "selected" if (defined?(@userdata['styles']['3']) && @userdata['styles']['3'] == '') %>></option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['3']) && @userdata['styles']['3'] == 'Loved them') %>>Loved them</option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['3']) && @userdata['styles']['3'] == 'Like them') %>>Like them </option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['3']) && @userdata['styles']['3'] == 'Not my style') %>>Not my style</option>
+						</select>
+					</div>
+					<img style="" src="look3.png">
+					<div style="clear"></div>	
+				</div>
+			</li><li>
+				<div>
+					<div class="label pull-left">What do you think of below styles?</div>
+					<div class="pull-left">
+						<select class="" name="user[styles][4]" type="text">
+							<option <% concat "selected" if (defined?(@userdata['styles']['4']) && @userdata['styles']['4'] == '') %>></option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['4']) && @userdata['styles']['4'] == 'Loved them') %>>Loved them</option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['4']) && @userdata['styles']['4'] == 'Like them') %>>Like them </option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['4']) && @userdata['styles']['4'] == 'Not my style') %>>Not my style</option>
+						</select>
+					</div>
+					<img style="" src="look4.png">
+					<div style="clear"></div>	
+				</div>
+			</li>
+			<li>
+				<div>
+					<div class="label pull-left">What do you think of below styles?</div>
+					<div class="pull-left">
+						<select class="" name="user[styles][5]" type="text">
+							<option <% concat "selected" if (defined?(@userdata['styles']['5']) && @userdata['styles']['5'] == '') %>></option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['5']) && @userdata['styles']['5'] == 'Loved them') %>>Loved them</option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['5']) && @userdata['styles']['5'] == 'Like them') %>>Like them </option>
+							<option <% concat "selected" if (defined?(@userdata['styles']['5']) && @userdata['styles']['5'] == 'Not my style') %>>Not my style</option>
+						</select>
+					</div>
+					<img style="" src="look5.png">
+					<div style="clear"></div>	
+				</div>
+			</li>
+			<br>
+			<b>Can we follow your awesomeness on Social Networks? With permission of course! We love learning more about you!</b>
+			<br>
+			<br>
+			<span style="font-size: 14px; color: #aaa">This step is completely optional, confidential, and will be used only for styling your shipments.</span><p>You can provide any of the social media links, so that our stylist knows you better and makes you more gorgeous! :) We respect your privacy</p> 
+			Pinterest Board: <input name="user[sociallinks][pinterest]" type="text" value="<%= @userdata['sociallinks']['pinterest']  if defined?(@userdata['sociallinks']['pinterest']) %>" class="form-control bs" placeholder="Example: www.pinterest.com/zuplr/classic-style-inspiration/"/>
+			<% if defined?@userdata['sociallinks']['facebook'] %>
+				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+			<% elsif !@fb_id.nil? %>
+				Facebook : <input name="user[sociallinks][facebook]" value="http://www.facebook.com/<%= @fb_id.uid%>" class="form-control bs" type="text"/>
+			<% else %>
+				Facebook : <input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+			<% end %>
+			Instagram : <input  name="user[sociallinks][instagram]" value="<%= @userdata['sociallinks']['instagram'] if defined?(@userdata['sociallinks']['instagram'])%>" class="form-control bs" type="text"/>
+			Twitter: <input  name="user[sociallinks][twitter]" value="<%= @userdata['sociallinks']['twitter'] if defined?(@userdata['sociallinks']['twitter'])%>" class="form-control bs" type="text"/>	</p>
+		</ul><br>
+			<p>
+			<h4 style="color:#dc0060">Final Thoughts?</h4>
+			Feel free to share here. We're all ears!<br>
+			<textarea id="zr-textarea" class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="I would like to avoid accessories in my first shipment. focus more on bottoms, tops etc. Or I would like stylist to focus on casual style for summers."> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
+			</p>
+			<button class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >Save my log</button>
+			<br>
+			<br>
+			<br>
+	</form>
+</div>
+
+<script type="text/javascript">
+// Yet another hack for bootstrap text area
+$(document).ready(function(){
+	console.log($('#zr-textarea').val())
+	if($('#zr-textarea').val().trim() == ''){
+		$('#zr-textarea').focus().val('t');
+		$('#zr-textarea').val('');
+		$('#zr-textarea').blur();
+	}
+})
+</script>

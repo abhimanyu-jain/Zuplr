@@ -1,13 +1,27 @@
 Rails.application.routes.draw do
-  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+  
+  get 'admin/index'
+
   root "home#index"
-  get "/style-log" => "users#styledata"
+  
+  resources :userprofiles
+  resources :roles
+  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+  
+  scope "/admin" do
+    get "/dashboard"=> "admin#index"
+    resources :users 
+    resources :roles
+    resources :userprofiles
+  end
+  
+  get "/style-log" => "userprofiles#styledata"
   get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"
-  post "users/save-data" => "users#save"
+  post "users/save-data" => "userprofiles#create"
   post "users/delivery" => "users#deliver"
-  get "users/new-signup" => "users#justin"
-  post "users/new-signup" => "users#savenumber"
+  get "users/new-signup" => "userprofiles#justin"
+  post "users/new-signup" => "userprofiles#savenumber"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
