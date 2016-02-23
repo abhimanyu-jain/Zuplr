@@ -6,13 +6,13 @@ class LeadsController < ApplicationController
 
 	def create
 		puts lead_params[:email]
-		@user = User.find_by_email_id(lead_params[:email])
+#		@user = User.find_by_email_id(lead_params[:email])
 		
 		# Create User if User/Identity and  does not exist
-		if @user.nil?
+#		if @user.nil?
 			# @user = User.create(lead_params)
 			# @identity = 
-		end
+#		end
 
 		# Send email
 
