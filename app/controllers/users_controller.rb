@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!
+	before_action :authenticate_user!, :except => [:leads]
 	load_and_authorize_resource
 
+  def leads
+  end
+  
   def index
    @users = User.includes(:role, :userprofile)
   end

@@ -1,0 +1,35 @@
+<div class="container top-space">
+
+  <p id="notice"><%= notice %></p>
+
+  <h1>Listing Userprofiles</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+        <th>City</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @leads.each do |lead| %>
+        <tr>
+          <td></td>
+          <td><%= lead.name %></td>
+          <td><%= lead.email %></td>
+          <td><%= lead.phonenumber %></td>
+          <td><%= lead.city %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'Back', '/admin/dashboard', :class => 'btn btn-success pull-right', :style => 'color:white' %>
+
+</div>

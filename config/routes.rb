@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   get 'admin/index'
-
   root "home#index"
   
   resources :userprofiles
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
     get "/dashboard"=> "admin#index"
     resources :users 
     resources :roles
+    resources :leads
     resources :userprofiles
   end
   
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   post "users/delivery" => "users#deliver"
   get "users/new-signup" => "userprofiles#justin"
   post "users/new-signup" => "userprofiles#savenumber"
+  get "/new-campaign" => "home#campaign"
+  post "/users/leads" => "leads#create"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup

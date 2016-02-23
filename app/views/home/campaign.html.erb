@@ -1,0 +1,58 @@
+<div class="container top-space bottom-space">
+	<div class="row">
+		<div class="col-sm-7">
+			<h2 style="margin-bottom: 15px;">How it works</h2>
+			<h4>Making it easy in simple steps!</h4>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4 style="padding-top: 40px;">4 SIMPLE STEPS!</h4>
+					<img style="padding: 20px 0px 60px;" src="hiw.png">
+					<div class="step">
+						<h4>Step 1 &raquo; Our expert stylist contacts you for a personal styling session</h4>
+						<!-- <p></p> -->
+					</div>
+					<div class="step">
+						<h4>Step 2 &raquo; Based on your preferences, Zuplr stylist designs a fashion box</h4>
+						<!-- <p></p> -->
+					</div>
+					<div class="step">
+						<h4>Step 3 &raquo; Zuplr delivers the fashion box uniquely designed for you, at your doorstep</h4>
+						<!-- <p></p> -->
+					</div>
+					<div class="step">
+						<h4>Step 4 &raquo; Pay ONLY for what you want to keep from the box</h4>
+						<!-- <p></p> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<h2 style="margin-bottom: 15px;">Get You Own Personal Stylist </h2>
+			<h4>And It's Completely FREE!</h4>
+			<br>
+			<form class="lr-form campaign-form" method="post" action="/users/leads">
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />				
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Your Name</label>
+			    <input type="text" class="form-control" id="" name="lead[name]" placeholder="Enter Your Name">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Your Email Id</label>
+			    <input type="text" class="form-control" id="" name="lead[email]" placeholder="Enter Your Email Id">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Phone number</label>
+			    <input type="text" class="form-control" id="" name="lead[phonenumber]" placeholder="Enter Your Phonenumber">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">City</label>
+			    <input type="text" class="form-control" id="" name="lead[city]" placeholder="Enter City Name">
+			  </div>
+			  <p class="" style="font-size: 12px;">
+			  	Already a member? <a href="/login">Sign In »</a><br></p>
+			  <button type="submit" class="btn btn-z1 btn-z2 btn-block">Submit</button><br>
+			  <p style="font-size: 11px;">By signing up you accept the terms and conditions of <a href="/pages/terms-and-conditions">Zuplr</a>.</p>
+			</form>
+		</div>
+	</div>
+</div>
