@@ -30,7 +30,7 @@
 			<h2 style="margin-bottom: 15px;">Get You Own Personal Stylist </h2>
 			<h4>And It's Completely FREE!</h4>
 			<br>
-			<form id="data-form" class="lr-form campaign-form" method="post" action="/users/leads">
+			<form id="data-form" class="lr-form campaign-form" method="post" action="/users/leads" data-parsley-validate="">
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />				
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Your Name</label>
