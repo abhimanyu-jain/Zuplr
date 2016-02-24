@@ -58,27 +58,28 @@
 </div>
 
 <script>
-		$(document).ready(function() {
-        var submitForm = false;
-        $("#data-form").on('submit', function(e){
-            if (!submitForm) {
-		      e.preventDefault();
-		    }
+		// $(document).ready(function() {
+  //       var submitForm = false;
+  //       $("#data-form").on('submit', function(e){
+  //           if (!submitForm) {
+		//       e.preventDefault();
+		//     }
 
-            var form = $(this);
-            form.parsley().validate();
+  //           var form = $(this);
+  //           form.parsley().validate();
 
-            if (form.parsley().isValid()){
-            	submitForm = true;
-                 setTimeout(function() {
-			        // Trigger form submit
-			        form.submit();
-			      }, 100);
-            }else{
-            	submitForm = false;
-            }
-        });
-    });
+  //           if (form.parsley().isValid()){
+  //           	console.log('I am here')
+  //           	submitForm = true;
+  //               setTimeout(function() {
+		// 	        // Trigger form submit
+		// 	        form.submit();
+		// 	    }, 2000);
+  //           }else{
+  //           	submitForm = false;
+  //           }
+  //       });
+  //   });
 
 		// $(function() {
 		// 	$('#data-form').parsley().subscribe('form:validate',function(f){
