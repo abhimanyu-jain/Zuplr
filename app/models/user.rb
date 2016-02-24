@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   before_save :assign_role
 
   def assign_role
+    puts "I am here"
     self.role = Role.find_by name: "User" if self.role.nil?
   end
 

@@ -30,23 +30,23 @@
 			<h2 style="margin-bottom: 15px;">Get You Own Personal Stylist </h2>
 			<h4>And It's Completely FREE!</h4>
 			<br>
-			<form class="lr-form campaign-form" method="post" action="/users/leads">
+			<form id="data-form" class="lr-form campaign-form" method="post" action="/users/leads">
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />				
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Your Name</label>
-			    <input type="text" class="form-control" id="" name="lead[name]" placeholder="Enter Your Name">
+			    <input type="text" class="form-control" id="" name="lead[name]" required="" data-parsley-required-message="This FIELD is required" data-parsley-trigger="change" placeholder="Enter Your Name">
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Your Email Id</label>
-			    <input type="text" class="form-control" id="" name="lead[email]" placeholder="Enter Your Email Id">
+			    <input type="email" class="form-control" id="" name="lead[email]" required="" data-parsley-type="email" data-parsley-message="Please enter a valid email address" data-parsley-required-message="This FIELD is required" data-parsley-trigger="change"  placeholder="Enter Your Email Id">
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Phone number</label>
-			    <input type="text" class="form-control" id="" name="lead[phonenumber]" placeholder="Enter Your Phonenumber">
+			    <input type="text" class="form-control" id="" name="lead[phonenumber]"  data-parsley-pattern="^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$" data-parsley-pattern-message="Please enter a valid phone number"  required="" data-parsley-required-message="This FIELD is required" placeholder="Enter Your Phonenumber">
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">City</label>
-			    <input type="text" class="form-control" id="" name="lead[city]" placeholder="Enter City Name">
+			    <input type="text" required="" data-parsley-required-message="This FIELD is required" data-parsley-trigger="change"class="form-control" id="" name="lead[city]" placeholder="Enter City Name">
 			  </div>
 			  <p class="" style="font-size: 12px;">
 			  	Already a member? <a href="/login">Sign In »</a><br></p>
@@ -56,3 +56,36 @@
 		</div>
 	</div>
 </div>
+
+<script>
+		$(document).ready(function() {
+        var submitForm = false;
+        $("#data-form").on('submit', function(e){
+            if (!submitForm) {
+		      e.preventDefault();
+		    }
+
+            var form = $(this);
+            form.parsley().validate();
+
+            if (form.parsley().isValid()){
+            	submitForm = true;
+                 setTimeout(function() {
+			        // Trigger form submit
+			        form.submit();
+			      }, 100);
+            }else{
+            	submitForm = false;
+            }
+        });
+    });
+
+		// $(function() {
+		// 	$('#data-form').parsley().subscribe('form:validate',function(f){
+		// 			f.submitEvent.preventDefault();
+		// 			if(f.isValid()){
+		// 				$('#data-form').submit();
+		// 			}
+		// 		})
+		// });
+	</script>

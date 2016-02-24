@@ -267,6 +267,15 @@ footer{
 	}
 }
 
+.parsley-errors-list, .parsley-required{
+    list-style: none;
+    margin-top: 5px;
+    color: red;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
 // Media queiries
 @media only screen and (min-width : 320px) and (max-width: 480px) {
 	.hero{
