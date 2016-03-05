@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   skip_before_filter  :verify_authenticity_token
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :check_if_user_provided_details, only: [:styledata, :index]
+
+  def check_if_user_provided_details
+    user_profile = Userprofile.find_by(user_id: current_user.id)
+    if (user_signed_in? && current_user.role.id == 1 && user_profile.nil?)
+      redirect_to users_new_signup_path
+    end
+  end
+
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop
     return if action_name == 'finish_signup'
@@ -24,8 +33,8 @@ class ApplicationController < ActionController::Base
     if @identity
       if !@identity.mail_sent
         # Send mail to user and admins
-        RegisterMailer.welcome(@identity).deliver_later
-        RegisterMailer.admin_mailer(@identity).deliver_later
+        RegisterMailer.welcome(@identity).deliver
+        RegisterMailer.admin_mailer(@identity).deliver
 
         @identity.mail_sent = 1
         @identity.save
@@ -41,9 +50,9 @@ class ApplicationController < ActionController::Base
       @userprofile = Userprofile.find_by_user_id(current_user.id)
       
       if defined?@userprofile.phonenumber
-          '/style-log'
+        '/style-log'
       else
-          '/users/new-signup'
+        '/users/new-signup'
       end
     end
   end

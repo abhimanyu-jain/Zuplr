@@ -2,6 +2,7 @@ class UserprofilesController < ApplicationController
   before_action :set_userprofile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   
+  
   # GET /userprofiles
   # GET /userprofiles.json
   def index
@@ -37,7 +38,7 @@ class UserprofilesController < ApplicationController
 
       # Update user info also
       @user.update_attributes({
-          :userprofile_id => @userprofile.id
+        :userprofile_id => @userprofile.id
         })
     else
       parameters = {
@@ -47,10 +48,10 @@ class UserprofilesController < ApplicationController
       }
       @userprofile = Userprofile.new(parameters)
       @userprofile.save
-    
+
       # Update user info also
       @user.update_attributes({
-          :userprofile_id => @userprofile.id
+        :userprofile_id => @userprofile.id
         })
     end
   end
@@ -59,7 +60,7 @@ class UserprofilesController < ApplicationController
     puts "Printing style data"
     @userdata = Userprofile.find_by_user_id(current_user.id)
     if !@userdata.nil? and !@userdata.data.nil? and @userdata.data != 'null'
-        @userdata = JSON.parse @userdata.data
+      @userdata = JSON.parse @userdata.data
     end 
 
     @user = User.find_by_email(current_user.email)
@@ -72,24 +73,24 @@ class UserprofilesController < ApplicationController
   # POST /userprofiles.json
   def create
     puts "Creating userprofile"
-     @userprofile = Userprofile.find_by_user_id(current_user.id)
+    @userprofile = Userprofile.find_by_user_id(current_user.id)
     if @userprofile
-       @userprofile.update_attributes(
-        :data => (params['user']).to_json,
-        :user_id => current_user.id
-        )
-     else
-       @userprofile = Userprofile.new(userprofile_params)
-       @userprofile.save
-     end  
+     @userprofile.update_attributes(
+      :data => (params['user']).to_json,
+      :user_id => current_user.id
+      )
+   else
+     @userprofile = Userprofile.new(userprofile_params)
+     @userprofile.save
+   end  
 
-     @identity = Identity.find_by_email(current_user.email)
-     @user = User.find_by_email(current_user.email)
+   @identity = Identity.find_by_email(current_user.email)
+   @user = User.find_by_email(current_user.email)
 
      # Update user also
-      @user.update_attributes({
-          :userprofile_id => @userprofile.id
-        })
+     @user.update_attributes({
+      :userprofile_id => @userprofile.id
+      })
 
 
      RegisterMailer.style_log_thanks(@identity).deliver_later
@@ -147,6 +148,7 @@ class UserprofilesController < ApplicationController
       parameters = {
        :user_id => current_user.id,
        :data => (params['user']).to_json
-      }
-    end
+     }
+   end
+
 end
