@@ -30,7 +30,9 @@
               <% if (current_user.role.name == 'Admin') %>
                 <li><a href="/admin/dashboard" style="text-transform: capitalize">Dashboard</a></li>
               <% end %>
-              <li><a href="/style-log">Style Log</a></li>
+              <% if check_user_data(current_user.id) %>
+                <li><a href="/style-log">Style Log</a></li>
+              <% end %>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li ><a href="/login">Login</a></li>            

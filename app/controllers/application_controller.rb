@@ -5,14 +5,16 @@ class ApplicationController < ActionController::Base
   skip_before_filter  :verify_authenticity_token
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :check_if_user_provided_details, only: [:styledata, :index]
+  # before_action :check_if_user_provided_details, only: [:styledata, :index]
 
-  def check_if_user_provided_details
-    user_profile = Userprofile.find_by(user_id: current_user.id)
-    if (user_signed_in? && current_user.role.id == 1 && user_profile.nil?)
-      redirect_to users_new_signup_path
-    end
-  end
+  # def check_if_user_provided_details
+  #   user_profile = Userprofile.find_by(user_id: current_user.id)
+  #   if (user_signed_in? && current_user.role.id == 1 && user_profile.nil?)
+  #     redirect_to users_new_signup_path
+  #   end
+  # end
+
+  helper ApplicationHelper
 
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop
