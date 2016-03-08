@@ -28,7 +28,9 @@
             <!-- <li class="active"><a href="#">Home</a></li> -->
             <% if user_signed_in? %>
               <li><a href="#" style="text-transform: capitalize">Hi <%= current_user.email %> !</a></li>
-              
+              <% if (current_user.admin?) %>
+                <li><a href="/admin/dashboard" style="text-transform: capitalize">Dashboard</a></li>
+              <% end %>
               <% if check_user_data(current_user.id) %>
                 <li><a href="/style-log">Style Log</a></li>
               <% end %>
