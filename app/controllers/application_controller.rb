@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def check_if_user_provided_details
     if user_signed_in? 
       user_profile = Userprofile.find_by(user_id: current_user.id) 
-      if (current_user.role.id == 1 && user_profile.nil?)
+      if (current_user.role_id == 1 && user_profile.nil?)
         redirect_to users_new_signup_path
       end
     end
@@ -37,8 +37,8 @@ class ApplicationController < ActionController::Base
     if @identity
       if !@identity.mail_sent
         # Send mail to user and admins
-        RegisterMailer.welcome(@identity).deliver
-        RegisterMailer.admin_mailer(@identity).deliver
+        RegisterMailer.welcome(@identity).deliver_now
+        RegisterMailer.admin_mailer(@identity).deliver_now
 
         @identity.mail_sent = 1
         @identity.save

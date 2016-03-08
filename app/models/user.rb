@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  after_save :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -12,6 +13,10 @@ class User < ActiveRecord::Base
 
   # Filters
   before_save :assign_role
+
+  def send_welcome_email
+    RegisterMailer.welcome(self).deliver_now
+  end
 
   def assign_role
     puts "I am here"
