@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # helper ApplicationHelper
+
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop
     return if action_name == 'finish_signup'
@@ -63,4 +65,3 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 end
-
