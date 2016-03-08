@@ -8,9 +8,11 @@ class ApplicationController < ActionController::Base
   before_action :check_if_user_provided_details, only: [:styledata, :index]
 
   def check_if_user_provided_details
-    user_profile = Userprofile.find_by(user_id: current_user.id)
-    if (user_signed_in? && current_user.role.id == 1 && user_profile.nil?)
-      redirect_to users_new_signup_path
+    if user_signed_in? 
+      user_profile = Userprofile.find_by(user_id: current_user.id) 
+      if (current_user.role.id == 1 && user_profile.nil?)
+        redirect_to users_new_signup_path
+      end
     end
   end
 
