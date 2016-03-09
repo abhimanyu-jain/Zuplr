@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
 
+  has_many :conversations, :dependent => :destroy
+  
   # Filters
   before_save :assign_role
 

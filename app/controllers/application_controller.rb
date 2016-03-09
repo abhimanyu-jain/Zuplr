@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   # helper ApplicationHelper
 
   def ensure_signup_complete
