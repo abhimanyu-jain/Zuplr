@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require jquery-smooth-scroll
 //= require turbolinks
+//= require private_pub
 //= require_tree .

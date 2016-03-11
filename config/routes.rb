@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :messages
+  resources :messages
   get 'admin/index'
   root "home#index"
   
@@ -14,7 +16,11 @@ Rails.application.routes.draw do
     resources :leads
     resources :userprofiles
   end
-  
+
+  resources :conversations do
+    resources :messages
+  end
+
   get "/style-log" => "userprofiles#styledata"
   get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"

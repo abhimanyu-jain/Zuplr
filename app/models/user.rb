@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # after_save :send_welcome_email
+  # after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
 
+  has_many :conversations, :dependent => :destroy
+  
   # Filters
   before_save :assign_role
 

@@ -66,3 +66,5 @@ group :development do
   gem 'spring'
 end
 
+gem 'private_pub'
+gem 'thin'

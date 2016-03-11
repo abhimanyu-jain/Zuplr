@@ -375,8 +375,6 @@
  		padding:10px 10px 10px;
  	}
 
-
-
  	footer ul{
  		padding: 0px;
  	}
@@ -388,4 +386,45 @@
 
  .static-page {
  	height: 70vh;
+ }
+
+ .phone-city-form {
+ 	padding-top: 12px;
+ }
+
+ /*.vh-center {
+ 	height: 81vh;
+ 	display: flex;
+ 	justify-content: center;
+ 	align-items: center;
+
+ 	.btn-z1 {
+ 		margin-bottom: 10px;
+ 	}
+
+ 	p {
+ 		font-size: 14px;
+ 		color: #5A4848;
+ 	}
+ }
+
+ .form-width	{
+ 	width: 450px;
+ }
+*/
+ .user-details-form {
+
+ 	.btn-z1 {
+ 		margin-bottom: 10px;
+ 	}
+
+ 	p {
+ 		font-size: 14px;
+ 		color: #4A3A3A;
+ 	}
+ }
+
+ .chat-page {
+ margin-top: 50px;
+  margin-bottom: 30px;
  }
