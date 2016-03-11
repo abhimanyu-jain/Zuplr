@@ -1,5 +1,5 @@
 class RegisterMailer < ApplicationMailer
-	default from: "care@zuplr.com"
+	default from: "care.zuplr@gmail.com"
 
 	def welcome(user)
 		@user = user
