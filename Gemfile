@@ -68,3 +68,4 @@ end
 
 gem 'private_pub'
 gem 'thin'
+gem 'devise_invitable'

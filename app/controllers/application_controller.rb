@@ -61,6 +61,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_invite_path_for(resource)
+    root_path
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end

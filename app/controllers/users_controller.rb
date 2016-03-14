@@ -108,6 +108,10 @@ def savenumber
   @delivery.save
 end
 
+def invite
+  User.invite!(:email => "Ounly1984@einrot.com", :name => "John Doe")
+end
+
 private
 
 def delivery_params

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable, :database_authenticatable, :registerable,
+  devise :invitable, :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
   attr_accessor :user_profile_phone, :user_profile_city
