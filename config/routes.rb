@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   
   resources :userprofiles
   resources :roles
-  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
-  
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
   scope "/admin" do
     get "/dashboard"=> "admin#index"
     resources :users 

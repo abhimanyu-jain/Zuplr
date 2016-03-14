@@ -1,6 +1,5 @@
 <p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
 
-<!-- <p><%#= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p> -->
 <% @invited_by = User.find(@resource.invited_by_id) %>
 <p><%= @invited_by.email %> has invited you to join <%= link_to "Zuplr", "http://zuplr.com" %> </p>
 

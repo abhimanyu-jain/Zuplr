@@ -16,6 +16,7 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'font-awesome';
 
  body{
  	font-family: 'Open Sans', sans-serif;
@@ -422,4 +423,11 @@
    margin-bottom: 30px;
  }
 
- 
+ #email {
+ margin-bottom: 9px;
+ margin-top: 9px;
+ }
+
+ .send-invite {
+ margin-top: 10px;
+ }
