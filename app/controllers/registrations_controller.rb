@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  
+
+  before_action :find_user_profile, only: [:edit, :update]
   after_filter :identity_create, :only => [:create]
 
   def identity_create
@@ -8,6 +9,17 @@ class RegistrationsController < Devise::RegistrationsController
     # identity.user_id = current_user.id
     identity.email = params['user']['email']
     identity.save
+  end
+
+  def edit
+    super
+  end
+
+  def update
+    super
+    @userprofile.city = params[:user][:user_profile_city]
+    @userprofile.phonenumber = params[:user][:user_profile_phone]
+    @userprofile.save
   end
   
   def update_resource(resource, params)
@@ -25,5 +37,9 @@ class RegistrationsController < Devise::RegistrationsController
       resource.update_with_password(params)
     end
   end
+  private
 
+  def find_user_profile
+    @userprofile = Userprofile.find_by(user_id: current_user.id)
+  end
 end

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
+  attr_accessor :user_profile_phone, :user_profile_city
+
   # Relationships
   has_many :identities
   belongs_to :role, :dependent => :destroy
