@@ -70,3 +70,4 @@ gem 'private_pub'
 gem 'thin'
 gem 'devise_invitable'
 gem "font-awesome-rails"
+gem 'jquery-turbolinks'

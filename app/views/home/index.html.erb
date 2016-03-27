@@ -1,4 +1,137 @@
-<div id="home-wrapper" style="">
+<section id="home">
+  <div class="fill">
+    <%= render 'common/navigation' %>
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="active item">
+          <div class="fill" id = "slide1">
+            <div class="container">
+              <div class="col-md-6 col-sm-5 col-xs-12"></div>
+              <div class="col-md-6 col-sm-12 col-xs-12 name-phone-column">
+                <h3>Clothes selected by Stylist delivered at your doorstep.</h3>
+                <form  role="form">
+                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <input type="email" class="form-control" id="form-name" placeholder="Your Name">
+                  </div>
+                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <input type="password" class="form-control" id="form-phone" placeholder="Your Phone Number ">
+                  </div>
+                </form>
+                <div class="btn-column col-md-12 col-sm-12 col-xs-12">
+                  <button type="submit" class="btn btn-success full-width-btn">Let the Stylist contact me</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="fill" style="background-image:url('//placehold.it/1024x700');">
+            <div class="container">
+
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="fill" style="background-image:url('//placehold.it/1024x700/CC1111/FFF');">
+            <div class="container">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pull-center">
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>What is Zuplr?</h3>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <p>Zuplr is a personal styling service tailored to your taste, budget and lifestyle
+          that helps you look and feel your best every day. Personal Stylists are not just for celebs. We take ordinary people and give them an extraordinary style!
+        </p>
+        <a href="/users/start">
+          <button type="button" class="btn default-btn">Let's Get Started!</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+<section id="how">
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>How it works?</h3>
+    </div>
+    <div class="col-md-3 text-center">
+      <h4>Create your style log</h4>
+      <img src="https://cdn4.iconfinder.com/data/icons/medicine-14/128/medical-06-128.png" alt="">
+    </div>
+    <div class="col-md-3 text-center">
+      <h4>Talk to your Stylist</h4>
+      <img src="https://cdn2.iconfinder.com/data/icons/shop-payment-vol-5/128/shop-16-128.png" alt="">
+    </div>
+    <div class="col-md-3 text-center">
+      <h4>Receive free delivery</h4>
+      <img src="https://cdn2.iconfinder.com/data/icons/shop-payment-vol-5/128/shop-22-128.png" alt="">
+    </div>
+    <div class="col-md-3 text-center">
+      <h4>Pay for what you like</h4>
+      <img src="https://cdn2.iconfinder.com/data/icons/christmas-hand-drawn-scribbles-icons/512/88-128.png" alt="">
+    </div>
+
+  </div>
+</div>
+</section>
+<hr>
+<section id="social">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center social-row">
+        <a href="https://www.facebook.com/Zuplr/" target="_blank">
+          <img src="https://cdn3.iconfinder.com/data/icons/social-media-chamfered-corner/154/facebook-48.png" alt="">
+        </a>
+        <a href="https://twitter.com/zuplr_" target="_blank">
+          <img src="https://cdn3.iconfinder.com/data/icons/social-media-chamfered-corner/154/twitter-48.png" alt="">
+        </a>
+        <a href="https://www.instagram.com/zuplr/" target="_blank">
+          <img src="https://cdn3.iconfinder.com/data/icons/social-media-chamfered-corner/154/instagram-48.png" alt="">
+        </a>
+        <a href="https://www.pinterest.com/zuplr/" target="_blank">
+          <img src="https://cdn3.iconfinder.com/data/icons/social-media-chamfered-corner/154/pinterest-48.png" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="home-wrapper" style="">
   <div class="section hero" style="">
    <div class="hero-title" style=""></div>
    <div class="transform-up transform-top " style="">
@@ -58,10 +191,10 @@
 </div>
 <hr>
 
-  <!-- div class="section" style="height:400px;overflow-y: hidden; padding: 0px;background: none">
+  <! div class="section" style="height:400px;overflow-y: hidden; padding: 0px;background: none">
     <img src="test.png">
   </div>
--->  <div class="section" style="padding-bottom: 80px;">
+-->  <!-- <div class="section" style="padding-bottom: 80px;">
 <div class="container">
   <div class="big-title">
     Benefits
@@ -133,9 +266,9 @@
     <a href="https://twitter.com/zuplr_" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFRElEQVR4Xu1ba0xbZRh+zmkLtFxcO9oyKI7rHAwQWcTLDxmyMMxmWILERYwhuv3YZMRlxqhT5mXi4g9vuyVLloWRuUnM1BiTuUUXt5FMBU3cBVrs2AVsaWEUsFAKPTVfIwYtcHrO+Yo1Pe+f/uj7vZfne8/zft97Wqa2rU0x+FvWLg7sNhZ+I6JCOKefYQ/os617mPLmjiaAeTMq8v53koy/iSlr/tkePTv/TwQ4+BxMeXOnPyp3/6+kZQDkCpAfAZkDZBKUu0AUIyC3QbkNym1QboNyG4ziJoCI6gK6eBXWFepQYEpAklqJMc80rva7cebyEJxjU3PuEwNASglLBkATo0BJRiIuWlySCqnmfgM2r0lFrJINsjPl86O13Ybj7fa/k802qFFbasTBb/swOjEt2rdkANbfm4yGShN2ftKDa/1uUYE8V5aKuodTeNd+d20Yvw9P4oGcJOQaNTjV4cD+s3286xZSkAzAa9WZeDRfizGPDy+e6EGPfVxQQKVZSdj7ZI6gNUTZ6pjA9mNmeKY4sAwDzi/uQZAMwP5n7kF+WnwggfFJH3afuo7OG2MhJ3T42TzkGNUh6xNFAnJrux1ZBjX0iSp8cPp2ZABAgvNxfhw9b8OJS3bwbcry5Dgc3ZIvKPnZyoNjU9jW0g3yKVYkV8DrGzNRnqcN8n+1z40Pv7kVKNX5pLJQh5c3ZIiKnSRNHrlbQx5R62cWSQbg8fuSsaPq7jmDIBVwrmsYn14aQM9AMDfUlhqwtcIkOAFChDuOW+ZtjUIMSgYgPlaBk88XgHwuJBb7OL7vdqGzdzRQFeRRWV+cjJ2PzQ3eQrZ+sI7glTarkDzn1ZUMALG8cbUejZXpIQdE+jrZRQICITKhcsHsCpAtDZEMwJo8LX60jmJrRVpgRxdDTv86hPe+vknFlWQADtWvRIY+DqTEVxg1iFUFn+SoRDrLSMsFG1ou2qiYlQwAIUBChIspe77sBTkV0hDJABQvT8T7T+XSiCVkG3WHrsDm8oasv5CiZACI8Y+eXoHC9AQqAfEZcYx6senAFT61kL+nAsCyJTE4WL8Sd6mVITsWq/hFpxMfn7ktdnnQOioAEKuZejXerslCqjaWWnBzGWo4ZhZ965zLHjUAiHFyl69erceG4mSYdPSBIAeoLUe6qAJMDQAyoHirJhsMg8ANTcGSWQ1docn+M5FRA4AYJN2AdIVwSK9zApuPdPHeMIX6pgoAKXtyMOK7FwgNkow6Xmi14HLfH0KX8upTBYB4W2WKxztPZAeGmrTk8w4n9p2lx/yz46IOADG+NEGF+keWYW2+TvLR2Gwbx/ZWM6Z94kZefJsQFgBmnMYoWVQW6NC4Lh1KEaRIboyNrRbccYuf+PxnAJBL0aYHjah7KAVKhfCO0HdnEi+d7IF9hM6Rdz4gqFcAIcKKVTpUl+ixRCOOBwjZNX12HSMS5v18Oy+5DZJRdFWRDiZdHOJULPRJMcg1qmFIignVd5DeNOcPvPwgE1+xY26hziVVADnskKswealBiE+sEHprt7hw+Fw/SOkvpkgCYCZQlYJBeb4WVUVLUZSeEHhREYoMjHhx3uzCV784Fz1xyY/AfAkmxikCV+PcFA3StLHQapRQKVl4vBzcXh8cI17cGPSg2+bGzUFpI+1QQObToVIBfE4i+XsZAPlHUvKPpOQfSYXnlhHJzDcrNpkEZRKUSVAmQZkE/yeEHZYw5S4gd4HmnxwAqw9LfUW6UQ52Zs27nbsZP96I9FjDFN8uJvD3eWvWq5yfa2ChMITJUWSZ5WAHi31l3pK9fwKyaCNq00CRcAAAAABJRU5ErkJggg==" style="width: 48px"></a>
     <a href="https://www.instagram.com/zuplr/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFl0lEQVR4Xu1ba0xcRRT+ZhdZXrJALC+xhbQi75pUTWxpq9jaxLY/BJsYa1NLVIyxRU0fFEKLiS2PEIwxlCoxfSTVqDE+auRhgtba1qop6YKw0FoeRXcLlrqlPAv3mjMLm0V2y927i+zCnYQfcOfMnO+753xzZubCPt20Sb0kUp8H4FUAYZgHTYDQoxZZ+SVD/NvsQnbyPgBvzQPcUyGK2EcEGOfLm/8vAwKEbiJAnJdvfxy0QoASAUoKKBqgiKCyCsxjBpRlUFkGlWXQhcsgY1Br/MHUXjOiKqIoYmywDxAFl43vEg3QhEYjYl0WAhNXQ+0T4DLnbA0kDPfD1HgKhprDGO5ud3oupwnQJq5G9AulUN2lcdoZRwYQbg+j/ehOmH4/5YjZlL5OEUBvPm7XZzMC/rapByO9XTbBaUJj4OUfBCJBX5KB4Z5O2SQ4RUD0lkIEL1sve3J7hsN/X4W+OJ0DtNUIfELeSaj9tOj99SQ6TtCBlrwmnwDGkFJ4ZkZy3tTwPa58mH1HRLFvnID/omQuirrcVECUV9HLJoDELqXorDzap7FyhAAaSpezHGNDt2T5IpsACsPkAz/KmnQ6I4cJ2LvCvDzKaAoBckthJQKcTQFRxOitXh60XgEhAGOWAJ7TKTBwtQnddUdgavoJVNVRI0ENTEhFWFomfKPiMHStja/v4tiozaxWafyRmP8tvAKC+XOdp2iAoaocxtpKu7U8U6kQvu4V/kPFzXCP7VLXJzIW3kHhFnI8ggAOvuZ9STodsX47wte+JKmvR0QAhX1L2XOSd3FMpcYDOz+Bb2SsJBJmPQIIYPux3ZOcjcrIQWB8Kv9b+7FduFFfIwnMRKeQhzZg0fMH+a+mxh/w55elk+xjtpXC994499CA/rZ6tL67dZKDCXnfQLNgIS9RL+YstwieVBaozk85eJp3HzJcRnNx+iTTiVLYLVLAFgFLS85D5e2L0b7raMh/XCruSf2o0qR6Y2zgprnet2ruT0DxOdBy5QwBFAEUCWMDJuhyV3oWAQm5X4POCygFuEg5uFmxrjQHDZegL87wLAKszwraj+/GjQvVDqVByMMbsWjzAW5z/fwX6Px4v2cREJSyBjGZZdzpwS49WsqehShIO8ykZZBOmnwilnD7K5Xbpxx9ub0GEIh4SoN77uMgjDWHYag6JCkKIje+jrAnMs0rwLU2NBc9PaWGcHsCyPnAhJVY/HK5BbTxu0oYqw5BFMZsEkGkURU4AZ7043JFFvpaf57S3yMIIK8jN+xA2JoXLQAG/2pFd91RmJpOc3WnRoJHZIWlbbOEPY+a6goYqitskuUxBJD39mr70f5/wOgyxU87GaQomlPGDnjq7FEE8HSIX4Go9L3m6vAOjXK+6/NCm2FvbeZxBJDztN0NTFgFbXIa/BYmwlsbyjGNmLox0NkIk66Op4aUqy+PJEDSEiCx06wTYL1Z6e9oQOs7myW67pputF32i4rng13c86jDm60JL2SfCoOpsLToLFQaPwgjQ2gsWGtRdddAtD8KnSEmFdSCeXmb9wl5q/7/ixFyL3pLEYKXPcU97Ws5h/bje0DKPpONwMdsLUHA/Y/waXp/+QodH+XLnlJ+BAB8s2N9OUp3eUPGP+wWOrK9HDek7w58wxfzN09NGBmEvuQZ0F2i3OYUATTprF2Pjwyi7cibuNl8Ri52buc0ATQIre3hT2ZBm/QY1L53O+XQdMaU83REZqz9wKk377wI2vJ0/BMZ60uO6QA58px2k8LIgGzBs+my3KsxRxx3574uSQF3BjidbwoBSgooH0q68EPJ6RLODZ8rGqBogKIBigbI+8LQDQVNjkvst+zEbhVUC+QYzwEbI6vfkbRfZKxgDoBxGAIDy2P83+cj9LkCE15TQWU+pp37zcjA3nswWFf0L1aGM3yaDpxdAAAAAElFTkSuQmCC" style="width: 48px"></a>
     <a href="https://www.pinterest.com/zuplr/" target="_blank"><img src="data:image/png;base64,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" style="width: 48px"></a>
-    <!-- <span>WE ARE SOCIAL - Track the latest looks at </span><br>
+    <! <span>WE ARE SOCIAL - Track the latest looks at </span><br>
     <a href="https://www.facebook.com/Zuplr/" target="_blank"><img src="https://s20.postimg.org/hnkyewqy1/1451515586_facebook_circle_color.png" width="60" height="60" style="outline:none;text-decoration:none;padding-top:15px;border:0" class="CToWUd"></a><a href="https://twitter.com/zuplr_" target="_blank"><img src="https://s20.postimg.org/3l3mdoay1/1451515668_twitter_circle.png?V2" alt="Twitter" width="60" height="60" style="outline:none;text-decoration:none;padding-top:15px;padding-left:6px;padding-right:3px;border:0" class="CToWUd"></a><a href="https://www.instagram.com/zuplr/" target="_blank"><img src="https://s20.postimg.org/5zqwkd1t5/1451515867_Instagram.png?V2" alt="Instagram" width="80" height="80" style="outline:none;text-decoration:none;padding-top:15px;padding-left:3px;padding-right:5px;border:0" class="CToWUd"></a><a href="https://www.pinterest.com/zuplr/" target="_blank"><img src="https://s20.postimg.org/615frit0p/1451515710_pinterest.png?V2" alt="Pinterest" width="60" height="60" style="outline:none;text-decoration:none;padding-top:15px;border:0" class="CToWUd"></a> -->
-  </div>
+  <!-- </div>
 </div>
 </div>
-</div>
+</div>  -->
