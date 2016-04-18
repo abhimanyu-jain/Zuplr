@@ -2,20 +2,20 @@
   <ul class="nav navbar-nav">
     <!-- <li class="active"><a href="#">Home</a></li> -->
     <% if user_signed_in? %>
-    <li><a href="#" style="text-transform: capitalize">Hi <%= current_user.email %> !</a></li>
+    <li><a href="#">Hi <%= current_user.email %> !</a></li>
     <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
     <li><%= link_to "Invite Friends", new_user_invitation_path %></li>
-    <li><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: 1), method: :post %></li>
+    <!-- <li><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: 1), method: :post %></li> -->
     <% if (current_user.role.name == 'Admin') %>
-    <li><a href="/admin/dashboard" style="text-transform: capitalize">Dashboard</a></li>
+    <li><a href="/admin/dashboard">Dashboard</a></li>
     <% end %>
     <% if check_user_data(current_user.id) %>
     <li><a href="/style-log">Style Log</a></li>
     <% end %>
     <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% else %>
-    <li ><a href="/login">Login</a></li>            
-    <li ><a href="/register">Register</a></li>            
+    <li ><a class="btn btn-default btn-zr-1" href="/login">Login</a></li>            
+    <li ><a class="btn btn-default btn-zr-1" href="/register">Register</a></li>            
     <% end %>
   </ul>
     </div><!--/.nav-collapse -->
