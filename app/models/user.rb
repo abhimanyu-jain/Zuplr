@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   belongs_to :role, :dependent => :destroy
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
-
+  has_many :comments
   has_many :conversations, :dependent => :destroy
   
   # Filters
@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   end
 
   def assign_role
-    puts "I am here"
     self.role = Role.find_by name: "User" if self.role.nil?
   end
 

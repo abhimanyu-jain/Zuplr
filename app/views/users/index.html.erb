@@ -12,8 +12,9 @@
         <th>City</th>
         <th>Phonenumber</th>
         <th>Data</th>
-        <th>FB Link</th>
+        <th>FB Link/Name</th>
         <th>Actions</th>
+        <th>Comments</th>
       </tr>
     </thead>
 
@@ -29,7 +30,15 @@
               <a href="/admin/userprofiles/<%= user.userprofile.id if (defined?user.userprofile.id) %>">Show Data</a>
             <% end %>
           </td>
+          <td>
+            <% if user.identities.where('provider = ?', 'facebook').present? %>
+              <a target="_blank" href="http://facebook.com/<%= user.identities.where('provider = ?', 'facebook')[0].uid %>"><%= user.identities.where('provider = ?', 'facebook')[0].name %></a>
+            <% end %>
+          </td>
           <td><%= link_to 'Show', user, :class => 'btn btn-success btn-label' %> &nbsp; <%= link_to 'Edit', edit_user_path(user) , :class => 'btn btn-danger btn-label'%></td>
+          <td>
+            <%= link_to 'Stylist Comments', user, :class => '' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

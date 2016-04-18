@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :messages
-  resources :messages
   get 'admin/index'
   root "home#index"
   
   resources :userprofiles
   resources :roles
+  resources :comments
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
   scope "/admin" do
     get "/dashboard"=> "admin#index"
