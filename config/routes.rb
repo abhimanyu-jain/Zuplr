@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'deliveries/index'
+  get 'deliveries/show'
+
+  resources :cities
   get 'admin/index'
   root "home#index"
   
   resources :userprofiles
+  resources :deliveries
   resources :roles
   resources :comments
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
@@ -24,10 +29,10 @@ Rails.application.routes.draw do
   get "users/start" => "users#start"
   post "users/save-data" => "userprofiles#create"
   post "users/delivery" => "users#deliver"
-  get "users/new-signup" => "userprofiles#justin"
+  get "users/new-signup" => "userprofiles#request_details"
   post "users/new-signup" => "userprofiles#savenumber"
-  get "/new-campaign" => "home#campaign"
-  post "/users/leads" => "leads#create"
+  # get "/new-campaign" => "home#campaign"
+  # post "/users/leads" => "leads#create"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup

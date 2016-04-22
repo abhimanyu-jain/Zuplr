@@ -14,3 +14,9 @@ u1 = User.create({email: "sally@example.com", password: "aaaaaaaa", password_con
 u2 = User.create({email: "sue@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa", role_id: r2.id})
 u3 = User.create({email: "kev@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa", role_id: r2.id})
 u4 = User.create({email: "jack@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa", role_id: r3.id})
+
+City.create!(name: "Banglore", code: "BAN")
+City.create!(name: "Hyderabad", code: "HYD")
+City.create!(name: "Gurgaon", code: "GGN")
+City.create!(name: "Pune", code: "PUN")
+City.create!(name: "Delhi", code: "DEL")

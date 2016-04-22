@@ -3,7 +3,9 @@
     <!-- <li class="active"><a href="#">Home</a></li> -->
     <% if user_signed_in? %>
         <li><a href="#">Hi <%= current_user.email %> !</a></li>
-        <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+        <li><%= link_to "Account", edit_user_registration_path %></li>
+        <li><%= link_to "Style Profile", "/style-log" %></li>
+        <li><%= link_to "Deliveries", deliveries_path %></li>
         <% if (current_user.role.name == 'Admin') %>
             <li><a href="/admin/dashboard">Dashboard</a></li>
         <% else %>
@@ -19,4 +21,4 @@
         <li ><a class="btn btn-default btn-zr-1" href="/register">Register</a></li>            
     <% end %>
   </ul>
-    </div><!--/.nav-collapse -->
+</div><!--/.nav-collapse -->

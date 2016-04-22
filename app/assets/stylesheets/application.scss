@@ -30,6 +30,16 @@ background: none;
 }
 }
 
+.form-thanks{
+	color: rgb(220, 0, 96);
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 2px;
+    display: none;
+}
+
 .hero{
 height: 600px;
 padding-top:1px;
@@ -384,7 +394,11 @@ padding: 0px;
 }
 
 .phone-city-form {
-padding-top: 12px;
+	padding-top: 12px;
+	.form-control{
+		border-radius: 2px;
+		height: 45px;
+	}
 }
 
 /*.vh-center {
@@ -408,15 +422,14 @@ width: 450px;
 }
 */
 .user-details-form {
+	.btn-z1 {
+		margin-bottom: 10px;
+	}
 
-.btn-z1 {
-margin-bottom: 10px;
-}
-
-p {
-font-size: 14px;
-color: #4A3A3A;
-}
+	p {
+		font-size: 14px;
+		color: #4A3A3A;
+	}
 }
 
 .chat-page {

@@ -3,11 +3,11 @@ class UserprofilesController < ApplicationController
   before_action :authenticate_user!
   
   
-  # GET /userprofiles
+    # GET /userprofiles
   # GET /userprofiles.json
   def index
     @userprofiles = Userprofile.all
-  end
+end
 
   # GET /userprofiles/1
   # GET /userprofiles/1.json
@@ -17,17 +17,17 @@ class UserprofilesController < ApplicationController
   # GET /userprofiles/new
   def new
     @userprofile = Userprofile.new
-  end
+end
 
   # GET /userprofiles/1/edit
   def edit
   end
 
-  def justin
-    render 'justin'
-  end
+    def request_details
+        render 'request_details'
+    end
 
-  def savenumber
+def savenumber
     @user = User.find_by_email(current_user.email)
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     
@@ -40,48 +40,46 @@ class UserprofilesController < ApplicationController
       @user.update_attributes({
         :userprofile_id => @userprofile.id
         })
-    else
+  else
       parameters = {
         :user_id => current_user.id,
         :city=> params['user']['city'],
         :phonenumber => params['user']['phonenumber']
-      }
-      @userprofile = Userprofile.new(parameters)
-      @userprofile.save
+    }
+    @userprofile = Userprofile.new(parameters)
+    @userprofile.save
 
       # Update user info also
       @user.update_attributes({
         :userprofile_id => @userprofile.id
         })
+  end
+end
+
+    def styledata
+        @userdata = Userprofile.find_by_user_id(current_user.id)
+        # if !@userdata.nil? and !@userdata.data.nil? and @userdata.data != 'null'
+        #   @userdata = JSON.parse @userdata.data
+        # end 
+
+        # @user = User.find_by_email(current_user.email)
+        # @identity = Identity.find_by_email(current_user.email)
+        # @fb_id = Identity.find_by(email: current_user.email, provider: 'facebook') 
+        render 'stylelog-form'
     end
-  end
-
-  def styledata
-    puts "Printing style data"
-    @userdata = Userprofile.find_by_user_id(current_user.id)
-    if !@userdata.nil? and !@userdata.data.nil? and @userdata.data != 'null'
-      @userdata = JSON.parse @userdata.data
-    end 
-
-    @user = User.find_by_email(current_user.email)
-    @identity = Identity.find_by_email(current_user.email)
-    @fb_id = Identity.find_by(email: current_user.email, provider: 'facebook') 
-    render 'stylelog-form'
-  end
 
   # POST /userprofiles
   # POST /userprofiles.json
   def create
-    puts "Creating userprofile"
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     if @userprofile
-     @userprofile.update_attributes(
-      :data => (params['user']).to_json,
-      :user_id => current_user.id
-      )
+       @userprofile.update_attributes(
+          :data => (params['user']).to_json,
+          :user_id => current_user.id
+          )
    else
-     @userprofile = Userprofile.new(userprofile_params)
-     @userprofile.save
+       @userprofile = Userprofile.new(userprofile_params)
+       @userprofile.save
    end  
 
    @identity = Identity.find_by_email(current_user.email)
@@ -93,8 +91,7 @@ class UserprofilesController < ApplicationController
       })
 
 
-     RegisterMailer.style_log_thanks(@identity).deliver_later
-     RegisterMailer.admin_form_filled(@identity).deliver_later
+    # RegisterMailer.style_log_thanks(@identity).deliver_later
 
     # @userprofile = Userprofile.new(userprofile_params)
 
@@ -107,7 +104,7 @@ class UserprofilesController < ApplicationController
     #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
     #   end
     # end
-  end
+end
 
   # PATCH/PUT /userprofiles/1
   # PATCH/PUT /userprofiles/1.json
@@ -116,12 +113,12 @@ class UserprofilesController < ApplicationController
       if @userprofile.update(userprofile_params)
         format.html { redirect_to @userprofile, notice: 'Userprofile was successfully updated.' }
         format.json { render :show, status: :ok, location: @userprofile }
-      else
+    else
         format.html { render :edit }
         format.json { render json: @userprofile.errors, status: :unprocessable_entity }
-      end
     end
-  end
+end
+end
 
   # DELETE /userprofiles/1
   # DELETE /userprofiles/1.json
@@ -130,14 +127,14 @@ class UserprofilesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to userprofiles_url, notice: 'Userprofile was successfully destroyed.' }
       format.json { head :no_content }
-    end
   end
+end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_userprofile
       @userprofile = Userprofile.find(params[:id])
-    end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     # def userprofile_params
@@ -146,9 +143,9 @@ class UserprofilesController < ApplicationController
 
     def userprofile_params
       parameters = {
-       :user_id => current_user.id,
-       :data => (params['user']).to_json
+         :user_id => current_user.id,
+         :data => (params['user']).to_json
      }
-   end
+ end
 
 end

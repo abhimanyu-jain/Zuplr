@@ -1,0 +1,64 @@
+<div style="padding-top:120px" class="container user-details-form ">
+  <div style="text-align: center;">
+    <h2 style="text-align: left; padding-left: 0%; color: #dc0060; text-align: center;">Welcome to Zuplr</h2>
+    <hr class="bms-style"/>
+    <p>You are only one step away from a personal styling session.</p>
+    <p>Our Stylist would love to know your fashion preferences. She will connect with you over phone/Whatsapp.</p>
+    <p>Please share the following details for the session.</p>
+    <div class="row">
+      <div class="col-sm-12">
+       <div class="message" id="message" style="display: none">
+        <p style="color:rgba(220,0,96,1); font-size:16px; padding: 10px 0px; line-height: 35px;">Thank you for sharing your details, our stylist will get in touch with you shortly.</p> 
+        <hr>
+        <p style="font-size: 12px; font-weight:bold; margin-bottom: 20px;">To make the most of this session, we suggest you to fill out the style-log.</p>
+        <a href="/users/start">  <button type="submit" name="commit" class="btn btn-z1 btn-z2  col-sm-6 col-sm-offset-3">Log my style</button>
+        </a>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3">
+        <form role="form" class="new_user phone-city-form" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+          <input name="utf8" type="hidden" value="✓">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+          <div class="form-group">
+            <input autofocus="autofocus" placeholder="Enter your phone number" class="form-control" type="text" value="" name="user[phonenumber]" id="user_phone">
+          </div>
+          <div class="form-group">
+            <input placeholder="Enter your city" class="form-control" type="text" value="" name="user[city]" id="user_city">
+          </div>   
+          <button type="submit" id="form_submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Book my styling session</button>
+          <p style="font-size: 12px; color: rgba(220, 0, 96, 1); line-height: 18px;margin-top: 20px;">* Your information is accessible to stylist via a secure dashboard only. We do not share your personal information to any third party.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+	$("#form_submit").on('click',function(e){
+		e.preventDefault();
+    if($('#user_phone').val().length > 0 && $('#user_city').val().length > 0) {
+      var regex_for_phone = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+      if (regex_for_phone.test($('#user_phone').val())) {
+        var data = $( ":input" ).serializeArray();
+        $.ajax({
+          url: '/users/new-signup',
+          data: data,
+          method: 'POST',
+          success: function(){
+            $('#new_user').hide();
+            $('#message').show();
+          },
+          error: function(){
+            console.log('Error in data angular.isArray(value)ving')
+          }
+        });
+      } else {
+        alert('Please enter a valid phone number');
+      }
+      
+    } else {
+      alert("Please fill all the details");
+    }
+
+  });
+</script>

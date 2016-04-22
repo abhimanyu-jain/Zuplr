@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
 
   def check_if_user_provided_details
     if user_signed_in? 
-      user_profile = Userprofile.find_by(user_id: current_user.id) 
-      if (current_user.role_id == 1 && user_profile.nil?)
+      user_profile = Userprofile.find_by(user_id: current_user.id)
+      puts user_profile.attributes
+      if (current_user.role_id == 1 && user_profile.phonenumber.nil?)
         redirect_to users_new_signup_path
       end
     end
@@ -34,30 +35,29 @@ class ApplicationController < ActionController::Base
     @identity = Identity.find_by_email(current_user.email)
     
     # Yet another crude hack before we understand devise
-    if @identity
-      if !@identity.mail_sent
-        # Send mail to user and admins
-        RegisterMailer.welcome(@identity).deliver_now
-        RegisterMailer.admin_mailer(@identity).deliver_now
+    # if @identity
+    #   if !@identity.mail_sent
+    #     RegisterMailer.welcome(@identity).deliver_now
+    #     RegisterMailer.admin_mailer(@identity).deliver_now
 
-        @identity.mail_sent = 1
-        @identity.save
-      end
-    end
+    #     @identity.mail_sent = 1
+    #     @identity.save
+    #   end
+    # end
 
     sign_in_url = new_user_session_url
     if request.referer == sign_in_url
       super
     else
       # Temporary hack always redirect to the stylelog after signup 
-      # root_path || stored_location_for(resource) || request.referer
-      @userprofile = Userprofile.find_by_user_id(current_user.id)
+      root_path || stored_location_for(resource) || request.referer
+      # @userprofile = Userprofile.find_by_user_id(current_user.id)
       
-      if defined?@userprofile.phonenumber
-        '/style-log'
-      else
-        '/users/new-signup'
-      end
+      # if defined?@userprofile.phonenumber
+      #   '/style-log'
+      # else
+      #   '/users/new-signup'
+      # end
     end
   end
 

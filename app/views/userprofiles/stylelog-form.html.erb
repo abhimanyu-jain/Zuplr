@@ -2,7 +2,7 @@
 	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Welcome to Zuplr's style log!</h2><br>
 	<form class="style-log" action="/users/save-data" method="POST">
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	        <h3> Hi <input class="input" placeholder="Guest" value="<%= @identity.name %>" style="text-transform: uppercase; font-size: 24px; border: 0px;" type="text"/>!</h3> <br>
+	        <h3> Hi <input class="input" placeholder="Guest" value="<%= @userdata.name %>"style="text-transform: uppercase; font-size: 24px; border: 0px;" type="text"/>!</h3> <br>
 		<p>
 		We're excited to start styling for you. Our Style Profile helps us to understand you and your style better. We're ready to start asking questions, if you're ready to start answering them.</p>
 		<br>

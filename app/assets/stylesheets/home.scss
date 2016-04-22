@@ -6,6 +6,23 @@
 	width: 100%;
 }
 
+.inner-form{
+	.field{
+		margin-bottom: 20px;
+	}
+	input{
+		border-radius: 2px;
+	}
+}
+
+.content{
+	padding-top: 120px;
+	.bms-style{
+	}
+	.title{
+		text-align: center;
+	}
+}
 .comments{
 	p{
 		border-bottom: 1px dotted #ddd;	
@@ -63,7 +80,7 @@
 	}
 	p{
 		line-height: 24px;
-		font-weight: 600;
+		font-weight: 500;
 		margin: 20px 0px;
 	}
 }
@@ -385,10 +402,14 @@ nav {
 	text-align: center;
 }
 
-.form-control{
-	border-radius: 2px;
-	font-size: 14px;
-	height: 50px;
+
+
+.home-form{
+	.form-control{
+		border-radius: 2px;
+		font-size: 14px;
+		height: 50px;
+	}
 }
 
 .full-width-btn {
@@ -501,6 +522,7 @@ nav {
 .footer-hr {
 	border-top: 2px solid #DA546D;
 	margin-bottom: 25px;
+	margin-top: 80px;
 }
 
 .primary-nav {
