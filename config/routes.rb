@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :items
+  resources :orders
   get 'deliveries/index'
   get 'deliveries/show'
 

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many :identities
+  has_many :orders
   belongs_to :role, :dependent => :destroy
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
@@ -48,6 +49,10 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role.name == "Admin"
+  end
+
+  def sytlist?
+    self.role.name == "Stylist"
   end
 
   def user?

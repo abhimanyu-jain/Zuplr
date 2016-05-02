@@ -21,11 +21,18 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    @userprofile = Userprofile.find_by_id resource.id
+    puts @userprofile.attributes
+    puts @userprofile.methods
+    puts @userprofile.id
+    puts @userprofile.city
+    puts @userprofile.phonenumber
     super
   end
 
   def update
     super
+    @userprofile = Userprofile.find_by_id resource.id
     @userprofile.city = params[:user][:user_profile_city]
     @userprofile.phonenumber = params[:user][:user_profile_phone]
     @userprofile.save

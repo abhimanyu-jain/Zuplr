@@ -1,10 +1,14 @@
-<div class="container">
+<div class="container" style="padding-top: 40px;">
   <div class="row invite-row padding-space">
-    <div class="col-sm-6">
-      <h2>
-       <%= t "devise.invitations.new.header" %>
+    <div class="col-sm-6 col-sm-offset-3 ">
+      <h2 style="text-align: center">
+       Invite Your Friends and Earn Free Boxes
      </h2>
-
+     <hr class="bms-style">
+     <p style="line-height: 24px; margin-bottom: 20px; text-align: center">Lana Carpenter
+Aliquid vel consequatur Veniam totam elit alias magnam veniam soluta aspernatur sapiente incidunt velit
+Nihil aut hic fugiat velit incididunt id proident facilis
+Delhi, BR 120011</p>
      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
      <%= devise_error_messages! %>
      <div>
@@ -19,7 +23,7 @@
       <% end -%>
     </div>
     <p>
-     <%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-sm btn-z1 send-invite" %>
+     <%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-sm btn-z1 send-invite btn-block" %>
    </p>
    <% end %>
  </div>

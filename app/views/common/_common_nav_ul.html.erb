@@ -4,17 +4,14 @@
     <% if user_signed_in? %>
         <li><a href="#">Hi <%= current_user.email %> !</a></li>
         <li><%= link_to "Account", edit_user_registration_path %></li>
-        <li><%= link_to "Style Profile", "/style-log" %></li>
-        <li><%= link_to "Deliveries", deliveries_path %></li>
-        <% if (current_user.role.name == 'Admin') %>
+        <% if (current_user.role.name == 'Admin' || current_user.role.name == 'Stylist') %>
             <li><a href="/admin/dashboard">Dashboard</a></li>
         <% else %>
+            <li><%= link_to "Style Profile", "/style-log" %></li>
+            <li><%= link_to "Orders", orders_path %></li>
             <li><%= link_to "Invite Friends", new_user_invitation_path %></li>
         <% end %>
         <!-- <li><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: 1), method: :post %></li> -->
-        <% if check_user_data(current_user.id) %>
-            <li><a href="/style-log">Style Log</a></li>
-        <% end %>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% else %>
         <li ><a class="btn btn-default btn-zr-1" href="/login">Login</a></li>            

@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   def check_if_user_provided_details
     if user_signed_in? 
       user_profile = Userprofile.find_by(user_id: current_user.id)
-      puts user_profile.attributes
       if (current_user.role_id == 1 && user_profile.phonenumber.nil?)
         redirect_to users_new_signup_path
       end

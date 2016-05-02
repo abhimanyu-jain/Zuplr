@@ -1,0 +1,30 @@
+<div class="container" style="padding-top: 120px;">
+  <h2 style="text-align: center">Your Orders</h2>
+  <hr class="bms-style">
+
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.order_code %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<%= link_to 'New Order', new_order_path %>
