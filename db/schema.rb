@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509065504) do
+ActiveRecord::Schema.define(version: 20160509083743) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -95,22 +95,12 @@ ActiveRecord::Schema.define(version: 20160509065504) do
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
-  create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.integer  "item_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "status",     limit: 255
+    t.string   "order_code", limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "order_code", limit: 255
+    t.integer  "user_id",    limit: 4
+    t.string   "status",     limit: 255
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -185,8 +175,6 @@ ActiveRecord::Schema.define(version: 20160509065504) do
   add_foreign_key "deliveries", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "users"
-  add_foreign_key "order_items", "items"
-  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "userdata", "users"
   add_foreign_key "userprofiles", "users"

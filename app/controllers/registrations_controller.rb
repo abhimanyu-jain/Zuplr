@@ -4,6 +4,10 @@ class RegistrationsController < Devise::RegistrationsController
   after_action :profile_create, :only => [:create] # Only for normal registration
   after_action :identity_create, :only => [:create] # Only for normal registration
 
+  def create
+    super
+  end
+
   # Create a identity for normal registered users
   def identity_create
     # Potential threat of overlap

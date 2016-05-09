@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -21,9 +22,6 @@ class OrdersController < ApplicationController
   def edit
   end
 
-  def request
-  end
-  
   # POST /orders
   # POST /orders.json
   def create
@@ -72,6 +70,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :status)
+      params.require(:order).permit(:order_code)
     end
 end

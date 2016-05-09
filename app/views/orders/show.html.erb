@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
+  <strong>Order code:</strong>
+  <%= @order.order_code %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

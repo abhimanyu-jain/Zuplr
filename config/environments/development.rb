@@ -52,11 +52,19 @@ Rails.application.configure do
   #   authentication: 'plain'
   # }
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :user_name => "kjvenky@gmail.com",
-    :password => "mylove5672",
-    :authentication => "plain",
-    :enable_starttls_auto => true
+    address: "email-smtp.us-west-2.amazonaws.com",
+    port: 587,
+    enable_starttls_auto: true,
+    user_name: 'AKIAIRNEVZJZHW6IOYWQ',
+    password: 'AgWA9wXRn8IliL3KSSjNH7VvHg0kDdJ28gvvoRFPbbqu',
+    authentication: 'plain'
   }
+  # config.action_mailer.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => "587",
+  #   :user_name => "kjvenky@gmail.com",
+  #   :password => "mylove5672",
+  #   :authentication => "plain",
+  #   :enable_starttls_auto => true
+  # }
 end

@@ -15,6 +15,7 @@ u1 = User.create({email: "user@zuplr.com", password: "password", password_confir
 u2 = User.create({email: "stylist@zuplr.com", password: "password", password_confirmation: "password", role_id: r2.id})
 u3 = User.create({email: "manager@zuplr.com", password: "password", password_confirmation: "password", role_id: r3.id})
 u4 = User.create({email: "admin@zuplr.com", password: "password", password_confirmation: "password", role_id: r4.id})
+u4 = User.create({email: "kjvenky@gmail.com", password: "password", password_confirmation: "password", role_id: r4.id})
 
 up1 = Userprofile.create({user_id: u1.id, name: 'Sally'})
 up2 = Userprofile.create({user_id: u2.id, name: 'Sue'})
