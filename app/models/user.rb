@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
   has_many :comments
+  has_many :deliveries
   has_many :conversations, :dependent => :destroy
   
   # Filters

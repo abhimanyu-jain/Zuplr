@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   before_action :check_if_user_provided_details, only: [:styledata, :index]
 
   def check_if_user_provided_details
-    puts "check_if_user_provided_details"
     if user_signed_in? 
       user_profile = Userprofile.find_by(user_id: current_user.id)
       if (current_user.role_id == 1 && user_profile.phonenumber.nil?)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423044902) do
+ActiveRecord::Schema.define(version: 20160509065504) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -37,16 +37,20 @@ ActiveRecord::Schema.define(version: 20160423044902) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string   "address1",      limit: 255
-    t.string   "address2",      limit: 255
-    t.string   "city",          limit: 255
-    t.integer  "phonenumber",   limit: 8
+    t.string   "address1",       limit: 255
+    t.string   "address2",       limit: 255
+    t.string   "city",           limit: 255
+    t.integer  "phonenumber",    limit: 8
     t.datetime "delivery_date"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "userid",        limit: 4
-    t.integer  "pincode",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "pincode",        limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "status",         limit: 255
+    t.string   "session_number", limit: 255
   end
+
+  add_index "deliveries", ["user_id"], name: "index_deliveries_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -178,6 +182,7 @@ ActiveRecord::Schema.define(version: 20160423044902) do
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
   add_foreign_key "comments", "users"
+  add_foreign_key "deliveries", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "order_items", "items"

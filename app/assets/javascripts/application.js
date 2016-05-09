@@ -17,4 +17,5 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require private_pub
+//= require jquery.xdan.datetimepicker
 //= require_tree .

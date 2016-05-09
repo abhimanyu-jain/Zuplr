@@ -1,3 +1,25 @@
 // Place all the styles related to the admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stylist{
+	.top-menu{
+		.col-sm-2{
+			border-radius:2px;
+			background: #f7f7f7;
+			border: 1px solid #dd;
+			text-align: center;
+			margin: 0px 10px;
+			padding: 20px 0px;
+		}
+
+		.active{
+			background: #f1f1f1;
+			font-weight: bold;
+		}
+	}
+
+	table{
+		margin-top: 20px;
+	}
+}

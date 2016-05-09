@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   
+  get 'stylist/index'
+
+  get 'stylist/deliveries'
+
   resources :items
   resources :orders
   get 'deliveries/index'
   get 'deliveries/show'
   get 'deliveries/schedule'
+  post 'deliveries/schedule' => "deliveries#create"
 
   resources :cities
-  get 'admin/index'
   root "home#index"
   
   resources :userprofiles
@@ -15,14 +19,6 @@ Rails.application.routes.draw do
   resources :roles
   resources :comments
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
-  scope "/admin" do
-    get "/dashboard"=> "admin#index"
-    resources :users 
-    resources :roles
-    resources :leads
-    resources :userprofiles
-  end
-
   resources :conversations do
     resources :messages
   end
@@ -47,6 +43,18 @@ Rails.application.routes.draw do
     get '/forgotpassword' => 'devise/passwords#new'     
     get '/welcome' => 'devise/confirmations#new'     
   end
+
+  # Routes for stylists
+  get 'admin/index'
+  
+  scope "/stylist" do
+    resources :users
+    resources :userprofiles
+    resources :deliveries
+    
+    get "/dashboard"=> "stylist#index"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

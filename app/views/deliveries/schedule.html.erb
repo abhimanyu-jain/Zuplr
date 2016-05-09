@@ -2,4 +2,42 @@
 	<h3 class="title" style="text-align: center;">Schedule your delivery</h3>
 	<hr class="bms-style">	
 	<p style="text-align: center;">We are excited to start styling you. Get ready for your most personalized - and effortless - shopping experience. Your handpicked Box will contain 5 items in clothing and accessories tailored to your taste, budget, and lifestyle. Keep what you love, we take back the rest. (Except-Traditional & Footwear)</p>
+	<form style="text-align: center;" method="POST" action="/deliveries/schedule">
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+		<div style="text-align: center;">
+			<h4>Choose a Date</h4>
+			<input class="datetimepicker" name="delivery[delivery_date]"></input>	
+		</div>
+		<div style="text-align: center;">
+			<h4>Shipping Information</h4>
+			<div class="row delivery-form">
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="form-group">
+				    	<label for="email">Name</label>
+				    	<input type="text" class="form-control" name="delivery[name]">
+					</div>
+					<div class="form-group">
+					    <label for="pwd">Address 1</label>
+					    <input type="text" class="form-control" name="delivery[address1]">
+					</div>
+					<div class="form-group">
+					    <label for="pwd">Address 2</label>
+					    <input type="text" class="form-control" name="delivery[address2]">
+					</div>
+					<div class="form-group">
+					    <label for="pwd">City</label>
+					    <select type="text" class="form-control" name="delivery[city]">
+					    	<option>Banglore</option>
+					    	<option>Hyderabad</option>
+					    </select>
+					</div>
+					<div class="form-group">
+					    <label for="pwd">Pincode</label>
+					    <input type="text" class="form-control" name="delivery[pincode]">
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-default btn-zr">Schedule your delivery</button>
+	</form>
 </div>

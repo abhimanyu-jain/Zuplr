@@ -75,3 +75,25 @@ $(document).ready ->
     else
       $(".lead-form-error").show()
     return
+
+@setupDateTimePicker = (container) ->
+  today = new Date()
+  defaults = {
+    formatDate: 'y-m-d',
+    format: 'Y-m-d H:i',
+    allowBlank: true,
+    defaultSelect: false,
+    timepicker:false,
+    inline:true,
+    rangeLow: today.getFullYear() + today.getMonth() + today.getDay(),
+    validateOnBlur: false
+  }
+
+  entries = $(container).find('input.datetimepicker')
+  console.log entries
+  entries.each (index, entry) ->
+    options = $(entry).data 'datepicker-options'
+    $(entry).datetimepicker $.extend(defaults, options)
+
+$ ->
+  setupDateTimePicker $('body')

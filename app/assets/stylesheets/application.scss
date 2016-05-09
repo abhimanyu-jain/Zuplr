@@ -18,6 +18,7 @@
 @import "bootstrap";
 @import 'font-awesome';
 @import "home";
+@import "jquery.xdan.datetimepicker";
 
 body{
 	font-family: 'Roboto','Lato','Open Sans', sans-serif;
@@ -456,11 +457,6 @@ width: 450px;
 .chat-page {
 margin-top: 50px;
 margin-bottom: 30px;
-}
-
-#email {
-margin-bottom: 9px;
-margin-top: 9px;
 }
 
 .send-invite {

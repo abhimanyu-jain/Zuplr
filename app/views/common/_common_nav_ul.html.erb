@@ -4,8 +4,10 @@
     <% if user_signed_in? %>
         <li><a href="#">Hi <%= current_user.email %> !</a></li>
         <li><%= link_to "Account", edit_user_registration_path %></li>
-        <% if (current_user.role.name == 'Admin' || current_user.role.name == 'Stylist') %>
-            <li><a href="/admin/dashboard">Dashboard</a></li>
+        <% if (current_user.role.name == 'Admin') %>
+            <li><a href="/admin/dashboard">Dashboard</a></li> 
+        <% elsif (current_user.role.name == 'Stylist') %>
+            <li><a href="/stylist/dashboard">Dashboard</a></li>
         <% else %>
             <li><%= link_to "Style Profile", "/style-log" %></li>
             <li><%= link_to "Orders", orders_path %></li>
