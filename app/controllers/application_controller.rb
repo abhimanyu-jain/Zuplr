@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :check_if_user_provided_details, only: [:styledata, :index]
 
   def check_if_user_provided_details
+    puts "check_if_user_provided_details"
     if user_signed_in? 
       user_profile = Userprofile.find_by(user_id: current_user.id)
       if (current_user.role_id == 1 && user_profile.phonenumber.nil?)
@@ -30,6 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    puts "after_sign_in_path_for"
     # Send email for signup
     @identity = Identity.find_by_email(current_user.email)
     

@@ -15,18 +15,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def profile_create
-    @profile = Userprofile.create({ user_id: resource.id, name: params['user']['name'] })
+    @profile = Userprofile.create({ 
+                  user_id: resource.id,
+                  name: params['user']['name'],
+                  phonenumber: params['user']['phone'] || ''
+                })
     @user.userprofile_id = @profile.id
     @user.save
   end
 
   def edit
     @userprofile = Userprofile.find_by_id resource.id
-    puts @userprofile.attributes
-    puts @userprofile.methods
-    puts @userprofile.id
-    puts @userprofile.city
-    puts @userprofile.phonenumber
     super
   end
 

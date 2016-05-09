@@ -23,8 +23,17 @@ class UserprofilesController < ApplicationController
   	def edit
   	end
 
+  	 def welcomeuser
+        render 'welcome'
+    end
+
   	def request_details
-		render 'request_details'
+  		if current_user
+  			render 'request_details'
+  			# if current_user.userprofile.phonenumber.nil? then render 'request_details' else redirect_to(root_path) end
+		else
+			redirect_to(root)
+		end
 	end
 
 	def savenumber

@@ -17,10 +17,11 @@ class User < ActiveRecord::Base
   has_many :conversations, :dependent => :destroy
   
   # Filters
-  before_save :assign_role
-
-  def send_welcome_email
-    RegisterMailer.welcome(self).deliver_now
+  before_save :assign_role  
+  after_create :send_welcome_mail
+  
+  def send_welcome_mail
+    UserMailer.registration(self).deliver_now
   end
 
   def assign_role

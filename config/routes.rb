@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :orders
   get 'deliveries/index'
   get 'deliveries/show'
+  get 'deliveries/schedule'
 
   resources :cities
   get 'admin/index'
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   post "users/delivery" => "users#deliver"
   get "users/new-signup" => "userprofiles#request_details"
   post "users/new-signup" => "userprofiles#savenumber"
-  # get "/new-campaign" => "home#campaign"
+  get "/welcome-user" => "userprofiles#welcomeuser"
   # post "/users/leads" => "leads#create"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
     get '/login' => 'devise/sessions#new'     
     get '/register' => 'devise/registrations#new'     
     get '/forgotpassword' => 'devise/passwords#new'     
-    get '/confirmation' => 'devise/confirmations#new'     
+    get '/welcome' => 'devise/confirmations#new'     
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -31,7 +31,6 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.user?
-      # can :styledata, :user
       can :manage, :user
     else
       puts "Do nothings"

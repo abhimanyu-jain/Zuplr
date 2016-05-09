@@ -18,11 +18,17 @@
         <form role="form" class="new_user phone-city-form" id="new_user" action="/users" accept-charset="UTF-8" method="post">
           <input name="utf8" type="hidden" value="✓">
           <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+          <% if current_user.userprofile.phonenumber.nil? %>
+            <div class="form-group">
+              <div class="error-message" id="number-error" style="display: none">Please enter a valid phone number</div>
+              <input autofocus="autofocus" placeholder="Enter your phone number" class="form-control" type="text" value="" name="user[phonenumber]" id="user_phone" value="<%= current_user.userprofile.phonenumber || '' %>">
+            </div>
+          <% end %>
           <div class="form-group">
-            <input autofocus="autofocus" placeholder="Enter your phone number" class="form-control" type="text" value="" name="user[phonenumber]" id="user_phone">
-          </div>
-          <div class="form-group">
-            <input placeholder="Enter your city" class="form-control" type="text" value="" name="user[city]" id="user_city">
+            <select   class="form-control" type="text" value="" name="user[city]" id="user_city">
+              <option value="Banglore">Banglore</option>
+              <option value="Manglore">Manglore</option>
+            </select>
           </div>   
           <button type="submit" id="form_submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Book my styling session</button>
           <p style="font-size: 12px; color: rgba(220, 0, 96, 1); line-height: 18px;margin-top: 20px;">* Your information is accessible to stylist via a secure dashboard only. We do not share your personal information to any third party.</p>
@@ -47,17 +53,19 @@
           success: function(){
             $('#new_user').hide();
             $('#message').show();
+            setTimeout(function(){
+              window.location = '/style-log'
+            },2000)
           },
           error: function(){
-            console.log('Error in data angular.isArray(value)ving')
+            // console.log('Error in data angular.isArray(value)ving')
           }
         });
       } else {
-        alert('Please enter a valid phone number');
+        $('#number-error').show()
       }
-      
     } else {
-      alert("Please fill all the details");
+       $('#number-error').show()
     }
 
   });

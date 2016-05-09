@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!, :except => [:leads]
+	before_action :authenticate_user!
 	load_and_authorize_resource
 
-    def leads
-    end
-  
     def index
         @users = User.includes(:role, :userprofile)
     end
@@ -38,8 +35,13 @@ class UsersController < ApplicationController
         end
     end
 
+    def welcomeuser
+        puts "Welcome the world"
+        render 'justin'
+    end
+
     def styledata
-        @userdata = Userdatum.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_user_id(current_user.id)
         if !@userdata.nil? and !@userdata.data.nil?
             @userdata = JSON.parse @userdata.data
         end	
@@ -53,7 +55,7 @@ class UsersController < ApplicationController
     end
 
     def savenumber
-        @userdata = Userdatum.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_user_id(current_user.id)
         @user = User.find_by_email(current_user.email)
 
         if @userdata
@@ -71,7 +73,7 @@ class UsersController < ApplicationController
                 :city=> params['user']['city'],
                 :phonenumber => params['user']['phonenumber']
             }
-            @userdata = Userdatum.new(parameters)
+            @userdata = Userprofile.new(parameters)
             @userdata.save
 
             # Update user info also
@@ -83,14 +85,14 @@ class UsersController < ApplicationController
 
 
     def save
-        @userdata = Userdatum.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_user_id(current_user.id)
         if @userdata
             @userdata.update_attributes(
                 :data => (params['user']).to_json,
                 :user_id => current_user.id
                 )
         else
-            @userdata = Userdatum.new(userdatum_params)
+            @userdata = Userprofile.new(userdatum_params)
             @userdata.save
         end	
         @user = Identity.find_by_email(current_user.email)
