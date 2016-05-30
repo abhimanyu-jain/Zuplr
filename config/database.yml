@@ -27,4 +27,6 @@ test:
 
 production:
   <<: *default
-  database: zuplr_prod
+  database: zuplr.prod
+  username: root
+  password: Lopa@2006
