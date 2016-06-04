@@ -5,7 +5,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where("user_id = ?", String(current_user.try(:id)))
+    
+    if @orders == nil
+      redirect_to "/style-log"
+    end
   end
 
   # GET /orders/1
@@ -34,7 +38,7 @@ class OrdersController < ApplicationController
      
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { render json: @order, notice: 'Thank You for Ordering with Zuplr.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

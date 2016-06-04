@@ -1,9 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div style="padding-top:120px" class="container">
+	<p id="notice">
+		<h3><%= notice %></h3>
+	</p>
 
-<p>
-  <strong>Order code:</strong>
-  <%= @order.order_code %>
-</p>
+	<p>
+		<h3><strong>Your Order Code is:</strong> <%= @order.order_code %> </h3>
+	</p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+	<%= link_to 'Edit', edit_order_path(@order) %> |
+	<%= link_to 'Back', "/style-log" %>
+</div>

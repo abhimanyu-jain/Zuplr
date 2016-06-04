@@ -11,7 +11,9 @@ $(document).ready ->
   		success: (data)->
   			$('#submission').toggle()
   			$('#confirm-submission').toggle()
-  			
+  			$('#submission-form').toggle()
+  			order_code = $.parseJSON(data)
+  			$('#result_code').html(order_code.order_code)
   		error: (data) ->
   			console.log("Internal Server Error")
   return

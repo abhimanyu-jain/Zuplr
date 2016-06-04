@@ -49,6 +49,7 @@ GEM
     builder (3.2.2)
     byebug (9.0.4)
     cancancan (1.14.0)
+    coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -152,6 +153,7 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memoist (0.14.0)
+    method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -195,6 +197,10 @@ GEM
     os (0.9.6)
     private_pub (1.0.3)
       faye
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -247,6 +253,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    slop (3.6.0)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -317,6 +324,7 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   private_pub
+  pry
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -329,3 +337,6 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
   xdan-datetimepicker-rails (<= 2.4.5)
+
+BUNDLED WITH
+   1.12.5

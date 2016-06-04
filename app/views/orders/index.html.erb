@@ -1,27 +1,39 @@
-<p id="notice"><%= notice %></p>
+<style>
+	table, th, td {
+		border: 1px solid black;
+	}
 
-<h1>Listing Orders</h1>
+	th, td {
+		padding: 10px;
+	}
+</style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Order code</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div style="padding-top:120px" class="container">
+	<p id="notice">
+		<%= notice %>
+	</p>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.order_code %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<h2>Your Previous Orders</h2><br /><br />
 
-<br>
+	<table border="3">
+		<thead>
+			<tr>
+				<th width="125">Order Code </th>
+				<th>Order Status</th>
+			</tr>
+		</thead>
 
-<%= link_to 'New Order', new_order_path %>
+		<tbody>
+			<% @orders.each do |order| %>
+			<tr>
+				<td><%= order.order_code %></td>
+				<td><%= order.status%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<br>
+
+	<h3><%= link_to 'Place a New Order', "/style-log" %></h3>
+</div>
