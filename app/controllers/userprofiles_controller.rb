@@ -74,6 +74,9 @@ class UserprofilesController < ApplicationController
 		# @user = User.find_by_email(current_user.email)
 		# @identity = Identity.find_by_email(current_user.email)
 		@fb_id = Identity.find_by(user_id: current_user.id, provider: 'facebook')
+		
+		#this is to set the name as Guest if the person isn't logged in. TODO : Take it out into global helper function and use it everywhere
+		@name = if (@userprofile) then (@userprofile.name) else "Guest" end
 		render 'stylelog-form'
 	end
 

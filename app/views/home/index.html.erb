@@ -65,12 +65,13 @@
               </form>
             <% end %>
             <div class="btn-column col-md-12 col-sm-12 col-xs-12">
-              <button type="submit" class="btn btn-success full-width-btn" id="leadform-submit-1">Let the Stylist contact me</button>
+              <!--<button type="submit" class="btn btn-success full-width-btn" id="leadform-submit-1">Let the Stylist contact me</button>-->
+              <%= button_to "Let the Stylist contact me", "/style-log", method: :get, class: "btn btn-success full-width-btn" %>
             </div> 
           </div>
-          <div id='form-thanks' class="form-thanks">
+          <!--<div id='form-thanks' class="form-thanks">
                 Thank you for contacting us. <br> Our stylist will get back to you!
-          </div>
+          </div>-->
           <div class="btn-column col-md-12 col-sm-12 col-xs-12">
             <!-- <button type="submit" class="btn btn-success btn-zr-2">LEARN MORE</button> -->
           </div>
