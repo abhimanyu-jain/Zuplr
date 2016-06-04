@@ -26,7 +26,12 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.update_attributes(
+      :user_id => current_user.try(:id),
+      :status => 'REQUESTED',
+      :order_code => Random.new.rand(1000..1000000000)
+      )
+     
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -70,6 +75,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_code)
+      params.permit()
     end
 end

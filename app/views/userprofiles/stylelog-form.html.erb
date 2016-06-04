@@ -2,9 +2,10 @@
 	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Hi <%= @name %>, Welcome to Zuplr's style log!</h2>
 	<br>
 	
-	<%= button_to "Order with Your Current Style Log", method: :get, style: "margin-top: 30px; margin-left: 5%;",class: "btn btn-z btn-z1 transform-up", id: "leadform-submit-1" %>
-	<div id='form-thanks' class="form-thanks">
-    	Thank you for contacting us. <br> Our stylist will get back to you!
+	<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" id = "submission" >Order with Your Current Style Log
+		</button>
+	<div id='confirm-submission' hidden>
+		<h3 style="text-align: left; padding-left: 5%;">Thank you for contacting us. Our stylist will get back to you!</h3>
     </div>
 	<br />
 	<br />
