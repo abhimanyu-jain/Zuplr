@@ -8,6 +8,8 @@
 	<div id='confirm-submission' style="text-align: left; padding-left: 5%;" hidden>
 		<h3 >Thank you for contacting us. Our stylist will get back to you shortly!</h3>
 		<h3>Your Order Code is : <strong id="result_code"></strong></h3>
+		<h3><%= link_to 'View Style Log', "/style-log" %></h3>
+		<h3><%= link_to 'View Previous Orders', "/orders" %></h3>
 	</div>
 	<br />
 	<br />
@@ -446,13 +448,13 @@
 </div>
 
 <script type="text/javascript">
-// Yet another hack for bootstrap text area
-$(document).ready(function() {
-console.log($('#zr-textarea').val())
-if ($('#zr-textarea').val().trim() == '') {
-//$('#zr-textarea').focus().val('t');
-$('#zr-textarea').val('');
-$('#zr-textarea').blur();
-}
-})
+	// Yet another hack for bootstrap text area
+	$(document).ready(function() {
+		console.log($('#zr-textarea').val())
+		if ($('#zr-textarea').val().trim() == '') {
+			//$('#zr-textarea').focus().val('t');
+			$('#zr-textarea').val('');
+			$('#zr-textarea').blur();
+		}
+	})
 </script>
