@@ -1,12 +1,14 @@
+<%= render 'common/navigation' %>
 <section id="home">
   <div class="fill">
-    <%= render 'common/navigation' %>
     <!-- <div class="slider-overlay"></div> -->
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="active item">
           <div class="slider-overlay"></div>
           <div class="container fill" id = "slide1"></div>
+          <%= render 'common/book_your_session' %>
+          <!--
           <div class="testimonial" style="">
               Neatly unpacked and arranged all the necessary equipment, covered the furniture, upholstery and everything else around the area. Extremely thorough and professional.
               <div class="user">
@@ -14,10 +16,13 @@
                 <img src="http://i40.tinypic.com/2yl8sxh.jpg">
               </div>
           </div>
+          -->
         </div>
         <div class="item">
           <div class="slider-overlay"></div>
           <div class="fill" id="slide2"><div class="container"></div></div>
+          <%= render 'common/book_your_session' %>
+          <!--
           <div class="testimonial">
               Neatly unpacked and arranged all the necessary equipment, covered the furniture, upholstery and everything else around the area. Extremely thorough and professional.
               <div class="user">
@@ -25,10 +30,13 @@
                 <img src="http://i40.tinypic.com/2yl8sxh.jpg">
               </div>
           </div>
+          -->
         </div>
         <div class="item">
           <div class="slider-overlay"></div>
           <div class="fill" id="slide3"><div class="container"></div></div>
+          <%= render 'common/book_your_session' %>
+          <!--
           <div class="testimonial">
               Neatly unpacked and arranged all the necessary equipment, covered the furniture, upholstery and everything else around the area. Extremely thorough and professional.
               <div class="user">
@@ -36,47 +44,11 @@
                 <img src="http://i40.tinypic.com/2yl8sxh.jpg">
               </div>
           </div>
+          -->
         </div>
       </div>
     </div>
-     <div class="lead-form">
-      <div class="container" style="padding: 0px;">
-        <div class="col-md-12 col-sm-10 col-xs-12" style="padding: 0px;">
-          <div class="col-md-5 col-sm-10 col-xs-12" style="padding: 0px;">
-            <h3 style="color: #fff; font-size: 24px; text-align: left;">Book your session</h3>
-            <p style="color: white; line-height: 24px;">
-              Ensured Safety And Security For You. Rigorous Background Checks. StayGlad IDs For Any Identity Verification.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-5 col-sm-10 col-xs-12 name-phone-column">
-          <div id="form-1">
-            <% if current_user.nil? %>
-              <form class="home-form" role="form">
-                <div class="form-group col-md-12 col-sm-12 col-xs-12 lead-form-error">
-                  Enter Valid Email and Phone number
-                </div>
-                <div class="form-group col-md-6 col-sm-6 col-xs-12" style="padding-right: 10px">
-                  <input type="email" class="form-control" id="form-name-1" placeholder="Your Email ID">
-                </div>
-                <div class="form-group col-md-6 col-sm-6 col-xs-12" style="padding-left: 10px">
-                  <input type="text" class="form-control" id="form-phone-1" placeholder="Your Phone Number ">
-                </div>
-              </form>
-            <% end %>
-            <div class="btn-column col-md-12 col-sm-12 col-xs-12">
-              <button type="submit" class="btn btn-success full-width-btn" id="leadform-submit-1">Let the Stylist contact me</button>
-            </div> 
-          </div>
-          <div id='form-thanks' class="form-thanks">
-                Thank you for contacting us. <br> Our stylist will get back to you!
-          </div>
-          <div class="btn-column col-md-12 col-sm-12 col-xs-12">
-            <!-- <button type="submit" class="btn btn-success btn-zr-2">LEARN MORE</button> -->
-          </div>
-        </div>
-      </div>
-    </div>
+     
   </div>
 </section>
 
