@@ -1,0 +1,18 @@
+<div id= "contact-form" class="carousel-caption">
+	<!--<h3>Book your session</h3>-->
+	<br />
+	<% if current_user.nil? %>
+	<form>
+		<!--class="home-form" role="form"-->
+		<!--<h3>Enter Valid Email and Phone number</h3>-->
+
+		<div id="contact-inputs" class="input-group">
+			<input type="email" class="form-control" id="form-name-1" placeholder="Your Email ID">
+			<input type="text" class="form-control" id="form-phone-1" placeholder="Your Phone Number ">
+		</div>
+	</form>
+	<% end %>
+	<br />
+	<%= button_to "Book Your Session", "/style-log", method: :get, id: "stylist-contact-submit", class: "btn btn-success full-width-btn" %>
+	<br />
+</div>
