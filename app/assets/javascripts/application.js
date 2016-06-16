@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-smooth-scroll
+//= require jquery.turbolinks
 //= require turbolinks
 //= require private_pub
+//= require jquery.xdan.datetimepicker
 //= require_tree .

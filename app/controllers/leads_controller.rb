@@ -5,7 +5,6 @@ class LeadsController < ApplicationController
 	end
 
 	def create
-		puts lead_params[:email]
 #		@user = User.find_by_email_id(lead_params[:email])
 		
 		# Create User if User/Identity and  does not exist

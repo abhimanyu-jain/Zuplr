@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309082900) do
+ActiveRecord::Schema.define(version: 20160509083743) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "remark",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",   limit: 4
@@ -21,16 +37,20 @@ ActiveRecord::Schema.define(version: 20160309082900) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string   "address1",      limit: 255
-    t.string   "address2",      limit: 255
-    t.string   "city",          limit: 255
-    t.integer  "phonenumber",   limit: 8
+    t.string   "address1",       limit: 255
+    t.string   "address2",       limit: 255
+    t.string   "city",           limit: 255
+    t.integer  "phonenumber",    limit: 8
     t.datetime "delivery_date"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "userid",        limit: 4
-    t.integer  "pincode",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "pincode",        limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "status",         limit: 255
+    t.string   "session_number", limit: 255
   end
+
+  add_index "deliveries", ["user_id"], name: "index_deliveries_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -50,6 +70,12 @@ ActiveRecord::Schema.define(version: 20160309082900) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "items", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "leads", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.integer  "phonenumber", limit: 8
@@ -68,6 +94,16 @@ ActiveRecord::Schema.define(version: 20160309082900) do
   end
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "order_code", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
+    t.string   "status",     limit: 255
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -91,10 +127,11 @@ ActiveRecord::Schema.define(version: 20160309082900) do
     t.text     "data",        limit: 65535
     t.string   "city",        limit: 255
     t.integer  "phonenumber", limit: 8
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "name",        limit: 255
     t.integer  "user_id",     limit: 4
+    t.integer  "credits",     limit: 4,     default: 0
   end
 
   add_index "userprofiles", ["user_id"], name: "index_userprofiles_on_user_id", using: :btree
@@ -115,16 +152,30 @@ ActiveRecord::Schema.define(version: 20160309082900) do
     t.integer  "role_id",                limit: 4
     t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
+    t.string   "invitation_token",       limit: 255
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit",       limit: 4
+    t.integer  "invited_by_id",          limit: 4
+    t.string   "invited_by_type",        limit: 255
+    t.integer  "invitations_count",      limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["userdatum_id"], name: "index_users_on_userdatum_id", using: :btree
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
+  add_foreign_key "comments", "users"
+  add_foreign_key "deliveries", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "userdata", "users"
   add_foreign_key "userprofiles", "users"
   add_foreign_key "users", "roles"

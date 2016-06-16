@@ -20,3 +20,8 @@
 .env.production
 .env
 
+#Ignore .project file
+.project
+
+#Ignoe DS_Store file
+.DS_Store

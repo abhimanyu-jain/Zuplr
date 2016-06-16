@@ -49,6 +49,7 @@ GEM
     builder (3.2.2)
     byebug (9.0.4)
     cancancan (1.14.0)
+    coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -68,6 +69,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.8)
+    devise_invitable (1.6.0)
+      actionmailer (>= 3.2.6)
+      devise (>= 3.2.0)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -96,9 +100,11 @@ GEM
     faye-websocket (0.10.4)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    font-awesome-rails (4.6.3.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    google-api-client (0.9.6)
+    google-api-client (0.9.8)
       addressable (~> 2.3)
       googleauth (~> 0.5)
       httpclient (~> 2.7)
@@ -131,6 +137,9 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-smooth-scroll-rails (0.0.5)
       railties (~> 4.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.3)
     jwt (1.5.1)
     kgio (2.10.0)
@@ -144,9 +153,10 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memoist (0.14.0)
-    mime-types (3.0)
+    method_source (0.8.2)
+    mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types-data (3.2016.0521)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -187,6 +197,10 @@ GEM
     os (0.9.6)
     private_pub (1.0.3)
       faye
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -239,6 +253,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    slop (3.6.0)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -278,6 +293,9 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    xdan-datetimepicker-rails (2.4.5)
+      jquery-rails
+      rails (>= 3.2.16)
 
 PLATFORMS
   ruby
@@ -290,12 +308,15 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3.4)
   devise-bootstrap-views
+  devise_invitable
   dotenv-rails
+  font-awesome-rails
   google-api-client
   high_voltage (~> 2.4.0)
   jbuilder (~> 2.0)
   jquery-rails
   jquery-smooth-scroll-rails (~> 0.0.5)
+  jquery-turbolinks
   mysql
   omniauth
   omniauth-facebook
@@ -303,6 +324,7 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   private_pub
+  pry
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -314,3 +336,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+  xdan-datetimepicker-rails (<= 2.4.5)
+
+BUNDLED WITH
+   1.12.5

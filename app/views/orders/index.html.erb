@@ -1,0 +1,39 @@
+<style>
+	table, th, td {
+		border: 1px solid black;
+	}
+
+	th, td {
+		padding: 10px;
+	}
+</style>
+
+<div style="padding-top:120px" class="container">
+	<p id="notice">
+		<%= notice %>
+	</p>
+
+	<h2>Your Previous Orders</h2><br /><br />
+
+	<table border="3">
+		<thead>
+			<tr>
+				<th width="125">Order Code </th>
+				<th>Order Status</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @orders.each do |order| %>
+			<tr>
+				<td><%= order.order_code %></td>
+				<td><%= order.status%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<br>
+
+	<h3><%= link_to 'Place a New Order', "/style-log" %></h3>
+</div>

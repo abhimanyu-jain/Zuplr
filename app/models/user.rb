@@ -2,26 +2,30 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable, :database_authenticatable, :registerable,
+  devise :invitable, :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
+
+  attr_accessor :user_profile_phone, :user_profile_city
 
   # Relationships
   has_many :identities
+  has_many :orders
   belongs_to :role, :dependent => :destroy
   belongs_to :userdatum, :dependent => :destroy
   belongs_to :userprofile, :dependent => :destroy
-
+  has_many :comments
+  has_many :deliveries
   has_many :conversations, :dependent => :destroy
   
   # Filters
-  before_save :assign_role
-
-  def send_welcome_email
-    RegisterMailer.welcome(self).deliver_now
+  before_save :assign_role  
+  after_create :send_welcome_mail
+  
+  def send_welcome_mail
+    UserMailer.registration(self).deliver_now
   end
 
   def assign_role
-    puts "I am here"
     self.role = Role.find_by name: "User" if self.role.nil?
   end
 
@@ -47,6 +51,10 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role.name == "Admin"
+  end
+
+  def sytlist?
+    self.role.name == "Stylist"
   end
 
   def user?

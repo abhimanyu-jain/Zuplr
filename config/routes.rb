@@ -1,35 +1,28 @@
 Rails.application.routes.draw do
   
-  resources :messages
-  resources :messages
-  get 'admin/index'
+  resources :orders
   root "home#index"
   
+  resources :items
+  resources :cities
   resources :userprofiles
+  resources :deliveries
   resources :roles
-  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
-  
-  scope "/admin" do
-    get "/dashboard"=> "admin#index"
-    resources :users 
-    resources :roles
-    resources :leads
-    resources :userprofiles
-  end
-
+  resources :comments
   resources :conversations do
     resources :messages
   end
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
 
   get "/style-log" => "userprofiles#styledata"
   get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"
   post "users/save-data" => "userprofiles#create"
   post "users/delivery" => "users#deliver"
-  get "users/new-signup" => "userprofiles#justin"
+  get "users/new-signup" => "userprofiles#request_details"
   post "users/new-signup" => "userprofiles#savenumber"
-  get "/new-campaign" => "home#campaign"
-  post "/users/leads" => "leads#create"
+  get "/welcome-user" => "userprofiles#welcomeuser"
+  # post "/users/leads" => "leads#create"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
@@ -39,60 +32,27 @@ Rails.application.routes.draw do
     get '/login' => 'devise/sessions#new'     
     get '/register' => 'devise/registrations#new'     
     get '/forgotpassword' => 'devise/passwords#new'     
-    get '/confirmation' => 'devise/confirmations#new'     
+    get '/welcome' => 'devise/confirmations#new'     
   end
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # Routes for deliveries
+  get 'deliveries/index'
+  get 'deliveries/show'
+  get 'deliveries/schedule'
+  post 'deliveries/schedule' => "deliveries#create"
+  
+  # Routes for stylists
+  get 'admin/index'
+  get 'stylist/index'
+  get 'stylist/deliveries'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  scope "/stylist" do
+    resources :users
+    resources :userprofiles
+    resources :deliveries
+    resources :orders
+    
+    get "/dashboard"=> "stylist#index"
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

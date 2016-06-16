@@ -8,11 +8,14 @@ default: &default
   adapter: mysql
   pool: 5
   timeout: 5000
-  username: root
-  password: 
-
+  
 development:
   <<: *default
+  host: localhost
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  port: 3306
   database: development_zuplr
 
 # Warning: The database defined as "test" will be erased and
@@ -20,8 +23,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: test_zuplr
+  database: zuplr_test
 
 production:
   <<: *default
-  database: production_zuplr
+  database: zuplr.prod
+  username: root
+  password: Lopa@2006

@@ -1,0 +1,25 @@
+<div class="container top-space stylist">
+	<div class="row top-menu">
+		<div class="col-sm-2 active">My Sessions</div>
+		<!-- <div class="col-sm-2">Users</div> -->
+	</div>
+	<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Session Id</th>
+                <th>Name</th>
+                <th>Phone number</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+             <% @deliveries.each do |delivery| %>
+		        <tr>
+		          <td><%= delivery.user.id %></td>
+		          <td><%= delivery %></td>
+		      <% end %>
+        </tbody>
+    </table>
+</div>

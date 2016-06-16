@@ -1,50 +1,57 @@
 <div class="container devise-form">
-  <div class="col-sm-8 col-sm-offset-2">
-    <div class="panel panel-default" style="border-radius: 0px;">
-      <div class="panel-body" style="padding:0px">
-        <div class="row login-form" style="">
-          <div class="col-sm-12">
-            <%= bootstrap_devise_error_messages! %>
-          </div>
-          <div class="col-sm-6">
-            <h4>Signin with your Zuplr account</h4>
-            <h5 class="hidden-xs">Welcome back! Enter your password to login!</h5><br>
-              <form role="form" class="new_user lr-form" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
-                <input name="utf8" type="hidden" value="✓">
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-                 <div class="form-group">
-                          <input class="form-control" placeholder="Enter your email" type="email" value="" name="user[email]" id="user_email">
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" placeholder="Password" type="password" name="user[password]" id="user_password">
-                        </div>
-                          <!-- <div class="checkbox">
-                            <label>
-                              <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
-                              <label for="user_remember_me">Remember me</label>
-                            </label>
-                          </div> -->
-                          <br>
-                        <button type="submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Sign in</button>
-              </form>
-          </div>
-          <div class="col-sm-6 login-links" style="text-align: center">
-            <p style="padding:15px 0px">If you don’t already have an account click the button below to create your account.</p>
-            <a href="/register"><img src="/create_login.png"></a>
-            <hr>
-            <a href="/users/auth/facebook"><img src="/facebook_login.png"></a>
-            <br>
-            <br>
-            <a href="/users/auth/google_oauth2"><img src="/google_login.png"></a>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-12">
-            <p style="padding:0px 30px 10pxa; font-size: 12px; text-align: center;">So you can’t get in to your account? Did you <a href="/users/password/new">forget your password</a>?</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="col-sm-8 col-sm-offset-2"><br /><br /><br /><br /><br />
+		<div class="panel panel-default" style="border-radius: 0px;">
+			<div class="panel-body" style="padding:0px">
+				<div class="row login-form" style="">
+					<div class="col-sm-12">
+						<%= bootstrap_devise_error_messages! %>
+					</div>
+					<div class="col-sm-6">
+						<h4>Signin with your Zuplr account</h4>
+						<h5 class="hidden-xs">Welcome back! Enter your password to login!</h5>
+						<br>
+						<form role="form" class="new_user lr-form" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+							<input name="utf8" type="hidden" value="✓">
+							<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+							<div class="form-group">
+								<input class="form-control" placeholder="Enter your email" type="email" value="" name="user[email]" id="user_email">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Password" type="password" name="user[password]" id="user_password">
+							</div>
+							<!-- <div class="checkbox">
+							<label>
+							<input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+							<label for="user_remember_me">Remember me</label>
+							</label>
+							</div> -->
+							<br>
+							<button type="submit" name="commit" class="btn btn-z1 btn-z2 btn-block">
+								Sign in
+							</button>
+						</form>
+					</div>
+					<div class="col-sm-6 login-links" style="text-align: center">
+						<p style="padding:15px 0px">
+							If you don’t already have an account click the button below to create your account.
+						</p>
+						<a href="/register"><img src="/create_login.png"></a>
+						<hr>
+						<a href="/users/auth/facebook"><img src="/facebook_login.png"></a>
+						<br>
+						<br>
+						<a href="/users/auth/google_oauth2"><img src="/google_login.png"></a>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-sm-12">
+						<p style="padding:0px 30px 10pxa; font-size: 12px; text-align: center;">
+							So you can’t get in to your account? Did you <a href="/users/password/new">forget your password</a>?
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

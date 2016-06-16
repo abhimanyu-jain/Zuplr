@@ -11,7 +11,26 @@
 	  <strong>Role:</strong>
 	  <%= @user.role.name %>
 	</p>
-
+	<hr>
+	<div class="comments">
+		<h4>Comments</h4>
+		<% (@user.comments).each do |comment| %>
+			<p><%= comment.remark %></p>
+		<% end %>
+	</div>
+	
+	<a href="#" id="add-comment">Add comment +</a>
+	<form role="form" id="comment-form" style="display:none">
+		<br>
+		<div class="form-group">
+		  	<input class="form-control" id="user-id" style="display: none" value="<%= @user.id %>"></input>	
+		  	<textarea class="form-control" id="comment-text"></textarea>	
+		</div>
+		<button type="submit" id="comment-submit" class="btn btn-default">Submit</button>
+	</form>
+	<br>
+	<br>
+	<br>
 	<%= link_to 'Edit', edit_user_path(@user) %> |
 	<%= link_to 'Back', users_path %>
 

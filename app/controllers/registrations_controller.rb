@@ -1,13 +1,44 @@
 class RegistrationsController < Devise::RegistrationsController
-  
-  after_filter :identity_create, :only => [:create]
 
+  # before_action :find_user_profile, only: [:edit, :update]
+  after_action :profile_create, :only => [:create] # Only for normal registration
+  after_action :identity_create, :only => [:create] # Only for normal registration
+
+  def create
+    super
+  end
+
+  # Create a identity for normal registered users
   def identity_create
+    # Potential threat of overlap
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
-    identity.name = params['user']['name']
-    # identity.user_id = current_user.id
-    identity.email = params['user']['email']
+    identity.user_id = resource.id
+    identity.name = params['user']['name'] #Looks very ugly
+    identity.email = resource.email
     identity.save
+  end
+
+  def profile_create
+    @profile = Userprofile.create({ 
+                  user_id: resource.id,
+                  name: params['user']['name'],
+                  phonenumber: params['user']['phone'] || ''
+                })
+    @user.userprofile_id = @profile.id
+    @user.save
+  end
+
+  def edit
+    @userprofile = Userprofile.find_by_id resource.id
+    super
+  end
+
+  def update
+    super
+    @userprofile = Userprofile.find_by_id resource.id
+    @userprofile.city = params[:user][:user_profile_city]
+    @userprofile.phonenumber = params[:user][:user_profile_phone]
+    @userprofile.save
   end
   
   def update_resource(resource, params)
@@ -26,4 +57,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  private
+
+  # def find_user_profile
+  #   @userprofile = Userprofile.find_by(user_id: current_user.id)
+  # end
 end

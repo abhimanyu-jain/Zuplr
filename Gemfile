@@ -16,11 +16,12 @@ gem 'high_voltage', '~> 2.4.0'
 #gem 'therubyracer'
 gem 'dotenv-rails'
 gem 'cancancan', '~> 1.10'
-gem 'therubyracer'
+gem 'xdan-datetimepicker-rails', '<= 2.4.5'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -55,16 +56,22 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'dotenv-rails'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
+  #Pry is a powerful alternative to the standard IRB shell for Ruby. It features syntax highlighting, a flexible plugin architecture, 
+  #runtime invocation and source and documentation browsing.
+  gem 'pry'
+  
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
 gem 'private_pub'
 gem 'thin'
+gem 'devise_invitable'
+gem "font-awesome-rails"
+gem 'jquery-turbolinks'
