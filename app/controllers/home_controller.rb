@@ -15,6 +15,7 @@ class HomeController < ApplicationController
 	    @slider1 = "/home-bg.jpg"
 	    @slider2 = "/slider-2.jpg"
 	    @slider3 = "/slider-3.jpg"
+	      
 	  else
 	    @slider1 = "/mobile-slider-1.jpg"
       @slider2 = "/mobile-slider-2.jpg"
