@@ -1,5 +1,5 @@
 $(document).ready ->
-  $('nav').affix offset: top: 50
+ 	$('nav').affix offset: top: 50
   return
 
 $(document).ready ->
