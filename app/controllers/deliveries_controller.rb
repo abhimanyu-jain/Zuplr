@@ -7,7 +7,18 @@ class DeliveriesController < ApplicationController
 
   def create
   	@delivery = Delivery.new(delivery_params)
-
+    @userprofile = Userprofile.find(current_user.id)
+    @delivery.update_attributes(
+      :user_id => current_user.try(:id),
+      :status => 'REQUESTED',
+      :session_number => Random.new.rand(1000..1000000000),
+      :city => 'Bangalore',
+      :address1 => '',
+      :address2 => '',
+      :phonenumber => @userprofile.phonenumber,
+      :delivery_date => ''
+      )
+    
     respond_to do |format|
       if @delivery.save
         format.html { redirect_to @delivery, notice: 'City was successfully created.' }

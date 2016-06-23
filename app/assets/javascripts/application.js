@@ -19,3 +19,4 @@
 //= require private_pub
 //= require jquery.xdan.datetimepicker
 //= require_tree .
+//= require orders
