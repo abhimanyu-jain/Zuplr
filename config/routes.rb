@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   post 'deliveries/schedule' => "deliveries#create"
   
   # Routes for stylists
-  get 'admin/index'
+  get 'admin/index' => 'admin#index'
+  get 'admin/userprofile/:id' => 'admin#getuserprofile'
   get 'stylist/index'
   get 'stylist/deliveries'
 

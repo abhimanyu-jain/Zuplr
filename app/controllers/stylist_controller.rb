@@ -1,9 +1,9 @@
 class StylistController < ApplicationController
   def index
-  	@deliveries = Delivery.all
+  	@orderinfo = Order.select('*').joins('JOIN userprofiles on orders.user_id = userprofiles.user_id')
   end
 
   def deliveries
-  	@deliveries = Delivery.all
+  	@orderinfo = Order.select('*').joins('JOIN userprofiles on orders.user_id = userprofiles.user_id')
   end
 end

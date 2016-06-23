@@ -6,23 +6,23 @@
 	<table class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Session Id</th>
-                <th>Name</th>
+            	<th>Name</th>
+                <th>Email</th>
+                <th>City</th>
                 <th>Phone number</th>
                 <th>Data</th>
-                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
+            <% @allusers.each do |us| %>
+			<tr>
+				<td><%= us.name %></td>
+				<td><%= us.email %></td>
+				<td><%= us.city %></td>
+				<td><%= us.phonenumber %></td>
+				<td><%= link_to "Profile", "/admin/userprofile/"+us.user_id.to_s %></td>
+			</tr>
+			<% end %>
         </tbody>
     </table>
 </div>

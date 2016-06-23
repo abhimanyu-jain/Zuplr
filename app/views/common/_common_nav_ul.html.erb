@@ -5,7 +5,7 @@
         <li><a class = "shadow-stuff" href="#">Hi <%= current_user.email %> !</a></li>
         <!--<li><%= link_to "Account", edit_user_registration_path %></li>-->
         <% if (current_user.role.name == 'Admin') %>
-            <li><a class = "shadow-stuff" href="/admin/dashboard">Dashboard</a></li> 
+            <li><a class = "shadow-stuff" href="/admin/index">Dashboard</a></li> 
         <% elsif (current_user.role.name == 'Stylist') %>
             <li><a class = "shadow-stuff" href="/stylist/dashboard">Dashboard</a></li>
         <% else %>
