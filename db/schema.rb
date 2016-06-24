@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20160624144341) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                limit: 4,   default: 1
+    t.integer  "role_id",                limit: 4
     t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
     t.string   "invitation_token",       limit: 255
