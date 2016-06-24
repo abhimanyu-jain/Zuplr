@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509083743) do
+ActiveRecord::Schema.define(version: 20160624071130) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -96,11 +96,12 @@ ActiveRecord::Schema.define(version: 20160509083743) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_code", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "user_id",    limit: 4
-    t.string   "status",     limit: 255
+    t.string   "order_code",            limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id",               limit: 4
+    t.string   "status",                limit: 255
+    t.date     "scheduleddeliverydate"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160509083743) do
     t.string   "name",        limit: 255
     t.integer  "user_id",     limit: 4
     t.integer  "credits",     limit: 4,     default: 0
+    t.string   "address",     limit: 255
   end
 
   add_index "userprofiles", ["user_id"], name: "index_userprofiles_on_user_id", using: :btree

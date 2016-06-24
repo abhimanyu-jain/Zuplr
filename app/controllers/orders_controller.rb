@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.where("user_id = ?", String(current_user.try(:id)))
-    
+
     if @orders == nil
       redirect_to "/style-log"
     end
@@ -29,13 +28,23 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    address = params["address"]
+    phone = params["phone"]
+
+    @userprofile = Userprofile.find_by_user_id(current_user.id)
+    @userprofile.update_attributes(
+    :address => address,
+    :phonenumber => phone
+    )
+
     @order = Order.new(order_params)
     @order.update_attributes(
-      :user_id => current_user.try(:id),
-      :status => 'REQUESTED',
-      :order_code => Random.new.rand(1000..1000000000)
-      )
-     
+    :user_id => current_user.try(:id),
+    :status => 'REQUESTED',
+    :order_code => Random.new.rand(1000..1000000000),
+    :scheduleddeliverydate => Date.strptime(params["scheduleddeliverydate"], "%m/%d/%Y").strftime("%Y-%m-%d")
+    )
+
     respond_to do |format|
       if @order.save
         format.html { render json: @order, notice: 'Thank You for Ordering with Zuplr.' }
@@ -72,13 +81,14 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.permit()
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.permit(:scheduleddeliverydate)
+  end
 end

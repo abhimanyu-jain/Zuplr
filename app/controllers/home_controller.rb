@@ -8,6 +8,30 @@ class HomeController < ApplicationController
 	def campaign
 	end
 	
+	def newuser
+	  find_user = User.where("email = ?", params["email"]).first
+	  binding.pry
+	  if find_user != nil
+	    redirect_to "/login" 
+	  else
+	   generated_password = Devise.friendly_token.first(8)
+     user = User.create!(:email => params["email"], :password => generated_password)
+     sign_in(:user, user)
+     profile = Userprofile.create(
+     {
+        user_id: user.id,
+        phonenumber: params['phone']
+     }
+     )
+              
+      user.userprofile_id = profile.id
+      user.save
+     UserMailer.welcome(user, generated_password).deliver
+     redirect_to "/style-log"
+	  end
+	end
+	
+	
 	private
 	
 	def setImages

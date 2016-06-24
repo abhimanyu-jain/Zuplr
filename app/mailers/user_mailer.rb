@@ -20,4 +20,9 @@ class UserMailer < ApplicationMailer
 		@user = user
 		mail(to: 'kjvenky@gmail.com', subject: 'Userfilled the form')		
 	end
+	
+	def welcome(user, generated_password)
+	  @user = user
+    mail(to: @user.email, subject: 'Zuplr Password Details', body: "Your password is "+generated_password+".")   
+	end
 end

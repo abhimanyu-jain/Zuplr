@@ -36,6 +36,11 @@ class UserprofilesController < ApplicationController
 		end
 	end
 
+  def confirmation
+    @userprofile = Userprofile.find_by_user_id(current_user.id)
+    render 'info_confirmation'
+  end
+
 	def savenumber
 		@user = User.find_by_email(current_user.email)
 		@userprofile = Userprofile.find_by_user_id(current_user.id)

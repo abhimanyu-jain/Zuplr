@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
 
   get "/style-log" => "userprofiles#styledata"
+  get "/confirmation" => "userprofiles#confirmation"
   get "/thank-you" => "users#styledata"
   get "users/start" => "users#start"
   post "users/save-data" => "userprofiles#create"
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   get "users/new-signup" => "userprofiles#request_details"
   post "users/new-signup" => "userprofiles#savenumber"
   get "/welcome-user" => "userprofiles#welcomeuser"
+  get "/users-check" => "home#newuser"
   # post "/users/leads" => "leads#create"
 
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
