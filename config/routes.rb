@@ -37,6 +37,14 @@ Rails.application.routes.draw do
     get '/welcome' => 'devise/confirmations#new'     
   end
 
+  get '/admin/getallorders' => 'admin#getallorders'
+  get '/admin/getpendingorders' => 'admin#getpendingorders'
+  post '/admin/updatecomment' => 'admin#updatecomment'
+  post '/admin/dispatchorder' => 'admin#dispatchorder'
+  post '/admin/completeorder' => 'admin#completeorder'
+  post '/admin/cancelorder' => 'admin#cancelorder'
+  
+  
   # Routes for deliveries
   get 'deliveries/index'
   get 'deliveries/show'
