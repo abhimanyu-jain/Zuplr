@@ -1,0 +1,20 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div style ="margin-left: 50px;" media="screen">
+	<% @user.each do |u| %>
+		<h4><strong>Email : </strong><%= u.email %></h4>
+		<br />
+		<h4><strong>City : </strong><%= u.city %></h4>
+		<br />
+		<h4><strong>Phone : </strong><%= u.phonenumber %></h4>
+		<br />
+		<h4><strong>Style data : </strong><%= u.data %></h4>
+		<br />
+	<% end %>
+</div>
+

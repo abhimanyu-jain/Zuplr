@@ -1,0 +1,84 @@
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+	<script>
+		$(function() 
+		{
+			$("#scheduleddeliverydate").datepicker({ minDate:10});
+			$('#submission').click(function() {
+			
+			$.ajax(
+			{
+			
+			url: '/orders',
+			method: "POST",
+			data: {
+				scheduleddeliverydate : $("#scheduleddeliverydate").val(),
+				address : $("#input-address").val(),
+				phone : $("#input-phone").val()
+				},
+			success: function(data)
+			{	
+				$('#details-confirmation-form').toggle();
+				$('#confirm-submission').toggle();
+				order_code = $.parseJSON(data);
+				$('#result_code').html(order_code.order_code);
+			},
+			
+			error: function(XMLHttpRequest, textStatus, errorThrown)
+			{
+				console.log("Internal Server Error : "+textStatus);
+			}
+			}
+			);
+
+		});
+	});
+	</script>
+
+	<style>
+		.input-ic {
+			width: 500px;
+		}
+		.input-address {
+			width: 500px;
+			height: 200px;
+		}
+	</style>
+</head>
+
+<div style="padding-top:120px" class="container" id="details-confirmation-form">
+	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Please confirm the following details : </h2>
+	<br />
+	<br />
+	<br />
+	<form class="style-log">
+		<h4>Phone Number : </h4>
+		<input class="input-ic" id="input-phone" value="<%= @userprofile['phonenumber'] %>" placeholder="" type="text" required />
+		<br />
+		<br />
+		<h4>Address : </h4>
+		<input class="input-address" id="input-address" value="<%= @userprofile['address'] %>" placeholder="" type="text" required />
+		<br />
+		<br />
+		<h4>Date of Delivery : </h4>
+		<input class="input-ic" id= "scheduleddeliverydate" placeholder="" type="text" required />
+		<br />
+		<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
+			Confirm and Place Order
+		</button>
+	</form>
+</div>
+
+<div style="padding-top:120px" class="container" id='confirm-submission' hidden>
+	<div style="text-align: left; padding-left: 5%;">
+		<h3 >Thank you for contacting us. Our stylist will get back to you shortly!</h3>
+		<h3>Your Order Code is : <strong id="result_code"></strong></h3>
+		<h3><%= link_to 'View Style Log', "/style-log" %></h3>
+		<h3><%= link_to 'View Previous Orders', "/orders" %></h3>
+	</div>
+</div>
+
