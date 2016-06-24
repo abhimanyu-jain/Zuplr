@@ -3,7 +3,7 @@
     <!-- <li class="active"><a href="#">Home</a></li> -->
     <% if user_signed_in? %>
         <li><a class = "shadow-stuff" href="#">Hi <%= current_user.email %> !</a></li>
-        <!--<li><%= link_to "Account", edit_user_registration_path %></li>-->
+        <li><%= link_to "Account", edit_user_registration_path %></li>
         <% if (current_user.role.name == 'Admin') %>
             <li><a class = "shadow-stuff" href="/admin/index">Dashboard</a></li>
             <li><a class = "shadow-stuff" href="/admin/getallorders">All Orders</a></li> 
