@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624071130) do
+ActiveRecord::Schema.define(version: 20160624144341) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -97,11 +97,12 @@ ActiveRecord::Schema.define(version: 20160624071130) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_code",            limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id",               limit: 4
     t.string   "status",                limit: 255
     t.date     "scheduleddeliverydate"
+    t.text     "stylist_comments",      limit: 65535
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -151,7 +152,7 @@ ActiveRecord::Schema.define(version: 20160624071130) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                limit: 4
+    t.integer  "role_id",                limit: 4,   default: 1
     t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
     t.string   "invitation_token",       limit: 255
