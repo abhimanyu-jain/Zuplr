@@ -61,13 +61,13 @@
 		<br />
 		<br />
 		<h4>Address : </h4>
-		<input class="input-address" id="input-address" value="<%= @userprofile['address'] %>" placeholder="" type="text" required />
+		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] %></textarea>
 		<br />
 		<br />
 		<h4>Date of Delivery : </h4>
 		<input class="input-ic" id= "scheduleddeliverydate" placeholder="" type="text" required />
 		<br />
-		<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
+		<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="submit" id="submission">
 			Confirm and Place Order
 		</button>
 	</form>
