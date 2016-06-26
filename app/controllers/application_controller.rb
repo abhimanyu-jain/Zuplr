@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
     else
       # Temporary hack always redirect to the stylelog after signup 
       #root_path || stored_location_for(resource) || request.referer
-      stored_location_for(resource) || request.referer || root_path
+      stored_location_for(resource) || root_path
       # @userprofile = Userprofile.find_by_user_id(current_user.id)
       
       # if defined?@userprofile.phonenumber
