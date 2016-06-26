@@ -1,3 +1,11 @@
+<script>
+	$(document).ready(function() {
+	$('#input-email').focus(function() {
+   		$("#myCarousel").carousel('pause');
+    });
+});
+</script>
+
 <section id="home">
 	<%= render 'common/navigation' %>
 	<div class="fill">
