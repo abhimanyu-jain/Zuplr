@@ -12,7 +12,7 @@
             <li><a class = "shadow-stuff" href="/stylist/dashboard">Dashboard</a></li>
         <% else %>
             <li><%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %></li>
-            <!--<li><%= link_to "Orders", orders_path %></li>-->
+            <li><%= link_to "Orders", orders_path %></li>
             <li><%= link_to "Invite Friends", new_user_invitation_path, class: "shadow-stuff" %></li>
         <% end %>
         <!-- <li><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: 1), method: :post %></li> -->
