@@ -14,8 +14,8 @@ development:
   host: localhost
   username: root
   password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  port: 3306
+#  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+#  port: 3306
   database: development_zuplr
 
 # Warning: The database defined as "test" will be erased and
@@ -23,6 +23,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  username: root
+  password: root
   database: zuplr_test
 
 production:

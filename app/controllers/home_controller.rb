@@ -10,6 +10,7 @@ class HomeController < ApplicationController
 	
 	def newuser
 	  find_user = User.where("email = ?", params["email"]).first
+
 	  if find_user != nil
 	    redirect_to "/login" 
 	  else
