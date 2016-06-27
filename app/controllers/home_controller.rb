@@ -27,6 +27,7 @@ class HomeController < ApplicationController
       user.userprofile_id = profile.id
       user.save
      UserMailer.welcome(user, generated_password).deliver
+     flash[:notice] = ""
      redirect_to "/style-log"
 	  end
 	end
