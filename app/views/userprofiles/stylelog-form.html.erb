@@ -441,8 +441,11 @@
 				<br>
 				<textarea id="zr-textarea" class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="I would like to avoid accessories in my first shipment. focus more on bottoms, tops etc. Or I would like stylist to focus on casual style for summers."> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
 			</p>
-			<button class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
-				Save my log
+			<button name="save-only" class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
+				Save My Log
+			</button>
+			<button name="save-and-order" class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
+				Save Log and Proceed to Order
 			</button>
 			<br>
 			<br>

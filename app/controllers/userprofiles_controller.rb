@@ -86,6 +86,9 @@ class UserprofilesController < ApplicationController
   # POST /userprofiles
   # POST /userprofiles.json
   def create
+    #check to see if we are only saving or saving and proceeding to order as well
+    proceed = params["save-and-order"]
+    
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     if @userprofile
       @userprofile.update_attributes(
@@ -118,7 +121,11 @@ class UserprofilesController < ApplicationController
   #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
   #   end
   # end
-    redirect_to '/style-log', notice: 'Userprofile was successfully updated.'
+    if proceed == nil
+      redirect_to '/style-log', notice: 'Userprofile was successfully updated.'
+    else
+      redirect_to '/confirmation'
+    end 
   end
 
   # PATCH/PUT /userprofiles/1
