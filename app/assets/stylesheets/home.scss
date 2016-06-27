@@ -12,6 +12,7 @@ body {
 -------------------------------------------------- */
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
+
 .navbar-wrapper {
   position: absolute;
   top: 0;
@@ -41,6 +42,7 @@ body {
 .carousel {
   height: 600px;
   margin-bottom: 60px;
+  margin-top: 80px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -253,7 +255,7 @@ nav {
     .navbar-brand {
       color: #fff;
       border: none !important;
-      font-size: 25px;
+      font-size: 40px;
       &:hover, &:focus{
         color: #fff !important;
       }
@@ -274,7 +276,7 @@ nav {
   &.affix-top{
     .navbar-brand {
       color: #fff;
-      font-size: 50px !important;
+      font-size: 40px !important;
       margin-top: 20px !important;
       padding: 0px 0px;
       border: none !important;
@@ -284,7 +286,7 @@ nav {
     }
 
     .navbar-nav > li > a{
-      margin-top: 20px;
+      margin-top: 10px;
       color: #fff !important;
     }
 
@@ -373,7 +375,7 @@ nav {
 
 .navbar-inverse {
   /*z-index: 50;*/
-  background-color: transparent;
+  background-color: rgba(220, 0, 96, 0.8);;
   border-color: transparent;
 
   .navbar-nav > .active > a {

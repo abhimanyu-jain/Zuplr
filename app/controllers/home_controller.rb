@@ -36,14 +36,19 @@ class HomeController < ApplicationController
 	
 	def setImages
 	  if (mobile_device? == nil)
-	    @slider1 = "/home-bg.jpg"
-	    @slider2 = "/slider-2.jpg"
-	    @slider3 = "/slider-3.jpg"
-	      
+	    @slider1 = "/web_1.jpg"
+	    @slider2 = "/web_2.jpg"
+	    @slider3 = "/web_3.jpg"
+      @slider4 = "/web_4.jpg"
+      @slider5 = "/web_5.jpg"
+      @slider6 = "/web_6.jpg"
 	  else
 	    @slider1 = "/mobile-slider-1.jpg"
       @slider2 = "/mobile-slider-2.jpg"
       @slider3 = "/mobile-slider-3.jpg"
+      @slider4 = "/mobile-slider-1.jpg"
+      @slider5 = "/mobile-slider-2.jpg"
+      @slider6 = "/mobile-slider-3.jpg"
 	  end
 	  
     
