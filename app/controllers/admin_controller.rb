@@ -4,16 +4,17 @@ class AdminController < ApplicationController
   end
   
   def getuserprofile
-    @user = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id where users.id = '+params[:id])
+    @user = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id where users.userprofile_id = '+params[:id])
+    render 'getuserprofile'
   end
   
   def getallorders
-    @orders = Order.select('*')
+    @orders = Order.select('*').joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id')
     render 'all_orders'
   end
   
   def getpendingorders
-    @orders = Order.select('*').where('status = "REQUESTED"')
+    @orders = Order.select('*').joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"')
     render 'all_orders'
   end
   

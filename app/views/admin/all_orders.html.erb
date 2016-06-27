@@ -103,7 +103,7 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td><%= link_to "User Profile", "/admin/userprofile/"+(order.user_id-1).to_s %></td>
+				<td>Email : <%= order.email %><br /><br />Phone : <%= order.phonenumber %><br /><br />Address : <%= order.address %> <br /><br /> <%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
 				<td><%= order.order_code %></td>
 				<td>
 					<div id = "status<%= order.id %>"><%= order.status%></div>
