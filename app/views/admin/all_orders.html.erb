@@ -114,7 +114,7 @@
 				<td><%= order.scheduleddeliverydate %></td>
 				<td>
 				<form>
-					<input id="stylist-comment<%= order.id %>" style="width : 500px;" value="<%= order.stylist_comments %>" />
+					<textarea id="stylist-comment<%= order.id %>" style="width : 500px;" rows=10 value=""><%= order.stylist_comments %></textarea>
 					<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
 				</form>
 				</td>
