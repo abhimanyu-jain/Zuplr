@@ -46,10 +46,10 @@ class HomeController < ApplicationController
 	  else
 	    @slider1 = "/mobile-slider-1.jpg"
       @slider2 = "/mobile-slider-2.jpg"
-      @slider3 = "/mobile-slider-3.jpg"
+      @slider3 = "/mobile-3.png"
       @slider4 = "/mobile-slider-1.jpg"
       @slider5 = "/mobile-slider-2.jpg"
-      @slider6 = "/mobile-slider-3.jpg"
+      @slider6 = "/mobile-3.png"
 	  end
 	  
     
