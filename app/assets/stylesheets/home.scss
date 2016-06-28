@@ -247,7 +247,7 @@ body {
 
 nav {
   &.affix {
-    background-color: rgba(220, 0, 96, 0.8);
+    background-color: rgba(220, 0, 96, 1);
     z-index: 99999;
     .navbar-nav > li > a {
       color: #fff;
@@ -290,8 +290,9 @@ nav {
     }
 
     .navbar-nav > li > a{
-      margin-top: 10px;
+      //margin-top: 10px;
       color: #fff !important;
+      background-color: rgba(220, 0, 96, 1);
     }
 
     .btn-zr-1{
@@ -379,7 +380,7 @@ nav {
 
 .navbar-inverse {
   /*z-index: 50;*/
-  background-color: rgba(220, 0, 96, 0.8);;
+  background-color: rgba(220, 0, 96, 1);
   border-color: transparent;
 
   .navbar-nav > .active > a {
@@ -394,9 +395,10 @@ nav {
 
 
   .navbar-nav > li > a {
-    color: #444;
+    color: rgba(220, 0, 96, 1);
     font-size: 14px;
     text-transform: none !important;
+    background-color: rgba(220, 0, 96, 1); 
 
     &:hover, &:focus, &:active {
       color: #444;
