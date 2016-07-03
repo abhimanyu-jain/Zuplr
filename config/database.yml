@@ -13,7 +13,7 @@ development:
   <<: *default
   host: localhost
   username: root
-  password: root
+  password: 
 #  socket: /Applications/MAMP/tmp/mysql/mysql.sock
 #  port: 3306
   database: development_zuplr
@@ -24,7 +24,7 @@ development:
 test:
   <<: *default
   username: root
-  password: root
+  password: 
   database: zuplr_test
 
 production:

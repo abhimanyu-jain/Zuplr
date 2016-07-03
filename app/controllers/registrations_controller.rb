@@ -10,7 +10,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # Create a identity for normal registered users
   def identity_create
-    # Potential threat of overlap
     identity = Identity.create(uid:rand(100000000..9999999999), provider: 'registration')
     identity.user_id = resource.id
     identity.name = params['user']['name'] #Looks very ugly
@@ -34,11 +33,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super
     @userprofile = Userprofile.find_by_id resource.id
     @userprofile.city = params[:user][:user_profile_city]
     @userprofile.phonenumber = params[:user][:user_profile_phone]
     @userprofile.save
+    super
   end
   
   def update_resource(resource, params)
