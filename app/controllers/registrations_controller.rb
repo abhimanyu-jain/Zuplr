@@ -33,7 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    @userprofile = Userprofile.find_by_id resource.id
+    @userprofile = Userprofile.find_by_user_id resource.id
     @userprofile.city = params[:user][:user_profile_city]
     @userprofile.phonenumber = params[:user][:user_profile_phone]
     @userprofile.save
