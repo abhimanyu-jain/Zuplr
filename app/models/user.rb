@@ -22,9 +22,16 @@ class User < ActiveRecord::Base
   after_create :send_welcome_mail
   
   def send_welcome_mail
-    UserMailer.registration(self).deliver_now
+    if self.invitation_token.nil?
+      UserMailer.registration(self).deliver_now
+    end
   end
 
+  def accept_invitation!
+    super
+    UserMailer.registration(self).deliver_now
+  end
+  
   def assign_role
     self.role = Role.find_by name: "User" if self.role.nil?
   end
