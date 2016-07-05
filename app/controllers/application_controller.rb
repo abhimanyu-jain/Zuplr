@@ -33,7 +33,9 @@ class ApplicationController < ActionController::Base
     puts "after_sign_in_path_for"
     # Send email for signup
     @identity = Identity.find_by_email(current_user.email)
-    
+    user = User.find_by_id(current_user.id)
+    profile_id  = user.userprofile_id
+    profile = Userprofile.find_by_user_id(profile_id)
     # Yet another crude hack before we understand devise
     # if @identity
     #   if !@identity.mail_sent
@@ -45,21 +47,21 @@ class ApplicationController < ActionController::Base
     #   end
     # end
 
-    sign_in_url = new_user_session_url
-    if request.referer == sign_in_url
-      super
-    else
+    #sign_in_url = new_user_session_url
+    #if request.referer == sign_in_url
+    #  super
+    #else
       # Temporary hack always redirect to the stylelog after signup 
       #root_path || stored_location_for(resource) || request.referer
-      stored_location_for(resource) || root_path
+    #  stored_location_for(resource) || root_path
       # @userprofile = Userprofile.find_by_user_id(current_user.id)
       
-      # if defined?@userprofile.phonenumber
-      #   '/style-log'
-      # else
-      #   '/users/new-signup'
-      # end
-    end
+       if defined? profile.phonenumber
+         '/style-log'
+       else
+         '/users/new-signup'
+       end
+   # end
   end
 
   def after_invite_path_for(resource)
