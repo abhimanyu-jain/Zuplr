@@ -28,12 +28,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-    @userprofile = Userprofile.find_by_id resource.id
+    @userprofile =  find_user_profile
     super
   end
 
   def update
-    @userprofile = Userprofile.find_by_user_id resource.id
+    @userprofile = find_user_profile
     @userprofile.city = params[:user][:user_profile_city]
     @userprofile.phonenumber = params[:user][:user_profile_phone]
     @userprofile.save
@@ -49,7 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
         resource.save
       end
       if resource.valid?
-        resource.update_without_password(params)
+        resource.update_without_password(params.except(:current_password))
       end
     else
       resource.update_with_password(params)
@@ -58,7 +58,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  # def find_user_profile
-  #   @userprofile = Userprofile.find_by(user_id: current_user.id)
-  # end
+   def find_user_profile
+     user = User.find_by_id(current_user.id)
+     profile_id  = user.userprofile_id
+     Userprofile.find_by_id(profile_id)
+   end
 end
