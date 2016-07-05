@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     # Send email for signup
     @identity = Identity.find_by_email(current_user.email)
     user = User.find_by_id(current_user.id)
-    profile_id  = user.userprofile_id
-    profile = Userprofile.find_by_user_id(profile_id)
+    profile_id  = user  .userprofile_id
+    profile = Userprofile.find_by_id(profile_id)
     # Yet another crude hack before we understand devise
     # if @identity
     #   if !@identity.mail_sent
@@ -55,8 +55,8 @@ class ApplicationController < ActionController::Base
       #root_path || stored_location_for(resource) || request.referer
     #  stored_location_for(resource) || root_path
       # @userprofile = Userprofile.find_by_user_id(current_user.id)
-      
-       if defined? profile.phonenumber
+
+       if profile.phonenumber != nil
          '/style-log'
        else
          '/users/new-signup'
