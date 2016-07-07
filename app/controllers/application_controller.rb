@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     #  stored_location_for(resource) || root_path
       # @userprofile = Userprofile.find_by_user_id(current_user.id)
 
-       if profile.phonenumber != nil
+       if profile.try(:phonenumber) != nil
          '/style-log'
        else
          '/users/new-signup'
