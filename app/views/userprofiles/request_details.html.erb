@@ -29,7 +29,7 @@
               <option value="Bangalore">Bangalore</option>
             </select>
           </div>   
-          <button type="submit" id="form_submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Book my styling session</button>
+          <button type="submit" id="form_submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Start</button>
           <p style="font-size: 12px; color: rgba(220, 0, 96, 1); line-height: 18px;margin-top: 20px;">* Your information is accessible to stylist via a secure dashboard only. We do not share your personal information to any third party.</p>
         </form>
       </div>
@@ -52,9 +52,10 @@
           success: function(){
             $('#new_user').hide();
             $('#message').show();
-            setTimeout(function(){
+            window.location = '/style-log';
+            /*setTimeout(function(){
               window.location = '/style-log'
-            },2000)
+            },2000)*/
           },
           error: function(){
             // console.log('Error in data angular.isArray(value)ving')
