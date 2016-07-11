@@ -4,7 +4,6 @@ class UserMailer < ApplicationMailer
 	def registration(user)
 		@user = user
 		@profile = Userprofile.find_by_id(user.userprofile_id)
-		binding.pry
 		mail(to: @user.email, subject: 'Welcome to Zuplr')
 	end
 
