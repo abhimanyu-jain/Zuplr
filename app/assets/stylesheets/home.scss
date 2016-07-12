@@ -460,3 +460,15 @@ nav {
 .shadow-stuff {
   text-shadow: 2px 2px 8px grey;
 }
+
+//Login form
+
+#user_email, #user_password {
+  height : 58px;
+}
+
+.login-links, .registration-links {
+  img { 
+    height : 50px;
+    }
+}
