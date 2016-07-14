@@ -1,4 +1,7 @@
 class AdminController < ApplicationController
+  
+  before_action :authenticate_admin
+  
   def index
     @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
   end
@@ -50,4 +53,13 @@ class AdminController < ApplicationController
     order.save
     render :nothing => true
   end
+  
+  private
+  def authenticate_admin
+    user = User.find_by_id(current_user.id)
+    if user.role_id != 4
+      redirect_to :root
+    end
+  end
+    
 end
