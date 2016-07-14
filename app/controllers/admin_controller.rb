@@ -56,8 +56,12 @@ class AdminController < ApplicationController
   
   private
   def authenticate_admin
+    if current_user == nil
+      redirect_to :root
+      return
+    end
     user = User.find_by_id(current_user.id)
-    if user.role_id != 4
+    if user.role_id != 3
       redirect_to :root
     end
   end
