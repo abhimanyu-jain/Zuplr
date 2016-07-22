@@ -94,12 +94,12 @@
 		<thead>
 			<tr>
 				<th>User</th>
-				<th>Created On</th>
-				<th>Updated On</th>
+				<th width="200">Created On</th>
+				<th width="200">Updated On</th>
 				<th width="125">Order Code </th>
 				<th>Order Status</th>
-				<th>Delivery Date</th>
-				<th width="500">Stylist Comments</th>
+				<th width="200">Delivery Date</th>
+				<th width="300">Stylist Comments</th>
 			</tr>
 		</thead>
 
@@ -107,8 +107,8 @@
 			<% @orders.each do |order| %>
 			<tr>
 				<td>Email : <%= order.email %><br /><br />Phone : <%= order.phonenumber %><br /><br />Address : <%= order.address %> <br /><br /> <%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
-				<td><%= order.created_at %></td>
-				<td><%= order.updated_at %></td>
+				<td><%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %></td>
+				<td><%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %></td>
 				<td><%= order.order_code %></td>
 				<td>
 					<div id = "status<%= order.id %>"><%= order.status%></div>
@@ -119,7 +119,7 @@
 				<td><%= order.scheduleddeliverydate %></td>
 				<td>
 				<form>
-					<textarea id="stylist-comment<%= order.id %>" style="width : 500px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+					<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
 					<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
 				</form>
 				</td>

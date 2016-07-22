@@ -7,6 +7,8 @@
 <br />
 <div style ="margin-left: 50px;" media="screen">
 	<% @user.each do |u| %>
+		<h4><strong>Registered On : </strong><%= u.created_at.to_date.to_s + " " +  u.created_at.to_s(:time) %></h4>
+		<br />
 		<h4><strong>Email : </strong><%= u.email %></h4>
 		<br />
 		<h4><strong>City : </strong><%= u.city %></h4>
