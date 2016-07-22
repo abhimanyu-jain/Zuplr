@@ -7,6 +7,7 @@
         <thead>
             <tr>
             	<th>Name</th>
+            	<th>Registered On</th>
                 <th>Email</th>
                 <th>City</th>
                 <th>Phone number</th>
@@ -17,6 +18,7 @@
             <% @allusers.each do |us| %>
 			<tr>
 				<td><%= us.name %></td>
+				<td><%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %></td>
 				<td><%= us.email %></td>
 				<td><%= us.city %></td>
 				<td><%= us.phonenumber %></td>
