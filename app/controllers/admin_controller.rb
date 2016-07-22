@@ -12,12 +12,19 @@ class AdminController < ApplicationController
   end
   
   def getallorders
-    @orders = Order.select('*').joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id')
+    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
+    orders.stylist_comments, users.userprofile_id, userprofiles.phonenumber, userprofiles.address, users.email').
+    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id')
+    
     render 'all_orders'
   end
   
   def getpendingorders
-    @orders = Order.select('*').joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"')
+    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
+    orders.stylist_comments, users.userprofile_id, userprofiles.phonenumber, userprofiles.address, users.email').
+    joins('JOIN users on users.id = orders.user_id').joins('JOIN users on users.id = orders.user_id').
+    joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"')
+    
     render 'all_orders'
   end
   
