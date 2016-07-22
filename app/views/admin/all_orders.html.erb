@@ -41,8 +41,8 @@
 					order_id : order_id
 				},
 				success : function(result) {
-					index = "#status"+order_id
-					status = "DISPATCHED"
+					index = "#status"+order_id;
+					status = "DISPATCHED";
 					$(index).html(status);
 					//location.reload();
 				},
@@ -58,9 +58,9 @@
 					order_id : order_id
 				},
 				success : function(result) {
-					index = "#status"+order_id
-					status = "COMPLETED"
-					$(index).val(status);
+					index = "#status"+order_id;
+					status = "COMPLETED";
+					$(index).html(status);
 					//location.reload();
 				},
 			});
@@ -75,9 +75,10 @@
 					order_id : order_id
 				},
 				success : function(result) {
-					index = "#status"+order_id
-					status = "CANCELLED"
-					$(index).val(status);
+					index = "#status"+order_id;
+					status = "CANCELLED BY ZUPLR";
+					$(index).html(status);
+					
 					//location.reload();	
 				},
 			});
