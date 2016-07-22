@@ -93,6 +93,8 @@
 		<thead>
 			<tr>
 				<th>User</th>
+				<th>Created On</th>
+				<th>Updated On</th>
 				<th width="125">Order Code </th>
 				<th>Order Status</th>
 				<th>Delivery Date</th>
@@ -104,6 +106,8 @@
 			<% @orders.each do |order| %>
 			<tr>
 				<td>Email : <%= order.email %><br /><br />Phone : <%= order.phonenumber %><br /><br />Address : <%= order.address %> <br /><br /> <%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
+				<td><%= order.created_at %></td>
+				<td><%= order.updated_at %></td>
 				<td><%= order.order_code %></td>
 				<td>
 					<div id = "status<%= order.id %>"><%= order.status%></div>
