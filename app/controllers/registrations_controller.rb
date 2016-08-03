@@ -1,11 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
 
   # before_action :find_user_profile, only: [:edit, :update]
-  after_action :profile_create, :only => [:create] # Only for normal registration
-  after_action :identity_create, :only => [:create] # Only for normal registration
+  #after_action :profile_create, :only => [:create] # Only for normal registration
+  #after_action :identity_create, :only => [:create] # Only for normal registration
 
   def create
-    super
+    user = User.find_by_email(params[:user][:email])
+    if user == nil
+      super
+      identity_create
+      profile_create
+    else
+      redirect_to "/login"
+    end
   end
 
   # Create a identity for normal registered users
