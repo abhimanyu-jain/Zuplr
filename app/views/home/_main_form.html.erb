@@ -2,34 +2,42 @@
 	<!--<h3>Book your session</h3>-->
 	<br />
 	<% if current_user.nil? %>
-	<form method="get" action="/users-check">
-		<!--class="home-form" role="form"-->
-		<!--<h3>Enter Valid Email and Phone number</h3>-->
-
-		<div id="contact-form" class ="">
-				<input id = "input-email" type="email" name = "email" class="form-control" placeholder="Your Email ID" required>
-				<input id = "input-phone" type="number" name ="phone" class="form-control" placeholder="Your Phone Number " onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" required>
+	<!--<form method="get" action="/users-check">
+	<div id="contact-form" class ="">
+	<input id = "input-email" type="email" name = "email" class="form-control" placeholder="Your Email ID" required>
+	<input id = "input-phone" type="number" name ="phone" class="form-control" placeholder="Your Phone Number " onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" required>
+	</div>
+	<br />
+	<div class ="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+	<button id="stylist-contact-submit" class="btn btn-success center-block" type="submit">Book Your Session</button>
+	<button style="background-color: #3b5998; border-color: #3b5998; color: white; width: 200px; font-size: 20px;"><img src="fb_logo.png" style="height: 50px;">Start Styling</button>
+	</div>
+	<div class="col-md-4"></div>
+	</div>
+	<br />
+	</form>-->
+	<div class ="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<a href="/users/auth/facebook"><img src="fblogin.png" class="img-responsive" style="margin: auto; width: 300px;"></a>
+			<a href="/users/auth/google_oauth2"><img src="glogin.png" class="img-responsive" style="margin-top: 10px; margin-left: auto; margin-right: auto; width: 300px;"></a>
+			<div style="text-align: center; color: white; margin-top: 10px;">Login with <a href="/login" style="color: white;"><u>Email</u></a></div>
 		</div>
-		<br />
-		<div class ="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<button id="stylist-contact-submit" class="btn btn-success center-block" type="submit">Book Your Session</button>
-			</div>
-			<div class="col-md-4"></div>
-		</div>
-		<br />
-	</form>
+		<div class="col-md-4"></div>
+	</div>
+	<br />
 	<% else %>
-		<br />
-		<div class ="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<%= button_to "Book Your Session", "/style-log", method: :get, id: "stylist-contact-submit", class: "btn btn-success center-block" %>
-			</div>
-			<div class="col-md-4"></div>
+	<br />
+	<div class ="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<%= button_to "Start Your Session", "/style-log", method: :get, id: "stylist-contact-submit", class: "btn btn-success center-block", style: "width: 300px;" %>
 		</div>
-		<br />
+		<div class="col-md-4"></div>
+	</div>
+	<br />
 	<% end %>
 
 </div>
