@@ -1,3 +1,20 @@
+<script>
+	$( document ).ready(function() {
+		$("#custom-city").hide();
+  		$('#user_city').change(function() 
+  		{
+  			if (this.value == 'Other')
+  			{
+  				$("#custom-city").show();
+  			}
+  			else
+  			{
+  				$("#custom-city").hide();
+  			}
+  		});
+});
+</script>
+
 <div style="padding-top:120px" class="container user-details-form ">
   <div style="text-align: center;">
     <h2 style="text-align: left; padding-left: 0%; color: #dc0060; text-align: center;">Welcome to Zuplr</h2>
@@ -25,16 +42,18 @@
             </div>
           <% end %>
           <div class="form-group">
-            <select   class="form-control" type="text" value="" name="user[city]" id="user_city">
+            <select class="form-control" type="text" value="" name="user[city]" id="user_city">
               <option value="Bangalore">Bangalore</option>
-              <option value="Bangalore">Mumbai</option>
-              <option value="Bangalore">Delhi/NCR</option>
-              <option value="Bangalore">Pune</option>
-              <option value="Bangalore">Chennai</option>
-              <option value="Bangalore">Hyderabad</option>
-              <option value="Bangalore">Kolkata</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi/NCR">Delhi/NCR</option>
+              <option value="Pune">Pune</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Kolkata">Kolkata</option>
+              <option value="Other">Other</option>
             </select>
           </div>   
+          <input id="custom-city" name="user[custom-city]" class="form-control" type="text" placeholder="Enter your city"  required/><br />
           <button type="submit" id="form_submit" name="commit" class="btn btn-z1 btn-z2 btn-block">Start</button>
           <p style="font-size: 12px; color: rgba(220, 0, 96, 1); line-height: 18px;margin-top: 20px;">* Your information is accessible to stylist via a secure dashboard only. We do not share your personal information to any third party.</p>
         </form>

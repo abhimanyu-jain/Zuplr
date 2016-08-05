@@ -40,12 +40,18 @@ class UserprofilesController < ApplicationController
   end
 
   def savenumber
+    byebug
+    if params['user']['city'] == 'Other'
+       city = params['user']['custom-city']
+    end
+      
+      
     @user = User.find_by_email(current_user.email)
     @userprofile = Userprofile.find_by_user_id(current_user.id)
 
     if @userprofile
       @userprofile.update_attributes(
-      :city=> params['user']['city'],
+      :city=> city,
       :phonenumber => params['user']['phonenumber'])
 
       # Update user info also
@@ -55,7 +61,7 @@ class UserprofilesController < ApplicationController
     else
       parameters = {
         :user_id => current_user.id,
-        :city=> params['user']['city'],
+        :city=> city,
         :phonenumber => params['user']['phonenumber']
       }
       @userprofile = Userprofile.new(parameters)
