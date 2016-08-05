@@ -40,7 +40,6 @@ class UserprofilesController < ApplicationController
   end
 
   def savenumber
-    byebug
     if params['user']['city'] == 'Other'
        city = params['user']['custom-city']
     end
