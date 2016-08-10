@@ -37,6 +37,15 @@ class AdminController < ApplicationController
     render :nothing => true
   end
   
+  def updateuserstylistcomment
+    user_id = params["user_id"]
+    stylistcomment = params["stylistcomment"]
+    userprofile = Userprofile.find_by_id(user_id)
+    userprofile.stylist_comment = stylistcomment
+    userprofile.save
+    render :nothing => true
+  end
+  
   def dispatchorder
     order_id = params["order_id"]
     order = Order.find_by_id(order_id)
