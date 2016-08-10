@@ -1,21 +1,43 @@
+<script>
+	function updatestylistcomment(user_id) {
+			index = "#stylist-comment" + user_id;
+			comment = String($(index).val());
+			event.preventDefault();
+			$.ajax({
+				type : "POST",
+				url : "/admin/updateuserstylistcomment",
+				data : {
+					user_id : user_id,
+					stylistcomment : comment
+				},
+				success : function(result) {
+					$(index).val(comment);
+				},
+			});
+		}
+</script>
+
 <div class="container top-space stylist">
 	<div class="row top-menu">
-		<div class="col-sm-2 active">My Sessions</div>
+		<div class="col-sm-2 active">
+			My Sessions
+		</div>
 		<!-- <div class="col-sm-2">Users</div> -->
 	</div>
 	<table class="table table-striped">
-        <thead>
-            <tr>
-            	<th>Name</th>
-            	<th>Registered On</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>Phone number</th>
-                <th>Data</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @allusers.each do |us| %>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Registered On</th>
+				<th>Email</th>
+				<th>City</th>
+				<th>Phone number</th>
+				<th>Data</th>
+				<th>Stylist Comment</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @allusers.each do |us| %>
 			<tr>
 				<td><%= us.name %></td>
 				<td><%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %></td>
@@ -23,8 +45,13 @@
 				<td><%= us.city %></td>
 				<td><%= us.phonenumber %></td>
 				<td><%= link_to "Profile", "/admin/userprofile/"+us.userprofile_id.to_s %></td>
+				<td>
+				<form>
+					<textarea id="stylist-comment<%= us.id %>" style="width : 300px;" rows=10 value=""><%= us.stylist_comment %></textarea>
+					<input class="newcomment" type="button" value="Update" onclick="updatestylistcomment(<%= us.id %>)" />
+				</form></td>
 			</tr>
 			<% end %>
-        </tbody>
-    </table>
+		</tbody>
+	</table>
 </div>
