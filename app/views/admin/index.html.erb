@@ -1,20 +1,20 @@
 <script>
 	function updatestylistcomment(user_id) {
-			index = "#stylist-comment" + user_id;
-			comment = String($(index).val());
-			event.preventDefault();
-			$.ajax({
-				type : "POST",
-				url : "/admin/updateuserstylistcomment",
-				data : {
-					user_id : user_id,
-					stylistcomment : comment
-				},
-				success : function(result) {
-					$(index).val(comment);
-				},
-			});
-		}
+		index = "#stylist-comment" + user_id;
+		comment = String($(index).val());
+		event.preventDefault();
+		$.ajax({
+			type : "POST",
+			url : "/admin/updateuserstylistcomment",
+			data : {
+				user_id : user_id,
+				stylistcomment : comment
+			},
+			success : function(result) {
+				$(index).val(comment);
+			},
+		});
+	}
 </script>
 
 <div class="container top-space stylist">
@@ -54,4 +54,6 @@
 			<% end %>
 		</tbody>
 	</table>
+
+	<%= will_paginate @allusers %>
 </div>
