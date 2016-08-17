@@ -3,7 +3,8 @@ class AdminController < ApplicationController
   before_action :authenticate_admin
   
   def index
-    @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
+    @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id').order('users.created_at DESC')
+    @allusers = @allusers.paginate(:page => params[:page], :per_page => 30)
   end
   
   def getuserprofile
@@ -14,7 +15,9 @@ class AdminController < ApplicationController
   def getallorders
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
     orders.stylist_comments, users.userprofile_id, userprofiles.phonenumber, userprofiles.address, users.email').
-    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id')
+    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id').order('orders.created_at DESC')
+    
+    @orders = @orders.paginate(:page => params[:page], :per_page => 30)
     
     render 'all_orders'
   end
@@ -23,7 +26,9 @@ class AdminController < ApplicationController
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
     orders.stylist_comments, users.userprofile_id, userprofiles.phonenumber, userprofiles.address, users.email').
     joins('JOIN users on users.id = orders.user_id').joins('JOIN users on users.id = orders.user_id').
-    joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"')
+    joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"').order('orders.created_at DESC')
+    
+    @orders = @orders.paginate(:page => params[:page], :per_page => 30)
     
     render 'all_orders'
   end
