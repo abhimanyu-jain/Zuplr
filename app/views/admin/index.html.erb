@@ -15,6 +15,22 @@
 			},
 		});
 	}
+	
+	function getStyleData (id, name) {
+		$.ajax({
+			type : "GET",
+			url : "/userprofiles/"+id+".json",
+			data : {
+			},
+			success : function(result) {
+				val = result.data;
+				
+				style_profile = JSON.stringify(JSON.parse(val));
+				$("#styleLogPopupStyleInfo").html(style_profile);
+				$("#styleLogPopupName").html(name);
+			},
+		});  
+	}
 </script>
 
 <div class="container top-space stylist">
@@ -27,11 +43,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
+				<th>Personal Details</th>
 				<th>Registered On</th>
-				<th>Email</th>
-				<th>City</th>
-				<th>Phone number</th>
 				<th>Data</th>
 				<th>Stylist Comment</th>
 			</tr>
@@ -39,12 +52,21 @@
 		<tbody>
 			<% @allusers.each do |us| %>
 			<tr>
-				<td><%= us.name %></td>
-				<td><%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %></td>
-				<td><%= us.email %></td>
-				<td><%= us.city %></td>
-				<td><%= us.phonenumber %></td>
-				<td><%= link_to "Profile", "/admin/userprofile/"+us.userprofile_id.to_s %></td>
+				<td>
+					<%= us.name %>
+					<br />
+					<%= us.email %>
+					<br />
+					<%= us.phonenumber %>
+					<br />
+					<%= us.city %>
+				</td>
+				<td>
+					<%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %>
+				</td>
+				<td>
+					<button type="button" id="getStyleData" onclick="getStyleData(<%= us.id %>, '<%= us.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">Profile</button>
+				</td>
 				<td>
 				<form>
 					<textarea id="stylist-comment<%= us.id %>" style="width : 300px;" rows=10 value=""><%= us.stylist_comment %></textarea>
@@ -52,6 +74,7 @@
 				</form></td>
 			</tr>
 			<% end %>
+			<%= render 'style_log_popup'%>
 		</tbody>
 	</table>
 
