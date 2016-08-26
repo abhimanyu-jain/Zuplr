@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   resources :items
   resources :cities
-  resources :userprofiles
+  #resources :userprofiles
   resources :deliveries
   resources :roles
   resources :comments
