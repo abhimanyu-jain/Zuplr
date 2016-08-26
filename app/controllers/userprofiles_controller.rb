@@ -1,5 +1,6 @@
 class UserprofilesController < ApplicationController
-  before_action :set_userprofile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, only: [:show, :edit, :update, :destroy]
+  
   before_action :authenticate_user!
   # GET /userprofiles
   # GET /userprofiles.json
@@ -174,5 +175,16 @@ class UserprofilesController < ApplicationController
       :user_id => current_user.id,
       :data => (params['user']).to_json
     }
+  end
+  
+  def authenticate_admin
+    if current_user == nil
+      redirect_to :root
+      return
+    end
+    user = User.find_by_id(current_user.id)
+    if user.role_id != 3
+      redirect_to :root
+    end
   end
 end
