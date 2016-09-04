@@ -106,7 +106,7 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td>Email : <%= order.email %><br /><br />Phone : <%= order.phonenumber %><br /><br />Address : <%= order.address %> <br /><br /> <%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
+				<td>Email : <%= order.email %><br /><br />Phone : <%= order.phonenumber %><br /><br />Address : <%= order.address %> <br />Pincode : <%= order.pincode %><br /><br /> <%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
 				<td><%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %></td>
 				<td><%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %></td>
 				<td><%= order.order_code %></td>

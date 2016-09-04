@@ -18,7 +18,8 @@
 					data : {
 						scheduleddeliverydate : $("#scheduleddeliverydate").val(),
 						address : $("#input-address").val(),
-						phone : $("#input-phone").val()
+						phone : $("#input-phone").val(),
+						pincode : $("#input-pincode").val()
 					},
 					success : function(data) {
 						$('#details-confirmation-form').toggle();
@@ -34,6 +35,21 @@
 
 			});
 		});
+		
+		
+		function pincode(){   
+			//Limits pincode to 6 digit integet only       
+            $('#input-pincode').keypress(function(e) {
+                var a = [];
+                var k = e.which;
+
+                for (i = 48; i < 58; i++)
+                    a.push(i);
+
+                if (!(a.indexOf(k)>=0))
+                    e.preventDefault();
+            });
+        }
 	</script>
 
 	<style>
@@ -64,6 +80,9 @@
 		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] %></textarea>
 		<br />
 		<br />
+		<h4>Pincode : </h4>
+		<input class="input-ic" id="input-pincode" value="<%= @userprofile['pincode'] %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
+		<br /><br />
 		<h4>Date of Delivery : </h4>
 		<input class="input-ic" id= "scheduleddeliverydate" placeholder="" type="text" required />
 		<br />
