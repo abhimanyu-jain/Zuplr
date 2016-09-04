@@ -119,7 +119,7 @@
 					<br /><br />
 					Gender : <br /><%= select_tag(:gender, options_for_select(['NA','Female','Male'], us.gender), :onchange => "update_gender(" + us.id.to_s + " ,this.value)") %>
 					<br /><br />
-					Latest Status : <br /><%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Sericeable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %>
+					Latest Status : <br /><%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %>
 				</td>
 				<td>
 					<%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %>
