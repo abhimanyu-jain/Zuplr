@@ -137,7 +137,7 @@ class UserprofilesController < ApplicationController
   # PATCH/PUT /userprofiles/1.json
   def update
     respond_to do |format|
-      if @userprofile.update(userprofile_params)
+      if @userprofile.update(original_userprofile_params)
         format.html { redirect_to @userprofile, notice: 'Userprofile was successfully updated.' }
         format.json { render :show, status: :ok, location: @userprofile }
       else
@@ -169,11 +169,12 @@ class UserprofilesController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  # def userprofile_params
-  #   params.require(:userprofile).permit(:data, :city, :phonenumber)
-  # end
+   def original_userprofile_params
+     params.permit(:data, :city, :phonenumber, :phone_number_status, :gender, :latest_status)
+   end
 
   def userprofile_params
+    #this isn't the original userprofile_params. No idea why this is being used.
     parameters = {
       :user_id => current_user.id,
       :data => (params['user']).to_json

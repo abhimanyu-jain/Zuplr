@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810140454) do
+ActiveRecord::Schema.define(version: 20160902130955) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -127,16 +127,19 @@ ActiveRecord::Schema.define(version: 20160810140454) do
   add_index "userdata", ["user_id"], name: "index_userdata_on_user_id", using: :btree
 
   create_table "userprofiles", force: :cascade do |t|
-    t.text     "data",            limit: 65535
-    t.string   "city",            limit: 255
-    t.integer  "phonenumber",     limit: 8
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "name",            limit: 255
-    t.integer  "user_id",         limit: 4
-    t.integer  "credits",         limit: 4,     default: 0
-    t.string   "address",         limit: 255
-    t.text     "stylist_comment", limit: 65535
+    t.text     "data",                limit: 65535
+    t.string   "city",                limit: 255
+    t.integer  "phonenumber",         limit: 8
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "name",                limit: 255
+    t.integer  "user_id",             limit: 4
+    t.integer  "credits",             limit: 4,     default: 0
+    t.string   "address",             limit: 255
+    t.text     "stylist_comment",     limit: 65535
+    t.string   "phone_number_status", limit: 255
+    t.string   "gender",              limit: 255
+    t.string   "latest_status",       limit: 255
   end
 
   add_index "userprofiles", ["user_id"], name: "index_userprofiles_on_user_id", using: :btree

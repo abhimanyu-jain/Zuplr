@@ -1,4 +1,56 @@
 <script>
+
+	$(document).ready(function() {
+	$('#phone_number_status').select(function() {
+   		$("#myCarousel").carousel('pause');
+    });
+});
+	
+	function update_phone_status(id, val)
+	{
+		$.ajax({
+			type : "PATCH",
+			dataType: 'json',
+			url : "/userprofiles/"+id+".json",
+			data : {
+				phone_number_status : val
+			},
+			success : function(result) {
+				alert("Changed!!");
+			},
+		});
+	}
+	
+	function update_gender(id, val)
+	{
+		$.ajax({
+			type : "PATCH",
+			dataType: 'json',
+			url : "/userprofiles/"+id+".json",
+			data : {
+				gender : val
+			},
+			success : function(result) {
+				alert("Changed!!");
+			},
+		});
+	}
+	
+	function update_latest_status(id, val)
+	{
+		$.ajax({
+			type : "PATCH",
+			dataType: 'json',
+			url : "/userprofiles/"+id+".json",
+			data : {
+				latest_status : val
+			},
+			success : function(result) {
+				alert("Changed!!");
+			},
+		});
+	}
+	
 	function updatestylistcomment(user_id) {
 		index = "#stylist-comment" + user_id;
 		comment = String($(index).val());
@@ -44,6 +96,7 @@
 		<thead>
 			<tr>
 				<th>Personal Details</th>
+				<th>Statuses</th>
 				<th>Registered On</th>
 				<th>Data</th>
 				<th>Stylist Comment</th>
@@ -60,6 +113,13 @@
 					<%= us.phonenumber %>
 					<br />
 					<%= us.city %>
+				</td>
+				<td>
+					Phone Status : <br /> <%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified'], us.phone_number_status), :onchange => "update_phone_status(" + us.id.to_s + " ,this.value)") %>
+					<br /><br />
+					Gender : <br /><%= select_tag(:gender, options_for_select(['NA','Female','Male'], us.gender), :onchange => "update_gender(" + us.id.to_s + " ,this.value)") %>
+					<br /><br />
+					Latest Status : <br /><%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Sericeable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %>
 				</td>
 				<td>
 					<%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %>
