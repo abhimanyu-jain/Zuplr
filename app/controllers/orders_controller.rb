@@ -30,11 +30,13 @@ class OrdersController < ApplicationController
   def create
     address = params["address"]
     phone = params["phone"]
+    pincode = params["pincode"]
 
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     @userprofile.update_attributes(
     :address => address,
-    :phonenumber => phone
+    :phonenumber => phone,
+    :pincode => pincode
     )
 
     @order = Order.new(order_params)
