@@ -1,9 +1,4 @@
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 	<script>
 		$(function() {
 			$("#scheduleddeliverydate").datepicker({
@@ -35,21 +30,6 @@
 
 			});
 		});
-		
-		
-		function pincode(){   
-			//Limits pincode to 6 digit integet only       
-            $('#input-pincode').keypress(function(e) {
-                var a = [];
-                var k = e.which;
-
-                for (i = 48; i < 58; i++)
-                    a.push(i);
-
-                if (!(a.indexOf(k)>=0))
-                    e.preventDefault();
-            });
-        }
 	</script>
 
 	<style>

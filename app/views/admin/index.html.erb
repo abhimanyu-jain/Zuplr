@@ -1,17 +1,36 @@
 <script>
-
 	$(document).ready(function() {
-	$('#phone_number_status').select(function() {
-   		$("#myCarousel").carousel('pause');
-    });
-});
-	
-	function update_phone_status(id, val)
-	{
+		$('#phone_number_status').select(function() {
+			$("#myCarousel").carousel('pause');
+		});
+	});
+
+	function setUserInfo(user_id) {
+		$.ajax({
+			type : "GET",
+			dataType : 'json',
+			url : "/userprofiles/" + user_id + ".json",
+			data : {
+
+			},
+			success : function(obj) {
+				phone = obj.phonenumber;
+				pincode = obj.pincode;
+				address = obj.address;
+				$("#input-user-id").val(user_id);
+				$("#input-phone").val(phone);
+				$("#input-pincode").val(pincode);
+				$("#input-address").val(address);
+			},
+		});
+
+	}
+
+	function update_phone_status(id, val) {
 		$.ajax({
 			type : "PATCH",
-			dataType: 'json',
-			url : "/userprofiles/"+id+".json",
+			dataType : 'json',
+			url : "/userprofiles/" + id + ".json",
 			data : {
 				phone_number_status : val
 			},
@@ -19,13 +38,12 @@
 			},
 		});
 	}
-	
-	function update_gender(id, val)
-	{
+
+	function update_gender(id, val) {
 		$.ajax({
 			type : "PATCH",
-			dataType: 'json',
-			url : "/userprofiles/"+id+".json",
+			dataType : 'json',
+			url : "/userprofiles/" + id + ".json",
 			data : {
 				gender : val
 			},
@@ -33,13 +51,12 @@
 			},
 		});
 	}
-	
-	function update_latest_status(id, val)
-	{
+
+	function update_latest_status(id, val) {
 		$.ajax({
 			type : "PATCH",
-			dataType: 'json',
-			url : "/userprofiles/"+id+".json",
+			dataType : 'json',
+			url : "/userprofiles/" + id + ".json",
 			data : {
 				latest_status : val
 			},
@@ -48,7 +65,7 @@
 			},
 		});
 	}
-	
+
 	function updatestylistcomment(user_id) {
 		index = "#stylist-comment" + user_id;
 		comment = String($(index).val());
@@ -65,21 +82,21 @@
 			},
 		});
 	}
-	
-	function getStyleData (id, name) {
+
+	function getStyleData(id, name) {
 		$.ajax({
 			type : "GET",
-			url : "/userprofiles/"+id+".json",
+			url : "/userprofiles/" + id + ".json",
 			data : {
 			},
 			success : function(result) {
 				val = result.data;
-				
+
 				style_profile = JSON.stringify(JSON.parse(val));
 				$("#styleLogPopupStyleInfo").html(style_profile);
 				$("#styleLogPopupName").html(name);
 			},
-		});  
+		});
 	}
 </script>
 
@@ -103,28 +120,35 @@
 		<tbody>
 			<% @allusers.each do |us| %>
 			<tr>
+				<td> <%= us.name %>
+				<br />
+				<%= us.email %>
+				<br />
+				<%= us.phonenumber %>
+				<br />
+				<%= us.city %>
+				<br />
+				<button type="button" id="generateOrder" onclick="setUserInfo(<%= us.id %>)" class="btn btn-info btn-lg" data-toggle="modal" data-target="#generateOrderPopup">
+					New Order
+				</button></td>
+				<td> Phone Status :
+				<br />
+				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified'], us.phone_number_status), :onchange => "update_phone_status(" + us.id.to_s + " ,this.value)") %>
+				<br />
+				<br />
+				Gender :
+				<br />
+				<%= select_tag(:gender, options_for_select(['NA','Female','Male'], us.gender), :onchange => "update_gender(" + us.id.to_s + " ,this.value)") %>
+				<br />
+				<br />
+				Latest Status :
+				<br />
+				<%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %> </td>
+				<td> <%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %> </td>
 				<td>
-					<%= us.name %>
-					<br />
-					<%= us.email %>
-					<br />
-					<%= us.phonenumber %>
-					<br />
-					<%= us.city %>
-				</td>
-				<td>
-					Phone Status : <br /> <%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified'], us.phone_number_status), :onchange => "update_phone_status(" + us.id.to_s + " ,this.value)") %>
-					<br /><br />
-					Gender : <br /><%= select_tag(:gender, options_for_select(['NA','Female','Male'], us.gender), :onchange => "update_gender(" + us.id.to_s + " ,this.value)") %>
-					<br /><br />
-					Latest Status : <br /><%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %>
-				</td>
-				<td>
-					<%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %>
-				</td>
-				<td>
-					<button type="button" id="getStyleData" onclick="getStyleData(<%= us.id %>, '<%= us.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">Profile</button>
-				</td>
+				<button type="button" id="getStyleData" onclick="getStyleData(<%= us.id %>, '<%= us.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">
+					Profile
+				</button></td>
 				<td>
 				<form>
 					<textarea id="stylist-comment<%= us.id %>" style="width : 300px;" rows=10 value=""><%= us.stylist_comment %></textarea>
@@ -133,6 +157,7 @@
 			</tr>
 			<% end %>
 			<%= render 'style_log_popup'%>
+			<%= render 'generate_order_popup' %>
 		</tbody>
 	</table>
 

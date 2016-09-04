@@ -1,0 +1,89 @@
+<!-- Modal -->
+<div class="modal fade" id="generateOrderPopup" role="dialog">
+	<div class="modal-admin" style="width: 700px; margin-top: 150px; margin-left: auto; margin-right: auto;">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					&times;
+				</button>
+				<h4 class="modal-title" id="generateOrderPopupName">Create New Order</h4>
+			</div>
+			<div class="modal-body">
+
+				<script>
+					$(function() {
+						$("#scheduleddeliverydate").datepicker({
+							minDate : 10
+						});
+						$('#submission').click(function() {
+							$.ajax({
+								url : '/admin/new_order',
+								method : "POST",
+								data : {
+									userprofile_id : $("#input-user-id").val(),
+									scheduleddeliverydate : $("#scheduleddeliverydate").val(),
+									address : $("#input-address").val(),
+									phone : $("#input-phone").val(),
+									pincode : $("#input-pincode").val(),
+									stylist_comments : $("#input-comments").val()
+								},
+								success : function(data) {
+									$('#details-confirmation-form').toggle();
+									$('#confirm-submission').toggle();
+									order_code = $.parseJSON(data);
+									$('#result_code').html(order_code.order_code);
+								},
+
+								error : function(XMLHttpRequest, textStatus, errorThrown) {
+									console.log("Internal Server Error : " + textStatus);
+								}
+							});
+						});
+					});
+				</script>
+
+				<form class="style-log">
+					<div class="row">
+						<div class="col-sm-6">
+							<input id="input-user-id" type='number' style = "width:300px;"value='' hidden/>
+							<h4>Phone Number : </h4>
+							<input class="input-ic" id="input-phone" type="text" style = "width:300px;" required />
+							<br />
+							<br />
+							<h4>Address : </h4>
+							<textarea class="input-address" rows="5" id="input-address" style = "width:300px;" required ></textarea>
+							<br />
+							<br />
+							<h4>Pincode : </h4>
+							<input class="input-ic" id="input-pincode" type="text" onkeypress="pincode()" maxlength="6" style = "width:300px;" required />
+							<br />
+							<br />
+						</div>
+						<div class="col-sm-6">
+							<h4>Date of Delivery : </h4>
+							<input class="input-ic" id= "scheduleddeliverydate" type="text" style = "width:300px;" required />
+							<br />
+							<br />
+							<h4>Stylist Comments : </h4>
+							<textarea class="input-comments" rows="5" id="input-comments" style = "width:300px;" required ></textarea>
+							<br />
+							<br />
+							<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission" data-dismiss="modal">
+								Confirm
+							</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+
+	</div>
+</div>
