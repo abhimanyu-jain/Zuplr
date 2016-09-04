@@ -10,6 +10,13 @@ class UserprofilesController < ApplicationController
   # GET /userprofiles/1
   # GET /userprofiles/1.json
   def show
+    @userprofile = Userprofile.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @userprofile.to_json
+      }
+    end
   end
 
   # GET /userprofiles/new
@@ -41,10 +48,9 @@ class UserprofilesController < ApplicationController
 
   def savenumber
     if params['user']['city'] == 'Other'
-       city = params['user']['custom-city']
+      city = params['user']['custom-city']
     end
-      
-      
+
     @user = User.find_by_email(current_user.email)
     @userprofile = Userprofile.find_by_user_id(current_user.id)
 
@@ -93,7 +99,7 @@ class UserprofilesController < ApplicationController
   def create
     #check to see if we are only saving or saving and proceeding to order as well
     proceed = params["save-and-order"]
-    
+
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     if @userprofile
       @userprofile.update_attributes(
@@ -113,24 +119,24 @@ class UserprofilesController < ApplicationController
       :userprofile_id => @userprofile.id
     })
 
-  # RegisterMailer.style_log_thanks(@identity).deliver_later
+    # RegisterMailer.style_log_thanks(@identity).deliver_later
 
-  # @userprofile = Userprofile.new(userprofile_params)
+    # @userprofile = Userprofile.new(userprofile_params)
 
-  # respond_to do |format|
-  #   if @userprofile.save
-  #     format.html { redirect_to @userprofile, notice: 'Userprofile was successfully created.' }
-  #     format.json { render :show, status: :created, location: @userprofile }
-  #   else
-  #     format.html { render :new }
-  #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
-  #   end
-  # end
+    # respond_to do |format|
+    #   if @userprofile.save
+    #     format.html { redirect_to @userprofile, notice: 'Userprofile was successfully created.' }
+    #     format.json { render :show, status: :created, location: @userprofile }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
+    #   end
+    # end
     if proceed == nil
       redirect_to '/style-log', notice: 'Userprofile was successfully updated.'
     else
       redirect_to '/confirmation'
-    end 
+    end
   end
 
   # PATCH/PUT /userprofiles/1
@@ -169,9 +175,9 @@ class UserprofilesController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-   def original_userprofile_params
-     params.permit(:data, :city, :phonenumber, :phone_number_status, :gender, :latest_status)
-   end
+  def original_userprofile_params
+    params.permit(:data, :city, :phonenumber, :address, :phone_number_status, :gender, :latest_status)
+  end
 
   def userprofile_params
     #this isn't the original userprofile_params. No idea why this is being used.

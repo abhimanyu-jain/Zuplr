@@ -43,7 +43,8 @@ Rails.application.routes.draw do
   post '/admin/dispatchorder' => 'admin#dispatchorder'
   post '/admin/completeorder' => 'admin#completeorder'
   post '/admin/cancelorder' => 'admin#cancelorder'
-  post '/admin/updateuserstylistcomment' => 'admin/updateuserstylistcomment'
+  post '/admin/updateuserstylistcomment' => 'admin#updateuserstylistcomment'
+  post '/admin/new_order' => 'admin#backendorder'
   
   
   # Routes for deliveries

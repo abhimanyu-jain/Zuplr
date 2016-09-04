@@ -33,6 +33,22 @@ class AdminController < ApplicationController
     render 'all_orders'
   end
   
+  def backendorder
+    userprofile = Userprofile.find_by_id(params["userprofile_id"])
+    userprofile.address = params["address"]
+    userprofile.phonenumber = params["phone"]
+    userprofile.pincode = params["pincode"]
+    userprofile.save
+    order = Order.new
+    order.scheduleddeliverydate = params["scheduleddeliverydate"]
+    order.stylist_comments = params["stylist_comments"]
+    order.status = 'REQUESTED'
+    user = User.find_by_userprofile_id(params["userprofile_id"])
+    order.user_id = user.id
+    order.save
+    render :nothing => true
+  end
+  
   def updatecomment
     order_id = params["order_id"]
     stylistcomment = params["stylistcomment"]
@@ -85,6 +101,14 @@ class AdminController < ApplicationController
     if user.role_id != 3
       redirect_to :root
     end
+  end
+  
+  def backend_order_params
+    params.permit(:scheduleddeliverydate, :stylist_comments, :user_id)
+  end
+  
+  def backend_user_params
+    params.permit()
   end
     
 end

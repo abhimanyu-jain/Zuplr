@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
     address = params["address"]
     phone = params["phone"]
     pincode = params["pincode"]
+    stylist_comments = params["comments"]
 
     @userprofile = Userprofile.find_by_user_id(current_user.id)
     @userprofile.update_attributes(
@@ -44,7 +45,8 @@ class OrdersController < ApplicationController
     :user_id => current_user.try(:id),
     :status => 'REQUESTED',
     :order_code => Random.new.rand(1000..1000000000),
-    :scheduleddeliverydate => Date.strptime(params["scheduleddeliverydate"], "%m/%d/%Y").strftime("%Y-%m-%d")
+    :scheduleddeliverydate => Date.strptime(params["scheduleddeliverydate"], "%m/%d/%Y").strftime("%Y-%m-%d"),
+    :stylist_comments => stylist_comments
     )
 
     respond_to do |format|
