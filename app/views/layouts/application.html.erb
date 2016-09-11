@@ -3,13 +3,13 @@
 <head>
   <title>Zuplr | Online Personal Stylists for Women</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true, :async => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, :async => true %>
   <%= csrf_meta_tags %> 
   <link rel="icon" type="image/png" href="favicon.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.2.0/parsley.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,500italic,700,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css' async>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,500italic,700,900' rel='stylesheet' type='text/css' async>
   <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
 </head>
 <body>
