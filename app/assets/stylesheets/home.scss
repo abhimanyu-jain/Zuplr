@@ -394,10 +394,15 @@ nav {
       background-color: transparent;
     }
   }
+  
+  .navbar-brand {
+    color : #fff;
+  }
 
 
   .navbar-nav > li > a {
-    color: rgba(220, 0, 96, 1);
+    color: #fff; 
+    //rgba(220, 0, 96, 1);
     font-size: 14px;
     text-transform: none !important;
     background-color: rgba(220, 0, 96, 1); 
