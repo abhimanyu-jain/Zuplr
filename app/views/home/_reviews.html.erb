@@ -5,7 +5,7 @@
 	}
 
 	.name {
-		margin-top : 30px;
+		margin-top: 30px;
 		font-size: 25px;
 		font-weight: bold;
 		font-family: "BrandonText-Regular";
@@ -45,6 +45,7 @@
 	<br />
 	<br />
 	<div class="row">
+		<% if @mobile == nil %>
 		<div class="col-md-6 text-center">
 			<br />
 			<br />
@@ -63,7 +64,26 @@
 		<div class="col-md-6 text-center">
 			<%= image_tag('Anupama.jpg', alt: "Anupama", size: "400x400") %>
 		</div>
+		<% else %>
+		<div class="col-md-6 text-center">
+			<br />
+			<br />
+			<br />
+			<br />
+			<%= image_tag('Anupama.jpg', alt: "Anupama", size: "400x400") %>
+			<p class="name">
+				-Anupama
+			</p>
 
+		</div>
+		<div class="col-md-6 text-center">
+			<p class="description">
+				"This concept is so new, and above all it is so helpful for a woman like me, I am a mother of a kid,
+				hardly have any time to get the trendiest look especially that suits me. Happy to be Zuplr customer. Good luck to the team!"
+			</p>
+			<br />
+		</div>
+		<% end %>
 	</div>
 	<br />
 	<br />
