@@ -82,11 +82,11 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
+    address: "email-smtp.us-west-2.amazonaws.com",
     port: 587,
     enable_starttls_auto: true,
-    user_name: 'care@zuplr.com',
-    password: '0Hb1j5UKhJtKLS9k3fZN6w',
+    user_name: 'AKIAIRNEVZJZHW6IOYWQ',
+    password: 'AgWA9wXRn8IliL3KSSjNH7VvHg0kDdJ28gvvoRFPbbqu',
     authentication: 'plain'
   }
 end
