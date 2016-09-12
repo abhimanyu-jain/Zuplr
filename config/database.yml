@@ -32,7 +32,7 @@ production:
   host: localhost
   username: root
   password: root
-  database: development_zuplr
+  database: db/development.zuplr
   #database: zuplr.prod
   #username: root
   #password: Lopa@2006
