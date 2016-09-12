@@ -28,11 +28,11 @@ test:
   database: zuplr_test
 
 production:
+  <<: *default
   host: localhost
   username: root
   password: root
   database: development_zuplr
-  #<<: *default
   #database: zuplr.prod
   #username: root
   #password: Lopa@2006
