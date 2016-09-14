@@ -16,7 +16,7 @@ development:
   password: root
 #  socket: /Applications/MAMP/tmp/mysql/mysql.sock
 #  port: 3306
-  database: development_zuplr
+  database: db/development.zuplr
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -32,7 +32,7 @@ production:
   host: localhost
   username: root
   password: root
-  database: development_zuplr
+  database: db/development.zuplr
   #database: zuplr.prod
   #username: root
   #password: Lopa@2006

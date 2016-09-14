@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160904115729) do
     t.datetime "delivery_date"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "userid",         limit: 4
     t.integer  "pincode",        limit: 4
     t.integer  "user_id",        limit: 4
     t.string   "status",         limit: 255
@@ -157,7 +158,7 @@ ActiveRecord::Schema.define(version: 20160904115729) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                limit: 4,   default: 1
+    t.integer  "role_id",                limit: 4
     t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
     t.string   "invitation_token",       limit: 255
