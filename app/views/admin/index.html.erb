@@ -107,6 +107,41 @@
 		</div>
 		<!-- <div class="col-sm-2">Users</div> -->
 	</div>
+	<h3>Filter By : </h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Phone Status</th>
+				<th>Gender</th>
+				<th>Latest Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<form action="/admin/index" method="get">
+				<tr>
+					<td>
+					<input type="text" name="email" value=<%= params[:email] %>>
+					</input> </td>
+					<td>
+					<input type="text" name="phone" value=<%= params[:phone] %>>
+					</input> </td>
+					<td> <%= select_tag(:phone_number_status, options_for_select(['All', 'Unverified','Missing','Wrong Number','Verified'], params[:phone_number_status])) %> </td>
+					<td> <%= select_tag(:gender, options_for_select(['All', 'Male','Female','NA'], params[:gender])) %> </td>
+					<td> <%= select_tag(:latest_status, options_for_select(['All', 'Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], params[:latest_status])) %> </td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit" class="btn btn-danger">
+							Submit
+						</button>
+					</td>
+				</tr>
+			</form>
+		</tbody>
+	</table>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -117,6 +152,7 @@
 				<th>Stylist Comment</th>
 			</tr>
 		</thead>
+		<h5 style="color: red;">Number of records : <%= @allusers.count %></h5>
 		<tbody>
 			<% @allusers.each do |us| %>
 			<tr>

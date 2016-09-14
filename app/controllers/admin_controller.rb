@@ -3,7 +3,26 @@ class AdminController < ApplicationController
   before_action :authenticate_admin
   
   def index
-    @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id').order('users.created_at DESC')
+    @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
+    
+    if(params[:email] != 'All')
+      @allusers = @allusers.where(email: params[:email])
+    end   
+    if(params[:phone] != 'All')
+      @allusers = @allusers.where('userprofiles.phonenumber' => params[:phone])
+    end
+    if(params[:phone_number_status] != 'All')
+      @allusers = @allusers.where('userprofiles.phone_number_status' => params[:phone_number_status])
+    end
+    if(params[:gender] != 'All')
+      @allusers = @allusers.where('userprofiles.gender' => params[:gender])
+    end
+    if(params[:latest_status] != 'All')
+      @allusers = @allusers.where('userprofiles.latest_status' => params[:latest_status])
+    end
+    
+    @allusers = @allusers.order('users.created_at DESC')
+    
     @allusers = @allusers.paginate(:page => params[:page], :per_page => 30)
   end
   
