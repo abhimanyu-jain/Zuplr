@@ -7,7 +7,6 @@ class AdminController < ApplicationController
     @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
     
     if(params[:email] != 'All' && params[:email] != nil)
-      binding.pry
       @allusers = @allusers.where(email: params[:email])
     end   
     if(params[:phone] != 'All' && params[:phone] != nil)
