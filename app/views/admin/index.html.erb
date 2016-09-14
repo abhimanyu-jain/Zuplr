@@ -122,10 +122,10 @@
 			<form action="/admin/index" method="get">
 				<tr>
 					<td>
-					<input type="text" name="email" value=<%= params[:email] %>>
+					<input type="text" name="email" value=<%= params[:email] || 'All' %>>
 					</input> </td>
 					<td>
-					<input type="text" name="phone" value=<%= params[:phone] %>>
+					<input type="text" name="phone" value=<%= params[:phone] || 'All' %>>
 					</input> </td>
 					<td> <%= select_tag(:phone_number_status, options_for_select(['All', 'Unverified','Missing','Wrong Number','Verified'], params[:phone_number_status])) %> </td>
 					<td> <%= select_tag(:gender, options_for_select(['All', 'Male','Female','NA'], params[:gender])) %> </td>
