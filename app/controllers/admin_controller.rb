@@ -3,13 +3,12 @@ class AdminController < ApplicationController
   before_action :authenticate_admin
   
   def index
-    #binding.pry
     @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
     
-    if(params[:email] != 'All' && params[:email] != nil)
+    if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @allusers = @allusers.where(email: params[:email])
     end   
-    if(params[:phone] != 'All' && params[:phone] != nil)
+    if(params[:phone] != 'All' && params[:phone] != nil && params[:phone] != "")
       @allusers = @allusers.where('userprofiles.phonenumber' => params[:phone])
     end
     if(params[:phone_number_status] != 'All' && params[:phone_number_status] != nil)
