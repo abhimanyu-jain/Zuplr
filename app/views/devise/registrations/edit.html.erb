@@ -1,4 +1,5 @@
 <div class="content padding-space">
+	<br /><br />
   <h3 class="title" style="text-align: center;">Edit Profile</h3>
   <hr class="bms-style">
   <div class="container">
@@ -11,7 +12,7 @@
         <div class="field form-group">
           <%= f.label :email, :class => 'col-sm-3 control-label'%>
           <div class="col-sm-9">
-            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, class: "form-control login_fields" %>
           </div>
         </div>
 
@@ -22,7 +23,7 @@
         <div class="field form-group">
           <%= f.label :password, :class => 'col-sm-3 control-label' %>
           <div class="col-sm-9">
-            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control login_fields" %>
              <!-- <span>(leave blank if you don't want to change it)</span> -->
           </div>
         </div>
@@ -30,28 +31,28 @@
         <div class="field form-group">
           <%= f.label :password_confirmation, :class => 'col-sm-3 control-label' %>
            <div class="col-sm-9">
-            <%= f.password_field :password_confirmation,class: "form-control", autocomplete: "off" %>
+            <%= f.password_field :password_confirmation,class: "form-control login_fields", autocomplete: "off" %>
            </div>
         </div>
 
         <div class="field form-group">
           <%= f.label :current_password, :class => 'col-sm-3 control-label' %>
           <div class="col-sm-9">
-            <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
+            <%= f.password_field :current_password, class: "form-control login_fields", autocomplete: "off" %>
              <!-- <span>(we need your current password to confirm your changes)</span> -->
           </div>
         </div> 
         <div class="field form-group">
           <label class='col-sm-3 control-label'>Phone Number</label>
           <div class="col-sm-9">
-            <%= f.text_field :user_profile_phone, value: @userprofile.try(:phonenumber), class: "form-control", autocomplete: "off" %>
+            <%= f.text_field :user_profile_phone, value: @userprofile.try(:phonenumber), class: "form-control login_fields", autocomplete: "off" %>
           </div>
         </div> 
 
         <div class="field form-group">
           <label class='col-sm-3 control-label'>City</label>
           <div class="col-sm-9">
-            <%= f.text_field :user_profile_city, value: @userprofile.try(:city), class: "form-control", autocomplete: "off" %>
+            <%= f.text_field :user_profile_city, value: @userprofile.try(:city), class: "form-control login_fields", autocomplete: "off" %>
           </div>
         </div>
 

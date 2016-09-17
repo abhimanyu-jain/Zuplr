@@ -1,9 +1,9 @@
 <script>
 	$(document).ready(function() {
-	$('#input-email').focus(function() {
-   		$("#myCarousel").carousel('pause');
-    });
-});
+		$('#input-email').focus(function() {
+			$("#myCarousel").carousel('pause');
+		});
+	}); 
 </script>
 
 <section id="home">
@@ -30,3 +30,7 @@
 <section id="social">
 	<%= render 'social' %>
 </section>
+
+<!-- Trigger the modal with a button -->
+<%= render 'login_popup' %>
+<%= render 'signup_popup' %>
