@@ -28,7 +28,9 @@ class RegistrationsController < Devise::RegistrationsController
     @profile = Userprofile.create({ 
                   user_id: resource.id,
                   name: params['user']['name'],
-                  phonenumber: params['user']['phone'] || ''
+                  phonenumber: params['user']['phone'] || '',
+                  latest_status: 'Yet To Contact',
+                  phone_number_status: 'Unverified'
                 })
     @user.userprofile_id = @profile.id
     @user.save

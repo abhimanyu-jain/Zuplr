@@ -127,9 +127,9 @@
 					<td>
 					<input type="text" name="phone" value=<%= params[:phone] || 'All' %>>
 					</input> </td>
-					<td> <%= select_tag(:phone_number_status, options_for_select(['All', 'Unverified','Missing','Wrong Number','Verified'], params[:phone_number_status])) %> </td>
+					<td> <%= select_tag(:phone_number_status, options_for_select(['All', 'Unverified','Missing','Wrong Number','Verified','Not Picking Up'], params[:phone_number_status])) %> </td>
 					<td> <%= select_tag(:gender, options_for_select(['All', 'Male','Female','NA'], params[:gender])) %> </td>
-					<td> <%= select_tag(:latest_status, options_for_select(['All', 'Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], params[:latest_status])) %> </td>
+					<td> <%= select_tag(:latest_status, options_for_select(['All','Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], params[:latest_status])) %> </td>
 				</tr>
 				<tr>
 					<td>
@@ -169,7 +169,7 @@
 				</button></td>
 				<td> Phone Status :
 				<br />
-				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified'], us.phone_number_status), :onchange => "update_phone_status(" + us.id.to_s + " ,this.value)") %>
+				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified','Not Picking Up'], us.phone_number_status), :onchange => "update_phone_status(" + us.id.to_s + " ,this.value)") %>
 				<br />
 				<br />
 				Gender :
@@ -179,7 +179,7 @@
 				<br />
 				Latest Status :
 				<br />
-				<%= select_tag(:latest_status, options_for_select(['Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %> </td>
+				<%= select_tag(:latest_status, options_for_select(['Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], us.latest_status), :onchange => "update_latest_status(" + us.id.to_s + " ,this.value)") %> </td>
 				<td> <%= us.created_at.to_date.to_s + " " +  us.created_at.to_s(:time) %> </td>
 				<td>
 				<button type="button" id="getStyleData" onclick="getStyleData(<%= us.id %>, '<%= us.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">
