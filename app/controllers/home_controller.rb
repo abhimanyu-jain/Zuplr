@@ -63,5 +63,5 @@ class HomeController < ApplicationController
    else
      request.user_agent =~ /Mobile|webOS/
    end
-end
+  end
 end
