@@ -88,6 +88,7 @@
 	<br />
 	<div class ="row" style="margin-top: 80px;">
 		<div class="col-md-2"></div>
+		<% if @mobile == nil %>
 		<div class="col-md-4 form-section">
 			<p>
 				<h1 class="main_tagline"> Zuplr
@@ -101,7 +102,25 @@
 
 			<%= button_to "Get Started", "/style-log", method: :get, id: "stylist-contact-submit", class: "btn btn-success center-block", style: "width: 300px;" %>
 		</div>
-		<div class="col-md-6"></div>
+
+		<% else %>
+		
+		<div class="col-md-4">
+			<p>
+				<h2 class="mobile_tagline">
+				<br />
+				<br />
+				The simplest way to get great clothing, picked for you by a stylist. </h2>
+			</p>
+			<br />
+			<br />
+			<br />
+
+			<%= button_to "Get Started", "/style-log", method: :get, id: "stylist-contact-submit", class: "btn btn-success center-block", style: "width: 300px;" %>
+		</div>
+
+		<% end %>
+				<div class="col-md-6"></div>
 	</div>
 	<br />
 	<% end %>
