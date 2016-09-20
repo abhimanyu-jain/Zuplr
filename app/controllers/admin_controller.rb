@@ -86,26 +86,11 @@ class AdminController < ApplicationController
     render :nothing => true
   end
   
-  def dispatchorder
+  def update_order_status
     order_id = params["order_id"]
+    order_status = params["order_status"]
     order = Order.find_by_id(order_id)
-    order.status = "DISPATCHED"
-    order.save
-    render :nothing => true
-  end
-  
-  def completeorder
-    order_id = params["order_id"]
-    order = Order.find_by_id(order_id)
-    order.status = "COMPLETED"
-    order.save
-    render :nothing => true
-  end
-  
-  def cancelorder
-    order_id = params["order_id"]
-    order = Order.find_by_id(order_id)
-    order.status = "CANCELLED BY ZUPLR"
+    order.status = order_status
     order.save
     render :nothing => true
   end

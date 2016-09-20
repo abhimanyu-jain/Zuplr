@@ -40,11 +40,9 @@ Rails.application.routes.draw do
   get '/admin/getallorders' => 'admin#getallorders'
   get '/admin/getpendingorders' => 'admin#getpendingorders'
   post '/admin/updatecomment' => 'admin#updatecomment'
-  post '/admin/dispatchorder' => 'admin#dispatchorder'
-  post '/admin/completeorder' => 'admin#completeorder'
-  post '/admin/cancelorder' => 'admin#cancelorder'
   post '/admin/updateuserstylistcomment' => 'admin#updateuserstylistcomment'
   post '/admin/new_order' => 'admin#backendorder'
+  post '/admin/update_order_status' => 'admin#update_order_status'
   
   
   # Routes for deliveries

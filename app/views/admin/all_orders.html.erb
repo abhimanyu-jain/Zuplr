@@ -32,57 +32,23 @@
 			});
 		}
 		
-		function dispatch(order_id)
+		function update_order_status(order_id, status)
 		{
 			$.ajax({
 				type : "POST",
-				url : "/admin/dispatchorder",
+				url : "/admin/update_order_status",
 				data : {
-					order_id : order_id
+					order_id : order_id,
+					order_status : status
 				},
 				success : function(result) {
 					index = "#status"+order_id;
-					status = "DISPATCHED";
 					$(index).html(status);
-					//location.reload();
+					location.reload();
 				},
 			});
 		}
-		
-		function complete(order_id)
-		{
-			$.ajax({
-				type : "POST",
-				url : "/admin/completeorder",
-				data : {
-					order_id : order_id
-				},
-				success : function(result) {
-					index = "#status"+order_id;
-					status = "COMPLETED";
-					$(index).html(status);
-					//location.reload();
-				},
-			});
-		}
-		
-		function cancel(order_id)
-		{
-			$.ajax({
-				type : "POST",
-				url : "/admin/cancelorder",
-				data : {
-					order_id : order_id
-				},
-				success : function(result) {
-					index = "#status"+order_id;
-					status = "CANCELLED BY ZUPLR";
-					$(index).html(status);
-					
-					//location.reload();	
-				},
-			});
-		}
+	
 </script>
 
 <div style="padding-top:120px" class="container">
@@ -111,10 +77,24 @@
 				<td><%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %></td>
 				<td><%= order.order_code %></td>
 				<td>
-					<div id = "status<%= order.id %>"><%= order.status%></div>
-					<input class="dispatch" type="button" value="Dispatch Order" onclick="dispatch(<%= order.id %>)" />
-					<input class="complete" type="button" value="Complete Order" onclick="complete(<%= order.id %>)" />
-					<input class="cancel" type="button" value="Cancel Order" onclick="cancel(<%= order.id %>)" />
+					<div id = "status<%= order.id %>"><%= order.status%></div><br />
+					<% if order.status == 'REQUESTED' %>
+					<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
+					<br />
+					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+					<% elsif order.status == 'BOX READY' %>
+					<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />
+					<br />
+					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+					<% elsif order.status == 'DISPATCHED' %>
+					<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
+					<% elsif order.status == 'DELIVERED' %>
+					<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
+					<br />
+					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+					<% elsif order.status == 'PICKUP COMPLETED' %>
+					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+					<% end %>
 				</td>
 				<td><%= order.scheduleddeliverydate %></td>
 				<td>
