@@ -92,6 +92,12 @@ class AdminController < ApplicationController
     order = Order.find_by_id(order_id)
     order.status = order_status
     order.save
+    
+    #Adding to status history
+    order_status_history = OrderStatusHistory.new
+    order_status_history.order_id = order_id
+    order_status_history.status = order_status
+    order_status_history.save
     render :nothing => true
   end
   

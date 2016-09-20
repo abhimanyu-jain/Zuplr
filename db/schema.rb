@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904115729) do
+ActiveRecord::Schema.define(version: 20160920144908) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160904115729) do
     t.datetime "delivery_date"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "userid",         limit: 4
     t.integer  "pincode",        limit: 4
     t.integer  "user_id",        limit: 4
     t.string   "status",         limit: 255
@@ -95,6 +94,15 @@ ActiveRecord::Schema.define(version: 20160904115729) do
   end
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "order_status_histories", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_status_histories", ["order_id"], name: "index_order_status_histories_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_code",            limit: 255
@@ -158,7 +166,7 @@ ActiveRecord::Schema.define(version: 20160904115729) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                limit: 4
+    t.integer  "role_id",                limit: 4,   default: 1
     t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
     t.string   "invitation_token",       limit: 255
@@ -184,6 +192,7 @@ ActiveRecord::Schema.define(version: 20160904115729) do
   add_foreign_key "deliveries", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "userdata", "users"
   add_foreign_key "userprofiles", "users"
