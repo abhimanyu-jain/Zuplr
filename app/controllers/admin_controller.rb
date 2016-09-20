@@ -101,6 +101,12 @@ class AdminController < ApplicationController
     render :nothing => true
   end
   
+  def get_order_history
+    order_id = params[:order_id]
+    @history = OrderStatusHistory.select("created_at, status").where("order_id = "+order_id.to_s)
+    render :json => @history.to_json
+  end
+  
   private
   def authenticate_admin
     if current_user == nil
@@ -120,5 +126,5 @@ class AdminController < ApplicationController
   def backend_user_params
     params.permit()
   end
-    
+  
 end
