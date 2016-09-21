@@ -53,11 +53,13 @@ class AdminController < ApplicationController
   end
   
   def backendorder
+    #To create order from backend after phone call or whatsapp chat
     userprofile = Userprofile.find_by_id(params["userprofile_id"])
     userprofile.address = params["address"]
     userprofile.phonenumber = params["phone"]
     userprofile.pincode = params["pincode"]
     userprofile.save
+    
     order = Order.new
     order.scheduleddeliverydate = params["scheduleddeliverydate"]
     order.stylist_comments = params["stylist_comments"]
@@ -65,6 +67,13 @@ class AdminController < ApplicationController
     user = User.find_by_userprofile_id(params["userprofile_id"])
     order.user_id = user.id
     order.save
+    
+    #Adding to status history
+    order_status_history = OrderStatusHistory.new
+    order_status_history.order_id = order.id
+    order_status_history.status = order.status
+    order_status_history.save
+   
     render :nothing => true
   end
   
