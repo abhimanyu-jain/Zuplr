@@ -1,30 +1,29 @@
 <script>
 	$(document).ready(function() {
-	$('#current-style-submission').click(function() {
-    window.location.href = '/confirmation';
- });
-});
+		$('#current-style-submission').click(function() {
+			window.location.href = '/confirmation';
+		});
+	}); 
 </script>
 
 <div style="padding-top:120px" class="container">
-	<div style="padding-left: 5%; color: red;"><%= flash[:notice] %></div>
+	<div style="padding-left: 5%; color: red;">
+		<%= flash[:notice] %>
+	</div>
 	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">Hi <%= @name %>, Welcome to Zuplr's style log!</h2>
 	<br>
 
 	<div id = "submission-form">
 		<form class="style-log" action="/users/save-data" method="POST">
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-			<h3>
-				
-			</h3>
+			<h3></h3>
 			<p>
-				
+
 			</p>
-			<h4>
-				Please fill out the following style information. Based on that, our stylist will send a box of 5 clothes, picked specifically for you.
-				<br /><br />
-				You can try them on at home, and keep ONLY WHAT YOU LIKE and return the rest to us!
-			</h4>
+			<h4> Please fill out the following style information. Based on that, our stylist will send a box of 5 clothes, picked specifically for you.
+			<br />
+			<br />
+			You can try them on at home, and keep ONLY WHAT YOU LIKE and return the rest to us! </h4>
 			<br />
 			<h4 style="color:#dc0060">Section A - Your body statistics and Fittings </h4>
 			<ul>
