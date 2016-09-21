@@ -92,7 +92,11 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td>Email : <%= order.email %>
+				<td>
+				Name : <%= order.name %>
+				<br />
+				<br />
+				Email : <%= order.email %>
 				<br />
 				<br />
 				Phone : <%= order.phonenumber %>
