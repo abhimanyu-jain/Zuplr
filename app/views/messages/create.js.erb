@@ -1,4 +1,0 @@
-<% publish_to "/messages/#{@conversation.id}/#{@conversation.sender_id}/#{@conversation.receiver_id}" do %>
-  $('#chat').append("<%= j render @message %>");
-<% end %>
-$('.reply-form')[0].reset();
