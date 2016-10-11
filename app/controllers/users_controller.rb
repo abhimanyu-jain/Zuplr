@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     end
 
     def styledata
-        @userdata = Userprofile.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_id(current_user.userprofile_id)
         if !@userdata.nil? and !@userdata.data.nil?
             @userdata = JSON.parse @userdata.data
         end	
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     end
 
     def savenumber
-        @userdata = Userprofile.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_id(current_user.userprofile_id)
         @user = User.find_by_email(current_user.email)
 
         if @userdata
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
 
 
     def save
-        @userdata = Userprofile.find_by_user_id(current_user.id)
+        @userdata = Userprofile.find_by_id(current_user.userprofile_id)
         if @userdata
             @userdata.update_attributes(
                 :data => (params['user']).to_json,
@@ -123,7 +123,7 @@ private
     def userdatum_params
         parameters = {
             :user_id => current_user.id,
-            :data => (params['user']).to_json
+            :data => params['user']
         }
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920144908) do
+ActiveRecord::Schema.define(version: 20161011201738) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,38 +19,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "remark",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "conversations", force: :cascade do |t|
-    t.integer  "sender_id",   limit: 4
-    t.integer  "receiver_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  create_table "deliveries", force: :cascade do |t|
-    t.string   "address1",       limit: 255
-    t.string   "address2",       limit: 255
-    t.string   "city",           limit: 255
-    t.integer  "phonenumber",    limit: 8
-    t.datetime "delivery_date"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "pincode",        limit: 4
-    t.integer  "user_id",        limit: 4
-    t.string   "status",         limit: 255
-    t.string   "session_number", limit: 255
-  end
-
-  add_index "deliveries", ["user_id"], name: "index_deliveries_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -70,31 +38,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "items", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "leads", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "phonenumber", limit: 8
-    t.string   "city",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "email",       limit: 255
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text     "message_body",    limit: 65535
-    t.integer  "user_id",         limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "conversation_id", limit: 4
-  end
-
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
-
   create_table "order_status_histories", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
     t.string   "status",     limit: 255
@@ -112,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.string   "status",                limit: 255
     t.date     "scheduleddeliverydate"
     t.text     "stylist_comments",      limit: 65535
+    t.datetime "call_date_time"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -123,17 +67,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "userdata", force: :cascade do |t|
-    t.text     "data",        limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "city",        limit: 255
-    t.integer  "phonenumber", limit: 8
-    t.integer  "user_id",     limit: 4
-  end
-
-  add_index "userdata", ["user_id"], name: "index_userdata_on_user_id", using: :btree
-
   create_table "userprofiles", force: :cascade do |t|
     t.text     "data",                limit: 65535
     t.string   "city",                limit: 255
@@ -141,7 +74,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.string   "name",                limit: 255
-    t.integer  "user_id",             limit: 4
     t.integer  "credits",             limit: 4,     default: 0
     t.string   "address",             limit: 255
     t.text     "stylist_comment",     limit: 65535
@@ -150,8 +82,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.string   "latest_status",       limit: 255
     t.integer  "pincode",             limit: 4
   end
-
-  add_index "userprofiles", ["user_id"], name: "index_userprofiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -167,7 +97,6 @@ ActiveRecord::Schema.define(version: 20160920144908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_id",                limit: 4,   default: 1
-    t.integer  "userdatum_id",           limit: 4
     t.integer  "userprofile_id",         limit: 4
     t.string   "invitation_token",       limit: 255
     t.datetime "invitation_created_at"
@@ -185,18 +114,11 @@ ActiveRecord::Schema.define(version: 20160920144908) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
-  add_index "users", ["userdatum_id"], name: "index_users_on_userdatum_id", using: :btree
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
-  add_foreign_key "comments", "users"
-  add_foreign_key "deliveries", "users"
   add_foreign_key "identities", "users"
-  add_foreign_key "messages", "users"
   add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "userdata", "users"
-  add_foreign_key "userprofiles", "users"
   add_foreign_key "users", "roles"
-  add_foreign_key "users", "userdata"
   add_foreign_key "users", "userprofiles"
 end

@@ -61,7 +61,7 @@ class AdminController < ApplicationController
     userprofile.save
     
     order = Order.new
-    order.scheduleddeliverydate = params["scheduleddeliverydate"]
+    #order.scheduleddeliverydate = params["scheduleddeliverydate"]
     order.stylist_comments = params["stylist_comments"]
     order.status = 'REQUESTED'
     user = User.find_by_userprofile_id(params["userprofile_id"])

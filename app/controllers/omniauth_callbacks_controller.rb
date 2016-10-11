@@ -1,9 +1,17 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def profile_create(user)
-    @profile = Userprofile.create({ user_id: resource.id, name: user.name })
+    @profile = Userprofile.create({ name: user.name })
     @user.userprofile_id = @profile.id
     @user.save
+    
+    if(cookies[:userprofile])
+       @profile.update_attributes(
+        :data => cookies[:userprofile] || ''
+        )
+      @profile.save
+    end
+    
   end
 
   def facebook
@@ -29,7 +37,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       @identity.update_attribute( :user_id, @user.id )
-      @profile = Userprofile.find_by_user_id(@identity.user_id) 
+      userprofile_id = @user.userprofile_id
+      if userprofile_id != nil
+        @profile = Userprofile.try(:find, userprofile_id)
+      end
       profile_create(@identity) if @profile.nil?
       # This is because we've created the user manually, and Device expects a
       # FormUser class (with the validations)

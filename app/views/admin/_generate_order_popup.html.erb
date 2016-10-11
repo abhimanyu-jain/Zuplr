@@ -14,16 +14,16 @@
 
 				<script>
 					$(function() {
-						$("#scheduleddeliverydate").datepicker({
-							minDate : 10
-						});
+						//$("#scheduleddeliverydate").datepicker({
+						//	minDate : 10
+						//});
 						$('#submission').click(function() {
 							$.ajax({
 								url : '/admin/new_order',
 								method : "POST",
 								data : {
 									userprofile_id : $("#input-user-id").val(),
-									scheduleddeliverydate : $("#scheduleddeliverydate").val(),
+									//scheduleddeliverydate : $("#scheduleddeliverydate").val(),
 									address : $("#input-address").val(),
 									phone : $("#input-phone").val(),
 									pincode : $("#input-pincode").val(),
@@ -62,10 +62,10 @@
 							<br />
 						</div>
 						<div class="col-sm-6">
-							<h4>Date of Delivery : </h4>
+							<!--<h4>Date of Delivery : </h4>
 							<input class="input-ic" id= "scheduleddeliverydate" type="text" style = "width:300px;" required />
 							<br />
-							<br />
+							<br />-->
 							<h4>Stylist Comments : </h4>
 							<textarea class="input-comments" rows="5" id="input-comments" style = "width:300px;" required ></textarea>
 							<br />

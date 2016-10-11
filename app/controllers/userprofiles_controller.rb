@@ -1,6 +1,6 @@
 class UserprofilesController < ApplicationController
   before_action :set_userprofile, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:styledata, :create]
   # GET /userprofiles
   # GET /userprofiles.json
   def index
@@ -42,7 +42,9 @@ class UserprofilesController < ApplicationController
   end
 
   def confirmation
-    @userprofile = Userprofile.find_by_user_id(current_user.id)
+    if current_user
+      @userprofile = Userprofile.find_by_id(current_user.userprofile_id)
+    end
     render 'info_confirmation'
   end
 
@@ -52,7 +54,7 @@ class UserprofilesController < ApplicationController
     end
 
     @user = User.find_by_email(current_user.email)
-    @userprofile = Userprofile.find_by_user_id(current_user.id)
+    @userprofile = Userprofile.find_by_id(current_user.userprofile_id)
 
     if @userprofile
       @userprofile.update_attributes(
@@ -80,14 +82,17 @@ class UserprofilesController < ApplicationController
   end
 
   def styledata
-    @userprofile = Userprofile.find_by_user_id(current_user.id)
-    if !@userprofile.nil? and !@userprofile.data.nil? and @userprofile.data != 'null'
-      @userdata = JSON.parse @userprofile.data
-    end
+    if current_user
+      @userprofile = Userprofile.find_by_id(current_user.userprofile_id)
+      if !@userprofile.nil? and !@userprofile.data.nil? and @userprofile.data != 'null'
+        @userdata = JSON.parse @userprofile.data
+      end
 
-    # @user = User.find_by_email(current_user.email)
-    # @identity = Identity.find_by_email(current_user.email)
-    @fb_id = Identity.find_by(user_id: current_user.id, provider: 'facebook')
+      # @user = User.find_by_email(current_user.email)
+      # @identity = Identity.find_by_email(current_user.email)
+      @fb_id = Identity.find_by(user_id: current_user.id, provider: 'facebook')
+
+    end
 
     #this is to set the name as Guest if the person isn't logged in. TODO : Take it out into global helper function and use it everywhere
     @name = if (@userprofile) then (@userprofile.name) else "Guest" end
@@ -97,45 +102,50 @@ class UserprofilesController < ApplicationController
   # POST /userprofiles
   # POST /userprofiles.json
   def create
-    #check to see if we are only saving or saving and proceeding to order as well
-    proceed = params["save-and-order"]
+    if current_user
+      #check to see if we are only saving or saving and proceeding to order as well
+      proceed = params["save-and-order"]
 
-    @userprofile = Userprofile.find_by_user_id(current_user.id)
-    if @userprofile
-      @userprofile.update_attributes(
-      :data => (params['user']).to_json,
-      :user_id => current_user.id
-    )
+      @userprofile = Userprofile.find_by_id(current_user.userprofile_id)
+      if @userprofile
+        @userprofile.update_attributes(
+        :data => (params['user']).to_json
+      )
+      else
+        @userprofile = Userprofile.new(userprofile_params)
+      @userprofile.save
+      end
+
+      @identity = Identity.find_by_email(current_user.email)
+      @user = User.find_by_email(current_user.email)
+
+      # Update user also
+      @user.update_attributes({
+        :userprofile_id => @userprofile.id
+      })
+
+      # RegisterMailer.style_log_thanks(@identity).deliver_later
+
+      # @userprofile = Userprofile.new(userprofile_params)
+
+      # respond_to do |format|
+      #   if @userprofile.save
+      #     format.html { redirect_to @userprofile, notice: 'Userprofile was successfully created.' }
+      #     format.json { render :show, status: :created, location: @userprofile }
+      #   else
+      #     format.html { render :new }
+      #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
+      #   end
+      # end
+
+      if proceed == nil
+        redirect_to '/style-log', notice: 'Userprofile was successfully updated.'
+      else
+        redirect_to '/confirmation'
+      end
     else
-      @userprofile = Userprofile.new(userprofile_params)
-    @userprofile.save
-    end
-
-    @identity = Identity.find_by_email(current_user.email)
-    @user = User.find_by_email(current_user.email)
-
-    # Update user also
-    @user.update_attributes({
-      :userprofile_id => @userprofile.id
-    })
-
-    # RegisterMailer.style_log_thanks(@identity).deliver_later
-
-    # @userprofile = Userprofile.new(userprofile_params)
-
-    # respond_to do |format|
-    #   if @userprofile.save
-    #     format.html { redirect_to @userprofile, notice: 'Userprofile was successfully created.' }
-    #     format.json { render :show, status: :created, location: @userprofile }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @userprofile.errors, status: :unprocessable_entity }
-    #   end
-    # end
-    if proceed == nil
-      redirect_to '/style-log', notice: 'Userprofile was successfully updated.'
-    else
-      redirect_to '/confirmation'
+      cookies[:userprofile] = params['user'].to_json;
+      redirect_to '/register'
     end
   end
 

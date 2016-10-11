@@ -1,70 +1,116 @@
 <head>
 	<script>
 		$(function() {
-			$("#scheduleddeliverydate").datepicker({
-				minDate : 10
+			//$("#scheduleddeliverydate").datepicker({
+			//	minDate : 10
+			//});
+
+			$('#datetimepicker').datetimepicker({
+				minDate : '+1970/01/02',
+				allowTimes : ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+
 			});
+
 			$('#submission').click(function() {
 
-				$.ajax({
+			$.ajax({
 
-					url : '/orders',
-					method : "POST",
-					data : {
-						scheduleddeliverydate : $("#scheduleddeliverydate").val(),
-						address : $("#input-address").val(),
-						phone : $("#input-phone").val(),
-						pincode : $("#input-pincode").val()
-					},
-					success : function(data) {
-						$('#details-confirmation-form').toggle();
-						$('#confirm-submission').toggle();
-						order_code = $.parseJSON(data);
-						$('#result_code').html(order_code.order_code);
-					},
+			url : '/orders',
+			method : "POST",
+			data : {
+			calldate : $("#datetimepicker").val(),
+			address : "",//$("#input-address").val(),
+			phone : $("#input-phone").val(),
+			pincode : "000000"//$("#input-pincode").val()
+			},
+			success : function(data) {
+				 $('#details-confirmation-form').toggle();
+				 $('#confirm-submission').toggle();
+				 order_code = $.parseJSON(data);
+				 $('#result_code').html(order_code.order_code);
+			}, error : function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log("Internal Server Error : " + textStatus);
+			}
+		});
 
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log("Internal Server Error : " + textStatus);
-					}
-				});
-
-			});
+		});
 		});
 	</script>
 
 	<style>
 		.input-ic {
 			width: 500px;
+			height: 55px;
+			border: 1px solid rgba(220, 0, 96, 0.2);
+			font-size: 12px;
+			font-weight: bold;
+			margin: 5px 5px;
+			line-height: 25px;
+			font-family: monospace;
+			padding-left: 5px;
 		}
 		.input-address {
 			width: 500px;
 			height: 200px;
 		}
+		legend {
+			border-bottom: 0;
+		}
 	</style>
 </head>
 
-<div style="padding-top:120px" class="container" id="details-confirmation-form">
+<div style="padding-top:120px;" class="container" id="details-confirmation-form">
 
-	
-	<h2 style="text-align: left; padding-left: 5%; color: #dc0060">
-		Please confirm the following details : </h2>
+	<h2 style="text-align: center; color: #dc0060"> Please confirm the following details</h2>
 	<br />
+	<br />
+	<div class="billing-explanation row">
+		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+			You will get a preview of your items prior to shipping
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+			You will have 7 full days after delivery to decide what to keep
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+			Only pay for what you keep
+		</div>
+	</div>
+	<div class="divider tiny"></div>
 	<br />
 	<br />
 	<form class="style-log">
-		<h4>Phone Number : </h4>
-		<input class="input-ic" id="input-phone" value="<%= @userprofile['phonenumber'] %>" placeholder="" type="text" required />
+		<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: left;">
+			<legend>
+				Phone Number :
+			</legend>
+
+			<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
+			<br />
+			<br />
+			<!--</div>
+
+			<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">-->
+			<legend>
+				When would you like to schedule a call with your stylist?
+			</legend>
+			<input class="input-ic form-control" id= "datetimepicker" placeholder="Date and Time" type="text" required />
+			<br />
+			<!--<legend>
+				Date of Delivery :
+			</legend>
+			<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
+			-->
+		</div>
 		<br />
 		<br />
-		<h4>Address : </h4>
-		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] %></textarea>
+		<!--<h4>Address : </h4>
+		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] if defined?(@userprofile) %></textarea>
 		<br />
 		<br />
 		<h4>Pincode : </h4>
-		<input class="input-ic" id="input-pincode" value="<%= @userprofile['pincode'] %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
-		<br /><br />
-		<h4>Date of Delivery : </h4>
-		<input class="input-ic" id= "scheduleddeliverydate" placeholder="" type="text" required />
+		<input class="input-ic" id="input-pincode" value="<%= @userprofile['pincode'] if defined?(@userprofile) %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
+		<br />
+		<br />-->
 		<br />
 		<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
 			Confirm
@@ -76,7 +122,8 @@
 	<div style="text-align: left; padding-left: 5%;">
 		<p style="margin:0;padding:0;color:#F6358A;letter-spacing:3px;text-align: center">
 			WELCOME TO ZUPLR
-		</p><br />
+		</p>
+		<br />
 		<p style="margin:0;padding:0;color:#837c77;text-align: center">
 			Thanks for taking time out to fill the Style Log. Soon a stylist will be getting in touch with you.
 			<br />
