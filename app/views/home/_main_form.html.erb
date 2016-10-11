@@ -4,13 +4,13 @@
 		font-family: "Serifa", serif;
 		color: black;
 	}
-	
+
 	.mobile_tagline {
 		text-align: center;
 		font-family: "Serifa", serif;
 		color: white;
 	}
-	
+
 	.form-section {
 		margin-top: 0px;
 		background-color: white;
@@ -34,57 +34,53 @@
 </style>
 <div id= "contact-form">
 	<br />
-	<% if current_user.nil? %>
+	<!--
 	<div class ="row" style="margin-top: 80px;">
-		<div class="col-md-2"></div>
-		
-		<% if @mobile == nil %>
-		
-		<div class="col-md-4 form-section">		
-			<p>
-				<h1 class="main_tagline"> Zuplr
-				<br />
-				<br />
-				The simplest way to get great clothing, picked for you by a stylist. </h1>
-			</p>
-			<br />
-			<br />
-			<br />
-			<a href="/users/auth/facebook"><img src="fblogin.png" class="img-responsive" style="margin: auto; width: 307px;"></a>
-			<a href="/users/auth/google_oauth2"><img src="glogin.png" class="img-responsive" style="margin-top: 10px; margin-left: auto; margin-right: auto; width: 300px; height: 64px;"></a>
-			<div style="text-align: center; color: white; margin-top: 10px;">
-				<a style="color: black;" data-toggle="modal" data-target="#loginModal"><u>Login</u></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a style="color: black;" data-toggle="modal" data-target="#signupModal"><u>Sign up with Email</u></a>
-			</div>
-		</div>
-		
-		<% else %>
-		
-		<div class="col-md-4">		
-			<p>
-				<h2 class="mobile_tagline"> 
-				<br />
-				<br />
-				The simplest way to get great clothing, picked for you by a stylist. 
-				</h2>
-			</p>
-			<br />
-			<br />
-			<br />
-			<a href="/users/auth/facebook"><img src="fblogin.png" class="img-responsive" style="margin: auto; width: 307px;"></a>
-			<a href="/users/auth/google_oauth2"><img src="glogin.png" class="img-responsive" style="margin-top: 10px; margin-left: auto; margin-right: auto; width: 300px; height: 64px;"></a>
-			<div style="text-align: center; color: white; margin-top: 10px;">
-				<a style="color: white;" data-toggle="modal" data-target="#loginModal"><u>Login</u></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<a style="color: white;" data-toggle="modal" data-target="#signupModal"><u>Sign up with Email</u></a>
-			</div>
-		</div>
-		
-		<% end %>
-		
-		<div class="col-md-2"></div>
-		<div class="col-md-4"></div>
+	<div class="col-md-2"></div>
+
+
+
+	<div class="col-md-4 form-section">
+	<p>
+	<h1 class="main_tagline"> Zuplr
+	<br />
+	<br />
+	The simplest way to get great clothing, picked for you by a stylist. </h1>
+	</p>
+	<br />
+	<br />
+	<br />
+	<a href="/users/auth/facebook"><img src="fblogin.png" class="img-responsive" style="margin: auto; width: 307px;"></a>
+	<a href="/users/auth/google_oauth2"><img src="glogin.png" class="img-responsive" style="margin-top: 10px; margin-left: auto; margin-right: auto; width: 300px; height: 64px;"></a>
+	<div style="text-align: center; color: white; margin-top: 10px;">
+	<a style="color: black;" data-toggle="modal" data-target="#loginModal"><u>Login</u></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a style="color: black;" data-toggle="modal" data-target="#signupModal"><u>Sign up with Email</u></a>
+	</div>
+	</div>
+
+	<div class="col-md-4">
+	<p>
+	<h2 class="mobile_tagline">
+	<br />
+	<br />
+	The simplest way to get great clothing, picked for you by a stylist.
+	</h2>
+	</p>
+	<br />
+	<br />
+	<br />
+	<a href="/users/auth/facebook"><img src="fblogin.png" class="img-responsive" style="margin: auto; width: 307px;"></a>
+	<a href="/users/auth/google_oauth2"><img src="glogin.png" class="img-responsive" style="margin-top: 10px; margin-left: auto; margin-right: auto; width: 300px; height: 64px;"></a>
+	<div style="text-align: center; color: white; margin-top: 10px;">
+	<a style="color: white;" data-toggle="modal" data-target="#loginModal"><u>Login</u></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a style="color: white;" data-toggle="modal" data-target="#signupModal"><u>Sign up with Email</u></a>
+	</div>
+	</div>
+
+	<div class="col-md-2"></div>
+	<div class="col-md-4"></div>
 	</div>
 	<br />
-	<% else %>
+	-->
 	<br />
 	<div class ="row" style="margin-top: 80px;">
 		<div class="col-md-2"></div>
@@ -104,7 +100,7 @@
 		</div>
 
 		<% else %>
-		
+
 		<div class="col-md-4">
 			<p>
 				<h2 class="mobile_tagline">
@@ -120,9 +116,8 @@
 		</div>
 
 		<% end %>
-				<div class="col-md-6"></div>
+		<div class="col-md-6"></div>
 	</div>
 	<br />
-	<% end %>
 
 </div>
