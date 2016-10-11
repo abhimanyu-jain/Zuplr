@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_action :authenticate_admin
   
   def index
-    @allusers = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id')
+    @allusers = User.select('*').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id')
     
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @allusers = @allusers.where(email: params[:email])
@@ -27,14 +27,14 @@ class AdminController < ApplicationController
   end
   
   def getuserprofile
-    @user = User.select('*').joins('JOIN userprofiles on users.id = userprofiles.user_id where users.userprofile_id = '+params[:id])
+    @user = User.select('*').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id where users.userprofile_id = '+params[:id])
     render 'getuserprofile'
   end
   
   def getallorders
-    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
+    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,  
     orders.stylist_comments, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
-    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on userprofiles.user_id = users.id').order('orders.created_at DESC')
+    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').order('orders.created_at DESC')
     
     @orders = @orders.paginate(:page => params[:page], :per_page => 30)
     
@@ -42,10 +42,10 @@ class AdminController < ApplicationController
   end
   
   def getpendingorders
-    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, 
+    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
     orders.stylist_comments, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
     joins('JOIN users on users.id = orders.user_id').joins('JOIN users on users.id = orders.user_id').
-    joins('JOIN userprofiles on userprofiles.user_id = users.id').where('status = "REQUESTED"').order('orders.created_at DESC')
+    joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').where('status = "REQUESTED"').order('orders.created_at DESC')
     
     @orders = @orders.paginate(:page => params[:page], :per_page => 30)
     

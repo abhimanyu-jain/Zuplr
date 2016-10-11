@@ -84,7 +84,7 @@
 				<th width="200">Updated On</th>
 				<th width="125">Order Code </th>
 				<th>Order Status</th>
-				<th width="200">Delivery Date</th>
+				<th width="200">Call Date Time</th>
 				<th width="300">Stylist Comments</th>
 			</tr>
 		</thead>
@@ -137,7 +137,7 @@
 				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
 					View History
 				</button></td>
-				<td><%= order.scheduleddeliverydate %></td>
+				<td><%= order.call_date_time %></td>
 				<td>
 				<form>
 					<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
