@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     phone = params["phone"]
     pincode = params["pincode"]
     stylist_comments = params["comments"]
-    call_date_time = DateTime.parse(params["calldate"])
+    call_date_time = Date.strptime(params["calldate"], "%m/%d/%Y")
     promo_code = params["promo_code"]
 
     @userprofile = Userprofile.find_by_id(current_user.userprofile_id)

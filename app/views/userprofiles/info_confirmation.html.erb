@@ -1,15 +1,14 @@
 <head>
 	<script>
 		$(function() {
-			//$("#scheduleddeliverydate").datepicker({
-			//	minDate : 10
-			//});
-
-			$('#datetimepicker').datetimepicker({
+			$("#datetimepicker").datepicker({
+				minDate : 1
+			});
+			/*$('#datetimepicker').datetimepicker({
 				minDate : '+1970/01/02',
 				allowTimes : ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
 
-			});
+			});*/
 
 			$('#submission').click(function() {
 
@@ -41,7 +40,6 @@
 
 	<style>
 		.input-ic {
-			width: 500px;
 			height: 55px;
 			border: 1px solid rgba(220, 0, 96, 0.2);
 			font-size: 12px;
@@ -54,6 +52,9 @@
 		.input-address {
 			width: 500px;
 			height: 200px;
+		}
+		#promo_code, #datetimepicker {
+			max-width: 300px;
 		}
 		legend {
 			border-bottom: 0;
@@ -84,9 +85,11 @@
 	<br />
 	<br />
 	<br />
+	<br />
+	<br />
 	<form class="confirmation-details">
 		<div class="row">
-			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
+			<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 				<legend>
 					Phone Number
 				</legend>
@@ -96,11 +99,11 @@
 				<br />
 			</div>
 
-			<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
+			<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">
 				<legend>
 					When would you like to schedule a call with your stylist?
 				</legend>
-				<input class="input-ic form-control" id= "datetimepicker" placeholder="Date and Time" type="text" required />
+				<input class="input-ic form-control" id= "datetimepicker" placeholder="Date" type="text" required />
 				<br />
 				<!--<legend>
 				Date of Delivery :
@@ -108,6 +111,13 @@
 				<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
 				-->
 			</div>
+			<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
+				<legend>
+					Promo Code :
+				</legend>
+				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
+			</div>
+			
 		</div>
 		<!--<br />
 		<br />
@@ -121,17 +131,12 @@
 		<br />
 		<br />-->
 		<div class="row">
-			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
+			<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: center;">
 				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
 					Confirm
 				</button>
 			</div>
-			<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
-				<legend>
-					Promo Code :
-				</legend>
-				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
-			</div>
+			
 		</div>
 	</form>
 </div>
