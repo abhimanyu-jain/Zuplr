@@ -6,13 +6,23 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     user = User.find_by_email(params[:user][:email])
+    redirect_path = '/'
     if user == nil
       super
       identity_create
       profile_create
+      profile_id  = @user.userprofile_id
+      profile = Userprofile.find_by_id(profile_id)
+     
+      if profile.try(:data) != nil
+         redirect_path = '/confirmation'
+      else
+         redirect_path = '/style-log' 
+      end
     else
-      redirect_to "/login"
+      redirect_path =  "/login"
     end
+    redirect_path
   end
 
   # Create a identity for normal registered users
@@ -25,15 +35,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def profile_create
-    
     @profile = Userprofile.create({ 
-                  user_id: resource.id,
                   name: params['user']['name'],
                   phonenumber: params['user']['phone'] || '',
                   latest_status: 'Yet To Contact',
                   phone_number_status: 'Unverified',
-                  data: cookies[:userprofile] || ''
+                  data: cookies[:userprofile]
                 })
+                cookies.delete :userprofile
     @user.userprofile_id = @profile.id
     @user.save
   end
@@ -65,6 +74,17 @@ class RegistrationsController < Devise::RegistrationsController
     else
       resource.update_with_password(params)
     end
+  end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+      # This is the point where user has been signed up but his/her profile has not been created yet. So we have to check cookies.
+      if cookies[:userprofile] != nil
+         '/confirmation'
+      else
+         '/style-log' 
+      end
   end
 
   private

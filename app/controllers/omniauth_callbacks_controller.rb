@@ -10,6 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         :data => cookies[:userprofile] || ''
         )
       @profile.save
+      cookies.delete :userprofile
     end
     
   end
@@ -52,6 +53,18 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+  
+  protected
+
+  def after_sign_up_path_for(resource)
+      # This is the point where user has been signed up but his/her profile has not been created yet. So we have to check cookies.
+      if cookies[:userprofile] != nil
+         '/confirmation'
+      else
+         '/style-log' 
+      end
+  end
+
 end
 
     

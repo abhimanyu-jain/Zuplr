@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   skip_before_filter  :verify_authenticity_token
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :check_if_user_provided_details, only: [:styledata, :index]
+  #before_action :check_if_user_provided_details, only: [:styledata, :index]
 
   def check_if_user_provided_details
     if user_signed_in? 
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     # Send email for signup
     @identity = Identity.find_by_email(current_user.email)
     user = User.find_by_id(current_user.id)
-    profile_id  = user  .userprofile_id
+    profile_id  = user.userprofile_id
     profile = Userprofile.find_by_id(profile_id)
     # Yet another crude hack before we understand devise
     # if @identity
@@ -55,11 +55,10 @@ class ApplicationController < ActionController::Base
       #root_path || stored_location_for(resource) || request.referer
     #  stored_location_for(resource) || root_path
       # @userprofile = Userprofile.find_by_user_id(current_user.id)
-
-       if profile.try(:phonenumber) != nil
+       if profile.try(:data) == nil && cookies[:userprofiles] == nil
          '/style-log'
        else
-         '/users/new-signup'
+         '/confirmation'
        end
    # end
   end
