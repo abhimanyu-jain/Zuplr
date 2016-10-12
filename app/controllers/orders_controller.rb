@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
     pincode = params["pincode"]
     stylist_comments = params["comments"]
     call_date_time = DateTime.parse(params["calldate"])
+    promo_code = params["promo_code"]
 
     @userprofile = Userprofile.find_by_id(current_user.userprofile_id)
     @userprofile.update_attributes(
@@ -48,7 +49,8 @@ class OrdersController < ApplicationController
     :order_code => Random.new.rand(1000..1000000000),
     #:scheduleddeliverydate => Date.strptime(params["scheduleddeliverydate"], "%m/%d/%Y").strftime("%Y-%m-%d"),
     :stylist_comments => stylist_comments,
-    :call_date_time => call_date_time
+    :call_date_time => call_date_time,
+    :promo_code => promo_code
     )
 
     respond_to do |format|
@@ -95,6 +97,6 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.permit(:scheduleddeliverydate, :call_date_time)
+    params.permit(:scheduleddeliverydate, :call_date_time, :promo_code)
   end
 end

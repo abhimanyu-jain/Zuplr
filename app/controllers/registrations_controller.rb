@@ -10,6 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     if user == nil
       super
       identity_create
+      saveUtmDataInUser
       profile_create
       profile_id  = @user.userprofile_id
       profile = Userprofile.find_by_id(profile_id)
@@ -44,6 +45,13 @@ class RegistrationsController < Devise::RegistrationsController
                 })
                 cookies.delete :userprofile
     @user.userprofile_id = @profile.id
+    @user.save
+  end
+  
+  def saveUtmDataInUser
+    @user.utm_source = cookies[:utm_source]
+    @user.utm_campaign = cookies[:utm_campaign]
+    @user.utm_medium = cookies[:utm_medium]
     @user.save
   end
 

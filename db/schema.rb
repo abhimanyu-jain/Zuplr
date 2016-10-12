@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011201738) do
+ActiveRecord::Schema.define(version: 20161012225426) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161011201738) do
     t.date     "scheduleddeliverydate"
     t.text     "stylist_comments",      limit: 65535
     t.datetime "call_date_time"
+    t.string   "promo_code",            limit: 255
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -106,6 +107,9 @@ ActiveRecord::Schema.define(version: 20161011201738) do
     t.integer  "invited_by_id",          limit: 4
     t.string   "invited_by_type",        limit: 255
     t.integer  "invitations_count",      limit: 4,   default: 0
+    t.string   "utm_source",             limit: 255
+    t.string   "utm_campaign",           limit: 255
+    t.string   "utm_medium",             limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

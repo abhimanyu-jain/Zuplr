@@ -13,27 +13,29 @@
 
 			$('#submission').click(function() {
 
-			$.ajax({
+				$.ajax({
 
-			url : '/orders',
-			method : "POST",
-			data : {
-			calldate : $("#datetimepicker").val(),
-			address : "",//$("#input-address").val(),
-			phone : $("#input-phone").val(),
-			pincode : "000000"//$("#input-pincode").val()
-			},
-			success : function(data) {
-				 $('#details-confirmation-form').toggle();
-				 $('#confirm-submission').toggle();
-				 order_code = $.parseJSON(data);
-				 $('#result_code').html(order_code.order_code);
-			}, error : function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log("Internal Server Error : " + textStatus);
-			}
-		});
+					url : '/orders',
+					method : "POST",
+					data : {
+						calldate : $("#datetimepicker").val(),
+						address : "", //$("#input-address").val(),
+						phone : $("#input-phone").val(),
+						pincode : "000000",//$("#input-pincode").val()
+						promo_code : $("#promo_code").val()
+					},
+					success : function(data) {
+						$('#details-confirmation-form').toggle();
+						$('#confirm-submission').toggle();
+						order_code = $.parseJSON(data);
+						$('#result_code').html(order_code.order_code);
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("Internal Server Error : " + textStatus);
+					}
+				});
 
-		});
+			});
 		});
 	</script>
 
@@ -83,42 +85,54 @@
 	<br />
 	<br />
 	<form class="confirmation-details">
-		<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
-			<legend>
-				Phone Number
-			</legend>
+		<div class="row">
+			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
+				<legend>
+					Phone Number
+				</legend>
 
-			<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
-			<br />
-			<br />
-		</div>
+				<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
+				<br />
+				<br />
+			</div>
 
-		<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
-			<legend>
-				When would you like to schedule a call with your stylist?
-			</legend>
-			<input class="input-ic form-control" id= "datetimepicker" placeholder="Date and Time" type="text" required />
-			<br />
-			<!--<legend>
+			<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
+				<legend>
+					When would you like to schedule a call with your stylist?
+				</legend>
+				<input class="input-ic form-control" id= "datetimepicker" placeholder="Date and Time" type="text" required />
+				<br />
+				<!--<legend>
 				Date of Delivery :
-			</legend>
-			<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
-			-->
+				</legend>
+				<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
+				-->
+			</div>
 		</div>
+		<!--<br />
 		<br />
-		<br />
-		<!--<h4>Address : </h4>
+		<h4>Address : </h4>
 		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] if defined?(@userprofile) %></textarea>
 		<br />
 		<br />
 		<h4>Pincode : </h4>
 		<input class="input-ic" id="input-pincode" value="<%= @userprofile['pincode'] if defined?(@userprofile) %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
 		<br />
-		<br />-->
 		<br />
-		<button style = "margin-top: 30px;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
-			Confirm
-		</button>
+		<br />-->
+		<div class="row">
+			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
+				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
+					Confirm
+				</button>
+			</div>
+			<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
+				<legend>
+					Promo Code :
+				</legend>
+				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
+			</div>
+		</div>
 	</form>
 </div>
 

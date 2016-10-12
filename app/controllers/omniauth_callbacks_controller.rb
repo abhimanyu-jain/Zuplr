@@ -12,7 +12,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile.save
       cookies.delete :userprofile
     end
-    
   end
 
   def facebook
@@ -28,7 +27,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = @identity.user || current_user || User.find_by_email(@identity.email)
 
     if @user.nil?
-      @user = User.create( email: @identity.email || "" )
+      @user = User.create( email: @identity.email || "", utm_source: cookies[:utm_source], utm_campaign: cookies[:utm_campaign], utm_medium: cookies[:utm_medium] )
       @identity.update_attribute( :user_id, @user.id )
     end
 

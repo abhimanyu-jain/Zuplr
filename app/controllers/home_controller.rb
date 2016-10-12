@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   
 	def index
 	  setImages
+	  setUtmCookies
 	end
 
 	def campaign
@@ -34,6 +35,12 @@ class HomeController < ApplicationController
 	
 	
 	private
+	
+	def setUtmCookies
+	 cookies[:utm_source] = params[:utm_source]
+   cookies[:utm_campaign] = params[:utm_campaign]
+   cookies[:utm_medium] = params[:utm_medium]  
+	end
 	
 	def setImages
 	  @mobile = mobile_device?
