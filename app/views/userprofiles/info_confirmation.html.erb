@@ -44,7 +44,7 @@
 			border: 1px solid rgba(220, 0, 96, 0.2);
 			font-size: 12px;
 			font-weight: bold;
-			margin: 5px 5px;
+			margin: auto;
 			line-height: 25px;
 			font-family: monospace;
 			padding-left: 5px;
@@ -65,31 +65,35 @@
 	<br />
 	<br />
 	<div class="billing-explanation row">
-		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
+			Our stylist will give you a call to understand your personal style
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			You will get a preview of your items prior to shipping
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			You will have 7 full days after delivery to decide what to keep
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-12 value" style="text-align: center;">
+		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			Only pay for what you keep
 		</div>
 	</div>
 	<div class="divider tiny"></div>
 	<br />
 	<br />
-	<form class="style-log">
-		<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: left;">
+	<br />
+	<form class="confirmation-details">
+		<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
 			<legend>
-				Phone Number :
+				Phone Number
 			</legend>
 
 			<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
 			<br />
 			<br />
-			<!--</div>
+		</div>
 
-			<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">-->
+		<div class="col-md-7 col-sm-7 col-xs-12 value" style="text-align: center;">
 			<legend>
 				When would you like to schedule a call with your stylist?
 			</legend>
@@ -112,7 +116,7 @@
 		<br />
 		<br />-->
 		<br />
-		<button style = "margin-top: 30px; margin-left: 5%;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
+		<button style = "margin-top: 30px;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
 			Confirm
 		</button>
 	</form>
