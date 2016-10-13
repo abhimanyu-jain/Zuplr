@@ -49,9 +49,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def saveUtmDataInUser
-    @user.utm_source = cookies[:utm_source]
-    @user.utm_campaign = cookies[:utm_campaign]
-    @user.utm_medium = cookies[:utm_medium]
+    @user.utm_source = cookies[:utm_source] || ''
+    @user.utm_campaign = cookies[:utm_campaign] || ''
+    @user.utm_medium = cookies[:utm_medium] || ''
     @user.save
   end
 
