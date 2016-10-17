@@ -13,6 +13,11 @@
 		//$(".newcomment").on("click", function(event) {
 
 		//});
+		if ($("#current_date").val() == '' || $("#current_date").val() == 'All')
+		{
+			$("#current_date").datepicker().datepicker("setDate", new Date());	
+		}
+		
 	});
 
 	function updatecomment(order_id) {
@@ -76,6 +81,44 @@
 	<br />
 	<br />
 
+	<h3>Filter By : </h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Email</th>
+				<th>Phone</th>
+				<!--<th>Created On</th>
+				<th>Updated On</th>-->
+				<th>Order Status</th>
+				<th>Call Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<form action="/admin/getallorders" method="get">
+				<tr>
+					<td>
+					<input type="text" name="email" value=<%= params[:email] || 'All' %>>
+					</input> </td>
+					<td>
+					<input type="text" name="phone" value=<%= params[:phone] || 'All' %>>
+					</input> </td>
+					<!--<td><input class="datepicker" name="created_on" value=<%= params[:created_at] || 'All' %>></td>
+					<td><input class="datepicker" name="updated_on" value=<%= params[:updated_at] || 'All' %>></td>-->
+					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
+					<td><input class="datepicker" id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>></td>
+				</tr>
+				<tr>
+					<td>
+					<button type="submit" class="btn btn-danger">
+						Submit
+					</button></td>
+				</tr>
+			</form>
+		</tbody>
+	</table>
+	<br /><br />
+	<h5 style="color: red;">Number of records : <%= @orders.count %></h5>
+	<br /><br />
 	<table border="3">
 		<thead>
 			<tr>
@@ -92,8 +135,7 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td>
-				Name : <%= order.name %>
+				<td> Name : <%= order.name %>
 				<br />
 				<br />
 				Email : <%= order.email %>
@@ -133,7 +175,8 @@
 				<% elsif order.status == 'PICKUP COMPLETED' %>
 				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
 				<% end %>
-				<br /><br />
+				<br />
+				<br />
 				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
 					View History
 				</button></td>
