@@ -54,7 +54,7 @@ class AdminController < ApplicationController
       selected_date = Date.strptime(params[:call_date], "%m/%d/%Y")
       @orders = @orders.where(
       ['orders.call_date_time >= ? AND orders.call_date_time <= ?', 
-        selected_date.in_time_zone(Time.zone).beginning_of_day, #HACK : For some reason, active record is converting selected_date to UTC time, which means the time shifts back by 5 hours 30 minutes. Had to treat it as UTC for it to work.
+        selected_date.in_time_zone(Time.zone).beginning_of_day, #HACK : For some reason, active record is converting selected_date to UTC time on localhost but not on production which means the time shifts back by 5 hours 30 minutes. Treat it as UTC for it to work on localhost.
         selected_date.in_time_zone(Time.zone).end_of_day
         ]
       )
