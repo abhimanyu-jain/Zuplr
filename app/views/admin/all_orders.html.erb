@@ -169,11 +169,9 @@
 		<thead>
 			<tr>
 				<th>User</th>
-				<th width="200">Created On</th>
-				<th width="200">Updated On</th>
-				<th width="125">Order Code </th>
-				<th>Order Status</th>
-				<th width="200">Call Date Time</th>
+				<th width="300">Order Details</th>
+				<th width="125">Order Status </th>
+				<th>Call Details</th>
 				<th width="300">Stylist Comments</th>
 			</tr>
 		</thead>
@@ -181,73 +179,89 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td> Name : <%= order.name %>
-				<br />
-				<br />
-				Email : <%= order.email %>
-				<br />
-				<br />
-				Phone : <%= order.phonenumber %>
-				<br />
-				<br />
-				Address : <%= order.address %>
-				<br />
-				Pincode : <%= order.pincode %>
-				<br />
-				<br />
-				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %></td>
-				<td><%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %></td>
-				<td><%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %></td>
-				<td><%= order.order_code %></td>
+				<td> <b>Name :</b> <%= order.name %>
+					<br />
+					<br />
+					<b>Email :</b> <%= order.email %>
+					<br />
+					<br />
+					<b>Phone :</b> <%= order.phonenumber %>
+					<br />
+					<br />
+					<b>Address :</b> <%= order.address %>
+					<br />
+					<b>Pincode :</b> <%= order.pincode %>
+					<br />
+					<br />
+					<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %>
+				</td>
 				<td>
-				<div id = "status<%= order.id %>">
-					<%= order.status%>
-				</div>
-				<br />
-				<% if order.status == 'REQUESTED' %>
-				<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
-				<br />
-				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
-				<% elsif order.status == 'BOX READY' %>
-				<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />
-				<br />
-				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
-				<% elsif order.status == 'DISPATCHED' %>
-				<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
-				<% elsif order.status == 'DELIVERED' %>
-				<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
-				<br />
-				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
-				<% elsif order.status == 'PICKUP COMPLETED' %>
-				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
-				<% end %>
-				<br />
-				<br />
-				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
-					View History
-				</button></td>
-				<td><%= order.call_date_time %> </td>
-				
+					<b>Created On : </b>
+					<%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %>
+					<br /><br />
+					<b>Updated On : </b>
+					<%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %>
+					<br /><br />
+					<b>Order Code : </b>
+					<%= order.order_code %>
+				</td>
 				<td>
-				<br />
-				<br />
-				Next Call	:
-				<input class="input-ic form-control next_call_datepicker" id= "next_call_datepicker<%= order.id %>" placeholder="Date" type="text" />
-				<br />
-				<textarea id="stylist-call-note<%= order.id %>" style="width : 300px;" rows=5 placeholder="Add Notes"></textarea>
-				<input class="newcomment btn btn-primary" type="button" value="Update" onclick="add_call_note(<%= order.id %>)" />
-				<br />
-				<br />
-				<button type="button" class="btn btn-success" onclick="view_contact_history(<%= order.id %>)" data-toggle="modal" data-target="#contact_history_popup">
-					View Contact History
-				</button>
+					<b>Promo Code :</b>
+					<%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
+					<br /><br />
+					<br />
+					<div id = "status<%= order.id %>">
+						<%= order.status%>
+					</div>
+					<br />
+					<% if order.status == 'REQUESTED' %>
+					<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
+					<br />
+					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+					<% elsif order.status == 'BOX READY' %>
+					<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />
+					<br />
+					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+					<% elsif order.status == 'DISPATCHED' %>
+					<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
+					<% elsif order.status == 'DELIVERED' %>
+					<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
+					<br />
+					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+					<% elsif order.status == 'PICKUP COMPLETED' %>
+					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+					<% end %>
+					<br />
+					<br />
+					<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
+						View History
+					</button>
+				</td>
+				<td>
+					<b>Call Date</b>
+					<br /><br />
+					<%= if order.call_date_time then order.call_date_time.to_date.to_s else '' end %>
+					<br />
+					<br />
+					<b>Next Call:</b>
+					<input class="input-ic form-control next_call_datepicker" id= "next_call_datepicker<%= order.id %>" placeholder="Date" type="text" />
+					<br />
+					<textarea id="stylist-call-note<%= order.id %>" style="width : 300px;" rows=5 placeholder="Add Notes"></textarea>
+					<input class="newcomment btn btn-primary" type="button" value="Update" onclick="add_call_note(<%= order.id %>)" />
+					<br />
+					<br />
+					<button type="button" class="btn btn-success" onclick="view_contact_history(<%= order.id %>)" data-toggle="modal" data-target="#contact_history_popup">
+						View Contact History
+					</button>
 				</td>
 				
-				<!--<td>
-				<form>
-				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
-				<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
-				</form></td>-->
+				<td>
+					<b>Stylist Comment :</b> 
+					<form>
+						<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+						<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
+					</form>
+				</td>
 			</tr>
 			<% end %>
 			<%= render 'order_status_history_popup' %>

@@ -32,7 +32,7 @@ class AdminController < ApplicationController
 
   def getallorders
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
+    orders.stylist_comments, orders.promo_code, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
     joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').order('orders.created_at DESC')
 
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
@@ -67,7 +67,7 @@ class AdminController < ApplicationController
 
   def getpendingorders
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
+    orders.stylist_comments, orders.promo_code, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
     joins('JOIN users on users.id = orders.user_id').joins('JOIN users on users.id = orders.user_id').
     joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').where('status = "REQUESTED"').order('orders.created_at DESC')
 
