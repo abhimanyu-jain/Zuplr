@@ -50,13 +50,13 @@
 				<ul>
 					<li>
 						I am
-						<input class="input-sm" name="user[personal][age]" value="<%= @userdata['personal']['age'] if defined?(@userdata['personal']['age']) %>" placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][age]" value="<%= @userdata['personal']['age'] if defined?(@userdata['personal']['age']) %>" placeholder="" type="number"/>
 						years old, and
-						<input class="input-sm" name="user[personal][height][feet]" value="<%= @userdata['personal']['height']['feet'] if defined?(@userdata['personal']['height']['feet']) %>" placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][height][feet]" value="<%= @userdata['personal']['height']['feet'] if defined?(@userdata['personal']['height']['feet']) %>" placeholder="" type="number"/>
 						feet &
-						<input class="input-sm" name="user[personal][height][inches]" value="<%= @userdata['personal']['height']['inches'] if defined?(@userdata['personal']['height']['inches']) %>"  placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][height][inches]" value="<%= @userdata['personal']['height']['inches'] if defined?(@userdata['personal']['height']['inches']) %>"  placeholder="" type="number"/>
 						inches tall. Last time I hopped on a weighing machine, it displayed
-						<input class="input-sm" name="user[personal][weight]" value="<%= @userdata['personal']['weight'] if defined?(@userdata['personal']['weight']) %>"  placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][weight]" value="<%= @userdata['personal']['weight'] if defined?(@userdata['personal']['weight']) %>"  placeholder="" type="number"/>
 						kg.
 					</li>
 					<li>
@@ -96,11 +96,11 @@
 
 					<li>
 						My waist size is
-						<input class="input-sm" name="user[personal][waist]" value="<%= @userdata['personal']['waist'] if defined?(@userdata['personal']['waist']) %>"  placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][waist]" value="<%= @userdata['personal']['waist'] if defined?(@userdata['personal']['waist']) %>"  placeholder="" type="number"/>
 						inches.
 
 						My hip size is
-						<input class="input-sm" name="user[personal][hip]" value="<%= @userdata['personal']['hip'] if defined?(@userdata['personal']['hip']) %>"  placeholder="" type="text"/>
+						<input class="input-sm" name="user[personal][hip]" value="<%= @userdata['personal']['hip'] if defined?(@userdata['personal']['hip']) %>"  placeholder="" type="number"/>
 						inches.
 						<!--I feel comfortable on top half of my body fit as
 						<select class="" name="user[personal][size][topfit]" type="text">
@@ -143,13 +143,24 @@
 						style .-->
 					</li>
 					<li>
-						My shoulders are
-						<select name="user[personal][shoulders]">
+						
+						<div class="radio">
+							My shoulders are
+								<label>
+									<input type="radio" class="radio_styles" name="user[personal][shoulders]" value="Narrow"<% concat "checked" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Narrow') %>>
+									Narrow</label>
+
+								<label>
+									<input type="radio" class="radio_styles" name="user[personal][shoulders]" value="Broad"<% concat "checked" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Broad') %>>
+									Broad</label>
+						</div>
+
+						<!--<select name="user[personal][shoulders]">
 							<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == '') %> values=""></option>
 							<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Narrow') %> values="Narrow">Narrow</option>
 							<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Broad') %> values="Broad">Broad</option>
 						</select>
-						<!--I am more of a jeans / pants and top gal or a dresses gal?
+						I am more of a jeans / pants and top gal or a dresses gal?
 						<select class="" name="user[personal][dress]" type="text">
 						<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == '') %> values=""></option>
 						<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'jeans') %> values="jeans">Mostly Jeans</option>
