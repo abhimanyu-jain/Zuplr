@@ -53,8 +53,14 @@ class OrdersController < ApplicationController
     :promo_code => promo_code
     )
 
-  contact_log_entry = ContactLog.new(:contact_date => call_date_time, :notes => "Initial Call Date Specified by Customer", :order_id => @order.id)
-  contact_log_entry.save
+    contact_log_entry = ContactLog.new(:contact_date => call_date_time, :notes => "Initial Call Date Specified by Customer", :order_id => @order.id)
+    contact_log_entry.save
+
+    #Adding to status history
+    order_status_history = OrderStatusHistory.new
+    order_status_history.order_id = @order.id
+    order_status_history.status = @order.status
+    order_status_history.save
 
     respond_to do |format|
       if @order.save
