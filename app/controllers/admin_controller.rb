@@ -88,6 +88,7 @@ class AdminController < ApplicationController
     #order.scheduleddeliverydate = params["scheduleddeliverydate"]
     order.stylist_comments = params["stylist_comments"]
     order.status = 'REQUESTED'
+    order.order_code = Random.new.rand(1000..1000000000),
     user = User.find_by_userprofile_id(params["userprofile_id"])
     order.user_id = user.id
     order.save
@@ -106,6 +107,21 @@ class AdminController < ApplicationController
     stylistcomment = params["stylistcomment"]
     order = Order.find_by_id(order_id)
     order.stylist_comments = stylistcomment
+    order.save
+    render :nothing => true
+  end
+
+  def next_call
+    order_id = params["order_id"]
+    date = params["next_call_date"]
+    #Get proper date time from the date
+    datetime = DateTime.strptime(date, "%m/%d/%Y")
+    note = params["stylist_call_note"]
+    contact_log_entry = ContactLog.new(:contact_date => datetime, :notes => note, :order_id => order_id)
+    contact_log_entry.save
+
+    order = Order.find_by_id(order_id)
+    order.call_date_time = datetime
     order.save
     render :nothing => true
   end
@@ -138,6 +154,12 @@ class AdminController < ApplicationController
     order_id = params[:order_id]
     @history = OrderStatusHistory.select("created_at, status").where("order_id = "+order_id.to_s)
     render :json => @history.to_json
+  end
+  
+  def get_contact_history
+    order_id = params[:order_id]
+    @contact_history = ContactLog.select("contact_date, notes").where("order_id = "+order_id.to_s)
+    render :json => @contact_history.to_json
   end
 
   private

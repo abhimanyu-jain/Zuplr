@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012225426) do
+ActiveRecord::Schema.define(version: 20161020131817) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20161012225426) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "contact_logs", force: :cascade do |t|
+    t.datetime "contact_date"
+    t.text     "notes",        limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "order_id",     limit: 4
+  end
+
+  add_index "contact_logs", ["order_id"], name: "index_contact_logs_on_order_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -120,6 +130,7 @@ ActiveRecord::Schema.define(version: 20161012225426) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
+  add_foreign_key "contact_logs", "orders"
   add_foreign_key "identities", "users"
   add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"

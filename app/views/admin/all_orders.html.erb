@@ -13,11 +13,13 @@
 		//$(".newcomment").on("click", function(event) {
 
 		//});
-		if ($("#current_date").val() == '' || $("#current_date").val() == 'All')
-		{
-			$("#current_date").datepicker().datepicker("setDate", new Date());	
+		if ($("#current_date").val() == '' || $("#current_date").val() == 'All') {
+			$("#current_date").datepicker().datepicker("setDate", new Date());
 		}
-		
+
+		$(".next_call_datepicker").datepicker({
+			minDate : 1
+		});
 	});
 
 	function updatecomment(order_id) {
@@ -33,6 +35,25 @@
 			},
 			success : function(result) {
 				$(index).val(comment);
+			},
+		});
+	}
+	
+	function add_call_note(order_id) {
+		note = $("#stylist-call-note" + order_id).val();
+		date = $("#next_call_datepicker" + order_id).val();
+		
+		event.preventDefault();
+		$.ajax({
+			type : "POST",
+			url : "/admin/next_call",
+			data : {
+				order_id : order_id,
+				stylist_call_note : note,
+				next_call_date : date
+			},
+			success : function(result) {
+				location.reload();
 			},
 		});
 	}
@@ -74,6 +95,27 @@
 		});
 	}
 
+	function view_contact_history(order_id) {
+		$.ajax({
+			type : "POST",
+			url : "/admin/get_contact_history",
+			contentType : "application/json",
+			data : JSON.stringify({
+				order_id : order_id
+			}),
+
+			success : function(history) {
+				$("#contact_history_info").html('');
+				$.each(history, function(i, item) {
+					var date = new Date(item["contact_date"]);
+					d = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+					$("#contact_history_info").append("<tr><td>" + d + "</td><td>" + item["notes"] + "</td></tr>");
+				});
+
+			},
+		});
+	}
+
 </script>
 
 <div style="padding-top:120px" class="container">
@@ -105,7 +147,9 @@
 					<!--<td><input class="datepicker" name="created_on" value=<%= params[:created_at] || 'All' %>></td>
 					<td><input class="datepicker" name="updated_on" value=<%= params[:updated_at] || 'All' %>></td>-->
 					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
-					<td><input class="datepicker" id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>></td>
+					<td>
+					<input class="datepicker" id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -116,9 +160,11 @@
 			</form>
 		</tbody>
 	</table>
-	<br /><br />
+	<br />
+	<br />
 	<h5 style="color: red;">Number of records : <%= @orders.count %></h5>
-	<br /><br />
+	<br />
+	<br />
 	<table border="3">
 		<thead>
 			<tr>
@@ -180,15 +226,32 @@
 				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
 					View History
 				</button></td>
-				<td><%= order.call_date_time %></td>
+				<td><%= order.call_date_time %> </td>
+				
 				<td>
+				<br />
+				<br />
+				Next Call	:
+				<input class="input-ic form-control next_call_datepicker" id= "next_call_datepicker<%= order.id %>" placeholder="Date" type="text" />
+				<br />
+				<textarea id="stylist-call-note<%= order.id %>" style="width : 300px;" rows=5 placeholder="Add Notes"></textarea>
+				<input class="newcomment btn btn-primary" type="button" value="Update" onclick="add_call_note(<%= order.id %>)" />
+				<br />
+				<br />
+				<button type="button" class="btn btn-success" onclick="view_contact_history(<%= order.id %>)" data-toggle="modal" data-target="#contact_history_popup">
+					View Contact History
+				</button>
+				</td>
+				
+				<!--<td>
 				<form>
-					<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
-					<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
-				</form></td>
+				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+				<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
+				</form></td>-->
 			</tr>
 			<% end %>
 			<%= render 'order_status_history_popup' %>
+			<%= render 'contact_history_popup' %>
 		</tbody>
 	</table>
 

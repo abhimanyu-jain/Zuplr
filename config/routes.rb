@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   post '/admin/new_order' => 'admin#backendorder'
   post '/admin/update_order_status' => 'admin#update_order_status'
   post '/admin/get_order_history' => 'admin#get_order_history'
-  
+  post '/admin/get_contact_history' => 'admin#get_contact_history'
+  post '/admin/next_call' => 'admin#next_call'
   
   # Routes for deliveries
   get 'deliveries/index'

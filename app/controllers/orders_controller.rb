@@ -53,6 +53,9 @@ class OrdersController < ApplicationController
     :promo_code => promo_code
     )
 
+  contact_log_entry = ContactLog.new(:contact_date => call_date_time, :notes => "Initial Call Date Specified by Customer", :order_id => @order.id)
+  contact_log_entry.save
+
     respond_to do |format|
       if @order.save
         format.html { render json: @order, notice: 'Thank You for Ordering with Zuplr.' }
