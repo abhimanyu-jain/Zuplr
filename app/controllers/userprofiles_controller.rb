@@ -179,7 +179,7 @@ class UserprofilesController < ApplicationController
   def set_userprofile
     @userprofile = Userprofile.find(params[:id])
     @user = User.find_by_id(current_user.id)
-    if (@user.role_id == 1)
+    if (@user.role.name == 'User')
       redirect_to '/'
     end
   end

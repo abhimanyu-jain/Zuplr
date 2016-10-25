@@ -170,7 +170,7 @@ class AdminController < ApplicationController
     return
     end
     user = User.find_by_id(current_user.id)
-    if user.role_id != 3
+    if user.role.name == 'User'
       redirect_to :root
     end
   end
