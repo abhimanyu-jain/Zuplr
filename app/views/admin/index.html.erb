@@ -89,13 +89,43 @@
 			data : {
 			},
 			success : function(result) {
-				val = result.data;
-
-				style_profile = JSON.stringify(JSON.parse(val));
-				$("#styleLogPopupStyleInfo").html(style_profile);
+				//val = result.data;
+				val = JSON.parse(result.data);
+				//alert(val["personal"]["age"]);
+				setStyleProfileValues(val);
+				
+				//style_profile = JSON.stringify(JSON.parse(val));
+				//$("#styleLogPopupStyleInfo").html(style_profile);
 				$("#styleLogPopupName").html(name);
 			},
 		});
+	}
+	
+	function setStyleProfileValues(val)
+	{
+		$("#age").html(val["personal"]["age"]);
+		$("#height_feet").html(val["personal"]["height"]["feet"]);
+		$("#height_inches").html(val["personal"]["height"]["inches"]);
+		$("#weight").html(val["personal"]["weight"]);
+		$("#bra_size").html(val["personal"]["bra"]["size"]);
+		$("#bra_cup").html(val["personal"]["bra"]["cup"]);
+		$("#size_top").html(val["personal"]["size"]["top"]);
+		$("#top_brand").html(val["personal"]["top"]["brand"]);
+		$("#personal_waist").html(val["personal"]["waist"]);
+		$("#hip").html(val["personal"]["hip"]);
+		$("#shoulders").html(val["personal"]["shoulders"]);
+		$("#styles_1").html(val["styles"]["1"]);
+		$("#styles_2").html(val["styles"]["2"]);
+		$("#styles_3").html(val["styles"]["3"]);
+		$("#styles_4").html(val["styles"]["4"]);
+		$("#styles_5").html(val["styles"]["5"]);
+		$("#accessory").html(val["lifestyle"]["accessory"]);
+		$("#jewellery").html(val["lifestyle"]["jewellery"]);
+		$("#lifestyle_accmax").html(val["lifestyle"]["accmax"]);
+		$("#lifestyle_accmin").html(val["lifestyle"]["accmin"]);
+		$('#pinterest').attr('href',val["sociallinks"]["pinterest"]);
+		$('#facebook').attr('href',val["sociallinks"]["facebook"]);
+		$('#instagram').attr('href',val["sociallinks"]["instagram"]);
 	}
 </script>
 
