@@ -92,28 +92,40 @@
 				//val = result.data;
 				val = JSON.parse(result.data);
 				//alert(val["personal"]["age"]);
+				alert(val["sociallinks"]["instagram"]);
 				setStyleProfileValues(val);
-				
+
 				//style_profile = JSON.stringify(JSON.parse(val));
 				//$("#styleLogPopupStyleInfo").html(style_profile);
 				$("#styleLogPopupName").html(name);
 			},
 		});
 	}
-	
-	function setStyleProfileValues(val)
-	{
-		$("#age").html(val["personal"]["age"]);
-		$("#height_feet").html(val["personal"]["height"]["feet"]);
-		$("#height_inches").html(val["personal"]["height"]["inches"]);
-		$("#weight").html(val["personal"]["weight"]);
-		$("#bra_size").html(val["personal"]["bra"]["size"]);
-		$("#bra_cup").html(val["personal"]["bra"]["cup"]);
-		$("#size_top").html(val["personal"]["size"]["top"]);
-		$("#top_brand").html(val["personal"]["top"]["brand"]);
-		$("#personal_waist").html(val["personal"]["waist"]);
-		$("#hip").html(val["personal"]["hip"]);
-		$("#shoulders").html(val["personal"]["shoulders"]);
+
+	function setStyleProfileValues(val) {
+		if(typeof val["personal"] != 'undefined')
+		{
+			$("#age").html(val["personal"]["age"]);
+			$("#height_feet").html(val["personal"]["height"]["feet"]);
+			$("#height_inches").html(val["personal"]["height"]["inches"]);
+			$("#weight").html(val["personal"]["weight"]);
+			$("#bra_size").html(val["personal"]["bra"]["size"]);
+			$("#bra_cup").html(val["personal"]["bra"]["cup"]);
+			
+			if(typeof val["personal"]["size"] != 'undefined')
+			{
+				$("#size_top").html(val["personal"]["size"]["top"]);
+			}
+			if(typeof val["personal"]["top"] != 'undefined')
+			{
+				$("#top_brand").html(val["personal"]["top"]["brand"]);
+			}
+			
+			$("#personal_waist").html(val["personal"]["waist"]);
+			$("#hip").html(val["personal"]["hip"]);
+			$("#shoulders").html(val["personal"]["shoulders"]);	
+		}
+		
 		$("#styles_1").html(val["styles"]["1"]);
 		$("#styles_2").html(val["styles"]["2"]);
 		$("#styles_3").html(val["styles"]["3"]);
@@ -123,9 +135,9 @@
 		$("#jewellery").html(val["lifestyle"]["jewellery"]);
 		$("#lifestyle_accmax").html(val["lifestyle"]["accmax"]);
 		$("#lifestyle_accmin").html(val["lifestyle"]["accmin"]);
-		$('#pinterest').attr('href',val["sociallinks"]["pinterest"]);
-		$('#facebook').attr('href',val["sociallinks"]["facebook"]);
-		$('#instagram').attr('href',val["sociallinks"]["instagram"]);
+		$('#pinterest').html(val["sociallinks"]["pinterest"]);
+		$('#facebook').html(val["sociallinks"]["facebook"]);
+		$('#instagram').html(val["sociallinks"]["instagram"]);
 	}
 </script>
 
@@ -162,10 +174,9 @@
 				</tr>
 				<tr>
 					<td>
-						<button type="submit" class="btn btn-danger">
-							Submit
-						</button>
-					</td>
+					<button type="submit" class="btn btn-danger">
+						Submit
+					</button></td>
 				</tr>
 			</form>
 		</tbody>
