@@ -92,7 +92,6 @@
 				//val = result.data;
 				val = JSON.parse(result.data);
 				//alert(val["personal"]["age"]);
-				alert(val["sociallinks"]["instagram"]);
 				setStyleProfileValues(val);
 
 				//style_profile = JSON.stringify(JSON.parse(val));
@@ -145,9 +144,12 @@
 		
 		if(typeof val["sociallinks"] != 'undefined')
 		{
-			$('#pinterest').html(val["sociallinks"]["pinterest"]);
-			$('#facebook').html(val["sociallinks"]["facebook"]);
-			$('#instagram').html(val["sociallinks"]["instagram"]);
+			$('#pinterest').attr('href', val["sociallinks"]["pinterest"]);
+			$('#facebook').attr('href', val["sociallinks"]["facebook"]);
+			$('#instagram').attr('href', val["sociallinks"]["instagram"]);
+			//$('#pinterest').html(val["sociallinks"]["pinterest"]);
+			//$('#facebook').html(val["sociallinks"]["facebook"]);
+			//$('#instagram').html(val["sociallinks"]["instagram"]);
 		}
 	}
 </script>
