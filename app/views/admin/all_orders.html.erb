@@ -13,107 +13,14 @@
 		//$(".newcomment").on("click", function(event) {
 
 		//});
-		
-			$("#current_date").datepicker();
-		
+
+		$("#current_date").datepicker();
+
 		$(".next_call_datepicker").datepicker({
 			minDate : 0
 		});
 	});
-
-	function updatecomment(order_id) {
-		index = "#stylist-comment" + order_id;
-		comment = String($(index).val());
-		event.preventDefault();
-		$.ajax({
-			type : "POST",
-			url : "/admin/updatecomment",
-			data : {
-				order_id : order_id,
-				stylistcomment : comment
-			},
-			success : function(result) {
-				$(index).val(comment);
-			},
-		});
-	}
-	
-	function add_call_note(order_id) {
-		note = $("#stylist-call-note" + order_id).val();
-		date = $("#next_call_datepicker" + order_id).val();
-		
-		event.preventDefault();
-		$.ajax({
-			type : "POST",
-			url : "/admin/next_call",
-			data : {
-				order_id : order_id,
-				stylist_call_note : note,
-				next_call_date : date
-			},
-			success : function(result) {
-				location.reload();
-			},
-		});
-	}
-
-	function update_order_status(order_id, status) {
-		$.ajax({
-			type : "POST",
-			url : "/admin/update_order_status",
-			data : {
-				order_id : order_id,
-				order_status : status
-			},
-			success : function(result) {
-				index = "#status" + order_id;
-				$(index).html(status);
-				location.reload();
-			},
-		});
-	}
-
-	function view_order_status_history(order_id) {
-		$.ajax({
-			type : "POST",
-			url : "/admin/get_order_history",
-			contentType : "application/json",
-			data : JSON.stringify({
-				order_id : order_id
-			}),
-
-			success : function(history) {
-				$("#order_status_history_info").html('');
-				$.each(history, function(i, item) {
-					var date = new Date(item["created_at"]);
-					d = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
-					$("#order_status_history_info").append("<tr><td>" + d + "</td><td>" + item["status"] + "</td></tr>");
-				});
-
-			},
-		});
-	}
-
-	function view_contact_history(order_id) {
-		$.ajax({
-			type : "POST",
-			url : "/admin/get_contact_history",
-			contentType : "application/json",
-			data : JSON.stringify({
-				order_id : order_id
-			}),
-
-			success : function(history) {
-				$("#contact_history_info").html('');
-				$.each(history, function(i, item) {
-					var date = new Date(item["contact_date"]);
-					d = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
-					$("#contact_history_info").append("<tr><td>" + d + "</td><td>" + item["notes"] + "</td></tr>");
-				});
-
-			},
-		});
-	}
+	//Rest is at admin_orders.js
 
 </script>
 
@@ -178,96 +85,87 @@
 		<tbody>
 			<% @orders.each do |order| %>
 			<tr>
-				<td> <b>Name :</b> <%= order.name %>
-					<br />
-					<br />
-					<b>Email :</b> <%= order.email %>
-					<br />
-					<br />
-					<b>Phone :</b> <%= order.phonenumber %>
-					<br />
-					<br />
-					<b>Address :</b> <%= order.address %>
-					<br />
-					<b>Pincode :</b> <%= order.pincode %>
-					<br />
-					<br />
-					<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %>
-				</td>
-				<td>
-					<b>Created On : </b>
-					<%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %>
-					<br /><br />
-					<b>Updated On : </b>
-					<%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %>
-					<br /><br />
-					<b>Order Code : </b>
-					<%= order.order_code %>
-				</td>
-				<td>
-					<b>Promo Code :</b>
-					<%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
-					<br /><br />
-					<br />
-					<div id = "status<%= order.id %>">
-						<%= order.status%>
-					</div>
-					<br />
-					<% if order.status == 'REQUESTED' %>
-					<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
-					<br />
-					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
-					<% elsif order.status == 'BOX READY' %>
-					<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />
-					<br />
-					<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
-					<% elsif order.status == 'DISPATCHED' %>
-					<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
-					<% elsif order.status == 'DELIVERED' %>
-					<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
-					<br />
-					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
-					<% elsif order.status == 'PICKUP COMPLETED' %>
-					<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
-					<% end %>
-					<br />
-					<br />
-					<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
-						View History
-					</button>
-				</td>
-				<td>
-					<b>Call Date</b>
-					<br /><br />
-					<%= if order.call_date_time then order.call_date_time.to_date.to_s else '' end %>
-					<br />
-					<br />
-					<b>Next Call:</b>
-					<input class="input-ic form-control next_call_datepicker" id= "next_call_datepicker<%= order.id %>" placeholder="Date" type="text" />
-					<br />
-					<textarea id="stylist-call-note<%= order.id %>" style="width : 300px;" rows=5 placeholder="Add Notes"></textarea>
-					<input class="newcomment btn btn-primary" type="button" value="Update" onclick="add_call_note(<%= order.id %>)" />
-					<br />
-					<br />
-					<button type="button" class="btn btn-success" onclick="view_contact_history(<%= order.id %>)" data-toggle="modal" data-target="#contact_history_popup">
-						View Contact History
-					</button>
-				</td>
-				
-				<td>
-					<b>Stylist Comment :</b> 
-					<form>
-						<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
-						<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
-					</form>
-				</td>
+				<td><b>Name :</b> <%= order.name %>
+				<br />
+				<br />
+				<b>Email :</b> <%= order.email %>
+				<br />
+				<br />
+				<b>Phone :</b> <%= order.phonenumber %>
+				<br />
+				<br />
+				<b>Address :</b> <%= order.address %>
+				<br />
+				<b>Pincode :</b> <%= order.pincode %>
+				<br />
+				<br />
+				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %> </td>
+				<td><b>Created On : </b> <%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %>
+				<br />
+				<br />
+				<b>Updated On : </b> <%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %>
+				<br />
+				<br />
+				<b>Order Code : </b> <%= order.order_code %> </td>
+				<td><b>Promo Code :</b> <%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
+				<br />
+				<br />
+				<br />
+				<div id = "status<%= order.id %>">
+					<%= order.status%>
+				</div>
+				<br />
+				<% if order.status == 'REQUESTED' %>
+				<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+				<% elsif order.status == 'BOX READY' %>
+				<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+				<% elsif order.status == 'DISPATCHED' %>
+				<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
+				<% elsif order.status == 'DELIVERED' %>
+				<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
+				<br />
+				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+				<% elsif order.status == 'PICKUP COMPLETED' %>
+				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
+				<% end %>
+				<br />
+				<br />
+				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
+					View History
+				</button></td>
+				<td><b>Call Date</b>
+				<br />
+				<br />
+				<%= if order.call_date_time then order.call_date_time.to_date.to_s else '' end %>
+				<br />
+				<br />
+				<b>Next Call:</b>
+				<input class="input-ic form-control next_call_datepicker" id= "next_call_datepicker<%= order.id %>" placeholder="Date" type="text" />
+				<br />
+				<textarea id="stylist-call-note<%= order.id %>" style="width : 300px;" rows=5 placeholder="Add Notes"></textarea>
+				<input class="newcomment btn btn-primary" type="button" value="Update" onclick="add_call_note(<%= order.id %>)" />
+				<br />
+				<br />
+				<button type="button" class="btn btn-success" onclick="view_contact_history(<%= order.id %>)" data-toggle="modal" data-target="#contact_history_popup">
+					View Contact History
+				</button></td>
+
+				<td><b>Stylist Comment :</b>
+				<form>
+					<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+					<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
+				</form></td>
 			</tr>
 			<% end %>
-			<%= render 'order_status_history_popup' %>
-			<%= render 'contact_history_popup' %>
+			
 		</tbody>
 	</table>
-
+	<%= render 'order_status_history_popup' %>
+	<%= render 'contact_history_popup' %>
 	<%= will_paginate @orders %>
 
 </div>

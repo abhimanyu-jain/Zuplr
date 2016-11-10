@@ -26,8 +26,22 @@ class AdminController < ApplicationController
   end
 
   def getuserprofile
-    @user = User.select('*').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id where users.userprofile_id = '+params[:id])
-    @orders = Order.select('*').where("user_id = ?", params[:id])
+    @user = User.select('*').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').where('users.userprofile_id ='+ params[:id]).first
+    user_id = User.find_by_userprofile_id(params[:id]).id
+    @orders = Order.select('*').where("user_id = ?", user_id)
+    if(params[:status] != 'All' && params[:status] != nil)
+      @orders = @orders.where('orders.status' => params[:status])
+    end
+   
+    if(params[:call_date] != 'All' && params[:call_date] != nil && params[:call_date] != "")
+      selected_date = Date.strptime(params[:call_date], "%m/%d/%Y")
+      @orders = @orders.where(
+      ['orders.call_date_time >= ? AND orders.call_date_time <= ?', 
+        selected_date.in_time_zone(Time.zone).beginning_of_day, #HACK : For some reason, active record is converting selected_date to UTC time on localhost but not on production which means the time shifts back by 5 hours 30 minutes. Treat it as UTC for it to work on localhost.
+        selected_date.in_time_zone(Time.zone).end_of_day
+        ]
+      )
+    end
     render 'getuserprofile'
   end
 
