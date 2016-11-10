@@ -27,6 +27,7 @@ class AdminController < ApplicationController
 
   def getuserprofile
     @user = User.select('*').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id where users.userprofile_id = '+params[:id])
+    @orders = Order.select('*').where("user_id = ?", params[:id])
     render 'getuserprofile'
   end
 

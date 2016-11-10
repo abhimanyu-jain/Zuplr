@@ -13,10 +13,9 @@
 		//$(".newcomment").on("click", function(event) {
 
 		//});
-		if ($("#current_date").val() == '' || $("#current_date").val() == 'All') {
-			$("#current_date").datepicker().datepicker("setDate", new Date());
-		}
-
+		
+			$("#current_date").datepicker();
+		
 		$(".next_call_datepicker").datepicker({
 			minDate : 0
 		});
@@ -148,7 +147,7 @@
 					<td><input class="datepicker" name="updated_on" value=<%= params[:updated_at] || 'All' %>></td>-->
 					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
 					<td>
-					<input class="datepicker" id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
+					<input id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
 					</td>
 				</tr>
 				<tr>
