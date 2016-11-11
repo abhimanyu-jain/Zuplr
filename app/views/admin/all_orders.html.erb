@@ -30,19 +30,19 @@
 	<br />
 
 	<h3>Filter By : </h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Email</th>
-				<th>Phone</th>
-				<!--<th>Created On</th>
-				<th>Updated On</th>-->
-				<th>Order Status</th>
-				<th>Call Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<form action="/admin/getallorders" method="get">
+	<form action="/admin/getallorders" method="get">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Phone</th>
+					<!--<th>Created On</th>
+					<th>Updated On</th>-->
+					<th>Order Status</th>
+					<th>Call Date</th>
+				</tr>
+			</thead>
+			<tbody>
 				<tr>
 					<td>
 					<input type="text" name="email" value=<%= params[:email] || 'All' %>>
@@ -63,9 +63,9 @@
 						Submit
 					</button></td>
 				</tr>
-			</form>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</form>
 	<br />
 	<br />
 	<h5 style="color: red;">Number of records : <%= @orders.count %></h5>
@@ -154,14 +154,12 @@
 					View Contact History
 				</button></td>
 
-				<td><b>Stylist Comment :</b>
-				<form>
-					<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
-					<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
-				</form></td>
+				<td><b>Stylist Comment :</b>				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+				<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
+				</td>
 			</tr>
 			<% end %>
-			
+
 		</tbody>
 	</table>
 	<%= render 'order_status_history_popup' %>

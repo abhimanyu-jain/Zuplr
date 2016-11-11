@@ -84,14 +84,14 @@
 			<br />
 
 			<h3>Filter By : </h3>
-			<table class="table">
-				<thead>
-					<th>Order Status</th>
-					<th>Call Date</th>
-					</tr>
-				</thead>
-				<tbody>
-					<form action="/admin/userprofile/<%= @user.id %>" method="get">
+			<form action="/admin/userprofile/<%= @user.id %>" method="get">
+				<table class="table">
+					<thead>
+						<th>Order Status</th>
+						<th>Call Date</th>
+						</tr>
+					</thead>
+					<tbody>
 						<tr>
 							<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
 							<td>
@@ -104,9 +104,9 @@
 								Submit
 							</button></td>
 						</tr>
-					</form>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</form>
 			<br />
 			<br />
 			<h5 style="color: red;">Number of records : <%= @orders.count %></h5>

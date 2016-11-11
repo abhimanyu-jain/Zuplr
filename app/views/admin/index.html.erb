@@ -6,18 +6,18 @@
 		<!-- <div class="col-sm-2">Users</div> -->
 	</div>
 	<h3>Filter By : </h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Email</th>
-				<th>Phone</th>
-				<th>Phone Status</th>
-				<th>Gender</th>
-				<th>Latest Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<form action="/admin/index" method="get">
+	<form action="/admin/index" method="get">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Phone Status</th>
+					<th>Gender</th>
+					<th>Latest Status</th>
+				</tr>
+			</thead>
+			<tbody>
 				<tr>
 					<td>
 					<input type="text" name="email" value=<%= params[:email] || 'All' %>>
@@ -35,9 +35,9 @@
 						Submit
 					</button></td>
 				</tr>
-			</form>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</form>
 
 	<table class="table table-striped">
 		<thead>
@@ -82,11 +82,9 @@
 				<button type="button" id="getStyleData" onclick="getStyleData(<%= us.id %>, '<%= us.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">
 					Profile
 				</button></td>
-				<td>
-				<form>
-					<textarea id="stylist-comment<%= us.id %>" style="width : 300px;" rows=10 value=""><%= us.stylist_comment %></textarea>
-					<input class="newcomment" type="button" value="Update" onclick="updatestylistcomment(<%= us.id %>)" />
-				</form></td>
+				<td>				<textarea id="stylist-comment<%= us.id %>" style="width : 300px;" rows=10 value=""><%= us.stylist_comment %></textarea>
+				<input class="newcomment" type="button" value="Update" onclick="updatestylistcomment(<%= us.id %>)" />
+				</td>
 			</tr>
 			<% end %>
 			<%= render 'style_log_popup'%>
