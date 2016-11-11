@@ -12,12 +12,6 @@ class UsersController < ApplicationController
   def new
   end
 
-  def start_chat
-    @conv = Conversation.create(sender_id: current_user.id, receiver_id: 1)
-    @conv.save
-    redirect_to conversation_messages_path(@conv)
-  end
-
   def destroy
     @user.destroy
     respond_to do |format|
@@ -37,11 +31,6 @@ class UsersController < ApplicationController
     else
       redirect_to '/users/sign_in'
     end
-  end
-
-  def welcomeuser
-    puts "Welcome the world"
-    render 'justin'
   end
 
   def styledata
@@ -102,11 +91,6 @@ class UsersController < ApplicationController
     # RegisterMailer.style_log_thanks(@user).deliver_later
     # RegisterMailer.admin_form_filled(@user).deliver_later
     render 'thank-you'
-  end
-
-  def deliver
-    @delivery = Delivery.new(delivery_params)
-    @delivery.save
   end
 
   def invite

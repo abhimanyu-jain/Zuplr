@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   #before_action :check_if_user_provided_details, only: [:styledata, :index]
 
   def check_if_user_provided_details
+    # This was to check if user had provided phonenumber when logging in. 
+    # At that time, we were forcefully requiring users to give their number before continuing.
+    # Note being used right now.
     if user_signed_in? 
       user_profile = Userprofile.find_by(id: current_user.userprofile_id)
       if (current_user.role.name == 'User' && user_profile.try(:phonenumber) == nil)
