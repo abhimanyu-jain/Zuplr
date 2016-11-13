@@ -32,13 +32,26 @@
 	}
 
 </style>
+
+<script>
+	$(document).ready(function() {
+		$("#stylist-contact-submit").click(function() {
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Button',
+				eventAction : 'click',
+				eventLabel : 'Get Started'
+			});
+		});
+	});
+
+</script>
+
 <div id= "contact-form">
 	<br />
 	<!--
 	<div class ="row" style="margin-top: 80px;">
 	<div class="col-md-2"></div>
-
-
 
 	<div class="col-md-4 form-section">
 	<p>

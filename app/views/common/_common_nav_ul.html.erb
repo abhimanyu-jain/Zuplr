@@ -3,6 +3,76 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<!--<script src="//code.jquery.com/jquery-1.10.2.js" async></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" async></script>-->
+	<script>
+		$(document).ready(function() {
+		
+		$("#header-style-log").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Style Log'
+			});
+		});
+		
+		$("#header-orders-list").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Orders'
+			});
+		});
+		
+		$("#header-invite-friends").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Invite Friends'
+			});
+		});
+		
+		$("#header-logout").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Logout'
+			});
+		});
+		
+		$("#header-login").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Login'
+			});
+		});
+		
+		$("#header-register").click(function() {
+	
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Header Link',
+				eventAction : 'click',
+				eventLabel : 'Register'
+			});
+		});
+	})
+	</script>
 </head>
 <div id="navbar" class="collapse navbar-collapse pull-right">
 	<ul class="nav navbar-nav">
@@ -15,6 +85,9 @@
 			<%= link_to "Account", edit_user_registration_path %>
 		</li>
 		<% if (current_user.role.name == 'Admin' || current_user.role.name == 'Manager') %>
+		<li>
+			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %>
+		</li>
 		<li>
 			<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
 		</li>
@@ -30,25 +103,25 @@
 		</li>
 		<% else %>
 		<li>
-			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %>
+			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff", id: "header-style-log" %>
 		</li>
 		<li>
-			<%= link_to "Orders", orders_path %>
+			<%= link_to "Orders", orders_path, id: "header-orders-list"  %>
 		</li>
 		<li>
-			<%= link_to "Invite Friends", new_user_invitation_path, class: "shadow-stuff" %>
+			<%= link_to "Invite Friends", new_user_invitation_path, class: "shadow-stuff", id: "header-invite-friends"  %>
 		</li>
 		<% end %>
 		<!-- <li><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: 1), method: :post %></li> -->
 		<li>
-			<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff" %>
+			<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
 		</li>
 		<% else %>
 		<li >
-			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/login">Login</a>
+			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/login" id="header-login">Login</a>
 		</li>
 		<li >
-			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/register">Register</a>
+			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/register" id="header-register">Register</a>
 		</li>
 		<% end %>
 	</ul>

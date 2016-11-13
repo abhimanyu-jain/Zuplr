@@ -1,0 +1,161 @@
+<h4 style="color:#dc0060">Section B - A peek in your lifestyle </h4>
+<ul>
+	<!--<li>
+	I am currently working as
+	<select class="" name="user[lifestyle][profession]" type="text">
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == '') %>></option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'IT Professional') %>>IT Professional</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Manager') %>>Manager</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Startup Freak') %>>Startup Freak</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Entrepreneur') %>>Entrepreneur</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Home maker') %>>Home maker</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Designer') %>>Designer</option>
+	<option> <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Coder') %>Coder</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Event manager') %>>Event manager</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Finance profession') %>>Finance professional</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['profession']) && @userdata['lifestyle']['profession'] == 'Others') %>>Others</option>
+	</select>
+	and I am a
+	<select class="" name="user[lifestyle][martial]" type="text">
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == '') %>></option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Single') %>>Single</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Married') %>>Married</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Mom') %>>Mom</option>
+	<option <% concat "selected" if (defined?(@userdata['lifestyle']['martial']) && @userdata['lifestyle']['martial'] == 'Expecting') %>>Expecting</option>
+	</select>
+	.
+	</li>-->
+	<li>
+		Should we avoid any of these fabrics or materials in your shipments?
+		<br>
+		<br>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Leather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Leather')) %>/>
+			Leather</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Pleather" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Pleather')) %>/>
+			Pleather</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Polyester" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Polyester')) %>/>
+			Polyester</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Wool" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Wool')) %>/>
+			Wool</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Cotton" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Cotton')) %>/>
+			Cotton</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][materials][]" value="Knit" <% concat "checked" if (defined?(@userdata['lifestyle']['materials'][]) && (@userdata['lifestyle']['materials']).include?('Knit')) %>/>
+			Knit</label>
+	</li>
+	<li>
+		I like to
+		<select class="" name="user[lifestyle][accessory]" type="text">
+			<option <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'classic') %> value="classic">Keep it classic</option>
+			<option  <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'modern') %>value="modern">Make a statement</option>
+			<option  <% concat "selected" if (defined?(@userdata['lifestyle']['accessory']) && @userdata['lifestyle']['accessory'] == 'mix') %>value="mix">Mantain classic and Make a statement</option>
+		</select>
+		with my accessory and jewelry style.
+	</li>
+
+	<li>
+		My preferred tone of jewelry is
+		<select class="" name="user[lifestyle][jewellery]" type="text">
+			<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Gold') %> value="Gold">Mostly Gold tones </option>
+			<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Silver') %> value="Silver">Mostly Silver tones </option>
+			<option <% concat "selected" if (defined?(@userdata['lifestyle']['jewellery']) && @userdata['lifestyle']['jewellery'] == 'Mix') %> value="Mix">Mix of both</option>
+		</select>
+	</li>
+
+	<li>
+		Please tick the colors which are a <b>'turn off'</b>:
+		<br />
+		<br />
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="black" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('black')) %>/>
+			<div class="color-box" style="background: black"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="grey" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('grey')) %>/>
+			<div class="color-box" style="background: gray"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="blue" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('blue')) %>/>
+			<div class="color-box" style="background: blue"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="brown" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('brown')) %>/>
+			<div class="color-box" style="background: brown"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="teal" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('teal')) %>/>
+			<div class="color-box" style="background: teal"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="yellow" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('yellow')) %>/>
+			<div class="color-box" style="background: yellow"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="white" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('white')) %>/>
+			<div class="color-box" style="background: white"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="silver" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('silver')) %>/>
+			<div class="color-box" style="background: silver"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="red" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('red')) %>/>
+			<div class="color-box" style="background: red"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="purple" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('purple')) %>/>
+			<div class="color-box" style="background: purple"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="pink" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('pink')) %>/>
+			<div class="color-box" style="background: pink"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="orange" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('orange')) %>/>
+			<div class="color-box" style="background: orange"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="navy" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('navy')) %>/>
+			<div class="color-box" style="background: navy"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="green" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('green')) %>/>
+			<div class="color-box" style="background: green"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="gold" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('gold')) %>/>
+			<div class="color-box" style="background: gold"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" name="user[lifestyle][colors][]" value="biege" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('biege')) %>/>
+			<div class="color-box" style="background: #f5f5dc"></div></label>
+		<label class="checkbox-inline">
+			<input type="checkbox" vname="user[lifestyle][colors][]" alue="burgundy" <% concat "checked" if (defined?(@userdata['lifestyle']['colors'][]) && (@userdata['lifestyle']['colors']).include?('burgundy')) %>/>
+			<div class="color-box" style="background: #800020"></div></label>
+	</li>
+
+	<li class="prints">
+		Check the prints that are <b>‘not your type’</b>
+		<br>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="animal" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('animal')) %>/>
+			Animal prints <img style="" src="animal-prints.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="critter" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('critter')) %>/>
+			Critter prints <img style="" src="critter-prints.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="floral" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('floral')) %>/>
+			Floral prints <img style="" src="floral-prints.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="paisley" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('paisley')) %>/>
+			Paisley <img style="" src="paisley-prints.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="polka" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('polka')) %>/>
+			Polka dots <img style="" src="polka-dots.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="stripes" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('stripes')) %>/>
+			Stripes
+			<br>
+			<img style="" src="stripes.png"> </label>
+		<label class="checkbox-inline">
+			<input type="checkbox" value="checks" name="user[lifestyle][prints][]" <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('checks')) %>/>
+			Checks
+			<br>
+			<img style="" src="checks.png"> </label><label class="checkbox-inline">
+			<input type="checkbox"  value="psychedelia" name="user[lifestyle][prints][]"  <% concat "checked" if (defined?(@userdata['lifestyle']['prints'][]) && (@userdata['lifestyle']['prints']).include?('psychedelia')) %>/>
+			PSYCHEDELIA prints
+			<br>
+			<img style="" src="syche.png"> </label>
+	</li>
+
+</ul>

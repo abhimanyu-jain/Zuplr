@@ -1,0 +1,66 @@
+How much would you ideally spend for Zuplr box? We'll do our very best!
+<br>
+It will consists of Accessories, Dresses, Outfitters, Top and Bottom wears
+<br>
+Minimum (&#8377;)
+<input style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmax]" value="<%= @userdata['lifestyle']['accmax'] if defined?(@userdata['lifestyle']['accmax']) %>" type="number"/>
+Maximum (&#8377;)
+<input  style="width:90px" class="input-sm" placeholder="" name="user[lifestyle][accmin]" value="<%= @userdata['lifestyle']['accmin'] if defined?(@userdata['lifestyle']['accmin']) %>" type="number"/>
+
+<br />
+<br />
+<br />
+
+<b>Can we follow your awesomeness on Social Networks? With permission of course! We love learning more about you!</b>
+<br>
+<span style="font-size: 14px; color: #aaa">This step is completely optional, confidential, and will be used only for styling your shipments.</span>
+<p>
+	You can provide any of the social media links, so that our stylist knows you better and makes you more gorgeous! :) We respect your privacy
+</p>
+Pinterest Board:
+<input name="user[sociallinks][pinterest]" type="text" value="<%= @userdata['sociallinks']['pinterest']  if defined?(@userdata['sociallinks']['pinterest']) %>" class="form-control bs" placeholder="Example: www.pinterest.com/zuplr/classic-style-inspiration/"/>
+<% if defined?@userdata['sociallinks']['facebook'] %>
+Facebook :
+<input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+<% elsif !@fb_id.nil? %>
+Facebook :
+<input name="user[sociallinks][facebook]" value="http://www.facebook.com/<%= @fb_id.uid%>" class="form-control bs" type="text"/>
+<% else %>
+Facebook :
+<input name="user[sociallinks][facebook]" value="<%= @userdata['sociallinks']['facebook'] if defined?(@userdata['sociallinks']['facebook'])%>" class="form-control bs" type="text"/>
+<% end %>
+Instagram :
+<input  name="user[sociallinks][instagram]" value="<%= @userdata['sociallinks']['instagram'] if defined?(@userdata['sociallinks']['instagram'])%>" class="form-control bs" type="text"/>
+<!--Twitter:
+<input  name="user[sociallinks][twitter]" value="<%= @userdata['sociallinks']['twitter'] if defined?(@userdata['sociallinks']['twitter'])%>" class="form-control bs" type="text"/>
+-->
+<br />
+<br />
+<p>
+	<h4 style="color:#dc0060">What all would you like in your shipment?</h4>
+	<!--Feel free to share here. We're all ears!-->
+	<textarea id="zr-textarea" class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="Examples : I have a grey trouser, I am looking for a different coloured trouser with regular fit. I have a black trouser. Send me a top that goes with it. I want my stylist to focus on business casual look."> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
+</p>
+<!--<% if current_user %>
+<button name="save-only" class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
+Save My Log
+</button>
+<% end %>-->
+<button id="proceed_to_confirmation" name="save-and-order" class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
+	Continue
+</button>
+
+<script>
+	$(document).ready(function() {
+		$("#proceed_to_confirmation").click(function() {
+
+			//Send to Google Analytics
+			ga('send', {
+				hitType : 'event',
+				eventCategory : 'Button',
+				eventAction : 'click',
+				eventLabel : "Proceed to Confirmation"
+			});
+		});
+	});
+</script>

@@ -1,0 +1,141 @@
+<h4 style="color:#dc0060">Section A - Your body statistics and Fittings </h4>
+<ul>
+	<li>
+		I am
+		<input class="input-sm" name="user[personal][age]" value="<%= @userdata['personal']['age'] if defined?(@userdata['personal']['age']) %>" placeholder="" type="number"/>
+		years old, and
+		<input id="user[personal][height][feet]" class="input-sm" name="user[personal][height][feet]" value="<%= @userdata['personal']['height']['feet'] if defined?(@userdata['personal']['height']['feet']) %>" placeholder="" type="number"/>
+		feet &
+		<input id="user[personal][height][inches]" class="input-sm" name="user[personal][height][inches]" value="<%= @userdata['personal']['height']['inches'] if defined?(@userdata['personal']['height']['inches']) %>"  placeholder="" type="number"/>
+		inches tall. Last time I hopped on a weighing machine, it displayed
+		<input id="user[personal][weight]" class="input-sm" name="user[personal][weight]" value="<%= @userdata['personal']['weight'] if defined?(@userdata['personal']['weight']) %>"  placeholder="" type="number"/>
+		kg.
+	</li>
+	<li>
+		Bras that fit me best are of size
+		<select id="user[personal][bra][size]" class="" name="user[personal][bra][size]" type="text">
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == ' ') %>></option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '30') %>>30</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '32') %>>32</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '34') %>>34</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '36') %>>36</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '38') %>>38</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['size']) && @userdata['personal']['bra']['size'] == '40') %>>40</option>
+		</select>
+		, cup
+		<select id="user[personal][bra][cup]" class="" name="user[personal][bra][cup]" type="text">
+			<option <% concat "selected" if (defined?(@userserdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == '') %>></option>
+			<option <% concat "selected" if (defined?(@userserdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'A') %>>A</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'B') %>>B</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'C') %>>C</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['bra']['cup']) && @userdata['personal']['bra']['cup'] == 'D') %>>D</option>
+		</select>
+		.
+		The size I normally wear for blouses/tops and shirts is
+		<select id="user[personal][size][top]" class="" name="user[personal][size][top]" type="text">
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == '') %>></option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'XS') %>>XS</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'S') %>>S</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'M') %>>M</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'L') %>>L</option>
+			<option <% concat "selected" if (defined?(@userdata['personal']['size']['top']) && @userdata['personal']['size']['top'] == 'XL') %>>XL</option>
+		</select>
+
+		of brand
+		<input id="user[personal][top][brand]" class="input-sm" name="user[personal][top][brand]" value="<%= @userdata['personal']['top']['brand'] if defined?(@userdata['personal']['top']['brand']) %>"  placeholder="" type="text"/>
+		.
+	</li>
+
+	<li>
+		My waist size is
+		<input id="user[personal][waist]" class="input-sm" name="user[personal][waist]" value="<%= @userdata['personal']['waist'] if defined?(@userdata['personal']['waist']) %>"  placeholder="" type="number"/>
+		inches.
+
+		My hip size is
+		<input id="user[personal][hip]" class="input-sm" name="user[personal][hip]" value="<%= @userdata['personal']['hip'] if defined?(@userdata['personal']['hip']) %>"  placeholder="" type="number"/>
+		inches.
+		<!--I feel comfortable on top half of my body fit as
+		<select class="" name="user[personal][size][topfit]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == '') %>></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Loose') %>>Loose</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Slightly loose') %>>Slightly loose</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['topfit']) && @userdata['personal']['size']['topfit'] == 'Skin Tight') %>>Skin Tight</option>
+		</select>
+		and I prefer
+		<select class="" name="user[personal][size][pants]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == '') %>></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Loose') %>>Loose</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Slightly loose') %>>Slightly loose</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['pants']) && @userdata['personal']['size']['pants'] == 'Skin Tight') %>>Skin Tight</option>
+		</select>
+		bottom half clothing.I wear jeans and skirts of
+		<select class="" name="user[personal][size][skirts]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == '') %>></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'XS') %>>XS</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'S') %>>S</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'M') %>>M</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'L') %>>L</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['size']['skirts']) && @userdata['personal']['size']['skirts'] == 'Xl') %>>XL</option>
+		</select>
+		size  and I love it on
+		<select class="" name="user[personal][choice][waist]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == '') %>></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'High waist') %>>High waist</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'Mid waist') %> <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'High waist') %>>Mid waist</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['waist']) && @userdata['personal']['choice']['waist'] == 'Low waist') %>>Low waist</option>
+		</select>
+		with a
+		<select class="" name="user[personal][choice][style]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == '') %>></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Pencil cut') %>>Pencil cut</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Plain straight') %>>Plain straight</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Bootcut') %>>Bootcut</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['choice']['style']) && @userdata['personal']['choice']['style'] == 'Comfort') %>>Comfort</option>
+		</select>
+		style .-->
+	</li>
+	<li>
+
+		<div class="radio">
+			My shoulders are
+			<label>
+				<input type="radio" class="radio_styles" name="user[personal][shoulders]" value="Narrow"<% concat "checked" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Narrow') %>>
+				Narrow</label>
+
+			<label>
+				<input type="radio" class="radio_styles" name="user[personal][shoulders]" value="Broad"<% concat "checked" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Broad') %>>
+				Broad</label>
+		</div>
+
+		<!--<select name="user[personal][shoulders]">
+		<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == '') %> values=""></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Narrow') %> values="Narrow">Narrow</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['shoulders']) && @userdata['personal']['shoulders'] == 'Broad') %> values="Broad">Broad</option>
+		</select>
+		I am more of a jeans / pants and top gal or a dresses gal?
+		<select class="" name="user[personal][dress]" type="text">
+		<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == '') %> values=""></option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'jeans') %> values="jeans">Mostly Jeans</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'dresses') %> value="dresses" >Mostly Dresses</option>
+		<option  <% concat "selected" if (defined?(@userdata['personal']['dress']) && @userdata['personal']['dress'] == 'mix') %> value="mix">Healthy Mix of Both</option>
+		</select>
+		I prefer jeans of
+		<select class="" name="user[personal][jeans][size]" type="text">
+		<option  <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == '') %> value=""></option>
+		<option  <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'ankle') %> value="ankle">Ankle (28" - 29")</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'regular') %> value="regular">Regular (30" - 32")</option>
+		<option <% concat "selected" if (defined?(@userdata['personal']['jeans']['size']) && @userdata['personal']['jeans']['size'] == 'long') %> value="long">Long (33" - 35")</option>
+		</select>
+		.-->
+	</li>
+	<!--<li>
+	And yeah I
+	<select class="" name="user[personal][bottom][curvy]" type="text">
+	<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == '') %>></option>
+	<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do') %>>do</option>
+	<option  <% concat "selected" if (defined?(@userdata['personal']['bottom']['curvy']) && @userdata['personal']['bottom']['curvy'] == 'do not') %>>do not</option>
+	</select>
+	consider my bottom half curvy.
+	</li>-->
+
+</ul>

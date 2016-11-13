@@ -1,40 +1,87 @@
 <head>
 	<script>
 		$(document).ready(function() {
+
 			$("#datetimepicker").datepicker({
 				minDate : 1
 			});
 			/*$('#datetimepicker').datetimepicker({
-				minDate : '+1970/01/02',
-				allowTimes : ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+			minDate : '+1970/01/02',
+			allowTimes : ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
 
 			});*/
 
-			$('#submission').click(function() {
+			// Google analytics
 
-				$.ajax({
+			$("#datetimepicker").click(function() {
 
-					url : '/orders',
-					method : "POST",
-					data : {
-						calldate : $("#datetimepicker").val(),
-						address : "", //$("#input-address").val(),
-						phone : $("#input-phone").val(),
-						pincode : "000000",//$("#input-pincode").val()
-						promo_code : $("#promo_code").val()
-					},
-					success : function(data) {
-						$('#details-confirmation-form').toggle();
-						$('#confirm-submission').toggle();
-						order_code = $.parseJSON(data);
-						$('#result_code').html(order_code.order_code);
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log("Internal Server Error : " + textStatus);
-					}
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Date',
+					eventAction : 'click',
+					eventLabel : "Selecting Call Date"
 				});
-
 			});
+			
+			$("#input-phone").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Phone',
+					eventAction : 'click',
+					eventLabel : "Entering Phone Number"
+				});
+			});
+
+			$("#promo_code").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Input',
+					eventAction : 'click',
+					eventLabel : "Entering Promo Code"
+				});
+			});
+			
+			$("#submission").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Button',
+					eventAction : 'click',
+					eventLabel : "Final Submission"
+				});
+			});
+			
+		$('#submission').click(function() {
+
+			$.ajax({
+
+				url : '/orders',
+				method : "POST",
+				data : {
+					calldate : $("#datetimepicker").val(),
+					address : "", //$("#input-address").val(),
+					phone : $("#input-phone").val(),
+					pincode : "000000", //$("#input-pincode").val()
+					promo_code : $("#promo_code").val()
+				},
+				success : function(data) {
+					$('#details-confirmation-form').toggle();
+					$('#confirm-submission').toggle();
+					order_code = $.parseJSON(data);
+					$('#result_code').html(order_code.order_code);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log("Internal Server Error : " + textStatus);
+				}
+			});
+
+		});
 		});
 	</script>
 
@@ -117,7 +164,7 @@
 				</legend>
 				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
 			</div>
-			
+
 		</div>
 		<!--<br />
 		<br />
@@ -136,7 +183,6 @@
 					Confirm
 				</button>
 			</div>
-			
 		</div>
 	</form>
 </div>
