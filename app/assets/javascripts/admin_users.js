@@ -134,6 +134,9 @@
 			$("#jewellery").html(val["lifestyle"]["jewellery"]);
 			$("#lifestyle_accmax").html(val["lifestyle"]["accmax"]);
 			$("#lifestyle_accmin").html(val["lifestyle"]["accmin"]);
+			$("#materials").html(JSON.stringify(val["lifestyle"]["materials"]));
+			$("#colors").html(JSON.stringify(val["lifestyle"]["colors"]));
+			$("#prints").html(JSON.stringify(val["lifestyle"]["prints"]));
 		}
 		
 		if(typeof val["sociallinks"] != 'undefined')
