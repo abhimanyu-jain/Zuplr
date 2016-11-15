@@ -99,6 +99,11 @@
 				<b>Pincode :</b> <%= order.pincode %>
 				<br />
 				<br />
+				<button type="button" id="getStyleData" onclick="getStyleData(<%= order.userprofile_id %>, '<%= order.name %>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#styleLogPopup">
+					Profile
+				</button>
+				<br />
+				<br />
 				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %> </td>
 				<td><b>Created On : </b> <%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %>
 				<br />
@@ -164,6 +169,8 @@
 	</table>
 	<%= render 'order_status_history_popup' %>
 	<%= render 'contact_history_popup' %>
+	<%= render 'style_log_popup'%>
+			
 	<%= will_paginate @orders %>
 
 </div>
