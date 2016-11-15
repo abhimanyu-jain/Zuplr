@@ -50,9 +50,15 @@ class AdminController < ApplicationController
     set_list_of_stylists
     
     # 4 joins here because of shitty schema where users and userprofiles are 2 different tables. TODO : Fix that shit
-    @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, orders.promo_code, orders.stylist_id, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email, stylist_profile.name as stylist_name').
-    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').joins('JOIN users as stylists on orders.stylist_id = stylists.id').joins('JOIN userprofiles as stylist_profile on stylist_profile.id = stylists.userprofile_id').order('orders.created_at DESC')
+    @orders = Order.select(
+    'orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
+    orders.stylist_comments, orders.promo_code, orders.stylist_id, 
+    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, 
+    users.email, stylist_profile.name as stylist_name').
+    joins('JOIN users on users.id = orders.user_id').
+    joins('LEFT JOIN userprofiles on users.userprofile_id = userprofiles.id').
+    joins('LEFT JOIN users as stylists on orders.stylist_id = stylists.id').
+    joins('LEFT JOIN userprofiles as stylist_profile on stylist_profile.id = stylists.userprofile_id').order('orders.created_at DESC')
 
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @orders = @orders.where('users.email' => params[:email])
