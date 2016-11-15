@@ -99,15 +99,23 @@ class AdminController < ApplicationController
     userprofile.pincode = params["pincode"]
     userprofile.save
 
+    call_date_time = Date.strptime(params["call_date"], "%m/%d/%Y")
+  
     order = Order.new
     #order.scheduleddeliverydate = params["scheduleddeliverydate"]
     order.stylist_comments = params["stylist_comments"]
     order.status = 'REQUESTED'
-    order.order_code = Random.new.rand(1000..1000000000),
-    user = User.find_by_userprofile_id(params["userprofile_id"])
+    order.order_code = Random.new.rand(1000..1000000000)
+    order.call_date_time = call_date_time
+    user = User.find_by_userprofile_id(userprofile.id)
     order.user_id = user.id
     order.save
 
+    # Adding to contact log
+    contact_log_entry = ContactLog.new(:contact_date => params["call_date"], :notes => "Order generated from backend", :order_id => order.id)
+    contact_log_entry.save
+
+  
     #Adding to status history
     order_status_history = OrderStatusHistory.new
     order_status_history.order_id = order.id

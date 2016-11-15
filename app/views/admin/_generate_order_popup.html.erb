@@ -14,9 +14,9 @@
 
 				<script>
 					$(function() {
-						//$("#scheduleddeliverydate").datepicker({
-						//	minDate : 10
-						//});
+						$("#backend_order_calldate_datetimepicker").datepicker({
+							minDate : 0
+						});
 						$('#submission').click(function() {
 							$.ajax({
 								url : '/admin/new_order',
@@ -27,13 +27,8 @@
 									address : $("#input-address").val(),
 									phone : $("#input-phone").val(),
 									pincode : $("#input-pincode").val(),
-									stylist_comments : $("#input-comments").val()
-								},
-								success : function(data) {
-									$('#details-confirmation-form').toggle();
-									$('#confirm-submission').toggle();
-									order_code = $.parseJSON(data);
-									$('#result_code').html(order_code.order_code);
+									stylist_comments : $("#input-comments").val(),
+									call_date : $("#backend_order_calldate_datetimepicker").val()
 								},
 
 								error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -62,10 +57,11 @@
 							<br />
 						</div>
 						<div class="col-sm-6">
-							<!--<h4>Date of Delivery : </h4>
-							<input class="input-ic" id= "scheduleddeliverydate" type="text" style = "width:300px;" required />
-							<br />
-							<br />-->
+							<h4>
+								Call date :
+							</h4>
+							<input class="input-ic form-control" id= "backend_order_calldate_datetimepicker" placeholder="Date" type="text" required />
+
 							<h4>Stylist Comments : </h4>
 							<textarea class="input-comments" rows="5" id="input-comments" style = "width:300px;" required ></textarea>
 							<br />
