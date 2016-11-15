@@ -208,7 +208,11 @@ class AdminController < ApplicationController
   private
   
   def set_list_of_stylists
-    @stylists = User.select('users.id, users.email, userprofiles.name').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').joins('JOIN roles on users.role_id = roles.id').where('roles.name = "Stylist" or roles.name = "Admin"')
+    @stylists = User.select('users.id, userprofiles.name').
+    joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').
+    joins('JOIN roles on users.role_id = roles.id').
+    where('roles.name = "Stylist" or roles.name = "Admin"')
+   # @stylists.push('','')
   end
 
   def authenticate_admin
