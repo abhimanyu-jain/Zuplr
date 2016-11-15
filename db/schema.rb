@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020131817) do
+ActiveRecord::Schema.define(version: 20161115143824) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 20161020131817) do
     t.text     "stylist_comments",      limit: 65535
     t.datetime "call_date_time"
     t.string   "promo_code",            limit: 255
+    t.integer  "stylist_id",            limit: 4
   end
 
+  add_index "orders", ["stylist_id"], name: "index_orders_on_stylist_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 20161020131817) do
     t.string   "utm_source",             limit: 255
     t.string   "utm_campaign",           limit: 255
     t.string   "utm_medium",             limit: 255
+    t.integer  "stylists_id",            limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -134,6 +137,7 @@ ActiveRecord::Schema.define(version: 20161020131817) do
   add_foreign_key "identities", "users"
   add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", column: "stylist_id"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "userprofiles"
 end

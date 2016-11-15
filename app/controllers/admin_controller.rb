@@ -46,9 +46,13 @@ class AdminController < ApplicationController
   end
 
   def getallorders
+    
+    set_list_of_stylists
+    
+    # 4 joins here because of shitty schema where users and userprofiles are 2 different tables. TODO : Fix that shit
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, orders.promo_code, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
-    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').order('orders.created_at DESC')
+    orders.stylist_comments, orders.promo_code, orders.stylist_id, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email, stylist_profile.name as stylist_name').
+    joins('JOIN users on users.id = orders.user_id').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').joins('JOIN users as stylists on orders.stylist_id = stylists.id').joins('JOIN userprofiles as stylist_profile on stylist_profile.id = stylists.userprofile_id').order('orders.created_at DESC')
 
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @orders = @orders.where('users.email' => params[:email])
@@ -82,7 +86,7 @@ class AdminController < ApplicationController
 
   def getpendingorders
     @orders = Order.select('orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, orders.promo_code, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
+    orders.stylist_comments, orders.promo_code, orders.stylist_id, users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, users.email').
     joins('JOIN users on users.id = orders.user_id').joins('JOIN users on users.id = orders.user_id').
     joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').where('status = "REQUESTED"').order('orders.created_at DESC')
 
@@ -184,8 +188,22 @@ class AdminController < ApplicationController
     @contact_history = ContactLog.select("contact_date, notes").where("order_id = "+order_id.to_s)
     render :json => @contact_history.to_json
   end
+  
+  def assign_stylist
+    order_id = params[:order_id]
+    stylist_id = params[:stylist_id]
+    
+    order = Order.find_by_id(order_id)
+    order.stylist_id = stylist_id
+    order.save
+    render :nothing => true
+  end
 
   private
+  
+  def set_list_of_stylists
+    @stylists = User.select('users.id, users.email, userprofiles.name').joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').joins('JOIN roles on users.role_id = roles.id').where('roles.name = "Stylist" or roles.name = "Admin"')
+  end
 
   def authenticate_admin
     if current_user == nil

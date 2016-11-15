@@ -20,6 +20,25 @@
 			minDate : 0
 		});
 	});
+
+	function assignStylist(order_id) {
+		stylist_id = $("#assigned_stylist" + order_id).val();
+
+		event.preventDefault();
+		$.ajax({
+			type : "POST",
+			url : "/admin/assign_stylist",
+			data : {
+				order_id : order_id,
+				stylist_id : stylist_id
+			},
+			success : function(result) {
+				location.reload();
+			},
+		});
+
+	}
+
 	//Rest is at admin_orders.js
 
 </script>
@@ -159,7 +178,15 @@
 					View Contact History
 				</button></td>
 
-				<td><b>Stylist Comment :</b>				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
+				<td><b>Assigned Stylist : </b> 
+					<% if current_user.role.name == 'Admin' %>
+					<%= select_tag "assigned_stylist"+order.id.to_s, options_for_select(@stylists.collect{ |s| [s.name, s.id] }, order.stylist_id), :onchange => "assignStylist("+order.id.to_s+")" %>
+					<% else %>
+					<%= order.stylist_name %>
+					<% end %>
+				<br />
+				<br />
+				<b>Stylist Comment :</b>				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>
 				<input class="newcomment" type="button" value="Update" onclick="updatecomment(<%= order.id %>)" />
 				</td>
 			</tr>
@@ -170,7 +197,7 @@
 	<%= render 'order_status_history_popup' %>
 	<%= render 'contact_history_popup' %>
 	<%= render 'style_log_popup'%>
-			
+
 	<%= will_paginate @orders %>
 
 </div>
