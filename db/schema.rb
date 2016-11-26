@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126134244) do
+ActiveRecord::Schema.define(version: 20161126134944) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20161126134244) do
   end
 
   add_index "contact_logs", ["order_id"], name: "index_contact_logs_on_order_id", using: :btree
+
+  create_table "fabrics", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
