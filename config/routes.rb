@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :brands  
   resources :fabrics  
   resources :item_statuses
-  resources :item_categories
+  resources :product_categories
   
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
