@@ -1,0 +1,19 @@
+<style>
+	#product_category_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="product_category_body">
+	<h1 id="product_category_title">New Product Category</h1>
+	<%= form_for :product_category, url: product_categories_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>

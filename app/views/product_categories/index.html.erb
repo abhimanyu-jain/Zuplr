@@ -1,0 +1,20 @@
+<div class="product_category_body">
+	<h1>List of Product Categories</h1>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Created At</th>
+		</tr>
+
+		<% @product_categories.each do |product_category| %>
+		<tr>
+			<td><%= product_category.id %></td>
+			<td><%= product_category.name %></td>
+			<td><%= product_category.created_at %></td>
+		</tr>
+		<% end %>
+	</table>
+	<u><%= link_to 'Add New', new_product_category_url %></u>
+</div>
