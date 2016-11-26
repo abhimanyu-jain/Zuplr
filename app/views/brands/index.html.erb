@@ -1,0 +1,22 @@
+<div class="brands_body">
+	<h1>List of Brands</h1>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Created At</th>
+			<th>Link</th>
+		</tr>
+
+		<% @brands.each do |brand| %>
+		<tr>
+			<td><%= brand.id %></td>
+			<td><%= brand.name %></td>
+			<td><%= brand.created_at %></td>
+			<td><u><%= link_to 'Show', brand_path(brand) %></u></td>
+		</tr>
+		<% end %>
+	</table>
+	<u><%= link_to 'Add New', new_brand_url %></u>
+</div>

@@ -1,0 +1,19 @@
+<style>
+	#brands_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="brands_body">
+	<h1 id="brands_title">New brand</h1>
+	<%= form_for :brand, url: brands_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>
