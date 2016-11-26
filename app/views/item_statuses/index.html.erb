@@ -1,0 +1,20 @@
+<div class="item_status_body">
+	<h1>List of Item Statuses</h1>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Created At</th>
+		</tr>
+
+		<% @item_status.each do |item_status| %>
+		<tr>
+			<td><%= item_status.id %></td>
+			<td><%= item_status.name %></td>
+			<td><%= item_status.created_at %></td>
+		</tr>
+		<% end %>
+	</table>
+	<u><%= link_to 'Add New', new_item_status_url %></u>
+</div>

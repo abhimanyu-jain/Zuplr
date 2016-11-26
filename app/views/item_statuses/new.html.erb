@@ -1,0 +1,19 @@
+<style>
+	#item_status_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="item_status_body">
+	<h1 id="item_status_title">New Item Status</h1>
+	<%= form_for :item_status, url: item_statuses_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>
