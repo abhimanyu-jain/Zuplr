@@ -1,0 +1,19 @@
+<style>
+	#fabric_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="fabric_body">
+	<h1 id="fabric_title">New fabric</h1>
+	<%= form_for :fabric, url: fabrics_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>

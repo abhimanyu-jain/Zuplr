@@ -1,0 +1,20 @@
+<div class="fabric_body">
+	<h1>List of Fabrics</h1>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Created At</th>
+		</tr>
+
+		<% @fabrics.each do |fabric| %>
+		<tr>
+			<td><%= fabric.id %></td>
+			<td><%= fabric.name %></td>
+			<td><%= fabric.created_at %></td>
+		</tr>
+		<% end %>
+	</table>
+	<u><%= link_to 'Add New', new_fabric_url %></u>
+</div>
