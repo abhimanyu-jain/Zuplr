@@ -3,11 +3,16 @@ Rails.application.routes.draw do
   root "home#index"
  
   resources :orders
-  resources :vendors  
   resources :cities
   resources :userprofiles
   resources :roles
-
+  resources :vendors  
+  resources :sizes  
+  resources :brands  
+  resources :fabrics  
+  resources :item_statuses
+  resources :item_categories
+  
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
 

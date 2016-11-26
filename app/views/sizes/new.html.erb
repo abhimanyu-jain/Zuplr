@@ -1,0 +1,19 @@
+<style>
+	#size_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="size_body">
+	<h1 id="size_title">New Size</h1>
+	<%= form_for :size, url: sizes_path do |f| %>
+	<p>
+		<%= f.label :value %>
+		<br>
+		<%= f.text_field :value %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>
