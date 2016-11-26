@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115143824) do
+ActiveRecord::Schema.define(version: 20161126121214) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -132,6 +132,12 @@ ActiveRecord::Schema.define(version: 20161115143824) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
+
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   add_foreign_key "contact_logs", "orders"
   add_foreign_key "identities", "users"

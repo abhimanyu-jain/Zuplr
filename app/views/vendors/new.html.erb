@@ -1,0 +1,19 @@
+<style>
+	#vendor_title {
+		margin-bottom : 50px;
+	}
+</style>
+<div class="vendor_body">
+	<h1 id="vendor_title">New Vendor</h1>
+	<%= form_for :vendor, url: vendors_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>

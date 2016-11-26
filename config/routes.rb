@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :orders
   root "home#index"
-  
-  resources :items
+ 
+  resources :orders
+  resources :vendors  
   resources :cities
   resources :userprofiles
-  resources :deliveries
   resources :roles
-  resources :comments
-  resources :conversations do
-    resources :messages
-  end
+
+
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
 
   get "/style-log" => "userprofiles#styledata"

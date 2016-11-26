@@ -1,0 +1,21 @@
+<div class="vendor_body">
+	<h1>List of Vendors</h1>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Created At</th>
+			<th>Link</th>
+		</tr>
+
+		<% @vendors.each do |vendor| %>
+		<tr>
+			<td><%= vendor.id %></td>
+			<td><%= vendor.name %></td>
+			<td><%= vendor.created_at %></td>
+			<td><u><%= link_to 'Show', vendor_path(vendor) %></u></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
