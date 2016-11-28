@@ -130,17 +130,17 @@
 				<br />
 				<br />
 				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %> </td>
-				<td> Phone Status :
+				<td> <b>Phone Status :</b>
 				<br />
 				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified','Not Picking Up'], order.phone_number_status), :onchange => "update_phone_status(" + order.userprofile_id.to_s + " ,this.value)") %>
 				<br />
 				<br />
-				Gender :
+				<b>Gender :</b>
 				<br />
 				<%= select_tag(:gender, options_for_select(['NA','Female','Male'], order.gender), :onchange => "update_gender(" + order.userprofile_id.to_s + " ,this.value)") %>
 				<br />
 				<br />
-				Latest Status :
+				<b>Latest Status :</b>
 				<br />
 				<%= select_tag(:latest_status, options_for_select(['Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], order.latest_status), :onchange => "update_latest_status(" + order.userprofile_id.to_s + " ,this.value)") %> 
 				<td>
