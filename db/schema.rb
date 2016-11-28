@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126140324) do
+ActiveRecord::Schema.define(version: 20161126194019) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -97,6 +97,23 @@ ActiveRecord::Schema.define(version: 20161126140324) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string   "title",               limit: 255
+    t.text     "description",         limit: 65535
+    t.integer  "product_category_id", limit: 4
+    t.integer  "fabric_id",           limit: 4
+    t.string   "pattern",             limit: 255
+    t.integer  "vendor_id",           limit: 4
+    t.integer  "brand_id",            limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
+  add_index "products", ["fabric_id"], name: "index_products_on_fabric_id", using: :btree
+  add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+  add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
@@ -174,6 +191,10 @@ ActiveRecord::Schema.define(version: 20161126140324) do
   add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "users", column: "stylist_id"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "fabrics"
+  add_foreign_key "products", "product_categories"
+  add_foreign_key "products", "vendors"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "userprofiles"
 end

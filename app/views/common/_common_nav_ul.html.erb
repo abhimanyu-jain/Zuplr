@@ -84,7 +84,7 @@
 		<li>
 			<%= link_to "Account", edit_user_registration_path %>
 		</li>
-		<% if (current_user.role.name == 'Admin' || current_user.role.name == 'Manager') %>
+		<% if (current_user.role.name == 'Admin' || current_user.role.name == 'Manager' || current_user.role.name == 'Stylist') %>
 		<li>
 			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %>
 		</li>
@@ -96,10 +96,6 @@
 		</li>
 		<li>
 			<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
-		</li>
-		<% elsif (current_user.role.name == 'Stylist') %>
-		<li>
-			<a class = "shadow-stuff" href="/stylist/dashboard">Dashboard</a>
 		</li>
 		<% else %>
 		<li>
