@@ -59,6 +59,9 @@
 					<th>Updated On</th>-->
 					<th>Order Status</th>
 					<th>Call Date</th>
+					<% if current_user.role.name == 'Admin' %>
+					<th>Stylist Name</th>
+					<% end %>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,6 +78,10 @@
 					<td>
 					<input id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
 					</td>
+					 <% if current_user.role.name == 'Admin' %>
+					<td><%= select_tag "stylist", options_for_select(@stylists.collect { |s| [s.name, s.id]}, params[:stylist]), include_blank: true, :onchange => "" %>
+					</td>
+					<% end %> 
 				</tr>
 				<tr>
 					<td>
@@ -178,12 +185,11 @@
 					View Contact History
 				</button></td>
 
-				<td><b>Assigned Stylist : </b> 
-					<% if current_user.role.name == 'Admin' %>
-					<%= select_tag "assigned_stylist"+order.id.to_s, options_for_select(@stylists.collect { |s| [s.name, s.id]}, order.stylist_id), include_blank: true, :onchange => "assignStylist("+order.id.to_s+")" %>
-					<% else %>
-					<%= order.stylist_name %>
-					<% end %>
+				<td><b>Assigned Stylist : </b> <% if current_user.role.name == 'Admin' %>
+				<%= select_tag "assigned_stylist"+order.id.to_s, options_for_select(@stylists.collect { |s| [s.name, s.id]}, order.stylist_id), include_blank: true, :onchange => "assignStylist("+order.id.to_s+")" %>
+				<% else %>
+				<%= order.stylist_name %>
+				<% end %>
 				<br />
 				<br />
 				<b>Stylist Comment :</b>				<textarea id="stylist-comment<%= order.id %>" style="width : 300px;" rows=10 value=""><%= order.stylist_comments %></textarea>

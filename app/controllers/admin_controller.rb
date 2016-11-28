@@ -32,11 +32,11 @@ class AdminController < ApplicationController
     if(params[:status] != 'All' && params[:status] != nil)
       @orders = @orders.where('orders.status' => params[:status])
     end
-   
+
     if(params[:call_date] != 'All' && params[:call_date] != nil && params[:call_date] != "")
       selected_date = Date.strptime(params[:call_date], "%m/%d/%Y")
       @orders = @orders.where(
-      ['orders.call_date_time >= ? AND orders.call_date_time <= ?', 
+      ['orders.call_date_time >= ? AND orders.call_date_time <= ?',
         selected_date.in_time_zone(Time.zone).beginning_of_day, #HACK : For some reason, active record is converting selected_date to UTC time on localhost but not on production which means the time shifts back by 5 hours 30 minutes. Treat it as UTC for it to work on localhost.
         selected_date.in_time_zone(Time.zone).end_of_day
         ]
@@ -46,14 +46,14 @@ class AdminController < ApplicationController
   end
 
   def getallorders
-    
+
     set_list_of_stylists
-    
+
     # 4 joins here because of shitty schema where users and userprofiles are 2 different tables. TODO : Fix that shit
     @orders = Order.select(
     'orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
-    orders.stylist_comments, orders.promo_code, orders.stylist_id, 
-    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, 
+    orders.stylist_comments, orders.promo_code, orders.stylist_id,
+    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode,
     users.email, stylist_profile.name as stylist_name').
     joins('JOIN users on users.id = orders.user_id').
     joins('LEFT JOIN userprofiles on users.userprofile_id = userprofiles.id').
@@ -78,11 +78,18 @@ class AdminController < ApplicationController
     if(params[:call_date] != 'All' && params[:call_date] != nil && params[:call_date] != "")
       selected_date = Date.strptime(params[:call_date], "%m/%d/%Y")
       @orders = @orders.where(
-      ['orders.call_date_time >= ? AND orders.call_date_time <= ?', 
+      ['orders.call_date_time >= ? AND orders.call_date_time <= ?',
         selected_date.in_time_zone(Time.zone).beginning_of_day, #HACK : For some reason, active record is converting selected_date to UTC time on localhost but not on production which means the time shifts back by 5 hours 30 minutes. Treat it as UTC for it to work on localhost.
         selected_date.in_time_zone(Time.zone).end_of_day
         ]
       )
+    end
+    if current_user.role.name == 'Admin'
+      if(params[:stylist] != '' && params[:stylist] != nil)
+        @orders = @orders.where('orders.stylist_id' => params[:stylist])
+      end
+    else
+      @orders = @orders.where('orders.stylist_id' => current_user.id)
     end
 
     @orders = @orders.paginate(:page => params[:page], :per_page => 30)
@@ -110,7 +117,7 @@ class AdminController < ApplicationController
     userprofile.save
 
     call_date_time = Date.strptime(params["call_date"], "%m/%d/%Y")
-  
+
     order = Order.new
     #order.scheduleddeliverydate = params["scheduleddeliverydate"]
     order.stylist_comments = params["stylist_comments"]
@@ -125,7 +132,6 @@ class AdminController < ApplicationController
     contact_log_entry = ContactLog.new(:contact_date => params["call_date"], :notes => "Order generated from backend", :order_id => order.id)
     contact_log_entry.save
 
-  
     #Adding to status history
     order_status_history = OrderStatusHistory.new
     order_status_history.order_id = order.id
@@ -188,17 +194,17 @@ class AdminController < ApplicationController
     @history = OrderStatusHistory.select("created_at, status").where("order_id = "+order_id.to_s)
     render :json => @history.to_json
   end
-  
+
   def get_contact_history
     order_id = params[:order_id]
     @contact_history = ContactLog.select("contact_date, notes").where("order_id = "+order_id.to_s)
     render :json => @contact_history.to_json
   end
-  
+
   def assign_stylist
     order_id = params[:order_id]
     stylist_id = params[:stylist_id]
-    
+
     order = Order.find_by_id(order_id)
     order.stylist_id = stylist_id
     order.save
@@ -206,13 +212,13 @@ class AdminController < ApplicationController
   end
 
   private
-  
+
   def set_list_of_stylists
     @stylists = User.select('users.id, userprofiles.name').
     joins('JOIN userprofiles on users.userprofile_id = userprofiles.id').
     joins('JOIN roles on users.role_id = roles.id').
     where('roles.name = "Stylist" or roles.name = "Admin"')
-   # @stylists.push('','')
+  # @stylists.push('','')
   end
 
   def authenticate_admin
