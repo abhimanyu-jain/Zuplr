@@ -157,6 +157,14 @@
 				</div>
 				<br />
 				<% if order.status == 'REQUESTED' %>
+				<input class="btn btn-primary" type="button" value="Requirements are Confirmed" onclick="update_order_status(<%= order.id %>, 'REQUIREMENTS CONFIRMED')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
+				<% elsif order.status == 'REQUIREMENTS CONFIRMED' %>
+				<input class="btn btn-primary" type="button" value="Clothes are Confirmed" onclick="update_order_status(<%= order.id %>, 'CLOTHES CONFIRMED')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Unable to Fulfill" onclick="update_order_status(<%= order.id %>, 'UNABLE TO FULFILL ORDER')" />
+				<% elsif order.status == 'CLOTHES CONFIRMED' %>
 				<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
 				<br />
 				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
