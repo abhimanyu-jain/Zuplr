@@ -53,7 +53,8 @@ class AdminController < ApplicationController
     @orders = Order.select(
     'orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
     orders.stylist_comments, orders.promo_code, orders.stylist_id,
-    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode,
+    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, 
+    userprofiles.phone_number_status, userprofiles.gender, userprofiles.latest_status, userprofiles.id as userprofile_id,
     users.email, stylist_profile.name as stylist_name').
     joins('JOIN users on users.id = orders.user_id').
     joins('LEFT JOIN userprofiles on users.userprofile_id = userprofiles.id').

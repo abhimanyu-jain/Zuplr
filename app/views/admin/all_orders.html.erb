@@ -78,10 +78,9 @@
 					<td>
 					<input id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
 					</td>
-					 <% if current_user.role.name == 'Admin' %>
-					<td><%= select_tag "stylist", options_for_select(@stylists.collect { |s| [s.name, s.id]}, params[:stylist]), include_blank: true, :onchange => "" %>
-					</td>
-					<% end %> 
+					<% if current_user.role.name == 'Admin' %>
+					<td><%= select_tag "stylist", options_for_select(@stylists.collect { |s| [s.name, s.id]}, params[:stylist]), include_blank: true, :onchange => "" %> </td>
+					<% end %>
 				</tr>
 				<tr>
 					<td>
@@ -101,7 +100,7 @@
 		<thead>
 			<tr>
 				<th>User</th>
-				<th width="300">Order Details</th>
+				<th width="300">User Status</th>
 				<th width="125">Order Status </th>
 				<th>Call Details</th>
 				<th width="300">Stylist Comments</th>
@@ -131,14 +130,25 @@
 				<br />
 				<br />
 				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %> </td>
-				<td><b>Created On : </b> <%= order.created_at.to_date.to_s + " " +  order.created_at.to_s(:time) %>
+				<td> Phone Status :
+				<br />
+				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified','Not Picking Up'], order.phone_number_status), :onchange => "update_phone_status(" + order.userprofile_id.to_s + " ,this.value)") %>
 				<br />
 				<br />
-				<b>Updated On : </b> <%= order.updated_at.to_date.to_s + " " +  order.updated_at.to_s(:time) %>
+				Gender :
+				<br />
+				<%= select_tag(:gender, options_for_select(['NA','Female','Male'], order.gender), :onchange => "update_gender(" + order.userprofile_id.to_s + " ,this.value)") %>
 				<br />
 				<br />
-				<b>Order Code : </b> <%= order.order_code %> </td>
-				<td><b>Promo Code :</b> <%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
+				Latest Status :
+				<br />
+				<%= select_tag(:latest_status, options_for_select(['Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], order.latest_status), :onchange => "update_latest_status(" + order.userprofile_id.to_s + " ,this.value)") %> 
+				<td>
+				<b>Order Code : </b> <%= order.order_code %> 
+				<br />
+				<br />
+				
+				<b>Promo Code :</b> <%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
 				<br />
 				<br />
 				<br />
