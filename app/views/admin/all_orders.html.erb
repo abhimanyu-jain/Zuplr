@@ -74,7 +74,7 @@
 					</input> </td>
 					<!--<td><input class="datepicker" name="created_on" value=<%= params[:created_at] || 'All' %>></td>
 					<td><input class="datepicker" name="updated_on" value=<%= params[:updated_at] || 'All' %>></td>-->
-					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
+					<td> <%= select_tag(:status, options_for_select(['All','REQUIREMENTS CONFIRMED', 'CLOTHES CONFIRMED','UNABLE TO FULFILL ORDER','REQUESTED','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
 					<td>
 					<input id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
 					</td>
