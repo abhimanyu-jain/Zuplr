@@ -130,7 +130,7 @@
 				<br />
 				<br />
 				<%= link_to "User Profile", "/admin/userprofile/"+(order.userprofile_id).to_s %> </td>
-				<td> <b>Phone Status :</b>
+				<td><b>Phone Status :</b>
 				<br />
 				<%= select_tag(:phone_number_status, options_for_select(['Unverified','Missing','Wrong Number','Verified','Not Picking Up'], order.phone_number_status), :onchange => "update_phone_status(" + order.userprofile_id.to_s + " ,this.value)") %>
 				<br />
@@ -142,12 +142,9 @@
 				<br />
 				<b>Latest Status :</b>
 				<br />
-				<%= select_tag(:latest_status, options_for_select(['Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], order.latest_status), :onchange => "update_latest_status(" + order.userprofile_id.to_s + " ,this.value)") %> 
-				<td>
-				<b>Order Code : </b> <%= order.order_code %> 
+				<%= select_tag(:latest_status, options_for_select(['Yet To Contact','Call and Reject','Unserviceable User','Will Fill the Form after Call','Need Styling - NOT Delivery','Below Our Price Range', 'Just Checking Out', 'Wants a Very Specific Dress', 'Serviceable User'], order.latest_status), :onchange => "update_latest_status(" + order.userprofile_id.to_s + " ,this.value)") %> <td><b>Order Code : </b> <%= order.order_code %>
 				<br />
 				<br />
-				
 				<b>Promo Code :</b> <%= if order.promo_code == nil || order.promo_code == '' then 'NA' else order.promo_code end %>
 				<br />
 				<br />
@@ -159,13 +156,21 @@
 				<% if order.status == 'REQUESTED' %>
 				<input class="btn btn-primary" type="button" value="Requirements are Confirmed" onclick="update_order_status(<%= order.id %>, 'REQUIREMENTS CONFIRMED')" />
 				<br />
+				<input class="btn btn-danger" type="button" value="Customer Unresponsive" onclick="update_order_status(<%= order.id %>, 'CANCELLED-CUSTOMER UNRESPONSIVE')" />
+				<br />
 				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
 				<% elsif order.status == 'REQUIREMENTS CONFIRMED' %>
 				<input class="btn btn-primary" type="button" value="Clothes are Confirmed" onclick="update_order_status(<%= order.id %>, 'CLOTHES CONFIRMED')" />
 				<br />
+				<input class="btn btn-danger" type="button" value="Customer Unresponsive" onclick="update_order_status(<%= order.id %>, 'CANCELLED-CUSTOMER UNRESPONSIVE')" />
+				<br />
 				<input class="btn btn-danger" type="button" value="Unable to Fulfill" onclick="update_order_status(<%= order.id %>, 'UNABLE TO FULFILL ORDER')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
 				<% elsif order.status == 'CLOTHES CONFIRMED' %>
 				<input class="btn btn-primary" type="button" value="Mark Box Ready" onclick="update_order_status(<%= order.id %>, 'BOX READY')" />
+				<br />
+				<input class="btn btn-danger" type="button" value="Customer Changed their Mind" onclick="update_order_status(<%= order.id %>, 'CANCELLED-CUSTOMER CHANGED THEIR MIND')" />
 				<br />
 				<input class="btn btn-danger" type="button" value="Cancel Order" onclick="update_order_status(<%= order.id %>, 'CANCELLED')" />
 				<% elsif order.status == 'BOX READY' %>
