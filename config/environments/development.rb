@@ -1,4 +1,5 @@
 Rails.application.configure do
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -42,6 +43,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: config.app_domain }
   # config.action_mailer.smtp_settings = {
   #   address: "smtp.mandrillapp.com",

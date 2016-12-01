@@ -62,6 +62,9 @@ class OrdersController < ApplicationController
     order_status_history.status = @order.status
     order_status_history.save
 
+    #Send notification email to stylist
+    UserMailer.order_notification(@userprofile.name, @userprofile.phonenumber, @userprofile.data.to_json)
+    
     respond_to do |format|
       if @order.save
         format.html { render json: @order, notice: 'Thank You for Ordering with Zuplr.' }
