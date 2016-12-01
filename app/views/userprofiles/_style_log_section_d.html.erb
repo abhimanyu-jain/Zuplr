@@ -37,9 +37,25 @@ Instagram :
 <br />
 <br />
 <p>
-	<h4 style="color:#dc0060">What all would you like in your shipment?</h4>
-	<!--Feel free to share here. We're all ears!-->
+	<h4 style="color:#dc0060"> What do you expect after filling this form? (Tick all that apply) <!--What all would you like in your shipment?--></h4>
+	<label>
+		<input type="checkbox" name="user[lifestyle][intentions][]" value="I want to see clothes online" <% concat "checked" if (defined?(@userdata['lifestyle']['intentions'][]) && (@userdata['lifestyle']['intentions']).include?('I want to see clothes online')) %>/>
+		I want to see clothes online</label><br />
+	<label>
+		<input type="checkbox" name="user[lifestyle][intentions][]" value="I am seeking fashion advice, I am not looking to buy" <% concat "checked" if (defined?(@userdata['lifestyle']['intentions'][]) && (@userdata['lifestyle']['intentions']).include?('I am seeking fashion advice, I am not looking to buy')) %>/>
+		I am seeking fashion advice, I am not looking to buy</label><br />
+	<label>
+		<input type="checkbox" name="user[lifestyle][intentions][]" value="I am too busy to shop" <% concat "checked" if (defined?(@userdata['lifestyle']['intentions'][]) && (@userdata['lifestyle']['intentions']).include?('I am too busy to shop')) %>/>
+		I am too busy to shop</label><br />
+	<label>
+		<input type="checkbox" name="user[lifestyle][intentions][]" value="I would like to upgrade my wardrobe" <% concat "checked" if (defined?(@userdata['lifestyle']['intentions'][]) && (@userdata['lifestyle']['intentions']).include?('I would like to upgrade my wardrobe')) %>/>
+		I would like to upgrade my wardrobe</label><br />
+	<label>
+		<input type="checkbox" name="user[lifestyle][intentions][]" value="I am looking clothes for specific occasion" <% concat "checked" if (defined?(@userdata['lifestyle']['intentions'][]) && (@userdata['lifestyle']['intentions']).include?('I am looking clothes for specific occasion')) %>/>
+		I am looking clothes for specific occasion</label>
+	<!--Feel free to share here. We're all ears!
 	<textarea id="zr-textarea" class="form-control" name="user[remarks]" style="width: 80%;min-height: 120px;" placeholder="Examples : I have a grey trouser, I am looking for a different coloured trouser with regular fit. I have a black trouser. Send me a top that goes with it. I want my stylist to focus on business casual look."> <%= @userdata['remarks'] if defined?(@userdata['remarks'])%> </textarea>
+	-->
 </p>
 <!--<% if current_user %>
 <button name="save-only" class="btn btn-z btn-z1 transform-up" style="margin-top: 30px;" >
@@ -62,5 +78,5 @@ Save My Log
 				eventLabel : "Proceed to Confirmation"
 			});
 		});
-	});
+	}); 
 </script>
