@@ -207,7 +207,7 @@
 				<button type="button" class="btn btn-success" onclick="view_order_status_history(<%= order.id %>)" data-toggle="modal" data-target="#order_status_history_popup">
 					View History
 				</button></td>
-				<td><b>Contact Date Specified by Customer</b>
+				<td><b>Contact Date</b>
 				<br />
 				<br />
 				<%= if order.call_date_time then order.call_date_time.to_date.to_s else '' end %>
