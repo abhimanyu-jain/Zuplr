@@ -137,7 +137,7 @@
 			$("#materials").html(JSON.stringify(val["lifestyle"]["materials"]));
 			$("#colors").html(JSON.stringify(val["lifestyle"]["colors"]));
 			$("#prints").html(JSON.stringify(val["lifestyle"]["prints"]));
-			$("intentions").html(JSON.stringify(val["lifestyle"]["intentions"]));
+			$("#intentions").html(JSON.stringify(val["lifestyle"]["intentions"]));
 		}
 		
 		if(typeof val["sociallinks"] != 'undefined')
