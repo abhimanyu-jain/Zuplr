@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126194019) do
+ActiveRecord::Schema.define(version: 20161203111837) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -180,6 +180,21 @@ ActiveRecord::Schema.define(version: 20161126194019) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["userprofile_id"], name: "index_users_on_userprofile_id", using: :btree
 
+  create_table "variants", force: :cascade do |t|
+    t.integer  "product_id",     limit: 4
+    t.integer  "size_id",        limit: 4
+    t.string   "color",          limit: 255
+    t.integer  "item_status_id", limit: 4
+    t.integer  "cost_price",     limit: 4
+    t.date     "purchase_date"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "variants", ["item_status_id"], name: "index_variants_on_item_status_id", using: :btree
+  add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree
+  add_index "variants", ["size_id"], name: "index_variants_on_size_id", using: :btree
+
   create_table "vendors", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -197,4 +212,7 @@ ActiveRecord::Schema.define(version: 20161126194019) do
   add_foreign_key "products", "vendors"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "userprofiles"
+  add_foreign_key "variants", "item_statuses"
+  add_foreign_key "variants", "products"
+  add_foreign_key "variants", "sizes"
 end
