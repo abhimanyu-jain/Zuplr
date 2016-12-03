@@ -3,7 +3,8 @@
 		$(document).ready(function() {
 
 			$("#datetimepicker").datepicker({
-				minDate : 1
+				minDate : 1,
+				maxDate : 7
 			});
 			/*$('#datetimepicker').datetimepicker({
 			minDate : '+1970/01/02',
@@ -23,7 +24,7 @@
 					eventLabel : "Selecting Call Date"
 				});
 			});
-			
+
 			$("#input-phone").click(function() {
 
 				//Send to Google Analytics
@@ -45,8 +46,8 @@
 					eventLabel : "Entering Promo Code"
 				});
 			});
-			
-			$("#submission").click(function() {
+
+			$('#submission').click(function() {
 
 				//Send to Google Analytics
 				ga('send', {
@@ -55,33 +56,48 @@
 					eventAction : 'click',
 					eventLabel : "Final Submission"
 				});
-			});
-			
-		$('#submission').click(function() {
 
-			$.ajax({
+				//Validating data since we are submitting via ajax
+				//date = $("#datetimepicker").val();
+				phone = $("#input-phone").val();
 
-				url : '/orders',
-				method : "POST",
-				data : {
-					calldate : $("#datetimepicker").val(),
-					address : "", //$("#input-address").val(),
-					phone : $("#input-phone").val(),
-					pincode : "000000", //$("#input-pincode").val()
-					promo_code : $("#promo_code").val()
-				},
-				success : function(data) {
-					$('#details-confirmation-form').toggle();
-					$('#confirm-submission').toggle();
-					order_code = $.parseJSON(data);
-					$('#result_code').html(order_code.order_code);
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					console.log("Internal Server Error : " + textStatus);
+				// Get today's date
+				var d = new Date();
+
+				var month = d.getMonth() + 1;
+				var day = d.getDate();
+
+				var output = (month < 10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
+				
+				date = output;
+				
+				if (date != '' && phone != '') {
+
+					//Disable Submit Button to avoid duplicate orders
+					$('#submission').prop('disabled', true);
+
+					$.ajax({
+						url : '/orders',
+						method : "POST",
+						data : {
+							calldate : date,
+							address : "", //$("#input-address").val(),
+							phone : phone,
+							pincode : "000000", //$("#input-pincode").val()
+							promo_code : $("#promo_code").val()
+						},
+						success : function(data) {
+							$('#details-confirmation-form').toggle();
+							$('#confirm-submission').toggle();
+							order_code = $.parseJSON(data);
+							$('#result_code').html(order_code.order_code);
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							console.log("Internal Server Error : " + textStatus);
+						}
+					});
 				}
 			});
-
-		});
 		});
 	</script>
 
@@ -101,7 +117,7 @@
 			height: 200px;
 		}
 		#promo_code, #datetimepicker {
-			max-width: 300px;
+			max-width: 500px;
 		}
 		legend {
 			border-bottom: 0;
@@ -116,13 +132,13 @@
 	<br />
 	<div class="billing-explanation row">
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
-			Our stylist will give you a call to understand your personal style
+			Our stylist will call/whatsapp you to understand your personal style
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			You will get a preview of your items prior to shipping
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
-			You will have 7 full days after delivery to decide what to keep
+			You will have 3 full days after delivery to decide what to keep
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			Only pay for what you keep
@@ -136,7 +152,7 @@
 	<br />
 	<form class="confirmation-details">
 		<div class="row">
-			<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
+			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
 				<legend>
 					Phone Number
 				</legend>
@@ -146,19 +162,19 @@
 				<br />
 			</div>
 
+			<!--<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">
+			<legend>
+			When would you like to schedule a call with your stylist?
+			</legend>
+			<input class="input-ic form-control" id= "datetimepicker" placeholder="Date" type="text" required />
+			<br />
+			<legend>
+			Date of Delivery :
+			</legend>
+			<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
+
+			</div>-->
 			<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">
-				<legend>
-					When would you like to schedule a call with your stylist?
-				</legend>
-				<input class="input-ic form-control" id= "datetimepicker" placeholder="Date" type="text" required />
-				<br />
-				<!--<legend>
-				Date of Delivery :
-				</legend>
-				<input class="input-ic form-control" id= "scheduleddeliverydate" placeholder="" type="text" required />
-				-->
-			</div>
-			<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 				<legend>
 					Promo Code :
 				</legend>
@@ -179,7 +195,7 @@
 		<br />-->
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: center;">
-				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="button" id="submission">
+				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="submit" id="submission">
 					Confirm
 				</button>
 			</div>

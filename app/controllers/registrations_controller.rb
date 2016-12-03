@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     user = User.find_by_email(params[:user][:email])
-    redirect_path = '/'
+    #redirect_path = '/'
     if user == nil
       super
       identity_create
@@ -15,15 +15,15 @@ class RegistrationsController < Devise::RegistrationsController
       profile_id  = @user.userprofile_id
       profile = Userprofile.find_by_id(profile_id)
      
-      if profile.try(:data) != nil
-         redirect_path = '/confirmation'
-      else
-         redirect_path = '/style-log' 
-      end
+     # if profile.try(:data) != nil
+     #    redirect_path = '/confirmation'
+     # else
+     #    redirect_path = '/style-log' 
+     # end
     else
-      redirect_path =  "/login"
+      redirect_to "/login", :flash => { :alert => "Email already registered!" }
     end
-    redirect_path
+    #redirect_path
   end
 
   # Create a identity for normal registered users
