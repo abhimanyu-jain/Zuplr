@@ -211,6 +211,32 @@ class AdminController < ApplicationController
     order.save
     render :nothing => true
   end
+  
+  def mark_box_ready_items
+    order_id = params[:order_id]
+    items = params[:item]
+    
+    order = Order.find_by_id(order_id)
+    order.status = "BOX READY"
+    order.save
+    
+    #Adding to status history
+    order_status_history = OrderStatusHistory.new
+    order_status_history.order_id = order_id
+    order_status_history.status = "BOX READY"
+    order_status_history.save
+    
+    items.each do |item|
+      order_item = OrderItem.new(:order_id => order_id, :variant_id => item[:item_id], :selling_price => item[:selling_price])
+      order_item.save
+    end
+    
+    render :nothing => true
+    #TODO : for each item, update status
+    #TODO : for each item, update status history
+    #TODO : make entry in order to shipment item mapping
+  end
+
 
   private
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203111837) do
+ActiveRecord::Schema.define(version: 20161230101604) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -65,6 +65,23 @@ ActiveRecord::Schema.define(version: 20161203111837) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id",          limit: 4
+    t.integer  "variant_id",        limit: 4
+    t.integer  "selling_price",     limit: 4
+    t.string   "size_feedback",     limit: 255
+    t.string   "style_feedback",    limit: 255
+    t.string   "price_feedback",    limit: 255
+    t.string   "fit_cut_feedback",  limit: 255
+    t.integer  "kept",              limit: 4
+    t.text     "customer_comments", limit: 65535
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["variant_id"], name: "index_order_items_on_variant_id", using: :btree
 
   create_table "order_status_histories", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
@@ -203,6 +220,8 @@ ActiveRecord::Schema.define(version: 20161203111837) do
 
   add_foreign_key "contact_logs", "orders"
   add_foreign_key "identities", "users"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "variants"
   add_foreign_key "order_status_histories", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "users", column: "stylist_id"

@@ -1,0 +1,107 @@
+<style>
+	#products_title {
+		margin-bottom: 50px;
+	}
+</style>
+
+<script>
+$(document).ready(function() {
+		$("#product_purchase_date").datepicker();
+	});
+</script>
+
+<div class="products_body">
+	<h1 id="products_title">List of Products</h1>
+
+	<h3>Filter By : </h3>
+	<%= form_for :product, method: :get, url: products_path do |f| %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Fabric</th>
+					<th>Vendor</th>
+					<th>Brand</th>
+					<th>Status</th>
+					<th>Size</th>
+					<th>Color</th>
+					<th>Pattern</th>
+					<th>Purchase Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= f.collection_select(:product_category_id, ProductCategory.all, :id, :name, :include_blank => true, :selected => @category_id) %></td>
+					<td><%= f.collection_select(:fabric_id, Fabric.all, :id, :name, :include_blank => true, :selected => @fabric_id) %></td>
+					<td><%= f.collection_select(:vendor_id, Vendor.all, :id, :name, :include_blank => true, :selected => @vendor_id) %></td>
+					<td><%= f.collection_select(:brand_id, Brand.all, :id, :name, :include_blank => true, :selected => @brand_id) %></td>
+					<td><%= f.collection_select(:item_status_id, ItemStatus.all, :id, :name, :include_blank => true, :selected => @item_status_id) %></td>
+					<td><%= f.collection_select(:size_id, Size.all, :id, :value, :include_blank => true, :selected => @size_id) %></td>
+					<td><%= f.text_field :color, :value => @color %></td>
+					<td><%= f.text_field :pattern, :value => @pattern %></td>
+					<td><%= f.text_field :purchase_date, :value => @purchase_date %></td>
+			
+				</tr>
+				<tr>
+					<td>
+					<%= f.submit %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<% end %>
+	</form>
+	<br />
+	<br />
+	
+	<br />
+	<br />
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Created and Updated</th>
+			<th>Title and Description</th>
+			<th>Style</th>
+			<th>Sourcing Info</th>
+		</tr>
+
+		<% @items.each do |item| %>
+		<tr>
+			<td><%= item.id %></td>
+			<td><b>Product was purchased on : </b><%= item.purchase_date %>
+			<br />
+			<br />
+			<b>Last Update made : </b><%= item.updated_at %>
+			<br />
+			<br />
+			<b>Status : </b><%= item.status %> </td>
+			<td><b><%= item.title %></b>
+			<br />
+			<br />
+			<%= item.description %> </td>
+			<td><b>Category : </b><%= item.category %>
+			<br />
+			<br />
+			<b>Fabric : </b><%= item.fabric.name %>
+			<br />
+			<br />
+			<b>Pattern : </b><%= item.pattern %>
+			<br />
+			<br />
+			<b>Size : </b><%= item.size %>
+			<br />
+			<br />
+			<b>Color : </b><%= item.color %> </td>
+			<td><b>Vendor : </b><%= item.vendor.name %>
+			<br />
+			<br />
+			<b>Brand : </b><%= item.brand.name %>
+			<br />
+			<br />
+			<b>Cost Price : </b><%= item.cost_price %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<u><%= link_to 'Add New', new_product_url %></u>
+</div>

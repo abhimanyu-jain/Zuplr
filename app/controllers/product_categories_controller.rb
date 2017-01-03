@@ -11,7 +11,7 @@ class ProductCategoriesController < ApplicationController
 
   #Create new product_category
   def create
-    @product_category = ProductCategory.new(product_categori_params)
+    @product_category = ProductCategory.new(product_category_params)
     @product_category.save
     redirect_to product_categories_path
   end
@@ -22,7 +22,7 @@ class ProductCategoriesController < ApplicationController
   end
   
   private
-  def product_categori_params
+  def product_category_params
     params.require(:product_category).permit(:name)
   end
 

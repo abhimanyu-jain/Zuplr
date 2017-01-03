@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :fabrics  
   resources :item_statuses
   resources :product_categories
+  resources :products
   
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', invitations: 'invitations'}
@@ -26,8 +27,9 @@ Rails.application.routes.draw do
   post "users/new-signup" => "userprofiles#savenumber"
   get "/welcome-user" => "userprofiles#welcomeuser"
   get "/users-check" => "home#newuser"
-  # post "/users/leads" => "leads#create"
-
+  get "/orders/:id/feedback" => "orders#get_feedback"
+  post "/orders/submit_feedback" => "orders#save_feedback"
+  
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   devise_scope :user do  
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
   post '/admin/get_contact_history' => 'admin#get_contact_history'
   post '/admin/next_call' => 'admin#next_call'
   post '/admin/assign_stylist' => 'admin#assign_stylist'
+  post '/admin/mark_box_ready_items' => 'admin#mark_box_ready_items', :as => :box_ready_items
   
   # Routes for deliveries
   get 'deliveries/index'

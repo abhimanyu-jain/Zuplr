@@ -1,0 +1,135 @@
+<style>
+	.main_body {
+		margin-top: 120px;
+		margin-left: 50px;
+		margin-right: 50px;
+	}
+
+	.thick_line {
+		border-color: black;
+		border-width: 2px;
+	}
+	.rupee-symbol {
+		margin-bottom: 1px !important;
+	}
+
+	.radio label {
+		margin-left: 12px;
+	}
+</style>
+
+<div class="main_body">
+	<h2>Checkout</h2>
+	<br />
+	<%= form_for :order_item, url: '/orders/submit_feedback' do |f| %>
+	<p>
+		<% @items.each do |item| %>
+		<%= f.text_field :id, :name => "order_item[]id" ,:value => item.id.to_s, :hidden => true %>
+		<div class="row">
+			<div class="col-md-6">
+				<b><%= item.title %></b>
+				<br />
+				<br />
+				<%= item.description %>
+			</div>
+			<div class="col-md-3">
+				<br />
+				<br />
+				<%= image_tag("rupeesymbol.png", size: "7x11", class: "rupee-symbol") %>
+				<%= item.selling_price %>
+			</div>
+			<div class="col-md-3">
+				<br />
+				<h4>Keep ?
+				<input class="item_acceptance_toggle" type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" name="order_item[]accept">
+				</h4>
+			</div>
+		</div>
+
+		<hr />
+		<div class="row">
+			<div class="col-md-3">
+				<%= f.label 'Size' %>
+				<div class="radio">
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]size_feedback[<%= item.id.to_s %>]" value="Too Small">
+						Too Small </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]size_feedback[<%= item.id.to_s %>]" value="Just Right">
+						Just Right </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]size_feedback[<%= item.id.to_s %>]" value="Too Big">
+						Too Big </label>
+				</div>
+
+				<%= f.label 'Price' %>
+				<div class="radio">
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]price_feedback[<%= item.id.to_s %>]" value="Too Low">
+						Too low </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]price_feedback[<%= item.id.to_s %>]" value="Just Right">
+						Just Right </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]price_feedback[<%= item.id.to_s %>]" value="Too High">
+						Too High </label>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<%= f.label 'Fit/Cut' %>
+				<div class="radio">
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]fit_cut_feedback[<%= item.id.to_s %>]" value="Love It">
+						Love It </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]fit_cut_feedback[<%= item.id.to_s %>]" value="Like It">
+						Like It </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]fit_cut_feedback[<%= item.id.to_s %>]" value="Just Ok">
+						Just Ok </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]fit_cut_feedback[<%= item.id.to_s %>]" value="Hate It">
+						Hate It </label>
+				</div>
+				<%= f.label 'Style' %>
+				<div class="radio">
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]style_feedback[<%= item.id.to_s %>]" value="Love It">
+						Love It </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]style_feedback[<%= item.id.to_s %>]" value="Like It">
+						Like It </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]style_feedback[<%= item.id.to_s %>]" value="Just Ok">
+						Just Ok </label>
+
+					<label>
+						<input type="radio" class="radio_styles" name="order_item[]style_feedback[<%= item.id.to_s %>]" value="Hate It">
+						Hate It </label>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<%= f.label 'Comments ?' %>
+				<br />
+				<textarea rows="5" cols="60" name="order_item[]customer_comments"></textarea>
+			</div>
+		</div>
+		<hr class = "thick_line" />
+		<br />
+		<br />
+		<% end %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+	<% end %>
+</div>

@@ -1,0 +1,21 @@
+<style>
+	.main_body {
+		margin-top: 250px;
+		margin-bottom : 175px;
+		text-align : center;
+	}
+	.backlinks {
+		padding : 5px;
+		color : blue;
+	}
+	.backlinks:visited {
+		color : blue;
+	}
+</style>
+<div class="main_body">
+	<h1>Thank you for your valuable feedback!</h1>
+	<br /><br />
+	<u><%= link_to 'View/Update Style Log', '/style-log', class: "backlinks" %></u>
+	<u><%= link_to 'Order With Us Again', '/confirmation', class: "backlinks" %></u>
+	<u><%= link_to 'View Past Orders', '/orders', class: "backlinks" %></u>
+</div>

@@ -1,11 +1,134 @@
+<style>
+	.order_box_top {
+		border: 1px #ddd solid;
+		border-radius: 4px 4px 0 0;
+		background-color: #f6f6f6;
+	}
+
+	.order_box_bottom {
+		border: 1px #ddd solid;
+		border-radius: 0 0 4px 4px;
+	}
+
+	.order_link_text {
+		color: white;
+	}
+
+	.order_link_text:visited {
+		color: white;
+	}
+
+	.bold-text {
+		font-weight: bold;
+		font-size: 17px;
+		font-family: Arial, sans-serif;
+	}
+
+	.order_box_top_row {
+		padding: 15px;
+	}
+
+	.order_box_bottom_row {
+		padding: 15px;
+	}
+
+	.price-color {
+		color: #b12704;
+	}
+	.currencyINR {
+		height: 11px;
+		width: 7px;
+		background-image: url('/assets/rupeesymbol.png');
+	}
+	.rupee-symbol {
+		margin-bottom: 0px !important;
+	}
+
+</style>
+
 <div style="padding-top:120px" class="container">
 	<p id="notice">
 		<h3><%= notice %></h3>
 	</p>
 
-	<p>
-		<h3><strong>Your Order Code is:</strong> <%= @order.order_code %> </h3>
-	</p>
+	<div>
+		<div class="order_box_top">
+			<div class="order_box_top_row">
+				<div class="row">
+					<div class="col-md-3">
+						ORDER PLACED
+						<br />
+						<%= @order.created_at.strftime("%a, %d %b %Y")  %>
+					</div>
+
+					<div class="col-md-3">
+						TOTAL
+						<br />
+						<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %><span class="price-color"><%= @invoice_amount %></span>
+					</div>
+
+					<div class="col-md-3">
+
+					</div>
+
+					<div class="col-md-3">
+						<button class="btn btn-primary">
+							<%= link_to "Order # " + @order.order_code, order_path(@order.order_code), {:class => "order_link_text"} %>
+						</button>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="order_box_bottom">
+			<div class="order_box_bottom_row">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="bold-text"> <%= @order.status %> </span>
+						<br />
+						<br />
+						<span class=""> Items Shipped : <% @order_item_categories.each do |item| %>
+							<%= item.count.to_s + " " + item.name %>
+							<% end %>
+							<br />
+							<br />
+							<% if @items != nil %>
+							<% @items.each do |item| %>
+							<div class="row">
+								<div class="col-md-6">
+									<%= item.title %>
+								</div>
+								<div class="col-md-3">
+									<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %>
+									<%= item.selling_price %>
+								</div>
+								<div class="col-md-3">
+									<%= if(item.kept == 1) then " KEPT" elsif(item.kept == 0) then " RETURNED" else " " end %>
+								</div>
+							</div>
+							<% end %>
+							<% end %>
+					</div>
+					<div class="col-md-2">
+						
+					</div>
+					<div class="col-md-4">
+						<% if @order.status == "REQUESTED" ||  @order.status == "BOX READY" %>
+						<input class="btn btn-danger" type="button" value="Cancel Order" onclick="cancel_order(<%= @order.id %>, 'CANCELLED BY CUSTOMER')" />
+						<button class="btn btn-success">
+							<%= link_to "Return", order_path(@order.order_code) + '/feedback', {:class => "order_link_text"} %>
+						</button>
+						<% elsif @order.status == "DELIVERED" %>
+						<button class="btn btn-success">
+							<%= link_to "Return", order_path(@order.order_code) + '/feedback', {:class => "order_link_text"} %>
+						</button>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<%= link_to 'Edit', edit_order_path(@order) %> |
 	<%= link_to 'Back', "/style-log" %>

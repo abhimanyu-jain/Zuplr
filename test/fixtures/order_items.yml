@@ -2,8 +2,22 @@
 
 one:
   order_id: 
-  item_id: 
+  variant_id: 
+  selling_price: 1
+  size_feedback: MyString
+  style_feedback: MyString
+  price_feedback: MyString
+  fit_cut_feedback: MyString
+  kept: 1
+  customer_comments: MyText
 
 two:
   order_id: 
-  item_id: 
+  variant_id: 
+  selling_price: 1
+  size_feedback: MyString
+  style_feedback: MyString
+  price_feedback: MyString
+  fit_cut_feedback: MyString
+  kept: 1
+  customer_comments: MyText

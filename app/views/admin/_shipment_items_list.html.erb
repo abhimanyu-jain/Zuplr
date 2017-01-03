@@ -1,0 +1,68 @@
+<!-- Modal -->
+<div class="modal fade" id="shipmentItemsPopup" role="dialog">
+	<div class="modal-admin" style="width: 700px; margin-top: 150px; margin-left: auto; margin-right: auto;">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					&times;
+				</button>
+				<h4 class="modal-title" id="shipmentItemsPopupName">Enter the items that we are shipping</h4>
+			</div>
+			<div class="modal-body">
+				<script>
+					function add_item_row() {
+						var variant_fields = $(".item_row").last().clone();
+						variant_fields.find('input').each(function() {
+							$(this).val('');
+						});
+						variant_fields.find('button').each(function() {
+							$(this).toggle();
+						});
+						variant_fields.appendTo(".items_list");
+					}
+
+					function remove_item_row(element) {
+						$(element).parents('.item_row').remove();
+					}
+
+
+					$(document).ready(function() {
+						$("#box_ready_items_submit").click(function() {
+							var data = $('.shipmentItemsForm').serialize();
+							$.post('/admin/mark_box_ready_items', data);
+						});
+					});
+				</script>
+				<form class="shipmentItemsForm">
+					<input id="order_id" name="order_id" value="" hidden />
+					<div class="items_list">
+						<div class="item_row">
+							<input class="input-ic" name="item[]item_id" type="number" style = "width:150px;" placeholder="Item ID" required />
+							<input class="input-ic" name="item[]selling_price" type="number" style = "width:150px;" placeholder="Selling Price" required />
+							<button onclick="remove_item_row(this)" hidden>
+								Remove Item
+							</button>
+						</div>
+					</div>
+					<br />
+					<button onclick="add_item_row()">
+						Add Item
+					</button>
+					<br />
+					<br />
+					<button id="box_ready_items_submit" class="btn btn-primary">
+						Submit
+					</button>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+
+	</div>
+</div>
