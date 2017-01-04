@@ -61,6 +61,10 @@ class AdminController < ApplicationController
     joins('LEFT JOIN users as stylists on orders.stylist_id = stylists.id').
     joins('LEFT JOIN userprofiles as stylist_profile on stylist_profile.id = stylists.userprofile_id').order('orders.created_at DESC')
 
+    if(params[:order_code] != 'All' && params[:order_code] != nil && params[:order_code] != "")
+      @orders = @orders.where('orders.order_code' => params[:order_code])
+    end
+    
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @orders = @orders.where('users.email' => params[:email])
     end

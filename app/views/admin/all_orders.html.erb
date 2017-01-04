@@ -59,6 +59,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>Order Code</th>
 					<th>Email</th>
 					<th>Phone</th>
 					<!--<th>Created On</th>
@@ -72,6 +73,9 @@
 			</thead>
 			<tbody>
 				<tr>
+					<td>
+						<input type="text" name="order_code" value=<%= params[:order_code] || 'All' %> />
+					</td>
 					<td>
 					<input type="text" name="email" value=<%= params[:email] || 'All' %>>
 					</input> </td>
