@@ -41,7 +41,6 @@
 	
 	function enter_item_list(order_id)
 	{
-		alert(order_id);
 		$("#order_id").val(order_id);
 	}
 
@@ -173,7 +172,7 @@
 				<br />
 				<input class="btn btn-danger" type="button" value="Unable to Fulfill" onclick="update_order_status(<%= order.id %>, 'UNABLE TO FULFILL ORDER')" />
 				<br />
-				<input class="btn btn-danger" type="button" value="Cancel-Duplicate" onclick="update_order_status(<%= order.id %>, 'CANCELLED-DUPLICATE')" />
+				<input class="btn btn-danger" type="button" value="Cancel Duplicate" onclick="update_order_status(<%= order.id %>, 'CANCELLED-DUPLICATE')" />
 				<br />
 				<% elsif order.status == 'BOX READY' %>
 				<input class="btn btn-primary" type="button" value="Box Dispatched" onclick="update_order_status(<%= order.id %>, 'DISPATCHED')" />

@@ -5,98 +5,251 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" async></script>-->
 	<script>
 		$(document).ready(function() {
-		
-		$("#header-style-log").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Style Log'
+
+			$(document).ready(function() {
+				$('.dropdown-submenu a.test').on("click", function(e) {
+					$('.dropdown-submenu .dropdown-menu').hide();
+					$(this).next('ul').toggle();
+					e.stopPropagation();
+					e.preventDefault();
+				});
 			});
-		});
-		
-		$("#header-orders-list").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Orders'
+
+			$("#header-style-log").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Style Log'
+				});
 			});
-		});
-		
-		$("#header-invite-friends").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Invite Friends'
+
+			$("#header-orders-list").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Orders'
+				});
 			});
-		});
-		
-		$("#header-logout").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Logout'
+
+			$("#header-invite-friends").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Invite Friends'
+				});
 			});
-		});
-		
-		$("#header-login").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Login'
+
+			$("#header-logout").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Logout'
+				});
 			});
-		});
-		
-		$("#header-register").click(function() {
-	
-			//Send to Google Analytics
-			ga('send', {
-				hitType : 'event',
-				eventCategory : 'Header Link',
-				eventAction : 'click',
-				eventLabel : 'Register'
+
+			$("#header-login").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Login'
+				});
 			});
-		});
-	})
+
+			$("#header-register").click(function() {
+
+				//Send to Google Analytics
+				ga('send', {
+					hitType : 'event',
+					eventCategory : 'Header Link',
+					eventAction : 'click',
+					eventLabel : 'Register'
+				});
+			});
+		})
+		
 	</script>
+	<style>
+		.dropdown-toggle, .dropdown-menu, .dropdown-submenu {
+			background-color: #dc0060;
+		}
+		.dropdown-menu li a:hover {
+			color : #dc0060!important;
+		}
+		.dropdown-toggle {
+			margin-top: 0px;
+			height: 50px;
+			border-radius: 0;
+		}
+
+		.dropdown-submenu {
+			position: relative;
+		}
+
+		.dropdown-submenu .dropdown-menu {
+			top: 0;
+			left: 100%;
+			margin-top: -1px;
+		}
+	</style>
 </head>
 <div id="navbar" class="collapse navbar-collapse pull-right">
 	<ul class="nav navbar-nav">
 		<!-- <li class="active"><a href="#">Home</a></li> -->
 		<% if user_signed_in? %>
 		<li>
-			<a class = "shadow-stuff" href="#">Hi <%= current_user.email %> !</a>
+			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				Hi <%= current_user.email %> !<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
+				</li>
+
+			</ul>
 		</li>
-		<li>
-			<%= link_to "Account", edit_user_registration_path %>
-		</li>
+
 		<% if (current_user.role.name == 'Admin' || current_user.role.name == 'Manager' || current_user.role.name == 'Stylist') %>
+
 		<li>
-			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %>
+			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				User links <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu abc">
+				<li>
+					<%= link_to "Style Profile", "/style-log", class: "shadow-stuff" %>
+				</li>
+				<li>
+					<%= link_to "Confirmation", "/confirmation", class: "shadow-stuff" %>
+				</li>
+				<li>
+					<%= link_to "Account", edit_user_registration_path, class: "shadow-stuff" %>
+				</li>
+			</ul>
 		</li>
 		<li>
-			<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
+			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				Dashboards <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
+				</li>
+				<li>
+					<a class = "shadow-stuff" href="/admin/getallorders">All Orders</a>
+				</li>
+				<li>
+					<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
+				</li>
+			</ul>
+
 		</li>
 		<li>
-			<a class = "shadow-stuff" href="/admin/getallorders">All Orders</a>
+			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				Products <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<a class = "shadow-stuff" href="/products/new">Add New Items</a>
+				</li>
+				<li>
+					<a class="shadow-stuff" href="/products">View Items</a>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Vendors <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="shadow-stuff" href="/vendors/new">Add New Vendor</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/vendors">View All Vendors</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Brands <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class = "shadow-stuff" href="/brands/new">Add New Brand</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/brands">View All Brands</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Item Statuses <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class = "shadow-stuff" href="/item_statuses/new">Add New Item Status</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/item_statuses">View All Item Statuses</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Sizes <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class = "shadow-stuff" href="/sizes/new">Add New Size</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/sizes">View All Sizes</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Fabrics <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class = "shadow-stuff" href="/fabrics/new">Add New Fabric</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/fabrics">View Fabrics</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a class="test shadow-stuff" tabindex="-1" href="#">Product Categories <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="shadow-stuff" href="/product_categories/new">Add New Category</a>
+						</li>
+						<li>
+							<a class="shadow-stuff" href="/product_categories">View Categories</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</li>
 		<li>
-			<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
+					<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
+				</li>
+				<li>
+					<a class = "shadow-stuff" href="/admin/getallorders">All Orders</a>
+				</li>
+				<li>
+					<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
+				</li>
+		<li>
+			<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
 		</li>
+		
 		<% else %>
 		<li>
 			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff", id: "header-style-log" %>
@@ -108,9 +261,7 @@
 			<%= link_to "Invite Friends", new_user_invitation_path, class: "shadow-stuff", id: "header-invite-friends"  %>
 		</li>
 		<% end %>
-		<li>
-			<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
-		</li>
+
 		<% else %>
 		<li >
 			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/login" id="header-login">Login</a>
