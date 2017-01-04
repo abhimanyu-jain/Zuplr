@@ -4,7 +4,10 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.where("user_id = ?", String(current_user.try(:id)))
+    @orders = Order.select("orders.*, SUM(order_items.selling_price) as box_price")
+    .joins("JOIN order_items on orders.id = order_items.order_id")
+    .where("orders.user_id = ?", String(current_user.try(:id)))
+    .includes(:order_items)
 
     if @orders == nil
       redirect_to "/style-log"
@@ -23,26 +26,33 @@ class OrdersController < ApplicationController
 
     @invoice_amount = OrderItem.sum(:selling_price, :conditions =>  {:order_id => @order.id})
 
-    @items = OrderItem.select("products.title, order_items.kept, order_items.selling_price")
+    @items = OrderItem.select("products.* , order_items.*")
     .joins("JOIN variants on order_items.variant_id = variants.id")
     .joins("JOIN products on variants.product_id = products.id")
     .where("order_items.order_id = ?", @order.id)
+
+    @display_items_data = ['RETURN BOOKED', 'PICKUP COMPLETED', 'COMPLETED'].include? @order.status
   end
 
   # GET /orders/:id/feedback
   def get_feedback
     @order = Order.find_by_order_code(params[:id])
-    @items = OrderItem.select("products.title, products.description, order_items.id, order_items.selling_price")
+
+    if (@order.status != 'DELIVERED')
+      redirect_to '/orders/'+params[:id]
+    else
+      @items = OrderItem.select("products.title, products.description, order_items.id, order_items.selling_price")
     .joins("JOIN variants on order_items.variant_id = variants.id")
     .joins("JOIN products on variants.product_id = products.id")
     .where("order_items.order_id = ?", @order.id)
 
-    render 'user_feedback'
+      render 'user_feedback'
+    end
   end
 
   def save_feedback
     items = params[:order_item]
-   
+
     items.each do |item, nothing|
       size_feedback = item[:size_feedback][item[:id]]
       price_feedback = item[:price_feedback][item[:id]]
@@ -59,22 +69,22 @@ class OrdersController < ApplicationController
       if(current_user.id != user_id)
         redirect_to request.referer
       else
-        oi.size_feedback = size_feedback
-        oi.price_feedback = price_feedback
-        oi.fit_cut_feedback = fit_cut_feedback
-        oi.style_feedback = style_feedback
-        oi.customer_comments = customer_comments
-        oi.kept = accept
-        oi.save
+      oi.size_feedback = size_feedback
+      oi.price_feedback = price_feedback
+      oi.fit_cut_feedback = fit_cut_feedback
+      oi.style_feedback = style_feedback
+      oi.customer_comments = customer_comments
+      oi.kept = accept
+      oi.save
       end
     end
-    
+
     # Find associated order
     oi = OrderItem.find(items[0][:id])
     order = Order.find(oi.order_id)
     order.status = "RETURN BOOKED"
     order.save
-    
+
     #Adding to status history
     order_status_history = OrderStatusHistory.new
     order_status_history.order_id = order.id

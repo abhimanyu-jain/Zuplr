@@ -43,6 +43,9 @@
 	.rupee-symbol {
 		margin-bottom: 0px !important;
 	}
+	.all_items {
+		margin-top: 40px;
+	}
 
 </style>
 
@@ -62,7 +65,7 @@
 					</div>
 
 					<div class="col-md-3">
-						TOTAL
+						TOTAL BOX PRICE
 						<br />
 						<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %><span class="price-color"><%= @invoice_amount %></span>
 					</div>
@@ -72,9 +75,6 @@
 					</div>
 
 					<div class="col-md-3">
-						<button class="btn btn-primary">
-							<%= link_to "Order # " + @order.order_code, order_path(@order.order_code), {:class => "order_link_text"} %>
-						</button>
 					</div>
 
 				</div>
@@ -88,38 +88,62 @@
 						<span class="bold-text"> <%= @order.status %> </span>
 						<br />
 						<br />
-						<span class=""> Items Shipped : <% @order_item_categories.each do |item| %>
-							<%= item.count.to_s + " " + item.name %>
-							<% end %>
-							<br />
-							<br />
-							<% if @items != nil %>
-							<% @items.each do |item| %>
-							<div class="row">
-								<div class="col-md-6">
-									<%= item.title %>
-								</div>
-								<div class="col-md-3">
-									<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %>
-									<%= item.selling_price %>
-								</div>
-								<div class="col-md-3">
-									<%= if(item.kept == 1) then " KEPT" elsif(item.kept == 0) then " RETURNED" else " " end %>
+						Items Shipped : <% @order_item_categories.each do |item| %>
+						<%= item.count.to_s + " " + item.name %>
+						<% end %>
+						
+						<% if @display_items_data == true %>
+						<% @items.each do |item| %>
+						<div class="row all_items">
+							<div class="col-md-6">
+								<%= item.title %>
+								<br /><br />
+								<div class="container">
+									<table>
+										<col width="130">
+										<col width="20">
+										<col width="130">
+										<tr>
+											<td> Size </td>
+											<td> : </td>
+											<td> <%= item.size_feedback %> </td>
+										</tr>
+										<tr>
+											<td> Fit/Cut </td>
+											<td> : </td>
+											<td> <%= item.fit_cut_feedback %> </td>
+										</tr>
+										<tr>
+											<td> Price </td>
+											<td> : </td>
+											<td> <%= item.price_feedback %> </td>
+										</tr>
+										<tr>
+											<td> Style </td>
+											<td> : </td>
+											<td> <%= item.style_feedback %> </td>
+										</tr>
+									</table>
 								</div>
 							</div>
-							<% end %>
-							<% end %>
+							<div class="col-md-3">
+								<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %>
+								<%= item.selling_price %>
+							</div>
+							<div class="col-md-3">
+								<%= if(item.kept == 1) then " KEPT" elsif(item.kept == 0) then " RETURNED" else " " end %>
+							</div>
+						</div>
+						<% end %>
+						<% end %>
 					</div>
-					<div class="col-md-2">
-						
+					<div class="col-md-3">
+
 					</div>
-					<div class="col-md-4">
-						<% if @order.status == "REQUESTED" ||  @order.status == "BOX READY" %>
+					<div class="col-md-3">
+						<% if cancellation_allowed(@order) %>
 						<input class="btn btn-danger" type="button" value="Cancel Order" onclick="cancel_order(<%= @order.id %>, 'CANCELLED BY CUSTOMER')" />
-						<button class="btn btn-success">
-							<%= link_to "Return", order_path(@order.order_code) + '/feedback', {:class => "order_link_text"} %>
-						</button>
-						<% elsif @order.status == "DELIVERED" %>
+						<% elsif feedback_allowed(@order) %>
 						<button class="btn btn-success">
 							<%= link_to "Return", order_path(@order.order_code) + '/feedback', {:class => "order_link_text"} %>
 						</button>
@@ -129,7 +153,10 @@
 			</div>
 		</div>
 	</div>
-
-	<%= link_to 'Edit', edit_order_path(@order) %> |
-	<%= link_to 'Back', "/style-log" %>
+	<br />
+	<p>
+		<u><%= link_to 'Your Previous Orders', "/orders" %></u>
+		<br />
+		<u><%= link_to 'Style Log', "/style-log" %></u>
+	</p>
 </div>

@@ -1,10 +1,47 @@
 <style>
-	table, th, td {
-		border: 1px solid black;
+	.order_box_top {
+		border: 1px #ddd solid;
+		border-radius: 4px 4px 0 0;
+		background-color: #f6f6f6;
 	}
 
-	th, td {
-		padding: 10px;
+	.order_box_bottom {
+		border: 1px #ddd solid;
+		border-radius: 0 0 4px 4px;
+	}
+
+	.order_link_text {
+		color: white;
+	}
+
+	.order_link_text:visited {
+		color: white;
+	}
+
+	.bold-text {
+		font-weight: bold;
+		font-size: 17px;
+		font-family: Arial, sans-serif;
+	}
+
+	.order_box_top_row {
+		padding: 15px;
+	}
+
+	.order_box_bottom_row {
+		padding: 15px;
+	}
+
+	.price-color {
+		color: #b12704;
+	}
+	.currencyINR {
+		height: 11px;
+		width: 7px;
+		background-image: url('/assets/rupeesymbol.png');
+	}
+	.rupee-symbol {
+		margin-bottom: 0px !important;
 	}
 </style>
 
@@ -13,27 +50,82 @@
 		<%= notice %>
 	</p>
 
-	<h2>Your Previous Orders</h2><br /><br />
+	<h2>Your Previous Orders</h2>
+	<br />
+	<br />
 
-	<table border="3">
-		<thead>
-			<tr>
-				<th width="125">Order Code </th>
-				<th>Order Status</th>
-			</tr>
-		</thead>
+	<% @orders.each do |order| %>
+	<div>
+		<div class="order_box_top">
+			<div class="order_box_top_row">
+				<div class="row">
+					<div class="col-md-3">
+						ORDER PLACED
+						<br />
+						<%= order.created_at.strftime("%a, %d %b %Y")  %>
+					</div>
 
-		<tbody>
-			<% @orders.each do |order| %>
-			<tr>
-				<td><%= order.order_code %></td>
-				<td><%= order.status%></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+					<div class="col-md-3">
+						TOTAL
+						<br />
+						<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %><span class="price-color"><%= order.box_price %></span>
+					</div>
 
-	<br>
+					<div class="col-md-3">
+						
+					</div>
 
-	<h3><%= link_to 'Place a New Order', "/style-log" %></h3>
+					<div class="col-md-3">
+						<button class="btn btn-primary">
+							<%= link_to "Order # " + order.order_code, order_path(order.order_code), {:class => "order_link_text"} %>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="order_box_bottom">
+			<div class="order_box_bottom_row">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="bold-text"> <%= order.status %> </span>
+						<br />
+						<br />
+						Items Shipped :
+						<br />
+						<br />
+						<% order.order_items.each do |item| %>
+						<div class="row">
+							<div class="col-md-6">
+								<%= item.variant.product.title %>
+							</div>
+							<div class="col-md-3">
+								<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %>
+								<%= item.selling_price %>
+							</div>
+							<div class="col-md-3">
+								<%= if(item.kept == 1) then " KEPT" elsif(item.kept == 0) then " RETURNED" else " " end %>
+							</div>
+						</div>
+						<% end %>
+					</div>
+					<div class="col-md-3">
+
+					</div>
+					<div class="col-md-3">
+						<% if cancellation_allowed(order) %>
+						<input class="btn btn-danger" type="button" value="Cancel Order" onclick="cancel_order(<%= order.id %>, 'CANCELLED BY CUSTOMER')" />
+						<% elsif feedback_allowed(order) %>
+						<button class="btn btn-success">
+							<%= link_to "Return", order_path(order.order_code) + '/feedback', {:class => "order_link_text"} %>
+						</button>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<br />
+	<br />
+	<u><h4><%= link_to 'Place a New Order', "/style-log" %></h4></u>
 </div>
