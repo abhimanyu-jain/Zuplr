@@ -68,9 +68,9 @@
 				var day = d.getDate();
 
 				var output = (month < 10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
-				
+
 				date = output;
-				
+
 				if (date != '' && phone != '') {
 
 					//Disable Submit Button to avoid duplicate orders
@@ -81,16 +81,16 @@
 						method : "POST",
 						data : {
 							calldate : date,
-							address : "", //$("#input-address").val(),
+							address : $("#input-address").val(),
 							phone : phone,
-							pincode : "000000", //$("#input-pincode").val()
+							pincode : $("#input-pincode").val(),
 							promo_code : $("#promo_code").val()
 						},
 						success : function(data) {
 							$('#details-confirmation-form').toggle();
 							$('#confirm-submission').toggle();
 							order_code = $.parseJSON(data);
-							$('#result_code').html(order_code.order_code);
+							$('#result_code').html("<a href='/orders/"+order_code.order_code+"'>"+order_code.order_code+"</a>");
 						},
 						error : function(XMLHttpRequest, textStatus, errorThrown) {
 							console.log("Internal Server Error : " + textStatus);
@@ -112,13 +112,8 @@
 			font-family: monospace;
 			padding-left: 5px;
 		}
-		.input-address {
-			width: 500px;
-			height: 200px;
-		}
-		#promo_code, #datetimepicker {
-			max-width: 500px;
-		}
+
+		
 		legend {
 			border-bottom: 0;
 		}
@@ -152,12 +147,16 @@
 	<br />
 	<form class="confirmation-details">
 		<div class="row">
-			<div class="col-md-5 col-sm-5 col-xs-12 value" style="text-align: center;">
+			<div class="col-md-6 col-sm-5 col-xs-12 value" style="text-align: center;">
 				<legend>
 					Phone Number
 				</legend>
 
 				<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
+				<br />
+				<br />
+				<h4>Address : </h4>
+				<textarea class="input-address form-control" rows="5" id="input-address" required ><%= @userprofile['address'] if defined?(@userprofile) %></textarea>
 				<br />
 				<br />
 			</div>
@@ -179,20 +178,17 @@
 					Promo Code :
 				</legend>
 				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
+				<br />
+				<br />
+				<h4>Pincode : </h4>
+				<input class="input-ic form-control" id="input-pincode" value="<%= @userprofile['pincode'] if defined?(@userprofile) %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
+				<br />
+				<br />
+
 			</div>
 
 		</div>
-		<!--<br />
 		<br />
-		<h4>Address : </h4>
-		<textarea class="input-address" rows="5" id="input-address" required ><%= @userprofile['address'] if defined?(@userprofile) %></textarea>
-		<br />
-		<br />
-		<h4>Pincode : </h4>
-		<input class="input-ic" id="input-pincode" value="<%= @userprofile['pincode'] if defined?(@userprofile) %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
-		<br />
-		<br />
-		<br />-->
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: center;">
 				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="submit" id="submission">
@@ -209,7 +205,7 @@
 			WELCOME TO ZUPLR
 		</p>
 		<br />
-		<p style="margin:0;padding:0;color:#837c77;text-align: center">
+		<p style="margin:0;padding:0;color:black;text-align: center">
 			Thanks for taking time out to fill the Style Log. Soon a stylist will be getting in touch with you.
 			<br />
 			Request Code is : <strong id="result_code"></strong>

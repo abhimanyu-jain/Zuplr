@@ -24,14 +24,12 @@ class OrdersController < ApplicationController
     .joins("JOIN product_categories  on products.product_category_id = product_categories.id ")
     .where("order_items.order_id = ?", @order.id).distinct.group("product_categories.name")
 
-    @invoice_amount = OrderItem.sum(:selling_price, :conditions =>  {:order_id => @order.id})
+    @invoice_amount = OrderItem.where(:order_id => @order.id).sum(:selling_price)
 
     @items = OrderItem.select("products.* , order_items.*")
     .joins("JOIN variants on order_items.variant_id = variants.id")
     .joins("JOIN products on variants.product_id = products.id")
     .where("order_items.order_id = ?", @order.id)
-
-    @display_items_data = ['RETURN BOOKED', 'PICKUP COMPLETED', 'COMPLETED'].include? @order.status
   end
 
   # GET /orders/:id/feedback

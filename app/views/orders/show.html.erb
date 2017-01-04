@@ -46,7 +46,6 @@
 	.all_items {
 		margin-top: 40px;
 	}
-
 </style>
 
 <div style="padding-top:120px" class="container">
@@ -65,17 +64,18 @@
 					</div>
 
 					<div class="col-md-3">
+						<% if feedback_available(@order) %>
 						TOTAL BOX PRICE
 						<br />
 						<%= image_tag("rupeesymbol.png", size: "7x12", class: "rupee-symbol") %><span class="price-color"><%= @invoice_amount %></span>
+						<% end %>
 					</div>
 
 					<div class="col-md-3">
 
 					</div>
 
-					<div class="col-md-3">
-					</div>
+					<div class="col-md-3"></div>
 
 				</div>
 
@@ -88,16 +88,17 @@
 						<span class="bold-text"> <%= @order.status %> </span>
 						<br />
 						<br />
+						<% if @display_items_data == true %>
 						Items Shipped : <% @order_item_categories.each do |item| %>
 						<%= item.count.to_s + " " + item.name %>
 						<% end %>
-						
-						<% if @display_items_data == true %>
+
 						<% @items.each do |item| %>
 						<div class="row all_items">
 							<div class="col-md-6">
 								<%= item.title %>
-								<br /><br />
+								<br />
+								<br />
 								<div class="container">
 									<table>
 										<col width="130">
@@ -152,11 +153,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<br />
-	<p>
-		<u><%= link_to 'Your Previous Orders', "/orders" %></u>
 		<br />
-		<u><%= link_to 'Style Log', "/style-log" %></u>
-	</p>
+		<p>
+			<u><%= link_to 'Your Previous Orders', "/orders" %></u>
+			<br />
+			<u><%= link_to 'Style Log', "/style-log" %></u>
+		</p>
+	</div>
 </div>
