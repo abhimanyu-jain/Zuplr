@@ -85,7 +85,6 @@
 			success : function(result) {
 				//val = result.data;
 				val = JSON.parse(result.data);
-				//alert(val["personal"]["age"]);
 				setStyleProfileValues(val);
 
 				//style_profile = JSON.stringify(JSON.parse(val));

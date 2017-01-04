@@ -7,8 +7,7 @@ class ProductsController < ApplicationController
     #Conditional chaining (put your methods into an arry and then execute everything in this array, depending on what parameters have been selected)
     #arr = []
     #arr << where("variants.size_id" => "1")
-    #binding.pry
-
+    
     @items = Product.select(
     'products.title, products.description, products.pattern,
     products.product_category_id, products.fabric_id, products.vendor_id, products.brand_id,
@@ -90,7 +89,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.save
-    binding.pry
     variants = params[:product][:variants]
     variants.each do |v|
       v[:purchase_date] = Date.strptime(v[:purchase_date], "%m/%d/%Y")
