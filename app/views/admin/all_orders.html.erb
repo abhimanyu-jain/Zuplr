@@ -80,7 +80,7 @@
 					</input> </td>
 					<!--<td><input class="datepicker" name="created_on" value=<%= params[:created_at] || 'All' %>></td>
 					<td><input class="datepicker" name="updated_on" value=<%= params[:updated_at] || 'All' %>></td>-->
-					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','REQUIREMENTS CONFIRMED', 'CANCELLED-CUSTOMER NOT INTERESTED','CANCELLED-CUSTOMER BELOW PRICE RANGE','CLOTHES CONFIRMED','CANCELLED-CUSTOMER UNRESPONSIVE','UNABLE TO FULFILL ORDER','CANCELLED-CUSTOMER CHANGED THEIR MIND','BOX READY','DISPATCHED','DELIVERED','PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
+					<td> <%= select_tag(:status, options_for_select(['All','REQUESTED','REQUIREMENTS CONFIRMED', 'CANCELLED-CUSTOMER NOT INTERESTED','CANCELLED-CUSTOMER BELOW PRICE RANGE','CLOTHES CONFIRMED','CANCELLED-CUSTOMER UNRESPONSIVE','UNABLE TO FULFILL ORDER','CANCELLED-CUSTOMER CHANGED THEIR MIND','BOX READY','DISPATCHED','DELIVERED','RETURN BOOKED', 'PICKUP COMPLETED','COMPLETED', 'CANCELLED'], params[:status])) %> </td>
 					<td>
 					<input id="current_date" name="call_date" value=<%= params[:call_date] || 'All' %>>
 					</td>
@@ -178,7 +178,7 @@
 				<% elsif order.status == 'DISPATCHED' %>
 				<input class="btn btn-primary" type="button" value="Box Delivered" onclick="update_order_status(<%= order.id %>, 'DELIVERED')" />
 			
-				<% elsif order.status == 'DELIVERED' %>
+				<% elsif order.status == 'RETURN BOOKED' %>
 				<input class="btn btn-primary" type="button" value="Reverse Pickup Done" onclick="update_order_status(<%= order.id %>, 'PICKUP COMPLETED')" />
 				<br />
 				<input class="btn btn-success" type="button" value="Complete Order" onclick="update_order_status(<%= order.id %>, 'COMPLETED')" />
