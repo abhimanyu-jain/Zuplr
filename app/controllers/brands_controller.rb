@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+  before_action :authenticate_admin
   
   #View all Brands
   def index

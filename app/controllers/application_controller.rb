@@ -69,6 +69,17 @@ class ApplicationController < ActionController::Base
   def after_invite_path_for(resource)
     root_path
   end
+  
+  def authenticate_admin
+    if current_user == nil
+      redirect_to :root
+    return
+    end
+    user = User.find_by_id(current_user.id)
+    if user.role.name == 'User'
+      redirect_to :root
+    end
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message

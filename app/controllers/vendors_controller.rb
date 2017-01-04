@@ -1,4 +1,5 @@
 class VendorsController < ApplicationController
+  before_action :authenticate_admin
   
   #View all vendors
   def index

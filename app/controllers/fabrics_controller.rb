@@ -1,5 +1,6 @@
 class FabricsController < ApplicationController
-    
+  before_action :authenticate_admin
+  
   #View all fabrics
   def index
     @fabrics = Fabric.all

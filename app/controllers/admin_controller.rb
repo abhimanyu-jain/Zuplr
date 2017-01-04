@@ -252,17 +252,6 @@ class AdminController < ApplicationController
   # @stylists.push('','')
   end
 
-  def authenticate_admin
-    if current_user == nil
-      redirect_to :root
-    return
-    end
-    user = User.find_by_id(current_user.id)
-    if user.role.name == 'User'
-      redirect_to :root
-    end
-  end
-
   def backend_order_params
     params.permit(:scheduleddeliverydate, :stylist_comments, :user_id)
   end

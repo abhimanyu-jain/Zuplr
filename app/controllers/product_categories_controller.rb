@@ -1,5 +1,7 @@
 class ProductCategoriesController < ApplicationController
       
+  before_action :authenticate_admin
+  
   #View all product_categories
   def index
     @product_categories = ProductCategory.all

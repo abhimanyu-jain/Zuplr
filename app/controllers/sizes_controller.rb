@@ -1,4 +1,7 @@
 class SizesController < ApplicationController
+  
+  before_action :authenticate_admin
+  
   #View all Sizes
   def index
     @sizes = Size.all
