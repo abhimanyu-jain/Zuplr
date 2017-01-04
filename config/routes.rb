@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "/users-check" => "home#newuser"
   get "/orders/:id/feedback" => "orders#get_feedback"
   post "/orders/submit_feedback" => "orders#save_feedback"
+  post "/orders/update_status" => "orders#update_status"
   
   # devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
