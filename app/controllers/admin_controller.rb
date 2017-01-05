@@ -53,7 +53,7 @@ class AdminController < ApplicationController
     @orders = Order.select(
     'orders.id, orders.order_code, orders.created_at, orders.updated_at, orders.status, orders.scheduleddeliverydate, orders.call_date_time,
     orders.stylist_comments, orders.promo_code, orders.stylist_id,
-    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode, 
+    users.userprofile_id, userprofiles.name, userprofiles.phonenumber, userprofiles.address, userprofiles.pincode,
     userprofiles.phone_number_status, userprofiles.gender, userprofiles.latest_status, userprofiles.id as userprofile_id,
     users.email, stylist_profile.name as stylist_name').
     joins('JOIN users on users.id = orders.user_id').
@@ -64,7 +64,7 @@ class AdminController < ApplicationController
     if(params[:order_code] != 'All' && params[:order_code] != nil && params[:order_code] != "")
       @orders = @orders.where('orders.order_code' => params[:order_code])
     end
-    
+
     if(params[:email] != 'All' && params[:email] != nil && params[:email] != "")
       @orders = @orders.where('users.email' => params[:email])
     end
@@ -215,32 +215,47 @@ class AdminController < ApplicationController
     order.save
     render :nothing => true
   end
-  
+
   def mark_box_ready_items
     order_id = params[:order_id]
     items = params[:item]
-    
-    order = Order.find_by_id(order_id)
-    order.status = "BOX READY"
-    order.save
-    
-    #Adding to status history
-    order_status_history = OrderStatusHistory.new
-    order_status_history.order_id = order_id
-    order_status_history.status = "BOX READY"
-    order_status_history.save
-    
-    items.each do |item|
-      order_item = OrderItem.new(:order_id => order_id, :variant_id => item[:item_id], :selling_price => item[:selling_price])
-      order_item.save
-    end
-    
-    render :nothing => true
-    #TODO : for each item, update status
-    #TODO : for each item, update status history
-    #TODO : make entry in order to shipment item mapping
-  end
 
+    search_results = {}
+
+    #Flag to see if any items have not been found in variants table
+    flag = true
+    
+    items.each do |item1|
+      if(Variant.find_by_id(item1[:item_id]) == nil)
+        search_results[item1[:item_id]] = "Failure"
+        flag = false
+      end
+    end
+
+    if (flag == true)
+      order = Order.find_by_id(order_id)
+      order.status = "BOX READY"
+      order.save
+
+      #Adding to status history
+      order_status_history = OrderStatusHistory.new
+      order_status_history.order_id = order_id
+      order_status_history.status = "BOX READY"
+      order_status_history.save
+
+      items.each do |item2|
+        order_item = OrderItem.new(:order_id => order_id, :variant_id => item2[:item_id], :selling_price => item2[:selling_price])
+        order_item.save
+      end
+      render :json => {"Success" => "true"}.to_json
+    else
+      render :json => search_results.to_json   
+    end
+   
+  #TODO : for each item, update status
+  #TODO : for each item, update status history
+  #TODO : make entry in order to shipment item mapping
+  end
 
   private
 
@@ -259,5 +274,4 @@ class AdminController < ApplicationController
   def backend_user_params
     params.permit()
   end
-
 end

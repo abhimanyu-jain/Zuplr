@@ -1,3 +1,8 @@
+<style>
+	.shipment_item_response {
+		color : red;
+	}
+</style>
 <!-- Modal -->
 <div class="modal fade" id="shipmentItemsPopup" role="dialog">
 	<div class="modal-admin" style="width: 700px; margin-top: 150px; margin-left: auto; margin-right: auto;">
@@ -17,6 +22,9 @@
 						variant_fields.find('input').each(function() {
 							$(this).val('');
 						});
+						variant_fields.find('.shipment_item_response').each(function() {
+							$(this).html('');
+						});
 						variant_fields.find('button').each(function() {
 							$(this).toggle();
 						});
@@ -31,14 +39,32 @@
 					$(document).ready(function() {
 						$("#box_ready_items_submit").click(function() {
 							var data = $('.shipmentItemsForm').serialize();
-							$.post('/admin/mark_box_ready_items', data);
+							$.post('/admin/mark_box_ready_items', data, function(response_data, status, xhr) {
+								
+								$.each(response_data, function(i, item) {
+									if(i == "Success")
+									{
+										$('#box_ready_items_submit').remove();
+										$('.shipment_item_response').html("Successfully Added!!!");
+									}
+									if(item == "Failure")
+									{
+										current = $('input').filter(function() { return this.value == i });
+										current.val('');
+										current.prev().html("Please Enter a Valid ID!!!");
+									}
+								});
+								
+							}, "json");
 						});
 					});
+
 				</script>
 				<form class="shipmentItemsForm">
 					<input id="order_id" name="order_id" value="" hidden />
 					<div class="items_list">
 						<div class="item_row">
+							<div class="shipment_item_response"></div>
 							<input class="input-ic" name="item[]item_id" type="number" style = "width:150px;" placeholder="Item ID" required />
 							<input class="input-ic" name="item[]selling_price" type="number" style = "width:150px;" placeholder="Selling Price" required />
 							<button onclick="remove_item_row(this)" hidden>
@@ -52,13 +78,13 @@
 					</button>
 					<br />
 					<br />
-					<button id="box_ready_items_submit" class="btn btn-primary">
+					<button id="box_ready_items_submit" class="btn btn-primary" type="button">
 						Submit
 					</button>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">
 					Close
 				</button>
 			</div>
