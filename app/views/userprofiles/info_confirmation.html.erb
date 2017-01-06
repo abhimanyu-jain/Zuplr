@@ -90,7 +90,7 @@
 							$('#details-confirmation-form').toggle();
 							$('#confirm-submission').toggle();
 							order_code = $.parseJSON(data);
-							$('#result_code').html("<a href='/orders/"+order_code.order_code+"'>"+order_code.order_code+"</a>");
+							$('#result_code').html("<a href='/orders/" + order_code.order_code + "'> Order #" + order_code.order_code + "</a>");
 						},
 						error : function(XMLHttpRequest, textStatus, errorThrown) {
 							console.log("Internal Server Error : " + textStatus);
@@ -113,40 +113,51 @@
 			padding-left: 5px;
 		}
 
-		
 		legend {
 			border-bottom: 0;
+		}
+		.billing-explanation, .billing-explanation a  {
+			color: #dc0060;
+			font-size : 20px;
+		}
+		
+		.thanks {
+			margin-top : 25px;
+			color: #dc0060;
+			font-size : 20px;
+			text-align: center;
 		}
 	</style>
 </head>
 
 <div style="padding-top:120px;" class="container" id="details-confirmation-form">
 
-	<h2 style="text-align: center; color: #dc0060"> Please confirm the following details</h2>
 	<br />
 	<br />
 	<div class="billing-explanation row">
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
-			Our stylist will call/whatsapp you to understand your personal style
-		</div>
-		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
-			You will get a preview of your items prior to shipping
+			Based on your style-log, our stylist will ship you 4-5 clothing items
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
 			You will have 3 full days after delivery to decide what to keep
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
-			Only pay for what you keep
+			You can easily schedule a return by going to <u><%= link_to 'My Orders', '/orders' %></u>
 		</div>
+		<div class="col-md-3 col-sm-3 col-xs-12 value" style="text-align: center;">
+			Pay only for what you keep
+		</div>
+
 	</div>
 	<div class="divider tiny"></div>
 	<br />
 	<br />
 	<br />
-	<br />
-	<br />
 	<form class="confirmation-details">
 		<div class="row">
+			<h6 style="text-align: center; color: #dc0060"> *Please confirm the following details</h6>
+			<br />
+
 			<div class="col-md-6 col-sm-5 col-xs-12 value" style="text-align: center;">
 				<legend>
 					Phone Number
@@ -155,7 +166,7 @@
 				<input autofocus="autofocus" class="input-ic form-control" id="input-phone" value="<%= @userprofile['phonenumber'] if defined?(@userprofile) %>" placeholder="" type="text" required />
 				<br />
 				<br />
-				<h4>Address : </h4>
+				<legend>Address</legend>
 				<textarea class="input-address form-control" rows="5" id="input-address" required ><%= @userprofile['address'] if defined?(@userprofile) %></textarea>
 				<br />
 				<br />
@@ -175,24 +186,21 @@
 			</div>-->
 			<div class="col-md-6 col-sm-6 col-xs-12 value" style="text-align: center;">
 				<legend>
-					Promo Code :
+					Promo Code
 				</legend>
 				<input class="input-ic form-control" id= "promo_code" placeholder="Enter your promo code here" type="text" required />
 				<br />
 				<br />
-				<h4>Pincode : </h4>
+				<legend>Pincode</legend>
 				<input class="input-ic form-control" id="input-pincode" value="<%= @userprofile['pincode'] if defined?(@userprofile) %>" placeholder="" type="text" onkeypress="pincode()" maxlength="6" required />
 				<br />
 				<br />
-
 			</div>
-
 		</div>
-		<br />
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 value" style="text-align: center;">
-				<button style = "margin-top: 55px;" class = "btn btn-z btn-z1 transform-up" type="submit" id="submission">
-					Confirm
+				<button style = "" class = "btn btn-z btn-z1 transform-up" type="submit" id="submission">
+					Confirm Details
 				</button>
 			</div>
 		</div>
@@ -201,21 +209,25 @@
 
 <div style="padding-top:120px" class="container" id='confirm-submission' hidden>
 	<div style="text-align: left; padding-left: 5%;">
-		<p style="margin:0;padding:0;color:#F6358A;letter-spacing:3px;text-align: center">
-			WELCOME TO ZUPLR
+		<p class="thanks">
+			Thank you. You will receive your shipment of clothes in 1-5 working days. 
+			<br /><br />You can take 3 days to decide what to keep, and schedule a return here : <u><strong id="result_code"></strong></u>
 		</p>
 		<br />
-		<p style="margin:0;padding:0;color:black;text-align: center">
-			Thanks for taking time out to fill the Style Log. Soon a stylist will be getting in touch with you.
-			<br />
-			Request Code is : <strong id="result_code"></strong>
-			<br />
+		<p style="font-size:15px;margin:0;padding:0;color:black;text-align: center">
+			
+<!--			<br /><br />
+			Based on your profile, our expert stylist will hand pick clothes based on your specific preferences. 
+			<br />You will receive the items within 1-5 working days. 
+			<br />You can take 3 days to decide what you’ll purchase and what you’d like to send back.
+			<br />You’re only charged for items you choose to keep when you check out. 
+			<br /><br />
+			Your Request Code is : -->
 			<img alt="" height="240" src="https://s20.postimg.org/4un744jn1/email_box_image.png" style="margin:auto;border:0px;display:block" height="0" class="CToWUd">
 			<br />
-			You can edit your Style Log here :
-			<%= link_to 'Style Log', "/style-log" %>
-			<br />
-			<%= link_to 'View Previous Orders', "/orders" %>
+			<u><%= link_to 'View Style Log', "/style-log" %></u>
+			
+			<u><%= link_to 'View Previous Orders', "/orders" %></u>
 		</p>
 	</div>
 </div>
