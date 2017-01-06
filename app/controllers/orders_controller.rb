@@ -5,8 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.select("orders.*, SUM(order_items.selling_price) as box_price")
-    .joins("JOIN order_items on orders.id = order_items.order_id")
+    .joins("LEFT JOIN order_items on orders.id = order_items.order_id")
     .where("orders.user_id = ?", String(current_user.try(:id)))
+    .group("orders.id")
     .includes(:order_items)
 
     if @orders == nil
