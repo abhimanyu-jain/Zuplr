@@ -81,14 +81,14 @@
 				});
 			});
 		})
-		
+
 	</script>
 	<style>
 		.dropdown-toggle, .dropdown-menu, .dropdown-submenu {
 			background-color: #dc0060;
 		}
 		.dropdown-menu li a:hover {
-			color : #dc0060!important;
+			color: #dc0060 !important;
 		}
 		.dropdown-toggle {
 			margin-top: 0px;
@@ -110,12 +110,16 @@
 <div id="navbar" class="collapse navbar-collapse pull-right">
 	<ul class="nav navbar-nav">
 		<!-- <li class="active"><a href="#">Home</a></li> -->
+
 		<% if user_signed_in? %>
 		<li>
 			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 				Hi <%= current_user.email %> !<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
+				<li>
+					<%= link_to "Blog", "https://blog.zuplr.com" %>
+				</li>
 				<li>
 					<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
 				</li>
@@ -141,7 +145,7 @@
 				</li>
 			</ul>
 		</li>
-		
+
 		<li>
 			<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 				Products <span class="caret"></span>
@@ -222,18 +226,18 @@
 			</ul>
 		</li>
 		<li>
-					<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
-				</li>
-				<li>
-					<a class = "shadow-stuff" href="/admin/getallorders">All Orders</a>
-				</li>
-				<li>
-					<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
-				</li>
+			<a class = "shadow-stuff" href="/admin/index">Dashboard</a>
+		</li>
+		<li>
+			<a class = "shadow-stuff" href="/admin/getallorders">All Orders</a>
+		</li>
+		<li>
+			<a class = "shadow-stuff" href="/admin/getpendingorders">Pending Orders</a>
+		</li>
 		<li>
 			<%= link_to "Logout", destroy_user_session_path, method: :delete,  class: "shadow-stuff", id: "header-logout"  %>
 		</li>
-		
+
 		<% else %>
 		<li>
 			<%= link_to "Style Profile", "/style-log", class: "shadow-stuff", id: "header-style-log" %>
@@ -247,6 +251,9 @@
 		<% end %>
 
 		<% else %>
+		<li>
+			<%= link_to "Blog", "http://blog.zuplr.com", class: "btn btn-default btn-zr-1 shadow-stuff" %>
+		</li>
 		<li >
 			<a class="btn btn-default btn-zr-1 shadow-stuff" href="/login" id="header-login">Login</a>
 		</li>
